@@ -1,0 +1,25 @@
+\pgfplotsset{every axis/.append style={thick,tick style={thin},font=\footnotesize}}
+\begin{tikzpicture}
+\tikzset{
+every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\scriptsize},
+small dot/.style={fill=black,circle,scale=0.3}
+}
+	\begin{axis}[use units,x=0.12cm,y=20cm,
+			minor tick num=3,
+			axis y line=middle,
+			axis x line=middle,
+			x unit=mV,xlabel=${V}_{Temp}$,
+			y unit=V,ylabel=${V}_{CASTemp}$,
+		]
+		\addplot[smooth,blue,domain=250:350] table[x={vtemp}, y={vcastemp}]{CASTempSimulation.data};
+		\addplot[smooth,teal,domain=270:320,samples=40]
+			{4*(x)/1000};
+		\addplot[smooth,orange,domain=250:350] table[x={vtemp}, y={vcastemp}]{CASTempTest.data};
+		%pin=degree:comment at (...:x,y)
+		\node[small dot,pin=180:{Gr{\'a}fica de Simulaci{\'o}n}] at (axis description cs:0.85,.86) {};
+		\node[small dot,pin=0:{Gr{\'a}fica Te{\'o}rica}] at (axis description cs:.23,.21) {};
+		\node[small dot,pin=180:{Gr{\'a}fica de Pruebas}] at (axis description cs:.585,0.6) {};
+	\end{axis}
+\end{tikzpicture}
+
+

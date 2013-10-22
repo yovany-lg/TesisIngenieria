@@ -162,7 +162,7 @@ En la tabla~\ref{tab:cap4:TestCASpH1} se muestran las mediciones tomadas del dis
 	\captionof{figure}{Gráfica de resultados arrojados en las pruebas, la simulación y de manera teórica para el CAS del sensor de pH.} \label{fig:cap4:TestCASpH2}
 \end{center}
 
-En la prueba del dispositivo CAS para el sensor de OD se toma una resistencia ${R}_{P}= 10\mega\ohm$ y se hace un barrido en la fuente ${V}_{P}$ de $300\milli\volt$ a $1.2\milli\volt$, con lo cual se obtiene como entrada una corriente ${I}_{OD}$ de $50\nano\ampere$ a $110\nano\ampere$ (Figura~\ref{fig:cap4:TestSimOD}). Las mediciones tomadas del dispositivo CAS para el sensor de OD se muestran en la tabla~\ref{tab:cap4:TestCASOD1}, en donde se incluyen las mediciones de la simulación y los valores teóricos en base a ecuación~\ref{cap3:eq:VCASOD}.
+En la prueba del dispositivo CAS para el sensor de OD se toma una resistencia ${R}_{P}= 10\mega\ohm$ y se hace un barrido en la fuente ${V}_{P}$ de $300\milli\volt$ a $1.2\milli\volt$, con lo cual se obtiene una corriente ${I}_{OD}$ de $50\nano\ampere$ a $110\nano\ampere$ (Figura~\ref{fig:cap4:TestSimOD}), que es el dominio de salida del sensor de OD. Las mediciones tomadas del CAS para el sensor de OD se muestran en la tabla~\ref{tab:cap4:TestCASOD1}, en donde se incluyen las mediciones de la simulación y los valores teóricos en base a la ecuación~\ref{cap3:eq:VCASOD}. En la figura~\ref{fig:cap4:GraficaTestCASOD} se muestra de manera gráfica dichos resultados\footnote{Tomando como referencia a los valores teóricos, existe un error en ${V}_{CASOD}$, lo cual se debe a que los elementos \emph{hardware} presentan un margen de error según cada fabricante}, en donde las gráfica de las pruebas valida el funcionamiento del dispositivo CAS para el sensor de OD.
 
 \begin{table}[htp]
 	\caption{Mediciones ${V}_{CASOD}$ con variaciones en la corriente de entrada del sensor de OD.}%
@@ -186,30 +186,34 @@ En la prueba del dispositivo CAS para el sensor de OD se toma una resistencia ${
 
 \begin{center}
 	\input{Imagenes/Desarrollo/DiseñoHardware/GraficaTestCASOD.tex}
-	\captionof{figure}{Gráfica de resultados arrojados en las pruebas, la simulación y de manera teórica para el CAS del sensor de OD.} \label{fig:cap4:TestCASpH2}
+	\captionof{figure}{Gráfica de resultados arrojados en las pruebas, la simulación y de manera teórica para el CAS del sensor de OD.} \label{fig:cap4:GraficaTestCASOD}
 \end{center}
 
 
-Para el dispositivo CAS del sensor de temperatura, las mediciones tomadas se muestran en la tabla~\ref{tab:cap4:TestCASTemp1}. El barrido del voltaje de entrada varía de $280\milli\volt$ a $320\milli\volt$, el cual se realiza mediante variaciones pequeñas en el voltaje.
+Para el dispositivo CAS del sensor de temperatura, en la tabla~\ref{tab:cap4:TestCASTemp1} se muestran las mediciones tomadas del CAS, de la simulación y los valores teóricos en base a la ecuación~\ref{cap3:eq:VCASTemp}. Para esta prueba se consideró un dominio de entrada de $280\milli\volt$ a $320\milli\volt$, que equivalentemente son valores de temperatura de $28$ a $32\degreecelsius$. En la figura~\ref{fig:cap4:GraficaTestCAStemp} se ilustra de manera gráfica los resultados obtenidos\footnote{Se observa que en base a los valores teóricos el dispositivo CAS presenta un error, nuevamente debido a los márgenes de error en los elementos \emph{hardware}}, en donde el comportamiento de la gráfica de pruebas valida el funcionamiento del CAS para el sensor de temperatura.
 
 \begin{table}[htp]
 	\caption{Mediciones ${V}_{CASTemp}$ con variaciones en el voltaje de entrada del sensor de temperatura.}%
 	\centering
 	\footnotesize
-	\begin{tabular}{cc}
+	\begin{tabular}{cccc}
 		\hline \hline \hline \hline
-		\headcol\textbf{Voltaje de entrada}&$\pmb{{V}_{CASTemp}}$\\
+		\headcol$\pmb{{V}_{Temp}}$&$\pmb{{V}_{CASTemp}}$&\textbf{$\pmb{{V}_{CASTemp}}$ Teórico}&\textbf{$\pmb{{V}_{CASTemp}}$ Simulado}\\
 		\hline \hline \hline \hline
-		$278\milli\volt$ & $1.122\volt$\\		
-		\rowcol $286\milli\volt$ & $1.157\volt$\\
-		$290\milli\volt$ & $1.174\volt$\\
-		\rowcol $291.6\milli\volt$ & $1.179\volt$\\
-		$300\milli\volt$ & $1.217\volt$\\
-		\rowcol $320\milli\volt$ & $1.296\volt$\\
+		$278\milli\volt$ & $1.122\volt$ & $1.11\volt$ & $1.10\volt$\\		
+		\rowcol $286\milli\volt$ & $1.157\volt$ & $1.14\volt$ & $1.14\volt$\\
+		$290\milli\volt$ & $1.174\volt$ & $1.16\volt$ & $1.18\volt$\\
+		\rowcol $300\milli\volt$ & $1.217\volt$ & $1.2\volt$ & $1.23\volt$\\
+		$320\milli\volt$ & $1.296\volt$ & $1.28\volt$ & $1.31\volt$\\
 		\hline \hline \hline \hline
 	\end{tabular}
 	\label{tab:cap4:TestCASTemp1}
 \end{table}
+
+\begin{center}
+	\input{Imagenes/Desarrollo/DiseñoHardware/GraficaTestCASTemp.tex}
+	\captionof{figure}{Gráfica de resultados arrojados en las pruebas, la simulación y de manera teórica para el CAS del sensor de temperatura.} \label{fig:cap4:GraficaTestCAStemp}
+\end{center}
 
 \section{Pruebas de caja gris}
 
