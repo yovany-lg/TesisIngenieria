@@ -1,0 +1,26 @@
+\BOOKMARK [0][-]{chapter*.1}{Dedicatoria}{}% 1
+\BOOKMARK [0][-]{chapter*.2}{Agradecimientos}{}% 2
+\BOOKMARK [0][-]{chapter*.4}{Resumen}{}% 3
+\BOOKMARK [0][-]{chapter*.5}{\315ndice general}{}% 4
+\BOOKMARK [0][-]{chapter*.6}{\315ndice de tablas}{}% 5
+\BOOKMARK [0][-]{chapter*.7}{\315ndice de figuras}{}% 6
+\BOOKMARK [0][-]{chapter.1}{Verificaci\363n y validaci\363n del producto final: pruebas y resultados}{}% 7
+\BOOKMARK [1][-]{section.1.1}{Pruebas de caja blanca}{chapter.1}% 8
+\BOOKMARK [2][-]{subsection.1.1.1}{Prueba de configuraci\363n inicial del sistema}{section.1.1}% 9
+\BOOKMARK [2][-]{subsection.1.1.2}{Prueba de generaci\363n de Voffset-.4 y VPOD-.4}{section.1.1}% 10
+\BOOKMARK [2][-]{subsection.1.1.3}{Prueba de variaciones de voltaje en las entradas}{section.1.1}% 11
+\BOOKMARK [1][-]{section.1.2}{Pruebas de caja gris}{chapter.1}% 12
+\BOOKMARK [2][-]{subsection.1.2.1}{Prueba de comunicaci\363n serie entre la MTU y la RTU}{section.1.2}% 13
+\BOOKMARK [2][-]{subsection.1.2.2}{Prueba de comunicaci\363n entre la MTU y la base de datos}{section.1.2}% 14
+\BOOKMARK [2][-]{subsection.1.2.3}{Prueba de conexi\363n de sensores a la RTU}{section.1.2}% 15
+\BOOKMARK [2][-]{subsection.1.2.4}{Prueba del software de la MTU}{section.1.2}% 16
+\BOOKMARK [2][-]{subsection.1.2.5}{Prueba de la aplicaci\363n Web}{section.1.2}% 17
+\BOOKMARK [1][-]{section.1.3}{Pruebas de caja negra}{chapter.1}% 18
+\BOOKMARK [2][-]{subsection.1.3.1}{Prueba de gesti\363n de sesi\363n de usuario}{section.1.3}% 19
+\BOOKMARK [2][-]{subsection.1.3.2}{Prueba de gesti\363n de estados digitales}{section.1.3}% 20
+\BOOKMARK [0][-]{chapter*.43}{Bibliograf\355a}{}% 21
+\BOOKMARK [0][-]{appendix.Alph1}{Diagramas esquem\341ticos}{}% 22
+\BOOKMARK [0][-]{appendix.Alph2}{PCB}{}% 23
+\BOOKMARK [0][-]{appendix.Alph3}{Dise\361o Software}{}% 24
+\BOOKMARK [1][-]{section.Alph3.1}{Clases}{appendix.Alph3}% 25
+\BOOKMARK [1][-]{section.Alph3.2}{Diagramas de actividades}{appendix.Alph3}% 26

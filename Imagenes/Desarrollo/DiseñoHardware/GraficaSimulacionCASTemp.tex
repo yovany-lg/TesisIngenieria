@@ -1,0 +1,18 @@
+\pgfplotsset{every axis/.append style={thick,tick style={thin},font=\footnotesize}}
+\begin{tikzpicture}
+\tikzset{
+every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\scriptsize},
+small dot/.style={fill=black,circle,scale=0.3}
+}
+	\begin{axis}[use units,x=0.1cm,y=15cm,
+			minor tick num=3,
+			axis y line=middle,
+			axis x line=middle,
+			x unit=mV,xlabel=${V}_{Temp}$,
+			y unit=V,ylabel=${V}_{CASTemp}$
+		]
+		\addplot[smooth,teal] table[x={vtemp}, y={vcastemp}]{CASTempSimulation.data};
+	\end{axis}
+\end{tikzpicture}
+
+

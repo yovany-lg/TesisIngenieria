@@ -1,0 +1,1439 @@
+%------------------------
+%Capítulo 3: Desarrollo
+%------------------------
+
+\chapter{Desarrollo del sistema}
+\label{cap3}
+
+En este capítulo se presenta el desarrollo del prototipo de sistema de monitoreo para la PTAR de la UTM utilizando una metodología de desarrollo para mejoramiento de procesos de producción. Dicha metodología es conocida como Modelo de Integración de Capacidad y Madurez (CMMI, \emph{Capability Maturity Model Integration}) \cite{Cap2Bib:CMMI}.
+
+CMMI consiste de 5 niveles de madurez y cada nivel consta de un número de áreas de procesos. Sin embargo, debido a que en los diferentes niveles del modelo CMMI existen áreas de procesos enfocadas a organizaciones o empresas ya establecidas, la aplicación de CMMI en el desarrollo de este sistema se limitó a aspectos de ingeniería, por lo que solo se implementaron los niveles 1, 2 y 3. Estos niveles de detallan en la figura~\ref{fig:cap3:CMMI}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Desarrollo/CMMI.pdf}
+	\end{center}
+\caption{Niveles de la metodología CMMI.} \label{fig:cap3:CMMI}
+\end{figure}
+
+\section{Iniciativa}
+
+\subsection{Estado actual de la PTAR}
+
+En la PTAR de la UTM no se cuenta con un sistema automatizado para el monitoreo de pH y OD, por lo que este proceso se realiza manualmente. 
+
+El monitoreo de pH se realiza mediante los siguientes pasos:
+\begin{enumerate} \itemsep=-0.7em
+\item Se toma una muestra de 50ml de agua residual. 
+\item Con un potenciómetro se toma la lectura del pH. 
+\item Se registra el valor de la medición en una bitácora.
+\item Se tabulan los resultados.
+\end{enumerate}
+
+El monitoreo de oxígeno disuelto (OD) se realiza de la siguiente manera:
+
+\begin{enumerate} \itemsep=-0.7em
+\item Se calibra previamente el electrodo de O2, el cual se utiliza para medir este parámetro.
+\item Se sumerge el electrodo en el bioreactor y se toman las lecturas.
+\item Se registra el valor de la medición en una bitácora. 
+\item Se tabulan los resultados.
+\end{enumerate}
+
+
+Por lo anterior y considerando que no se lleva a cabo el monitoreo de temperatura, se propone realizar la medición de pH, OD y temperatura mediante un sistema automatizado, almacenar registros de las mediciones en una base de datos y mostrar gráficamente y de manera tabular el historial de los registros de mediciones.
+
+\subsection{Propuesta}
+
+El sistema que se propone desarrollar tiene como objetivo implementar un sistema SCADA para monitorear remotamente y de manera automatizada el estado de pH, OD y temperatura de la PTAR de la UTM. Dicho sistema consta de sensores de propósito industrial, los cuales se describen en la sección~\ref{cap2:sec:Sensores}; una RTU; la MTU; un sistema de comunicaciones que consta de una interfaz serie RS-485; servidores de procesamiento distribuido; y, acceso Web con una interfaz de usuario. En la figura~\ref{fig:cap3:DBscada} se muestra un diagrama general del sistema propuesto.
+
+\begin{figure}[htb]
+	\begin{center}
+ 		\includegraphics[scale=0.9]{Imagenes/Desarrollo/DBScada.pdf}
+	\end{center}
+	 \caption{Diagrama general del sistema SCADA.} \label{fig:cap3:DBscada}
+\end{figure}
+
+El sistema realizará el monitoreo de manera automatizada, las mediciones serán tomadas discretamente, es decir, se tomarán mediciones cada cierto intervalo de tiempo. El sistema almacenará registros de mediciones en una base de datos y mediante una aplicación Web proporcionará una interfaz de usuario. El usuario del sistema podrá visualizar el estado de pH, OD y temperatura de la PTAR desde cualquier lugar a través de una computadora (Cliente) con acceso a Internet.
+
+\section{Gestionamiento}
+
+\subsection{Requerimientos funcionales de la propuesta}
+
+En la figura~\ref{fig:cap3:DB2scada} se muestra de manera detallada el sistema SCADA propuesto. Este sistema realizará el monitoreo remoto de pH, OD y temperatura de la PTAR. Las mediciones proporcionadas por cada sensor pasarán por una etapa de acondicionamiento de señal mediante un sistema electrónico (CAS,\emph{Circuito de Acondicionamiento de Señal}). El MCU ATmega8 desempeñará el papel de RTU, implementará las funciones del protocolo Modbus, procesará solicitudes de la MTU y realizará la adquisición de datos de los sensores a través de un módulo ADC (integrado en el MCU). El sistema de comunicaciones implementará una interfaz serie o pasarela RS-485/RS-232 para la comunicación de la RTU con la MTU. La MTU (Computadora) implementará las funciones del protocolo Modbus para solicitar información de la RTU, almacenará registros de mediciones en una base de datos y recibirá órdenes que emite el usuario a través de la interfaz Web. Los servidores proporcionan el gestor de bases de datos, la base de datos y la aplicación Web (Interfaz gráfica del usuario final). La aplicación Web incluye, la gestión de usuarios (Administrador), visualización de tendencias y de entradas y salidas digitales.
+
+\begin{figure}[htb]
+	\begin{center}
+ 		\includegraphics[scale=0.9]{Imagenes/Desarrollo/DBScada2.pdf}
+	\end{center}
+	 \caption{Diagrama completo del sistema SCADA propuesto.} \label{fig:cap3:DB2scada}
+\end{figure}
+
+\subsubsection{Clasificación y análisis de requerimientos}
+
+Los requerimientos funcionales de la propuesta, para un mejor análisis, son clasificados de la siguiente manera:
+
+\begin{itemize} \itemsep=-0.5em
+	\item \emph{Acondicionamiento de señal}: La señal que proviene de los sensores requiere de una etapa de acondicionamiento, por ello se hace uso de un sistema de acondicionamiento de señal o CAS. El CAS emplea un sistema electrónico, el cual tiene como entrada la señal de un sensor y proporciona en la salida un nivel de señal o voltaje adecuado para el funcionamiento de la etapa posterior de adquisición de datos. 
+	\item \emph{Especificación del CAS de cada sensor}: Para los sensores de pH y temperatura, el CAS para cada uno de ellos se ha dividido en tres etapas: Aislamiento, Filtrado y Amplificación. El CAS para el sensor de OD se ha dividido en las siguientes etapas: Conversión de corriente a voltaje, Amplificación y Filtrado. 
+	\item \emph{Software de la RTU}: Para implementar la RTU del protocolo Modbus en el MCU ATmega8, se requiere de un \emph{software}. Dicho \emph{software} se construye en lenguaje C, en el que se codifican los parámetros de configuración de periféricos de entrada/salida, los formatos de las ADU de solicitudes y respuestas y el procesamiento de solicitudes de la MTU.
+	\item \emph{Funciones de la RTU}: Las funciones primordiales del MCU (RTU) son obtener mediciones de los sensores, proporcionar el voltaje de alimentación para el sensor de OD, recibir y procesar las ADUs de solicitud que emite la MTU y construir y enviar las ADU de respuesta (con la información solicitada) a la MTU. 
+	\item \emph{Comunicación MTU-RTU}: La comunicación entre la RTU y la MTU se realizará a través de una interfaz serie RS-485 como medio físico. La MTU (Computadora) cuenta con un puerto serie, cuyo funcionamiento se basa en el estándar RS-232, por ello, se requiere una pasarela entre las interfaces RS-485 y RS-232.
+	\item \emph{Software de la MTU}: El protocolo Modbus de la MTU se implementará desarrollando un \emph{software} en lenguaje Java, en el cual se codifican los formatos de las ADU de solicitudes y respuestas Modbus. 
+	Este \emph{software} contará con un controlador para la gestionar la comunicación serie con la RTU (Figura~\ref{fig:cap3:RTUMTU2}), un gestor de monitoreo discreto de la RTU, un módulo que comunica la MTU con el servidor de bases de datos y un módulo de comunicación con la aplicación Web (Figura~\ref{fig:cap3:MTU-Servidores}).
+	\item \emph{Servidor Web y base de datos}: La aplicación Web se desarrollará haciendo uso del Framework Yii (arquitectura MVC), dicha aplicación restringirá el acceso sólo al Administrador del sistema, permitirá (al Administrador) visualizar el estado de pH, OD y temperatura a través de gráficas de tendencias, visualizar el estado de las alarmas a través de indicadores (switch) y cambiar el estado de las salidas digitales en la RTU.
+	\item \emph{Herramientas de diseño y desarrollo}: En el diseño\emph{hardware} se emplearán herramientas de simulación y diseño de circuitos electrónicos. Para el desarrollo del \emph{software} del MCU, se empleará un entorno de desarrollo exclusivo del MCU, el cual utiliza el lenguaje de programación C. En el desarrollo del \emph{software} de la MTU y de la aplicación Web, se emplearán entornos de desarrollo para lenguajes de programación orientado a objetos y de alto nivel.
+	\item \emph{Entradas y salidas digitales}: El MCU se configuró para incluir dos entradas y dos salidas digitales, aunque su implementación con dispositivos externos no fue desarrollada, se permite conectar entradas y salidas digitales externas que estén debidamente aisladas y que operen con niveles de voltaje TTL.
+\end{itemize}
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{c}
+			\subfloat[Comunicación de la MTU con la RTU.]{%
+				\label{fig:cap3:RTUMTU2}%
+				\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoSW/RTU-MTU2.pdf}} \\
+			\subfloat[Comunicación de la MTU con los Servidores.]{%
+				\label{fig:cap3:MTU-Servidores}%
+				\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoSW/MTU-Servidores.pdf}} \\
+		\end{tabular}
+	\end{center}
+	\caption{Comunicación de la MTU con la RTU y con el servidor de la aplicación Web y la base de datos.} \label{fig:cap3:MTU-RTU-Servidores}
+\end{figure}
+
+\subsection{División \emph{hardware} y \emph{software}}
+
+Las fases de diseño e implementación de \emph{hardware} y \emph{software} del sistema SCADA se realizaron utilizando la metodología de desarrollo para Sistemas Empotrados (\emph{Embedded Systems}) \cite{Cap2Bib:TesisDavid, Cap2Bib:EmbeddedSystems}. En base a los requerimientos del sistema, la división de tareas \emph{hardware} y \emph{software} se listan en la tabla~\ref{tab:cap3:Thwsw}.
+
+\begin{table}[htp]
+	\caption{Etapas \emph{hardware} y \emph{software}.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{ll}
+		\hline \hline \hline \hline
+		\rowcolor[gray]{0.8}\textbf{\emph{Hardware} }&\textbf{\emph{Software}}\\
+		\hline \hline \hline \hline
+		Acondicionamiento de los sensores & Diseño \emph{software} de la RTU\\
+		\rowcol Entradas y salidas de la RTU	& Diseño \emph{software} de la MTU\\
+		Interfaz RS-485	& Diseño \emph{software} de la aplicación Web\\
+		\rowcol Pasarela RS-485/RS-232	\\
+		\hline \hline \hline \hline
+\end{tabular}
+\label{tab:cap3:Thwsw}
+\end{table}
+
+\subsubsection{Selección de hardware}
+Los elementos \emph{hardware} seleccionados para satisfacer los requerimientos funcionales de la propuesta del sistema SCADA son:
+
+\begin{itemize} \itemsep=-0.5em
+
+	\item\emph{CA3140}: Es un \emph{op-amp} (\emph{Amplificador operacional}) con tecnología MOSFET que cuenta con una alta impedancia de entrada ${Z}_{in}=1.5\tera\ohm$, opera con corrientes de entrada muy bajas ${I}_{min}=10\pico\ampere$ a un voltaje de alimentación ${V}_{s}=\pm15\volt$. Su campo de aplicación abarca las áreas de instrumentación, filtros activos, generadores de funciones, instrumentos portátiles, etc \cite{Cap2Bib:CA3140}.
+
+	El op-amp CA3140 se utiliza para implementar todas las etapas del CAS (aislamiento, conversión corriente-voltaje, filtrado y amplificación) de cada sensor.
+
+	\item\emph{TL081}: Es un op-amp de bajo costo, de alta velocidad, con entrada JFET (\emph{Junction Field-Effect Transistor}) y con un voltaje offset de entrada internamente reducido. Este dispositivo requiere una baja corriente de alimentación, sin embargo, ofrece un amplio ancho de banda de ganancia y rápida velocidad de respuesta \cite{Cap2Bib:TL081}.
+	
+	EL CI TL081 puede ser usado en aplicaciones como integradores de alta velocidad, convertidores D-A (Digital Análogo), circuitos de muestreo y retención y otras.
+		
+	\item\emph{Capacitor de poliéster}: Sus principales aplicaciones son en sistemas de audio, equipos de instrumentación y filtros. Por lo tanto, estos capacitores se utilizan en el diseño de la etapa de filtrado del CAS de cada sensor.
+
+	\item\emph{ATmega8}: Es un MCU de la marca ATMEL que cuenta con una arquitectura AVR RISC, memoria flash para código de $8\kilo$B, frecuencia máxima de operación de $16\mega\hertz$, seis canales ADC, un dispositivo de comunicación serie USART (\emph{Universal Synchronous and Asynchronous serie Receiver and Transmitter}), etc \cite{Cap2Bib:ATmega8}.
+
+	El ATmega8 se utiliza para implementar la RTU, lo cual se logra codificando en la memoria de código el protocolo Modbus y el \emph{software} de control, los canales ADC se utilizan para obtener las mediciones de los sensores, se asigna un puerto de salida de 8 bits que indica al DAC el nivel de voltaje para alimentar el sensor de OD y el dispositivo USART se utiliza para la comunicación serie con la MTU.
+
+	\item\emph{MAX489}: Es un circuito integrado (CI) de la marca MAXIM que tiene la función de transceptor para comunicaciones RS-485, el cual permite una transmisión de datos libre de errores a una velocidad de $250\kilo$bps y se puede configurar para operar en modo\emph{full-duplex} y \emph{half-duplex} \cite{Cap2Bib:MAX489}.
+
+	El CI MAX489 se utiliza para implementar la interfaz RS-485, lo cual se logra al conectarse con el dispositivo USART del ATmega8.
+
+	\item\emph{MAX232}: Es un CI de la marca MAXIM que convierte las señales de un puerto serie RS-232 a señales compatibles con niveles TTL \cite{Cap2Bib:MAX232}.
+
+	El CI MAX232 se utiliza para la comunicación serie entre la MTU y la RTU, debido a que el puerto serie de la MTU (computadora) basa su funcionamiento de acuerdo al estándar RS-232.
+
+	\item\emph{DAC0808}: Es un DAC de 8 bits con un tiempo de establecimiento a escala completa de $150\milli\second$, cuenta con un registro de entrada de 8 bits que indica el nivel de voltaje a generar y opera con fuentes de alimentación de $\pm5\volt$ \cite{Cap2Bib:DAC0808}.
+
+	El CI DAC0808 se utiliza para generar el voltaje de alimentación del sensor de OD, por lo que el registro de entrada se conecta al registro de proporciona el ATmega8.
+\end{itemize}
+
+En la tabla~\ref{tab:cap3:tareas-componentes-hw} se muestra la relación entre las tareas HW y los elementos HW seleccionados.
+
+\begin{table}[htb]
+	\caption{Relación entre tareas y componentes hardware.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{p{2in}cccccc}
+		\hline \hline \hline \hline
+		\rowcolor[gray]{0.8} \textbf{Tareas hardware}&\textbf{CA3140}&\textbf{Capacitor}&\textbf{ATmega8}&\textbf{MAX232}&\textbf{MAX489}&\textbf{DAC0808}\\
+		\hline \hline \hline \hline
+		Acondicionamiento &	X	&	X	&	&	&	&\\
+		\rowcol Entradas/salidas de la RTU	&	&	&	X	&	&	&	\\
+		Interfaz RS-485/RS-232	&	&	&	X	&	X	&	X	&\\
+		\rowcol Alimentación del sensor de OD	&	&	&	X	&	&	&	X\\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:cap3:tareas-componentes-hw}
+\end{table}
+
+\subsubsection{Selección de herramientas \emph{software} de diseño y desarrollo}
+
+Las herramientas de diseño de \emph{hardware} y \emph{software} seleccionados para el desarrollo de la propuesta se describen a continuación:
+
+\begin{itemize} \itemsep=-0.5em
+
+\item\emph{AVR Studio}: Herramienta \emph{software} de la compañía ATMEL versión 4.16 proporcionada de forma gratuita. Es un entorno de desarrollo de aplicaciones para MCUs del mismo fabricante, el cual permite escribir, compilar y depurar códigos en lenguaje C/C++ y lenguaje ensamblador.
+
+\item\emph{Proteus	Design Suite}: Herramienta \emph{software} en la versión 7.6, la cual es desarrollada y comercializada por \emph{Labcenter Electronics Ltd}. Permite el diseño de diagramas esquemáticos, simulación de circuitos mediante un sistema basado en SPICE e incluye una suite de herramientas de diseño de PCB.
+
+\item\emph{Cadence OrCAD}: Es una herramienta \emph{software} comercial de \emph{Cadence Design Systems, Inc}. en su versión 10.3 permite diseñar y editar diagramas esquemáticos para el desarrollo de PCB o simulación analógica utilizando modelado SPICE.
+
+\item\emph{Docklight}: Es un producto \emph{software} de \emph{Flachmann \& Heggelbacher}, en la versión 1.9.21, ayuda a realizar pruebas de conexión y comunicación en interfaces serie. 
+
+\item\emph{Netbeans}: Herramienta de \emph{software} libre (\emph{Open Source}) desarrollada y mantenida por la comunidad \emph{Netbeans} (\emph{NetBeans Community}). Se utilizaron las versiones 7.0.1 y 7.3.1, esta herramienta es un entorno de desarrollo integrado (IDE, \emph{Integrated Development Environment}) que permite el desarrollo de aplicaciones escritas en lenguaje \emph{Java}, \emph{JavaScript}, \emph{PHP} y otros. También provee un módulo para el diseño de GUIs en Java.
+
+\item\emph{Eclipse}: Herramienta de \emph{software} libre desarrollada y soportada por la comunidad \emph{Eclipse}, en la que personas y organizaciones colaboran para desarrollar y mejorar dicha herramienta. Se utilizó la versión 3.7, el cual es un IDE para el desarrollo de aplicaciones escritas en lenguaje C/C++, Python, Java, JavaScript, PHP y otros. Eclipse proporciona herramientas para el desarrollo de GUIs.
+
+\item\emph{PHPEdit}: Herramienta \emph{software} propiedad de \emph{WaterProof SARL}. Se utilizó la versión 4.2, esta herramienta es un IDE para desarrollo PHP que permite crear sitios web dinámicos, codificar y depurar PHP, y realizar pruebas de proyecto.
+
+\item \emph{Enterprise Architect}: Es un producto propiedad de \emph{SPARX SYSTEMS}. En la versión 9 de evaluación, es un conjunto de herramientas para modelado y diseño de \emph{software}, por lo que sirve de asistente en la gestión de proyectos \emph{software}, proporcionando múltiples herramientas de modelado y herramientas de creación de diagramas que facilitan el desarrollo.
+
+\item\emph{XAMPP}: Las herramientas necesarias para el desarrollo de la aplicación Web, están contenidas en la suite XAMPP en la versión 1.8.1. Esta suite contiene las siguientes herramientas: PHP 5.4.7 (requerido para desarrollar la aplicación Yii), gestor de base de datos MySQL 5.5.27, servidor Apache 2.4.3 y otros.
+
+\item\emph{Framework Yii}: Para desarrollar la aplicación Web se utilizó el \emph{Framework Yii versión 1.1.13}. Yii, por ser un Framework de \emph{software} libre, está en constante evolución, por lo que actualmente hay nuevas versiones que incluyen algunas mejoras.
+
+\end{itemize}
+
+\section{Definición}
+
+\subsection{Diseño hardware}
+\label{cap3:Definicion:DHW}
+Como se describe en la tabla~\ref{tab:cap3:Thwsw}, el desarrollo del sistema se divide en cuatro etapas \emph{hardware}. Estas etapas se describen a continuación: 
+
+\begin{itemize} \itemsep=-0.5em
+	\item \emph{Etapa de acondicionamiento de los sensores}: En esta etapa se detalla el diseño específico de acondicionamiento para cada sensor en particular.
+	\item\emph{Entradas y salidas de la RTU}: Esta etapa describe la configuración de entradas y salidas del MCU ATmega8 y la distribución de terminales.
+	\item\emph{Interfaz RS-485}: Describe la configuración de la interfaz serie RS-485.
+	\item\emph{Pasarela RS-485/RS-232}: Especifica el diseño de la comunicación entre las interfaces RS-485 y RS-232. La interfaz RS-485 es usada por la RTU y la interfaz RS-232 es usada por la MTU.
+\end{itemize}
+
+\subsubsection{Diseño de la etapa de acondicionamiento de los sensores}
+
+\paragraph{CAS del sensor de pH}
+\label{Cap3:DHWCASpH}
+El diseño del CAS para el sensor de pH consiste de tres etapas, como se ilustra en la figura~\ref{fig:cap3:CAS1}, las cuales son: aislamiento, filtrado y amplificación. No obstante, como se describe en la subsección~\ref{cap2:Sensores:pH}, se indica que el voltaje de la señal de salida del sensor de pH (${V}_{pH}$) oscila entre $-414.12\milli\volt$ y $+414.12\milli\volt$, por lo cual, se requiere de una etapa previa en la que se agrega un voltaje de desplazamiento (\emph{offset}), el cual deberá ser mayor a $414\milli\volt$. Con ello se garantiza una señal de salida con voltaje positivo, que es aceptable para la entrada del ADC, ya que el ADC solo acepta niveles de voltaje positivos.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoHardware/CAS1.pdf}
+	\end{center}
+	 \caption{Etapas del CAS para el sensor de pH y de temperatura.} \label{fig:cap3:CAS1}
+\end{figure}
+
+Para la etapa que genera el voltaje \emph{offset} (${V}_{offset}$) se emplea el regulador de voltaje LM317 con la configuración de limitador de corriente y el op-amp TL081 como seguidor de voltaje (Figura~\ref{fig:cap3:offph}) \cite{Cap2Bib:Alexander, Cap2Bib:Coughlin, Cap2Bib:Hayt}. 
+
+La idea de construir una fuente de voltaje fija para generar ${V}_{offset}$ empleando el CI LM317, surgió de~\cite{Cap2Bib:Voffset}, en donde se muestra que es posible obtener una fuente de corriente constante a partir de dicho dispositivo y al variar la resistencia de carga se ajusta el voltaje de salida. En base a los cálculos propuestos en~\cite{Cap2Bib:Voffset} se obtuvo la siguiente configuración (Figura~\ref{fig:cap3:SimVoffset}): $R_1 = 10\kilo\ohm$ y $R_2 = 3.2\kilo\ohm$ para obtener ${V}_{offset} = 400\milli\volt$. Sin embargo, en la simulación que se muestra en la figura~\ref{fig:cap3:SimVoffset}, se obtuvo ${V}_{offset} = 577\milli\volt$. 
+
+No obstante, debido a que las especificaciones del LM317 varían con cada fabricante, este diseño no funcionó de la misma manera en la práctica. Por lo que en la figura figura~\ref{fig:cap3:offph} se muestra la configuración funcional del LM317 en donde se obtiene ${V}_{offset} = 505.6\milli\volt$ como se detalla en la sección~\ref{cap04:VOffset}. Con lo que se garantiza un desplazamiento de la señal ${V}_{pH}$ para obtener niveles de voltaje positivo.
+
+La etapa de aislamiento es requerida debido a la alta impedancia de salida del sensor de pH. En dicha etapa se utiliza el CI CA3140 configurado como seguidor de voltaje (figura~\ref{fig:cap3:offph}) con lo que se obtiene ${V}_{ApH}={V}_{pH}+{V}_{offset}$.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{c}
+			\subfloat[Adición de ${V}_{offset}$ y aislamiento del sensor de pH.]{%
+				\label{fig:cap3:offph}%
+				\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoHardware/CASpHOffset.pdf}} \\
+			\subfloat[Simulación de la etapa de adición de ${V}_{offset}$.]{%
+				\label{fig:cap3:SimVoffset}%
+				\includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoHardware/SimulacionVoffset.pdf}} \\
+		\end{tabular}	
+	\end{center}
+	\caption{Configuración y simulación de la etapa de adición de ${V}_{offset}$ y etapa de aislamiento para el CAS de pH.} \label{fig:cap3:Voffset_pH}
+\end{figure}
+
+En la etapa de filtrado se emplea la configuración de un filtro activo pasa-bajas, como el de la figura~\ref{fig:cap3:filph} \cite{Cap2Bib:Alexander, Cap2Bib:Coughlin, Cap2Bib:Hayt}, en donde el filtrado se realiza utilizando un circuito \emph{RC} y el CI \emph{CA3140} como amplificador de ganancia variable, con ello la amplificación se incluye en el diseño de la misma etapa de filtrado\footnote{La configuración completa del CAS del sensor de pH se muestra en el apéndice~\ref{ap:HWSch}.}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoHardware/CASpH.pdf}
+	\end{center}
+	\caption{Configuración del filtro \emph{pasa-bajas} con ganancia ajustable.} \label{fig:cap3:filph}
+\end{figure}
+
+La frecuencia de corte ${f}_{c}$ del filtro \emph{pasa-bajas} se calcula con la ecuación~\ref{cap3:eq:pHfc} y la ganancia de amplificación ${G}_{a}$ se calcula con la ecuación~\ref{cap3:eq:pHG}.
+
+\begin{equation} \label{cap3:eq:pHfc}
+{w}_{c}={{1}\over{{R}_{i}{C}_{i}}}=2\pi{f}_{c}
+\end{equation}
+
+\begin{equation} \label{cap3:eq:pHG}
+{G}_{a}=(1+{{R}_{f}\over{R}_{4}})
+\end{equation}
+
+en estas ecuaciones se tiene que: 
+
+\begin{variables}
+	\item[${w}_{c}=$] Frecuencia de corte en [$\rad\per\second$].
+	\item[${f}_{c}=$] Frecuencia de corte en [$\hertz$].
+	\item[${R}_{i}=$] Resistencia del circuito RC.
+	\item[${C}_{i}=$] Capacitor del circuito RC.
+	\item[${G}_{a}=$] Ganancia del amplificador.
+	\item[${R}_{f}=$] Resistencia de retroalimentación del amplificador.
+	\item[${R}_{4}=$] Resistencia de entrada del amplificador.
+\end{variables}
+
+Debido a que la señal del sensor de pH es propensa a contaminarse con ruido, se establece una frecuencia de corte baja ${f}_{c}=0.159\hertz$. Para una mejor compatibilidad con el ADC del ATmega8, se eligió una ganancia de amplificación ${G}_{a}=2$. Los parámetros para el cálculo del filtro y el amplificador se muestran en la tabla~\ref{tab:cap3:CASpH}.
+
+\begin{table}[htb]
+	\caption{Parámetros usados en el CAS del sensor de pH.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{ccc}
+		\hline \hline \hline \hline
+		\rowcolor[gray]{0.8}\textbf{Parámetro}&\textbf{Valor}&\textbf{Unidad}\\
+		\hline \hline \hline \hline
+		
+		${R}_{i}$&$10$&$\mega\ohm$\\
+		\rowcol ${C}_{i}$&$100$&$\nano\farad$\\
+		${f}_{c}$&$0.159$&$\hertz$\\
+		\rowcol ${R}_{f}$&$470$&$\kilo\ohm$\\
+		${R}_{1}$&$470$&$\kilo\ohm$\\
+		\rowcol ${G}_{a}$&$2$&-\\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:cap3:CASpH}
+\end{table}
+
+Por todo lo anterior, el modelo matemático del dispositivo CAS para el sensor de pH se describe en la siguiente ecuación:
+
+\begin{equation} \label{cap3:eq:VCASpH}
+{V}_{CASpH} = 2({V}_{pH}+{V}_{offset})
+\end{equation}
+
+En la figura~\ref{fig:cap3:SimulacionVCASpH} se muestra la simulación completa del CAS del sensor de pH. En la simulación se sustituye la entrada del sensor de pH por una fuente de voltaje (${V}_{pH}$). Se considera que el dominio (entrada del CAS) está en el rango de voltaje de $-414.12\milli\volt$ a $+414.12\milli\volt$, con ello, en la figura~\ref{fig:cap4:SimCASpH} y en la tabla~\ref{tab:cap4:SimulacionCASpH1} se muestran los resultados que arroja la simulación de manera gráfica y tabular respectivamente.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoHardware/SimulacionVCASpH.pdf}
+	\end{center}
+	\caption{Simulación Completa del CAS para el sensor de pH.} \label{fig:cap3:SimulacionVCASpH}
+\end{figure}
+
+\begin{center}
+	\input{Imagenes/Desarrollo/DiseñoHardware/GraficaSimulacionCASpH.tex}
+	\captionof{figure}{Gráfica de entradas y salidas de la simulación del CAS para el sensor de pH.} \label{fig:cap4:SimCASpH}
+\end{center}
+
+\begin{table}[htp]
+	\caption{Tabla de entradas y salidas de la simulación del CAS para el sensor de pH.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{cc}
+		\hline \hline \hline \hline
+		\headcol$\pmb{{V}_{pH}}$&$\pmb{{V}_{CASpH}}$\\
+		\hline \hline \hline \hline
+		$400\milli\volt$ & $1.93\volt$\\
+		\rowcol $300\milli\volt$ & $1.73\volt$\\
+		$200\milli\volt$ & $1.53\volt$\\
+		\rowcol $100\milli\volt$ & $1.33\volt$\\
+		$0\volt$ & $1.13\volt$\\
+		\rowcol $-100\milli\volt$ & $934\milli\volt$\\
+		$-200\milli\volt$ & $734\milli\volt$\\
+		\rowcol $-300\milli\volt$ & $534\milli\volt$\\
+		$-400\milli\volt$ & $334\milli\volt$\\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:cap4:SimulacionCASpH1}
+\end{table} 
+
+\paragraph{CAS del sensor de OD}
+
+El diseño del CAS para el sensor de OD se divide en dos etapas principales (figura~\ref{fig:cap3:CAS2}): conversión-amplificación y filtrado. La etapa de conversión-amplificación se divide en dos subetapas, en donde se involucra el diseño de una etapa de conversión de corriente a voltaje y una etapa de amplificación.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoHardware/CAS2.pdf}
+	\end{center}
+	 \caption{Etapas del CAS para el sensor de OD.} \label{fig:cap3:CAS2}
+\end{figure}
+
+Debido a que el sensor de OD, como se describió en la subsección~\ref{cap2:sec:Sensores:OD}, proporciona una corriente como señal de salida y el ADC del ATmega8 solo permite voltajes como señales de entrada, se requiere el diseño de un convertidor de corriente a voltaje, como el que se muestra en la figura~\ref{fig:cap3:CVOD} \cite{Cap2Bib:Alexander, Cap2Bib:Hayt}, para acondicionar la señal.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoHardware/CASODCV.pdf}
+	\end{center}
+	\caption{Configuración de la etapa de conversión-amplificación .} \label{fig:cap3:CVOD}
+\end{figure}
+
+La etapa de amplificación para el CAS del sensor de OD, se incluye en este mismo diseño, ya que el convertidor de la figura~\ref{fig:cap3:CVOD} se configura para que tenga una ganancia ${G}_{c}={R}_{c}$. Este convertidor de corriente a voltaje se diseña utilizando la ecuación~\ref{cap3:eq:ODCV}. Debido a que la corriente de la señal de salida del sensor de OD oscila entre $50\nano\ampere$ y $110\nano\ampere$, se establece una ganancia de conversión ${G}_{c}=1*{{10}^{6}}$, con ello se obtiene un voltaje de conversión ${V}_{COD}$ que oscila entre $50\milli\volt$ y $110\milli\volt$. Estos niveles de voltaje permitirán al ADC operar de manera satisfactoria en la toma de mediciones. 
+
+\begin{equation}\label{cap3:eq:ODCV}
+{V}_{COD}=-{R}_{c}{i}_{OD}
+\end{equation}
+
+donde se tiene que:
+
+\begin{variables}
+	\item[${V}_{COD}=$] Voltaje de salida del convertidor.
+	\item[${i}_{OD}=$] Corriente del sensor de OD.
+	\item[${R}_{c}=$] Resistencia de ganancia de conversión.
+\end{variables}
+
+Para la etapa de filtrado, se emplea la configuración de un filtro activo pasa-bajas inversor \cite{Cap2Bib:Alexander, Cap2Bib:Coughlin, Cap2Bib:Hayt}. Dicho filtro es de primer orden con ganancia unitaria como el que se muestra en la figura~\ref{fig:cap3:filOD}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoHardware/CASODFiltro.pdf}
+	\end{center}
+	\caption{Configuración del filtro \emph{pasa-bajas} inversor de ganancia unitaria.} \label{fig:cap3:filOD}
+\end{figure}
+
+La frecuencia de corte ${f}_{c}$ de dicho filtro se calcula con la ecuación~\ref{cap3:eq:ODf}.
+
+\begin{equation}\label{cap3:eq:ODf}
+{w}_{c}={{1}\over{{R}_{f}{C}_{f}}}=2\pi{f}_{c}
+\end{equation}
+
+donde:
+\begin{variables}
+	\item[${w}_{c}=$] Frecuencia de corte en [$\rad\per\second$].
+	\item[${f}_{c}=$] Frecuencia de corte en [$\hertz$].
+	\item[${R}_{f}=$] Resistencia de retroalimentación del filtro.
+	\item[${C}_{f}=$] Capacitor de retroalimentación del filtro.
+	\item[${R}_{i}=$] Resistencia de entrada al filtro, para la ganancia unitaria se hace ${R}_{i}={R}_{f}$.
+\end{variables}
+
+La frecuencia de corte de la etapa de filtrado elegida es ${f}_{c}=0.159\hertz$. En la tabla~\ref{tab:cap3:CASOD} se muestran los parámetros para el cálculo del convertidor de corriente a voltaje y del filtro pasa-bajas y en el apéndice~\ref{ap:HWSch} se muestra la configuración completa del CAS del sensor de OD.
+
+\begin{table}[htb]
+	\caption{Parámetros usados en el CAS del sensor de OD.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{ccc}
+		\hline \hline \hline \hline
+		\rowcolor[gray]{0.8}\textbf{Parámetro}&\textbf{Valor}&\textbf{Unidad}\\
+		\hline \hline \hline \hline
+
+		${G}_{c}$&$1*{{10}^{6}}$&-\\
+		\rowcol	${R}_{c}$&$1$&$\mega\ohm$\\
+		${f}_{c}$&$0.159$&$\hertz$\\
+		\rowcol	${R}_{f}$&$10$&$\mega\ohm$\\
+		${C}_{f}$&$100$&$\nano\farad$\\
+		\rowcol	${R}_{i}$&$10$&$\mega\ohm$\\
+		\hline \hline \hline \hline
+	\end{tabular}
+\label{tab:cap3:CASOD}
+\end{table}
+
+\newpage
+Basándose en el diseño anterior, el modelo matemático del dispositivo CAS para el sensor de OD se describe en la siguiente ecuación:
+
+\begin{equation} \label{cap3:eq:VCASOD}
+{V}_{CASOD}=(1*{{10}^{6}})({i}_{OD})
+\end{equation}
+
+En la figura~\ref{fig:cap3:SimulacionVCASOD} se ilustra el diagrama esquemático empleado en la simulación del CAS para el sensor de OD. En esta simulación se utiliza como entrada una fuente de corriente. Se considera que el dominio del CAS del sensor de OD es una corriente ${I}_{OD}$ que oscila entre $50\nano\ampere$ y $110\nano\ampere$, por lo que en la tabla~\ref{tab:cap4:SimCASOD1} y en la figura~\ref{fig:cap4:GraficaSimulacionCASOD} se muestran los resultados obtenidos de la simulación de manera tabular y gráfica respectivamente.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.8]{Imagenes/Desarrollo/DiseñoHardware/SimulacionVCASOD.pdf}
+	\end{center}
+	\caption{Simulación del CAS para el sensor de OD.} \label{fig:cap3:SimulacionVCASOD}
+\end{figure}
+
+\begin{table}[htp]
+	\caption{Tabla de entradas y salidas de la simulación del CAS para el sensor de OD.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{cc}
+		\hline \hline \hline \hline
+		\headcol$\pmb{{I}_{OD}}$&$\pmb{{V}_{CASOD}}$\\
+		\hline \hline \hline \hline
+		$50\nano\ampere$&$44.9\milli\volt$\\
+		\rowcol$60\nano\ampere$& $54.9\milli\volt$\\
+		$70\nano\ampere$& $64.9\milli\volt$\\
+		\rowcol$80\nano\ampere$& $74.9\milli\volt$\\
+		$90\nano\ampere$& $84.9\milli\volt$\\
+		\rowcol$100\nano\ampere$& $94.9\milli\volt$\\
+		$110\nano\ampere$& $105.9\milli\volt$\\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:cap4:SimCASOD1}
+\end{table}
+\newpage
+\begin{center}
+	\input{Imagenes/Desarrollo/DiseñoHardware/GraficaSimulacionCASOD.tex}
+	\captionof{figure}{Gráfica de entradas y salidas de la simulación del CAS para el sensor de OD.} \label{fig:cap4:GraficaSimulacionCASOD}
+\end{center}
+
+
+\paragraph{CAS del sensor de temperatura}
+
+El diseño del CAS del sensor de temperatura se dividió en las etapas de aislamiento, filtrado y amplificación (Figura~\ref{fig:cap3:CAS1}).
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoHardware/CASTemp.pdf}
+	\end{center}
+	 \caption{Configuración del CAS para el sensor de temperatura.} \label{fig:cap3:CASTemp}
+\end{figure}
+
+La etapa de aislamiento emplea la configuración de un seguidor de voltaje (figura~\ref{fig:cap3:CASTemp}), en donde se obtiene un voltaje de salida ${V}_{temp}$ que es proporcional a la temperatura ambiente con una sensibilidad de $10\milli\volt\per\degreecelsius$.
+
+Para la etapa de filtrado y amplificación se emplea la misma configuración usada para el sensor de pH (figura~\ref{fig:cap3:CASTemp}), la frecuencia de corte del filtro seleccionada es ${f}_{c}=1.59\hertz$ y para una mejor resolución del módulo ADC del ATmega8 se eligió una ganancia de amplificación ${G}_{a}=4$. En la tabla~\ref{tab:cap3:CAStemp} se muestran los parámetros utilizados para el cálculo del filtro y el amplificador.
+
+\begin{table}[htp]
+	\caption{Parámetros usados en el CAS del sensor de temperatura.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{ccc}
+		\hline \hline \hline \hline
+		\rowcolor[gray]{0.8}\textbf{Parámetro}&\textbf{Valor}&\textbf{Unidad}\\
+		\hline \hline \hline \hline
+
+		${R}_{i}$&$1$&$\mega\ohm$\\
+		\rowcol ${C}_{i}$&$100$&$\nano\farad$\\
+		${f}_{c}$&$1.59$&$\hertz$\\
+		\rowcol ${R}_{f}$&$47$&$\kilo\ohm$\\
+		${R}_{5}$&$15$&$\kilo\ohm$\\
+		\rowcol ${G}_{a}$&$4$&-\\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:cap3:CAStemp}
+\end{table}
+
+Del diseño anterior, el modelo matemático del dispositivo CAS para el sensor de temperatura se describe en la siguiente ecuación:
+
+\begin{equation} \label{cap3:eq:VCASTemp}
+{V}_{CASTemp}=4*{V}_{temp}
+\end{equation}
+
+\newpage
+En la figura~\ref{fig:cap3:SimulacionVCASTemp} se muestra la simulación del CAS para el sensor de temperatura y el diagrama esquemático empleado. Se considera que el dominio de dicho CAS es un voltaje ${V}_{Temp}$, el cual está en función de la temperatura ambiente, por lo que presenta una sensibilidad de $10\milli\volt \per \degreecelsius$. En la figura~\ref{fig:cap4:SimCASTemp} y en la tabla~\ref{tab:cap4:SimulacionCASTemp} se muestran los resultados obtenidos de la simulación de manera gráfica y tabular respectivamente.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoHardware/SimulacionVCASTemp.pdf}
+	\end{center}
+	\caption{Simulación del CAS para el sensor de temperatura.} \label{fig:cap3:SimulacionVCASTemp}
+\end{figure}
+
+\begin{center}
+	\input{Imagenes/Desarrollo/DiseñoHardware/GraficaSimulacionCASTemp.tex}
+	\captionof{figure}{Gráfica de entradas y salidas de la simulación del CAS para el sensor de temperatura.} \label{fig:cap4:SimCASTemp}
+\end{center}
+
+\begin{table}[htp]
+	\caption{Tabla de entradas y salidas de la simulación del CAS para el sensor de temperatura.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{cc}
+		\hline \hline \hline \hline
+		\headcol$\pmb{{V}_{Temp}}$&$\pmb{{V}_{CASTemp}}$\\
+		\hline \hline \hline \hline
+		$272\milli\volt$ & $1.10\volt$\\
+		\rowcol $282\milli\volt$ & $1.14\volt$\\
+		$292\milli\volt$ & $1.18\volt$\\
+		\rowcol $302\milli\volt$ & $1.23\volt$\\
+		$312\milli\volt$ & $1.27\volt$\\
+		\rowcol $322\milli\volt$ & $1.31\volt$\\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:cap4:SimulacionCASTemp}
+\end{table}
+
+
+\subsubsection{Entradas y salidas de la RTU}
+\label{cap3:DHW:RTUES}
+Para el diseño hardware de la RTU se definen las entradas y salidas del MCU ATmega8 (figura~\ref{fig:cap3:RTU}) \cite{Cap2Bib:ATmega8}. Como entradas se tienen a las señales de los sensores y entradas digitales, y las salidas son la alimentación del sensor de OD y las salidas digitales. 
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoHardware/RTU.pdf}
+	\end{center}
+	\caption{Configuración de la RTU.} \label{fig:cap3:RTU}
+\end{figure}
+
+%\newpage
+El voltaje de alimentación del sensor de OD se genera empleando el DAC0808, en donde el nivel de voltaje de salida se establece a través de un código binario contenido en un registro de entrada de 8 bits, el cual es generado por el ATmega8.
+
+%\newpage
+Las terminales del ATmega8 se distribuyen en cuatro áreas (figura~\ref{fig:cap3:ATmega8DT}): las entradas analógicas (señales de los sensores) que hacen uso de los canales ADC0-ADC2, la entrada y salida de datos serie a través de las terminales RXD y TXD respectivamente, las entradas y salidas digitales utilizan los puertos PD2-PD3 y PD4-PD5 respectivamente, y el registro de salida que indica el nivel de voltaje de alimentación para el sensor de OD utiliza el puerto B (PB0-PB7).
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoHardware/ATmega8DT.pdf}
+	\end{center}
+	 \caption{Distribución de terminales del ATmega8.} \label{fig:cap3:ATmega8DT}
+\end{figure}
+
+La configuración empleada para el DAC0808 se muestra en la figura~\ref{fig:cap3:DACConf}, la cual proporciona un voltaje de salida ${V}_{POD}$ con una resolución de $4.18\milli\volt\per$bit \cite{Cap2Bib:DAC0808}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoHardware/DACConf.pdf}
+	\end{center}
+	 \caption{Configuración del DAC0808.} \label{fig:cap3:DACConf}
+\end{figure}
+
+%\newpage
+\subsubsection{Interfaz RS-485}
+\label{cap3:DHW:RS485}
+Para la comunicación de la RTU con la MTU se emplea una interfaz RS-485 como medio físico. Dicha interfaz se implementa utilizando el dispositivo USART que incluye el MCU, el cual se conecta al dispositivo MAX489 para implementar una línea de transmisión balanceada.
+
+%\newpage
+La configuración empleada para el diseño de la interfaz RS-485 se muestra en la figura~\ref{fig:cap3:MAX489Conf} \cite{Cap2Bib:MAX489}, en donde se utilizan los puertos RXD/TXD del ATmega8 para la recepción/transmisión de datos series mediante el dispositivo USART y el dispositivo MAX489 se configura para la operación en modo \emph{full-duplex}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoHardware/MAX489Conf.pdf}
+	\end{center}
+	\caption{Configuración del dispositivo MAX489.} \label{fig:cap3:MAX489Conf}
+\end{figure}
+
+
+\subsubsection{Pasarela RS-485/RS-232}
+\label{cap3:DHW:RS232RS485}
+
+La MTU (computadora) cuenta con un puerto serie cuyo funcionamiento está basado en el estándar RS-232, debido a esto, para comunicar la MTU con la RTU es necesario implementar una pasarela RS-485/RS-232 (figura~\ref{fig:cap3:RTU-MTU}). 
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoHardware/RTU-MTU.pdf}
+	\end{center}
+	\caption{Comunicación serie de la RTU con la MTU.} \label{fig:cap3:RTU-MTU}
+\end{figure}
+
+%\newpage
+La pasarela RS-485/RS-232 se divide en dos etapas, la primer etapa consiste en obtener los datos serie de la interfaz RS-485 en niveles TTL, lo cual se realiza empleando el dispositivo MAX489; y, la segunda etapa convierte los niveles TTL a voltajes del estándar RS-232, lo cual se realiza utilizando el dispositivo MAX232.
+
+El dispositivo MAX489 se configura para operar en modo \emph{full-duplex} y la configuración empleada para el dispositivo MAX232 utiliza capacitores externos para su funcionamiento \cite{Cap2Bib:MAX489, Cap2Bib:MAX232}. Dicha configuración se ilustra en la figura~\ref{fig:cap3:Pasarela}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=.95]{Imagenes/Desarrollo/DiseñoHardware/Pasarela485-232.pdf}
+	\end{center}
+	 \caption{Pasarela RS-485/RS-232.} \label{fig:cap3:Pasarela}
+\end{figure}
+
+
+\newpage
+\subsection{Diseño \emph{software}}
+\label{cap3:Definicion:DSW}
+% Procurar que se empiece una nueva página
+El desarrollo del sistema se divide en tres etapas \emph{Software} (Tabla~\ref{tab:cap3:Thwsw}, ). El diseño de estas etapas se realizó empleando el Lenguaje Unificado de Modelado (UML, \emph{Unified Modeling Language}). Las etapas \emph{software} se describen a continuación:
+
+\begin{itemize} \itemsep=-0.5em
+	\item \emph{Software de la RTU}: En esta etapa se detalla el diseño \emph{software} del MCU ATmega8. Con este \emph{software}, el MCU implementará una RTU empleando el protocolo Modbus. El desarrollo se realizará en lenguaje C.
+	\item\emph{Software de la MTU}: Esta etapa describe a detalle el diseño del \emph{software} de la MTU. La MTU de Modbus será implementada en una computadora. Este \emph{software} se implementará en lenguaje Java.
+	\item\emph{Software de la aplicación Web}: Describe el diseño de la aplicación Web en base a los requerimientos establecidos. Se empleará el framework Yii y una base de datos MySQL.
+\end{itemize}
+
+\subsubsection{\emph{software} de la RTU}
+
+\paragraph{Requerimientos formales}
+En base a los requerimientos funcionales de la propuesta, se obtuvieron de manera concreta los requerimientos formales de las tareas que debe desempeñar el \emph{software} de la RTU. Dichos requerimientos formales se describen en la tabla~\ref{tab:cap3:ReqRTU} y en la figura~\ref{fig:cap3:ReqRTU} se ilustra la relación entre los requerimientos mediante un diagrama de requerimientos.
+
+\begin{table}[htp]
+	\caption{Requerimientos formales del \emph{software} de la RTU.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{clp{8cm}}
+		\hline \hline \hline \hline
+		\headcol\textbf{Código}&\textbf{Requerimiento}&\textbf{Descripción}\\
+		\hline \hline \hline \hline
+		
+		REQ01	&	Procesamiento de Solicitudes de la MTU & Procesar las solicitudes o ADUs (Protocolo Modbus) que emite la MTU para monitorear el estado de la RTU.\\
+		\rowcol REQ02 & Adquisición de datos a través del ADC & Consiste en configurar el ADC para tomar la lectura de los sensores.\\
+		REQ03 & Obtención de Estados Digitales & Para obtener los estados de las Entradas y Salidas Digitales.\\
+		\rowcol REQ04 & Construir y	enviar respuesta a la MTU & Consiste en construir una ADU de respuesta a una solicitud emitida por la MTU.\\
+		REQ05 & Establecer Salidas Digitales & Establecer las Salidas Digitales de acuerdo a los parámetros de las solicitudes de la MTU.\\
+
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:ReqRTU}
+\end{table}
+ 
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoSW/RTUReqForm.pdf}
+	\end{center}
+	 \caption{Diagrama de requerimientos formales del \emph{software} de la RTU.}\label{fig:cap3:ReqRTU}
+\end{figure}
+
+\paragraph{Clases}
+
+El \emph{software} de la RTU consta de cuatro módulos principales (Figura~\ref{fig:cap3:RTUModulos}): gestión del dispositivo ADC, puertos digitales de Entrada y Salida, gestión del dispositivo USART y el \emph{software} principal de procesamiento de ADUs de solicitud emitidas por la MTU. La estructura \emph{software} de la RTU consiste de una sola clase llamada RTU que se ilustra en la figura~\ref{fig:cap3:RTUClass}. 
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Módulos del \emph{software} de la RTU.]{%
+				\label{fig:cap3:RTUModulos}%
+				\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoSW/ATmega8Modulos.pdf}} &
+			\subfloat[Clase RTU.]{%
+				\label{fig:cap3:RTUClass}%
+				\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoSW/RTUClass.pdf}} \\
+		\end{tabular}
+	\end{center}
+	\caption{Estructura \emph{software} de la RTU.} \label{fig:cap3:StSWRTU}
+\end{figure}
+
+La clase RTU consiste de siete operaciones o métodos que se describen en la tabla~\ref{tab:cap3:RTUOp}. Estos métodos contribuyen a que la RTU desempeñe de manera modular las actividades programadas.
+
+\begin{table}[htp]
+	\caption{Operaciones de la clase RTU.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{cp{11.5cm}}
+		\hline \hline \hline \hline
+		\headcol\textbf{Código de Operación}&\textbf{Descripción}\\
+		\hline \hline \hline \hline
+		
+		CadSend & Se encarga de enviar las ADU de respuesta (ya construidas) a la interfaz serie del MCU.\\
+		\rowcol Crc16Modbus & Construye el código de verificación CRC, los parámetros de entrada son: la ADU a enviar (sin CRC) y el tamaño de la misma. Retorna el código CRC en 16 bits en un tipo de dato entero, pero se tomarán solo los valores en codificación Hexadecimal.\\
+		DecodeFrame & Decodifica las ADU de entrada y ejecuta las acciones de toma de mediciones, obtención de estados digitales y establecer salidas digitales.\\
+		\rowcol initUSART & Establece la configuración inicial del dispositivo serie (USART) del MCU.\\
+		ISR(USART\_RXC\_vect) & Configura las operaciones que se realizarán al recibir información a través del puerto serie. La ejecución de estas operaciones dependen del disparador por eventos en la recepción de información en el dispositivo USART (Interrupciones).\\
+		\rowcol SensorsRead & Toma muestras de los sensores a través del dispositivo ADC.\\
+
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:RTUOp}
+\end{table}
+
+
+\paragraph{Diagramas de actividades}
+\label{cap3:DSW:RTUDA}
+En este apartado se detallan los flujos de trabajo de las actividades y operaciones que el \emph{software} de la RTU debe realizar. Para la RTU se dividen sus actividades \emph{software} en dos partes funcionales: inicialización de módulos y procesamiento de ADUs de solicitud.
+
+La inicialización de módulos consiste en configurar los módulos principales de la RTU (MCU ATmega8) que se muestran en la figura~\ref{fig:cap3:RTUModulos}. Por esto, se configuran los puertos de entrada y salida\footnote{Cada módulo del MCU ATmega8 utiliza puertos de entrada y salida para interactuar con dispositivos externos.} y registros internos\footnote{Los registros internos se utilizan para configurar el modo de operación de cada módulo: ADC, USART, etc.} de configuración \cite{Cap2Bib:ATmega8}. Estas tareas se ejecutan cada vez que se inicia el sistema o cuando ocurre un reset de la RTU.
+
+El diagrama de actividades de la figura~\ref{fig:cap3:RTUInicializacion} describe la inicialización de módulos mediante cuatro acciones: inicializar puertos digitales de Entrada y Salida, inicializar el dispositivo USART y habilitar las interrupciones globales para eventos en la USART\footnote{Las interrupciones de eventos en la USART permiten ejecutar un fragmento de código cuando un dato está disponible en el búfer de entrada.} \cite{Cap2Bib:ATmega8}.
+
+\begin{figure}[H]
+	\begin{center}
+		\begin{tabular}{c@{\hskip 0.5in}c}
+			\subfloat[Inicialización de módulos del \emph{software} de la RTU.]{%
+				\label{fig:cap3:RTUInicializacion}%
+				\includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoSW/RTUInicializacion.pdf}} &
+			\subfloat[Procesamiento de ADUs de solicitud.]{%
+				\label{fig:cap3:RTUProcesamiento}%
+				\includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoSW/RTUProcesamiento.pdf}} \\
+		\end{tabular}
+	\end{center}
+	\caption{Diagramas de actividades del \emph{software} de la RTU} \label{fig:cap3:SWRTUDA}
+\end{figure}
+
+La configuración de los dispositivos del MCU ATmega8 se describe en la tabla~\ref{tab:cap3:RTUDConf} \footnote{El Oscilador interno RC es una fuente de reloj que provee las siguientes frecuencias calibradas de operación: $1.0$, $2.0$, $4.0$, y $8.0\mega\hertz$. La configuración del dispositivo USART aplica en general para la comunicación serie, es decir, para la interfaz RS-232 y RS-485.} \cite{Cap2Bib:ATmega8}. 
+
+\begin{table}[htp]
+	\caption{Configuración de dispositivos del MCU ATmega8.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{clp{8cm}}
+		\hline \hline \hline \hline
+		\headcol\textbf{Dispositivo}&\textbf{Parámetro}&\textbf{Descripción}\\
+		\hline \hline \hline \hline
+		
+		Oscilador interno RC & $f_{o} = 4\mega\hertz$ & Se configuró para obtener una fuente de reloj de operación de $f_{o} = 4\mega\hertz$. Por lo tanto, $f_{o}$ garantiza satisfacer la demanda en la velocidad de transferencia de la interfaz serie (dispositivo USART).\\
+		
+		\rowcol Dispositivo ADC & ${f_{ADC}} = {f_{o}}/{32} = 125\kilo\hertz$ & La frecuencia de operación del ADC requiere una fuente de reloj de $50-200 \kilo\hertz$.\\
+		
+		\multirow{6}{*}{Dispositivo USART} & Velocidad de transferencia & $38400$bps\\
+		& Tamaño de datos & 8 bits\\
+		& Paridad & Par\\
+		& Bits de paro & Uno\\
+		& Modo de Operación & Asíncrono\\
+		& Interrupciones & Por recepción de datos\\
+		
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:RTUDConf}
+\end{table}
+
+En base a la distribución de terminales del MCU ATmega8 que se muestra en la figura~\ref{fig:cap3:ATmega8DT}, la configuración de terminales se describe en la tabla~\ref{tab:cap3:RTUTConf} \cite{Cap2Bib:ATmega8}.
+
+\begin{table}[htp]
+	\caption{Configuración de terminales del MCU ATmega8.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{clp{9.5cm}}
+		\hline \hline \hline \hline
+		\headcol\textbf{Terminales}&\textbf{Configuración}&\textbf{Descripción}\\
+		\hline \hline \hline \hline
+
+		PC0-PC3 & Entrada & Terminales usadas como canales de entrada del dispositivo ADC\\
+		\rowcol PD2-PD3 & Entrada & Entradas digitales\\
+		PD4-PD5 & Salida & Salidas digitales\\
+		\rowcol Puerto B (PB0-PB7)& Salida & Registro de salida para generar el voltaje de polarización del sensor de OD a través del dispositivo DAC.\\
+		PD0-PD1 & Entrada/Salida & Terminales para recepción y transmisión de datos desde y hacia el dispositivo USART.\\
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:RTUTConf}
+\end{table}
+
+El procesamiento de ADUs de solicitud define las actividades y el orden en que se deben realizar para atender las solicitudes que emite la MTU. Dichas actividades son: verificar si se ha recibido una ADU a través del dispositivo USART, validar que sea una ADU consistente, decodificar la ADU\footnote{Solo si la ADU es válida.} con el fin de realizar la tarea solicitada y enviar una respuesta, si se trata de una ADU inválida se enviará un código de error. Este flujo de trabajo se ilustra en el diagrama de actividades de la figura~\ref{fig:cap3:RTUProcesamiento}.
+
+Como se observa en la figura~\ref{fig:cap3:RTUProcesamiento}, para comprobar que hay una ADU de entrada el \emph{software} entra en un bucle \emph{while }, se reciben datos a través del dispositivo USART\footnote{El dispositivo USART emite una interrupción cada vez que se recibe un \emph{byte} de información.}, mediante una bandera se indica cuando la ADU ha sido recibida en su totalidad y posteriormente se procesa la ADU. Se comprueba que la ADU sea válida, lo cual se realiza verificando el código CRC y en caso de un error en esta verificación se retorna un código de error. Después, se ejecuta la tarea solicitada\footnote{Leer entradas analógicas, obtener el estado de entradas y salidas digitales, establecer salidas digitales.}, se construye la ADU de respuesta y por último se envía la ADU de respuesta a la MTU a través del dispositivo USART.
+
+\newpage
+\subsubsection{\emph{software} de la MTU}
+\label{cap3:DSWMTU}
+\paragraph{Requerimientos formales}
+
+Los requerimientos formales de las tareas \emph{software} de la MTU (obtenidos a partir de los requerimientos funcionales de la propuesta) se describen en la tabla~\ref{tab:cap3:ReqMTU} y el diagrama de requerimientos de la figura~\ref{fig:cap3:MTUReqForm} ilustra la relación entre dichos requerimientos.
+
+\begin{table}[htp]
+	\caption{Requerimientos formales del \emph{software} de la MTU}%
+	\centering
+	\footnotesize
+	\begin{tabular}{cp{5cm}p{8.5cm}}
+		\hline \hline \hline \hline
+		\headcol\textbf{Código}&\textbf{Requerimiento}&\textbf{Descripción}\\
+		\hline \hline \hline \hline
+		
+		REQ06 & Monitorización automática de la RTU & Realizar las actividades de monitoreo discreto de la RTU a través de ADUs de solicitud, el monitoreo se debe realizar cada determinado tiempo establecido por el usuario\\
+		\rowcol REQ07 & Gestión del búfer de entrada y salida al puerto RS-232 & Gestionar de manera eficiente el búfer de entrada y salida del puerto RS-232\\
+		REQ08 & Recepción y procesamiento de ADUs de respuesta de la RTU & Procesar las ADUs que la RTU envía como respuesta ante una solicitud de monitoreo discreto\\
+		\rowcol REQ09 & Almacenamiento de mediciones y estados digitales en la Base de Datos & Realizar los cálculos pertinentes en la medición de cada sensor\footnote{La RTU solo envía la medición analógica de cada sensor, por lo que el \emph{software} de la MTU debe calcular los valores propios del parámetro medido. Esto se realiza en base a la descripción de los sensores de la sección~\ref{cap2:sec:Sensores}.} y almacenar los resultados en la base de datos\\
+		REQ10 & Procesamiento de Solicitudes recibidas vía TCP/IP para establecer salidas digitales & Procesar las solicitudes enviadas a través de la aplicación Web para establecer el estado de las salidas digitales, estas solicitudes son enviadas por el usuario final o Administrador del sistema\\
+		\rowcol REQ11 & Gestión física del puerto RS-232 & Utilizar una librería para gestionar el uso de la interfaz serie RS-232 en un nivel físico, es decir, que permita configurar la interfaz serie con las especificaciones\\
+		REQ12 & Calibración de sensores & Calibrar los sensores de pH y OD mediante la toma de mediciones a muestras fijas.\\
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:ReqMTU}
+\end{table}
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoSW/MTUReqForm.pdf}
+	\end{center}
+	\caption{Diagrama de requerimientos formales del \emph{software} de la MTU.} \label{fig:cap3:MTUReqForm}
+\end{figure}
+
+\newpage
+\paragraph{Clases}
+
+Para gestionar correctamente las entradas y salidas de la interfaz serie (Puerto RS-232), el \emph{software} de la MTU se basa en el \emph{Modelo del Gestor}\footnote{En programación, el Modelo del Gestor consiste en un proceso central que crea, ejecuta y administra un grupo de subprocesos (Thread Pool).}, el cual es un modelo de control centralizado para sistemas concurrentes \cite{Cap2Bib:Java}. Por ello, para un mejor desempeño, el \emph{software} de la MTU se divide en múltiples tareas que se ejecutan de manera concurrente. Esto se logra mediante la programación de múltiples hilos o subprocesos de ejecución (\emph{Multithreading}) \cite{Cap2Bib:Java}.
+
+Basándose en el \emph{Modelo del Gestor} y los requerimientos funcionales, los subprocesos en que se divide el \emph{software} de la MTU son: subprocesos de monitoreo discreto de la RTU, un gestor del búfer de entrada y salida del puerto serie (RS-232), procesador de ADUs de respuesta de la RTU, subproceso para almacenar registros de mediciones y estados digitales en la base de datos, un servidor TCP/IP para recibir solicitudes emitidas desde la aplicación Web y el manejador de eventos de la interfaz gráfica\footnote{El manejador de eventos es un mecanismo que se genera al crear una interfaz gráfica en Java.}. En la figura~\ref{fig:cap3:SWMTUModeloGestor} se ilustra en un diagrama el Modelo del Gestor para el \emph{software} de la MTU.
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoSW/SWMTUModeloGestor.pdf}
+\end{center}
+ \caption{División de subprocesos del \emph{software} de la MTU.} \label{fig:cap3:SWMTUModeloGestor}
+\end{figure}
+
+Los subprocesos de monitoreo de la RTU implementan las funciones del protocolo Modbus y generan las ADUs de cada función. Por esto, se crea un subproceso para cada función usada en el sistema propuesto. Los subprocesos emiten solicitudes o ADUS de monitoreo cada cierto tiempo determinado (Tiempo de muestreo\footnote{El tiempo de muestreo lo establece el usuario o Administrador.}), por lo que, el resto del tiempo el subproceso pasa a un estado temporalmente fuera de ejecución (\emph{Sleep}). 
+
+Los subprocesos requieren acceso al búfer de salida del puerto serie de manera esporádica\footnote{No se puede determinar el orden en el que los subprocesos cambian su estado a \emph{ejecución}.} para enviar las ADUs de solicitud. Por todo lo anterior, se presenta el problema de programación conocido como la relación \emph{productor-consumidor}, en donde el productor genera datos y los almacena en un objeto compartido, y los consumidores leen los datos de dicho objeto. 
+
+El objeto compartido se denomina \emph{Búfer Sincronizado}, el cual restringe el acceso a la interfaz serie de salida (búfer de salida) a solo un subproceso de monitoreo (Productor\footnote{En este sistema, el productor es un sistema compuesto que consiste de los subprocesos de monitoreo y las respuestas la RTU.}) a la vez y se implementa una cola de espera para que los subprocesos puedan acceder a él de manera ordenada. De manera similar, el búfer de entrada restringe al subproceso que decodifica ADUs de respuesta (Consumidor) para que pase a un estado \emph{sleep} hasta que una respuesta este disponible en el búfer \cite{Cap2Bib:Java}.
+
+Las clases en que se divide el \emph{software} de la MTU se describen en el apéndice~\ref{ap:SWMTU:Class}, en donde se muestran los diagramas de clase para ilustrar la relación entre ellas. Los diagramas de clase se dividen en cuatro secciones: monitoreo de entradas analógicas, monitoreo de entradas digitales, diagrama de monitoreo y control de salidas digitales y calibración de sensores.
+
+Cabe mencionar que, para poder usar el puerto serie de la computadora, el \emph{software} de la MTU emplea el \emph{Driver} de la marca \emph{Giovynet}\footnote{El \emph{Driver Giovynet} es un framework que permite crear aplicaciones Java y comunicar circuitos externos y la computadora. Se puede descargar la versión gratuita de prueba desde \href{http://www.giovynet.com}{http://www.giovynet.com}.}. Y para acceder a la base de datos desde el \emph{software} de la MTU se usa el driver \emph{JDBC} (\emph{Java Database Connectivity}).
+
+\paragraph{Casos de uso}
+
+Para satisfacer los requerimientos formales del \emph{software} de la MTU, los casos de uso que se diseñaron de acuerdo a la interacción del Administrador con el \emph{software} para realizar las siguientes actividades\footnote{Actividades del Administrador.}: monitoreo principal y calibración de sensores. 
+
+El monitoreo principal consiste en iniciar y configurar el \emph{software} de la MTU, el cual de manera automática crea y ejecuta los subprocesos de monitoreo y permite al Administrador configurar el tiempo de muestreo para cada subproceso de monitoreo. Los casos de uso para las actividades de monitoreo principal se detallan en la tabla~\ref{tab:cap3:MTUCUMonitor} y en la figura~\ref{fig:cap3:MTUCUMonitor} se ilustra la interacción con el Administrador.
+
+\begin{table}[htp]
+	\caption{Casos de uso del monitoreo principal.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{cp{5cm}p{8.3cm}}
+		\hline \hline \hline \hline
+		\headcol\textbf{Código}&\textbf{Caso de uso}&\textbf{Descripción}\\
+		\hline \hline \hline \hline
+		
+		CU1 & Inicio del sistema de monitoreo & El Administrador inicia el \emph{software} de la MTU.\\
+		
+		\rowcol CU2 & Inicializar Subprocesos de Monitoreo y Control de la RTU & El proceso central del \emph{software} de la MTU, en su papel de gestor, crea e inicia los subprocesos de monitoreo.\\
+		
+		CU3 & Establecer tiempo de muestreo para Entradas Analógicas & El \emph{software} permite al Administrador cambiar el tiempo de muestreo del subproceso de monitoreo para entradas analógicas.\\
+		
+		\rowcol CU4 & Establecer tiempo de muestreo para Entradas Digitales & El \emph{software} permite al Administrador configurar el tiempo de muestreo para el subproceso de monitoreo para entradas digitales\\
+		
+		CU5 & Establecer tiempo de muestreo para Salidas Digitales & El Administrador puede cambiar el tiempo de muestreo del subproceso de monitoreo para salidas digitales.\\
+		
+		\rowcol CU6 & Establecer Salidas Digitales & Permite al Administrador establecer el estado (\emph{ON-OFF}) de las salidas digitales.\\
+
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:MTUCUMonitor}
+\end{table}
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoSW/MTUCUMonitor.pdf}
+\end{center}
+ \caption{Casos de uso para monitoreo principal.} \label{fig:cap3:MTUCUMonitor}
+\end{figure}
+
+La calibración de sensores define las actividades que el usuario debe realizar con el fin de realizar satisfactoriamente la calibración de los sensores de pH y OD. Para el sensor de pH se requiere como parámetro el valor de la muestra de pH que se va a medir, los valores por defecto establecen la calibración de fábrica (Considerando el comportamiento descrito en la sección~\ref{cap2:Sensores:pH}) y el sensor de OD requiere la presión barométrica\footnote{La presión barométrica está en función de la altitud del lugar donde se tomará la medición.}. En la tabla~\ref{tab:cap3:MTUCUCalibracion} se describen los casos de uso y en la figura~\ref{fig:cap3:MTUCUCalibracion} se ilustra la interacción con el Administrador.
+
+\begin{table}[H]
+	\caption{Casos de uso de la calibración de sensores.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{cp{5cm}p{8.3cm}}
+		\hline \hline \hline \hline
+		\headcol\textbf{Código}&\textbf{Caso de uso}&\textbf{Descripción}\\
+		\hline \hline \hline \hline
+		
+		CU7 & Insertar parámetros de calibración (si son requeridos) & El usuario puede ingresar los parámetros necesarios para realizar la calibración de un sensor.\\
+		
+		\rowcol CU8 & Toma de mediciones de las muestras & El \emph{software} indicará al subproceso de monitoreo de entradas analógicas que la medición que la próxima medición se tomará para calibración.\\
+		
+		CU9 & Realizar calibración en el sistema & Se realizará la calibración de acuerdo a la medición que se halla tomado.\\
+		
+		\rowcol CU10 & Tomar valores de calibración por defecto & El \emph{software} tomará los valores por defecto o de fábrica de los sensores.\\
+
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:MTUCUCalibracion}
+\end{table}
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoSW/MTUCUCalibracion.pdf}
+\end{center}
+ \caption{Casos de uso para la calibración de sensores.} \label{fig:cap3:MTUCUCalibracion}
+\end{figure}
+
+\paragraph{Diagramas de actividades}
+
+El \emph{software} de la MTU debe realizar una serie de actividades para que los casos de uso sean llevados a cabo de manera satisfactoria. Estas actividades se han dividido en seis secciones: monitoreo automático, gestión de la interfaz serie, procesamiento de ADUs de respuesta (de la RTU), establecer tiempo de muestreo, calibración del sensor de pH y calibración del sensor de OD.
+
+Las actividades de monitoreo automático consisten en que el proceso central crea y ejecuta los subprocesos de monitoreo. Los subprocesos de monitoreo generan la ADU correspondiente, intenta enviar dicha ADU al búfer de la interfaz serie, cuando la ADU ha sido enviada el subproceso pasa al estado \emph{sleep} por el tiempo de muestreo establecido\footnote{Los subprocesos de monitoreo tienen un tiempo preestablecido de muestreo, el cual puede ser modificado por el Administrador} y posteriormente, cuando pasa al estado de ejecución se vuelven a realizar las mismas actividades en un bucle \emph{while}. En la figura~\ref{fig:cap3:MTUMonitoreoAutomatico} se ilustra el diagrama de actividades para los subprocesos de monitoreo de entradas analógicas y de entradas digitales\footnote{No se incluyeron los demás subprocesos, ya que el diagrama sería muy extenso.}.
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoSW/MTUMonitoreoAutomatico.pdf}
+\end{center}
+ \caption{Diagrama de actividades de monitoreo automático.} \label{fig:cap3:MTUMonitoreoAutomatico}
+\end{figure}
+
+
+Para gestionar la interfaz serie, se requieren de dos búfers sincronizados y compartidos, uno de salida y uno de entrada. El búfer de salida acepta ADUs de solicitud de los subprocesos de monitoreo. El subproceso de gestión toma la ADU del búfer, la envía a la interfaz serie y espera un tiempo para que la RTU emita una respuesta. Esta ADU de respuesta es pasada al búfer de entrada y el subproceso de procesamiento toma dicha ADU para analizar y procesar la respuesta.
+
+El procesamiento de ADUs de respuesta consiste en obtener del búfer de entrada la ADU de respuesta, verificar que la ADU sea válida, si es válida, se genera el registro de medición o estado digital y se almacena en la base de datos y por último se actualiza la información de las mediciones que han realizado en la interfaz gráfica. En caso que no sea una ADU válida se mostrará un mensaje de error en la interfaz gráfica\footnote{La interfaz gráfica cuenta con áreas de texto en donde se muestran los flujos de entrada y salida de la interfaz serie}.
+
+La calibración del sensor de pH se puede realizar de dos maneras: tomar valores por defecto (sección~\ref{cap2:Sensores:pH}) y tomar mediciones de dos muestras de pH fijas. Para calibrar el sensor de OD se requiere la presión barométrica, se puede tomar el valor por defecto, que en este caso es la presión barométrica de la ciudad de Huajuapan de León, Oaxaca. Posteriormente se realiza la medición de una solución saturada de oxígeno y el \emph{software} relizará la calibración correspondiente.
+
+Para las secciones de actividades descritas anteriormente, los diagramas de actividades correspondientes se encuentran en el apéndice~\ref{ap:SWMTU:Activity}.
+
+\subsubsection{\emph{software} de la aplicación Web}
+\label{cap3:DSWWeb}
+\paragraph{Requerimientos formales}
+
+Para la aplicación Web se dividen sus tareas \emph{software} en tres áreas principales: gestión de sesión de usuario, presentación de mediciones y estados digitales y gestión de salidas digitales. Estas áreas de tareas \emph{software} se describen en las tablas~\ref{tab:cap3:ReqWeb1},~\ref{tab:cap3:ReqWeb2} y~\ref{tab:cap3:ReqWeb3} respectivamente.
+
+\begin{table}[htp]
+	\caption{Requerimientos formales de la aplicación Web para sesión de usuario.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{cp{4.7cm}p{8.3cm}}
+		\hline \hline \hline \hline
+		\headcol\textbf{Código}&\textbf{Requerimiento}&\textbf{Descripción}\\
+		\hline \hline \hline \hline
+		
+		REQ13 & Gestión de Sesión de Usuarios & Ofrecer un entorno de seguridad mediante la gestión de los usuarios que pueden acceder a la aplicación Web\\
+		\rowcol REQ14 & Iniciar Sesión & Permitir al usuario iniciar sesión mediante un perfil de usuario\\
+		REQ15 & Cerrar Sesión & El usuario podrá cerrar su sesión\\
+		\rowcol REQ16 & Validar Usuario & Validar los datos del usuario que solicita iniciar sesión\\
+
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:ReqWeb1}
+\end{table}
+
+\begin{table}[htp]
+	\caption{Requerimientos formales de la aplicación Web para la presentación de mediciones y estados digitales.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{cp{4.7cm}p{8.3cm}}
+		\hline \hline \hline \hline
+		\headcol\textbf{Código}&\textbf{Requerimiento}&\textbf{Descripción}\\
+		\hline \hline \hline \hline
+		
+		REQ17 & Administración de vista principal & Presentar una vista principal en la que se da la bienvenida al sistema\\
+		\rowcol REQ18 & Visualizar mediciones de pH & Mostrar al usuario las mediciones de pH\\
+		REQ19 & Visualizar Estados Digitales & Informar al usuario el estado de las entradas y salidas digitales\\
+		\rowcol REQ20 & Visualizar mediciones de Oxígeno Disuelto & Presentar al usuario las mediciones de OD\\
+		REQ21 & Visualizar mediciones de Temperatura & Mostrar las mediciones de Temperatura\\
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:ReqWeb2}
+\end{table}
+
+\begin{table}[htp]
+	\caption{Requerimientos formales de la aplicación Web para gestionar las salidas digitales.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{cp{4.7cm}p{8.5cm}}
+		\hline \hline \hline \hline
+		\headcol\textbf{Código}&\textbf{Requerimiento}&\textbf{Descripción}\\
+		\hline \hline \hline \hline
+		
+		REQ22 & Administración de Salidas Digitales & Se presenta el formulario para establecer las salidas digitales\\
+		\rowcol REQ23& Enviar solicitud a la MTU & Enviar solicitud a la MTU para establecer las salidas digitales\\
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:ReqWeb3}
+\end{table}
+
+\newpage
+En las figuras~\ref{fig:cap3:WebReqFormUsuarios},~\ref{fig:cap3:WebReqFormMediciones} y~\ref{fig:cap3:WebReqFormSD} se ilustran las áreas de requerimientos formales mediante diagramas de requerimientos.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoSW/WebReqFormUsuarios.pdf}
+	\end{center}
+	\caption{Diagrama de requerimientos formales de la aplicación Web para sesión de usuario.} \label{fig:cap3:WebReqFormUsuarios}
+\end{figure}
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoSW/WebReqFormMediciones.pdf}
+	\end{center}
+	\caption{Diagrama de requerimientos formales de la aplicación Web para la presentación de mediciones y estados digitales.} \label{fig:cap3:WebReqFormMediciones}
+\end{figure}
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoSW/WebReqFormSD.pdf}
+	\end{center}
+	\caption{Diagrama de requerimientos formales de la aplicación Web para gestionar las salidas digitales.} \label{fig:cap3:WebReqFormSD}
+\end{figure}
+
+\newpage
+\paragraph{Clases}
+
+Siguiendo el paradigma MVC y la dinámica de desarrollo del framework \emph{Yii}, las clases de la aplicación Web se dividen en dos partes principales: modelos y controladores\footnote{Las vistas están relacionadas con las acciones dentro de los controladores.}.
+
+Basándose en los requerimientos formales, las clases modelo de la aplicación Web son las siguientes: User, LoginForm, DigitalInput, DigitalOutput, Temp, Od y Ph. Estas clases modelo se describen en la tabla~\ref{tab:cap3:WebClassModelos} y se ilustran en la figura~\ref{fig:cap3:WebClassModelos}.
+
+\begin{table}[htp]
+	\caption{Descripción de clases de modelos (MVC) de la aplicación Web.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{cp{12.5cm}}
+		\hline \hline \hline \hline
+		\headcol\textbf{Clase}&\textbf{Descripción}\\
+		\hline \hline \hline \hline
+		User & Clase modelo para abstraer usuarios registrados.\\
+		\rowcol LoginForm & Sirve para generar de manera automática el formato del formulario para inicio de sesión.\\
+		DigitalInput & Modelo para gestionar las entradas digitales.\\
+		\rowcol DigitalOutput & Se utiliza para gestionar las salidas digitales.\\
+		Temp & Esta clase se utiliza para abstraer las mediciones de temperaturas.\\
+		\rowcol Od & Mediante esta clase las mediciones de OD son abstraidas de la base de datos.\\
+		Ph & Permite abstraer las mediciones de pH.\\
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:WebClassModelos}
+\end{table}
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoSW/WebClassModelos.pdf}
+	\end{center}
+	\caption{Clases de modelos (MVC) de la aplicación Web.} \label{fig:cap3:WebClassModelos}
+\end{figure}
+
+Las clases de los controladores de la aplicación Web son las siguientes: SiteController, WelcomeController, PhController, TempController, OdController, DigitalOutputController, DigitalInputController. Estas clases de controladores se describen en la tabla~\ref{tab:cap3:WebClassControladores} y se ilustran en la figura~\ref{fig:cap3:WebClassControladores}.
+
+\begin{table}[htp]
+	\caption{Descripción de clases de controladores (MVC) de la aplicación Web.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{cp{11.5cm}}
+		\hline \hline \hline \hline
+		\headcol\textbf{Clase}&\textbf{Descripción}\\
+		\hline \hline \hline \hline
+		SiteController & Controlador básico que provee el framework Yii para asistir el desarrollo.\\
+		\rowcol WelcomeController & Gestiona las rutas de bienvenida al sistema.\\
+		PhController & Provee las funcionalidades que permiten visualizar las mediciones de pH.\\
+		\rowcol TempController & Permite visualizar las mediciones de temperatura.\\
+		OdController & Se utiliza para mostrar las mediciones de OD.\\
+		\rowcol DigitalOutputController & Este controlador permite visualizar las salidas digitales y gestionar las salidas digitales.\\
+		DigitalInputController & Permite visualizar las entradas digitales.\\
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:WebClassControladores}
+\end{table}
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoSW/WebClassControladores.pdf}
+	\end{center}
+	\caption{Clases de controladores (MVC) de la aplicación Web.} \label{fig:cap3:WebClassControladores}
+\end{figure}
+
+\paragraph{Modelo entidad-relación}
+
+El modelo o diagrama entidad-relación (E-R, \emph{Entity Relationship}) permite representar las entidades de las clases de modelo definidas en la sección anterior \cite{Cap2Bib:BasesDatos, Cap2Bib:FundamentosBasesDatos}. En este modelo se muestran las propiedades de cada entidad y se usa básicamente en el diseño de la base de datos\footnote{Bajo este modelo, el \emph{software} de la MTU almacena los registros de mediciones y estados digitales.} MySQL. En la figura~\ref{fig:cap3:WebDiagramaER} se ilustra el modelo E-R para la aplicación Web.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoSW/WebDiagramaER.pdf}
+	\end{center}
+	\caption{Modelo E-R de la aplicación Web.} \label{fig:cap3:WebDiagramaER}
+\end{figure}
+
+
+\paragraph{Casos de uso}
+
+Basándose en los requerimientos formales, los casos de uso para la aplicación Web se dividen en dos áreas: sesión de usuarios y funcionalidades Web. Estas áreas de casos de uso se describen en las tablas~\ref{tab:cap3:WebCUUsuarios} y~\ref{tab:cap3:WebCUFuncionalidades} respectivamente
+
+\begin{table}[H]
+	\caption{Casos de uso para sesión de usuarios.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{cp{5cm}p{8.3cm}}
+		\hline \hline \hline \hline
+		\headcol\textbf{Código}&\textbf{Caso de uso}&\textbf{Descripción}\\
+		\hline \hline \hline \hline
+
+		CU11 & Iniciar Sesión & El usuario deberá iniciar sesión en la aplicación Web para acceder a las funcionalidades que este ofrece.\\
+		\rowcol CU12 & Cerrar Sesión & De igual manera que el caso de uso anterior, el usuario debe cerrar sesión para salir de la aplicación.\\
+
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:WebCUUsuarios}
+\end{table}
+
+\begin{table}[H]
+	\caption{Casos de uso para funcionalidades Web.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{cp{5cm}p{8.3cm}}
+		\hline \hline \hline \hline
+		\headcol\textbf{Código}&\textbf{Caso de uso}&\textbf{Descripción}\\
+		\hline \hline \hline \hline
+		
+		CU13 & Visualizar Mediciones de Temperatura & Mostrar los registros de mediciones de temperatura\\
+		\rowcol CU14 & Visualizar Mediciones de pH & Permite mostrar las mediciones de pH\\
+		CU15 & Visualizar Mediciones de OD & El usuario podrá visualizar las mediciones de OD\\
+		\rowcol CU16 & Visualizar el Estado de Entradas Digitales & El usuario podrá observar el estado de las entradas digitales\\
+		CU17 & Visualizar el Estado de las Salidas Digitales & Se mostrará el estado de las salidas digitales\\
+		\rowcol CU18 & Establecer Salidas Digitales & Se presentará el formulario para establecer el estado de las salidas digitales.\\
+		CU19 & Enviar a la MTU la Solicitud de Cambio en las Salidas Digitales de la RTU & Se enviará una ADU de solicitud al \emph{software} de la MTU para cambiar el estado de las salidas digitales en la RTU.\\
+
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:WebCUFuncionalidades}
+\end{table}
+
+En las figuras~\ref{fig:cap3:WebCUUsuarios} y~\ref{fig:cap3:WebCUFuncionalidades} se ilustran los casos de uso para sesión de usuarios y funcionalidades Web respectivamente a través de diagramas de casos de uso.
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoSW/WebCUUsuarios.pdf}
+\end{center}
+ \caption{Diagrama de casos de uso para sesión de usuarios.} \label{fig:cap3:WebCUUsuarios}
+\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoSW/WebCUFuncionalidades.pdf}
+\end{center}
+ \caption{Diagrama de casos de uso para funcionalidades Web.} \label{fig:cap3:WebCUFuncionalidades}
+\end{figure}
+
+\newpage
+\paragraph{Diagramas de actividades}
+
+A partir de los casos de uso descritos anteriormente, las actividades que la aplicación Web debe realizar básicamente se dividen en dos grupos: presentar información dinámica de los registros de mediciones y estados digitales y gestionar las salidas digitales.
+
+La presentación de las mediciones se efectúa empleando gráficas dinámicas y tablas. Los estados digitales se muestran de manera tabular. Las gráficas dinámicas se implementan usando las librerías \emph{Highcharts} y \emph{JQuery} de \emph{JavaScript}. Se requiere el uso de solicitudes AJAX para actualizar las gráficas de manera transparente al usuario. Las actividades para ingresar a los módulos de visualización de entradas analógicas\footnote{Mediciones de pH, OD y temperatura.} y la actualización dinámica de gráficas se describen en el diagrama de actividades de la figura~\ref{fig:cap3:WebDAEA}.
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoSW/WebDAEA.pdf}
+\end{center}
+ \caption{Diagrama de actividades para la presentación de mediciones analógicas.} \label{fig:cap3:WebDAEA}
+\end{figure}
+
+\newpage
+Las actividades para establecer las salidas digitales consisten básicamente en introducir los estados deseados en el formulario proporcionado por la aplicación Web. Este flujo de trabajo se ilustra en la figura~\ref{fig:cap3:WebDASD}.
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoSW/WebDASD.pdf}
+\end{center}
+ \caption{Diagrama de actividades para establecer salidas digitales.} \label{fig:cap3:WebDASD}
+\end{figure}
+
+\subsection{Integración de elementos \emph{hardware} y \emph{software}}
+
+La integración de elementos \emph{hardware} y \emph{software} consiste en interconectar cada una de las etapas \emph{hardware} y \emph{software} que se diseñaron en las secciones~\ref{cap3:Definicion:DHW} y~\ref{cap3:Definicion:DSW}. El objetivo principal de la integración es construir el sistema propuesto a partir de los elementos en que fue dividido dicho sistema. En la figura~\ref{fig:cap3:DBScadaIntegracion} se ilustra de manera simplificada las etapas que se van a integrar.
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[scale=0.9]{Imagenes/Desarrollo/Integracion/DBScadaIntegracion.pdf}
+\end{center}
+ \caption{Integración del sistema SCADA propuesto.} \label{fig:cap3:DBScadaIntegracion}
+\end{figure}
+
+\clearpage
+\subsubsection{Diseño del PCB de los módulos \emph{hardware}}
+\label{cap3:DHWPCB}
+Para una mejor integración, los elementos hardware se organizaron en tres módulos principales. El primer módulo consiste del dispositivo CAS para el sensor de pH, este módulo toma la fuente de voltaje de alimentación ($\pm12\volt$) y mediante un regulador de voltaje de $5\volt$ (CI 7805) proporciona la alimentación para otros dispositivos que lo requieren. 
+
+El segundo módulo consta del dispositivo CAS para el sensor de OD y el CAS para el sensor de temperatura. Y, el tercer módulo consiste del MCU ATmega8 (como RTU), el dispositivo de comunicación serie RS-485 y el sistema generador de voltaje para polarizar el sensor de OD. 
+
+Los módulos se ordenan, de la manera en que se describe anteriormente, para lograr que los PCB sean aproximadamente del mismo tamaño y se pueda diseñar un gabinete en donde sean montados dichos módulos. El tamaño promedio de cada módulo es de $4.75\centi\meter$ y $10.75\centi\meter$ de ancho y largo respectivamente.
+
+\paragraph{Diseño del PCB para el CAS del sensor de pH}
+
+La fuente de alimentación principal para la RTU consiste en una fuente de voltaje dual de $\pm12\volt$ para alimentar correctamente los op-amps en los dispositivos CAS\footnote{Las fuentes de alimentación principal son compartidas a través de los bloques de terminales V12 y V5 de cada módulo hardware.}. El dispositivo para el CAS del sensor de pH cuenta con un regulador de voltaje de $5\volt$ (CI 7805), el cual proporciona el voltaje fuente para otros elementos como: el dispositivo que genera el voltaje ${V}_{offset}$ para el sensor de pH, para el sensor de temperatura y los dispositivos digitales como el MCU ATmega8 y el dispositivo MAX489 para comunicación. El diseño PCB para el CAS del sensor de pH se muestra en la figura~\ref{fig:cap3:PCBCASpH}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{c}
+			\subfloat[Diseño de pistas PCB.]{%
+				\label{fig:cap3:RTUMTU2}%
+				\includegraphics[scale=0.9]{Imagenes/Desarrollo/Integracion/CASpH.pdf}} \\
+			\subfloat[Ordenamiento de CIs.]{%
+				\label{fig:cap3:MTU-Servidores}%
+				\includegraphics[scale=0.9]{Imagenes/Desarrollo/Integracion/CASpHCIs.pdf}} \\
+		\end{tabular}
+	\end{center}
+	\caption{PCB del CAS para el sensor de pH, las imágenes no están a escala.} \label{fig:cap3:PCBCASpH}
+\end{figure}
+
+Como se observa en la figura~\ref{fig:cap3:PCBCASpH}, el módulo cuenta con un conector de entradas para el sensor de pH, en donde se conectan las terminales positiva y negativa, sin embargo, las salidas del sensor de pH están integradas en un conector tipo BNC hembra, por lo que se debe adaptar un conector BNC macho para poder obtener las salidas positiva y negativa. 
+
+Este módulo también cuenta con un conector de salidas, el cual proporciona las siguientes salidas: GND\footnote{Es muy importante compartir la tierra en la salida de los dispositivos CAS, ya que esta práctica previene la generación de ruido en las señales de salida.} o tierra, el voltaje ${V}_{offset}$ y la salida del CAS de pH ${V}_{CASpH}$. Estas salidas se conectan al conector de entradas correspondiente en el módulo del MCU (Sección~\ref{cap3:IHWSW:RTU}).
+
+La lista de los materiales empleados en este diseño se describe en la tabla~\ref{tab:cap3:PCBCASpHMateriales} y en la figura~\ref{fig:cap3:CASpH3D} se ilustra una vista en 3D del dispositivo.
+
+\begin{table}[H]
+	\caption{Descripción de materiales empleados en el diseño PCB del CAS para el sensor pH.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{ccc}
+		\hline \hline \hline \hline
+		\headcol\textbf{Cantidad}&\textbf{Referencia}&\textbf{Valor}\\
+		\hline \hline \hline \hline
+		\multicolumn{3}{c}{{\cellcolor{tablerowcolor}} \emph{\textbf{Resistores}}}\\
+		1 & R1 & $100\kilo\ohm$\\
+		1 & R2 & $4.7\kilo\ohm$\\
+		1 & R3 & $1.2\kilo\ohm$\\
+		1 & R4 & $10\mega\ohm$\\
+		2 & R5,R6 & $470\kilo\ohm$\\
+		\multicolumn{3}{c}{{\cellcolor{tablerowcolor}} \textbf{\emph{Capacitores}}}\\
+		5 & C1-C4,C6 & $1\nano\farad$\\
+		1 & C5 & $100\nano\farad$ (Poliéster)\\
+		\multicolumn{3}{c}{{\cellcolor{tablerowcolor}} \textbf{\emph{Circuitos Integrados (CIs)}}}\\
+		1 & U1 & TL081\\
+		2 & U2,U3 & CA3140\\
+		1 & U4 & 7805\\
+		1 & U5 & LM317T\\
+		\multicolumn{3}{c}{{\cellcolor{tablerowcolor}} \textbf{\emph{De propósito general}}}\\
+		1 & SALIDAS & Conector macho de 3 terminales\\
+		1 & SENSOR\_PH & Conector macho de 2 terminales\\
+		1 & V12 & Bloque de 3 terminales\\
+		1 & V5 & Bloque de 2 terminales\\
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:PCBCASpHMateriales}
+\end{table}
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[scale=0.5]{Imagenes/Desarrollo/Integracion/CASpH3D.pdf}
+\end{center}
+ \caption{Vista 3D del dispositivo CAS para el sensor de pH.} \label{fig:cap3:CASpH3D}
+\end{figure}
+
+\paragraph{Diseño PCB para el CAS del sensor de OD y temperatura}
+
+Debido al tamaño de los dispositivos CAS del sensor de OD y temperatura, ambos dispositivos se incluyen en un mismo PCB, dichos dispositivos se integran como se muestra en la figura~\ref{fig:cap3:PCBCASODTemp}. Como se observa, el conector de entradas proporciona el voltaje de alimentación ${V}_{5}$ para el sensor de temperatura, la entrada ${V}_{in}$ es la salida de dicho sensor y la entrada ${I}_{OD}$ es la corriente del sensor de OD. Las salidas proporcionan los voltajes de los dispositivos CAS: ${V}_{CASTemp}$ y ${V}_{CASOD}$.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{c}
+			\subfloat[Diseño de las pistas PCB.]{%
+				\label{fig:cap3:RTUMTU2}%
+				\includegraphics[scale=0.9]{Imagenes/Desarrollo/Integracion/CASODTemp.pdf}} \\
+			\subfloat[Distribución de CIs.]{%
+				\label{fig:cap3:MTU-Servidores}%
+				\includegraphics[scale=0.9]{Imagenes/Desarrollo/Integracion/CASODTempCIs.pdf}} \\
+		\end{tabular}
+	\end{center}
+	\caption{PCB del CAS para el sensor de OD y temperatura, las imágenes no están a escala.} \label{fig:cap3:PCBCASODTemp}
+\end{figure}
+
+Los materiales empleados en este diseño se describen en la tabla~\ref{tab:cap3:PCBCASODTempMateriales} y en la figura~\ref{fig:cap3:CASODTemp3D} se ilustra una vista en 3D del dispositivo.
+
+\begin{table}[H]
+	\caption{Descripción de materiales del diseño PCB para el CAS del sensor de OD y temperatura.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{ccc}
+		\hline \hline \hline \hline
+		\headcol\textbf{Cantidad}&\textbf{Referencia}&\textbf{Valor}\\
+		\hline \hline \hline \hline
+		\multicolumn{3}{c}{{\cellcolor{tablerowcolor}} \textbf{\emph{Resistores}}}\\
+		3 & R1,R5,R6 & $10\mega\ohm$\\
+		1 & R2 & $15\kilo\ohm$\\
+		1 & R3 & $47\kilo\ohm$\\
+		1 & R4 & $1\mega\ohm$\\
+		\multicolumn{3}{c}{{\cellcolor{tablerowcolor}} \textbf{\emph{Capacitores}}}\\
+		1 & C1 & $100\nano\farad$\\
+		2 & C2,C5 & $100\nano\farad$ (Poliéster)\\ 
+		3 & C3,C4,C6 & $1\nano\farad$\\
+		\multicolumn{3}{c}{{\cellcolor{tablerowcolor}} \textbf{\emph{Circuitos Integrados (CIs)}}}\\
+		1 & U1 & TL081\\
+		3 & U2,U4,U8 & CA3140\\
+		\multicolumn{3}{c}{{\cellcolor{tablerowcolor}} \textbf{\emph{De propósito general}}}\\
+		1 & ENTRADAS & Conector macho de 4 terminales\\
+		1 & SALIDAS & Conector macho de 3 terminales\\
+		1 & V12 & Bloque de 3 terminales\\
+		1 & V5 & Bloque de 2 terminales\\
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:PCBCASODTempMateriales}
+\end{table}
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[scale=0.5]{Imagenes/Desarrollo/Integracion/CASODTemp3D.pdf}
+\end{center}
+ \caption{Vista 3D del dispositivo CAS para el sensor de OD y temperatura.} \label{fig:cap3:CASODTemp3D}
+\end{figure}
+
+\clearpage
+\paragraph{Diseño del PCB para el módulo del MCU}
+\label{cap3:IHWSW:RTU}
+
+El PCB de este módulo consiste de tres partes principales: el MCU que desempeña el papel de RTU, el módulo para generar el voltaje de polarización del sensor de OD con el CI DAC0808 y el módulo de comunicación serie RS-485 empleando el CI MAX489. Este diseño PCB se muestra en la figura~\ref{fig:cap3:MCUPCB}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{c}
+			\subfloat[Diseño de las pistas PCB.]{%
+				\label{fig:cap3:RTUMTU2}%
+				\includegraphics[scale=0.9]{Imagenes/Desarrollo/Integracion/MCU.pdf}} \\
+			\subfloat[Distribución de CIs.]{%
+				\label{fig:cap3:MTU-Servidores}%
+				\includegraphics[scale=0.9]{Imagenes/Desarrollo/Integracion/MCUCIs.pdf}} \\
+		\end{tabular}
+	\end{center}
+	\caption{PCB para el módulo del MCU, las imágenes no están a escala.} \label{fig:cap3:MCUPCB}
+\end{figure}
+
+Como se observa en la figura~\ref{fig:cap3:MCUPCB}, el módulo del MCU cuenta con dos conectores de entrada, uno para las salidas del módulo del dispositivo CAS del sensor de pH y otro para el módulo del CAS del sensor de OD y temperatura\footnote{Para evitar problemas de conexión, el orden de las terminales es el mismo en los conectores de salida de los módulos CAS y los conectores de entrada en el módulo del MCU.}. Estas entradas están conectadas directamente a las terminales del ADC del MCU ATmega8\footnote{La distribución de terminales del MCU ATmega8 se describe en la sección~\ref{cap3:DHW:RTUES}.} en el siguiente orden: la entrada ${V}_{CASOD}$ se conecta a la terminal ADC0, ${V}_{CASTemp}$ a la terminal ADC1, ${V}_{offset}$ se conecta a la terminal ADC2 y ${V}_{CASpH}$ se conecta a la terminal ADC3. Por último, la terminal ${V}_{POD}$ proporciona el voltaje de poralización del sensor de OD.
+
+La lista de materiales empleados en este diseño se describe en la tabla~\ref{tab:cap3:MCUPCBMateriales} y en la figura~\ref{fig:cap3:CASODTemp3D} se muestra una vista en 3D del módulo del MCU.
+
+\begin{table}[htp]
+	\caption{Descripción de materiales empleados en el diseño PCB de la RTU.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{ccc}
+		\hline \hline \hline \hline
+		\headcol\textbf{Cantidad}&\textbf{Referencia}&\textbf{Valor}\\
+		\hline \hline \hline \hline
+		\multicolumn{3}{c}{{\cellcolor{tablerowcolor}} \textbf{\emph{Resistores}}}\\
+		1 & R1 & $10\kilo\ohm$\\
+		1 & R2 & $100\kilo\ohm$\\
+		1 & R3 & $470\kilo\ohm$\\
+		\multicolumn{3}{c}{{\cellcolor{tablerowcolor}} \textbf{\emph{Capacitores}}}\\
+		1 & C1 & $100\nano\farad$\\
+		\multicolumn{3}{c}{{\cellcolor{tablerowcolor}} \textbf{\emph{Circuitos Integrados (CIs)}}}\\
+		1 & U1 & ATMEGA8\\
+		1 & U2 & TL081\\
+		1 & U3 & DAC0808\\
+		1 & U4 & MAX489\\
+		\multicolumn{3}{c}{{\cellcolor{tablerowcolor}} \textbf{\emph{De propósito general}}}\\
+		1 & LÍNEA RS-485 & Conector macho de 4 terminales\\
+		2 & OD-TEMP, OFFSET-PH & Conector macho de 3 terminales\\
+		1 & V12 & Bloque de 3 terminales\\
+		1 & V5 & Bloque de 2 terminales\\
+		1 & VP-OD & Conector macho de 1 terminal\\
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:MCUPCBMateriales}
+\end{table}
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[scale=0.5]{Imagenes/Desarrollo/Integracion/MCU3D.pdf}
+\end{center}
+ \caption{Vista 3D del módulo del MCU.} \label{fig:cap3:MCU3D}
+\end{figure}
+
+\clearpage
+\paragraph{Diseño del PCB para la pasarela RS-485/RS-232}
+\label{cap3:IHWRS232RS485}
+El diseño del PCB para la pasarela RS-485/RS-232 se muestra en la figura~\ref{fig:cap3:RS232-RS485PCB}. Este módulo cuenta con el dispositivo de comunicación con la interfaz RS-232\footnote{La interfaz RS-232 es la interfaz serie con la que cuenta la MTU.} empleando el CI MAX232 y para la interfaz serie RS-485 se usa el CI MAX489.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Diseño de las pistas PCB.]{%
+				\label{fig:cap3:RTUMTU2}%
+				\includegraphics[scale=0.9]{Imagenes/Desarrollo/Integracion/RS232-RS485.pdf}} &
+			\subfloat[Distribución de CIs.]{%
+				\label{fig:cap3:MTU-Servidores}%
+				\includegraphics[scale=0.9]{Imagenes/Desarrollo/Integracion/RS232-RS485CIs.pdf}} \\
+		\end{tabular}
+	\end{center}
+	\caption{PCB de la pasarela RS-485/RS-232, las imágenes no están a escala.} \label{fig:cap3:RS232-RS485PCB}
+\end{figure}
+
+Debido a que la pasarela RS-485/RS-232 estará a una distancia relativamente grande de la RTU, este módulo requiere una fuente de alimentación diferente a la fuente de alimentación de la RTU. Por ello, se incluye un conector (V5) para dicha fuente de alimentación. La conexión cableada RS-485 entre este módulo y el módulo del MCU requiere la conexión entre las terminales de los conectores RS-485 de cada módulo, la configuración de dicha conexión se detalla en los apartados~\ref{cap3:DHW:RS485} y~\ref{cap3:DHW:RS232RS485}.
+
+Los materiales empleados para este diseño se describen en la tabla~\ref{tab:cap3:RS232-RS485PCBMateriales} y en la figura~\ref{fig:cap3:RS232-RS4853D} se muestra una vista en 3D de la pasarela RS-485/RS-232.
+
+\begin{table}[htp]
+	\caption{Descripción de materiales empleados en el diseño PCB de la RTU.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{ccc}
+		\hline \hline \hline \hline
+		\headcol\textbf{Cantidad}&\textbf{Referencia}&\textbf{Valor}\\
+		\hline \hline \hline \hline
+		\multicolumn{3}{c}{{\cellcolor{tablerowcolor}} \textbf{\emph{Capacitores}}}\\
+		5 & C1-C5 & $1\micro\farad$\\
+		\multicolumn{3}{c}{{\cellcolor{tablerowcolor}} \textbf{\emph{Circuitos Integrados (CIs)}}}\\
+		1 & U1 & MAX489\\
+		1 & U2 & MAX232\\
+		\multicolumn{3}{c}{{\cellcolor{tablerowcolor}} \textbf{\emph{De propósito general}}}\\
+		1 & RS485 & Bloque de 4 terminales\\
+		1 & RS232 & Conector macho de 3 terminales\\
+		1 & V5 & Conector macho de 2 terminales\\
+		\hline \hline \hline \hline		
+	\end{tabular}
+	\label{tab:cap3:RS232-RS485PCBMateriales}
+\end{table}
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[scale=0.35]{Imagenes/Desarrollo/Integracion/RS232-RS4853D.pdf}
+\end{center}
+ \caption{Vista 3D de la pasarela RS-485/RS-232.} \label{fig:cap3:RS232-RS4853D}
+\end{figure}
+
+\newpage
+\subsubsection{Diseño de interfaces gráficas}
+
+En las figuras~\ref{fig:cap3:SWMTUGUI} se muestra la ventana principal de la GUI del \emph{software} de la MTU, esta interfaz fue desarrollada empleando el IDE \emph{NetBeans}. En la figura~\ref{fig:cap3:YiiScadaGUI} se muestra la vista de la ruta principal de la aplicación Web, la cual solo muestra una vista de bienvenida a la aplicación Web. Para acceder a la aplicación Web se requiere el uso de navegadores Web como \emph{Chrome}, \emph{Mozilla}, \emph{Internet Explorer}, \emph{Opera}, entre otros.
+
+\begin{figure}[htb]
+\begin{center}
+	\includegraphics[scale=1.5]{Imagenes/Desarrollo/Integracion/SWMTUGUI.png}
+\end{center}
+ \caption{Ventana principal de la GUI del \emph{software} de la MTU.} \label{fig:cap3:SWMTUGUI}
+\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+	\includegraphics[scale=1.5]{Imagenes/Desarrollo/Integracion/YiiScadaGUI.png}
+\end{center}
+ \caption{Vista principal de la aplicación Web.} \label{fig:cap3:YiiScadaGUI}
+\end{figure}
+

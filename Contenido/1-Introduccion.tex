@@ -1,0 +1,128 @@
+%---------------------------------------------------------------------
+%
+%                          Capítulo 1
+%
+%---------------------------------------------------------------------
+
+\chapter{Introducción}
+\label{cap1}
+
+El presente trabajo de tesis aborda el área de monitorización remota. Generalmente un sistema de monitorización remota se divide en las siguientes etapas: ``la adquisición de datos de los sensores, un sistema donde se almacenan registros de mediciones y una infraestructura de comunicaciones para conectar el sistema de almacenamiento de datos con una red de comunicaciones pública como es la Internet'' \cite{Cap2Bib:Esarda, Cap2Bib:TesisDavid}. En esta infraestructura se ejecuta una aplicación web que presenta dicha información al usuario final a través de una interfaz gráfica de usuario (GUI, \emph{Graphic User Interface}) \cite{Cap2Bib:Automatizacion, Cap2Bib:SistemasScada}.
+
+La monitorización remota en plantas industriales, a menudo consiste de una compleja red de diversos equipos comunicándose a través de varios protocolos. Dichos equipos están constituidos por \emph{hardware} y \emph{software} (sistemas empotrados, \emph{Embedded Systems}) \cite{Cap2Bib:Esarda, Cap2Bib:TesisDavid}. 
+
+La monitorización y automatización remota se engloba en el concepto de SCADA (Control con Supervisión y Adquisición de Datos, \emph{Supervisory Control and Data Acquisition}) \cite{Cap2Bib:PracticalScada}. Se da el nombre de SCADA a cualquier sistema que consta de componentes \emph{hardware} y \emph{software}, el cual permite el acceso a datos remotos y el control de un proceso (industrial) mediante el uso de sistemas de comunicaciones. En un sistema SCADA, una unidad terminal maestra (MTU, \emph{Master Terminal Unit}) generalmente consiste en una computadora que se encarga de monitorear una o varias unidades terminales remotas (RTU, \emph{Remote Terminal Unit}), en donde la comunicación entre la MTU y la RTU se realiza a través de protocolos industriales de control (por ejemplo Modbus).
+
+Actualmente, los sistemas SCADA son usados en aplicaciones como: plantas de energía, telecomunicaciones, transporte, tratamiento de agua y desechos, y otras. En un sistema SCADA, los componentes \emph{hardware} obtienen datos y los emiten a una computadora, la cual cuenta con \emph{software} para procesamiento de información para mostrarla por medio de GUIs.
+
+La Universidad Tecnológica de la Mixteca (UTM) cuenta con una planta de tratamiento de aguas residuales (PTAR), la cual consta de una etapa preliminar (sistema de rejas o cribas, figura~\ref{fig:cap2:PTAR:rej}) y tres procesos principales (Figura~\ref{fig:cap1:PTARProcess})\cite{Cap2Bib:TesisIzcoatl}: 
+
+\begin{itemize} \itemsep=-0.5em
+	\item\emph{Tratamiento primario}: En este proceso se utiliza un tanque mezclador para homogenizar el efluente (agua residual) y controlar el flujo de entrada del siguiente tratamiento.
+
+	\item\emph{Tratamiento secundario}: Este tratamiento emplea un Sistema de Tratamiento por  Lodos Activados (STLA), en donde la biodegradación de la materia orgánica se lleva a cabo en un bioreactor. 
+
+	\item\emph{Tratamiento terciario}: En este proceso se utiliza un tanque en el que se adhiere una solución de hipoclorito de sodio (o cloro) para la eliminación de bacterias.
+\end{itemize}
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.5]{Imagenes/Introduccion/PTARDiagramas.png}
+	\end{center}
+	\caption{Procesos de la PTAR de la UTM.} \label{fig:cap1:PTARProcess}
+\end{figure}
+
+Los parámetros importantes en estos procesos de tratamiento son \cite{Cap2Bib:Tratamiento}: 
+\begin{itemize} \itemsep=-0.5em
+	\item \emph{pH}: Este parámetro es importante para el tratamiento primario y secundario. Este parámetro determina si el agua es ácida o alcalina, por lo que el valor del pH debe estar en un rango de 7 a 7.5 unidades.
+	\item\emph{Oxígeno Disuelto (OD)}: Para el tratamiento secundario este parámetro es fundamental, ya que se puede determinar si se está aireando correctamente el bioreactor STLA, el valor del OD debe estar por arriba de $3 a 4\frac{\milli\gram {O}_{2}}{\liter}$. 
+	\item\emph{Temperatura}: Para las mediciones de pH del agua, la temperatura (del agua)\footnote{Es decir, que las mediciones de pH varían con la temperatura del agua} es importante, ya que dichas mediciones de pH varían en función de la temperatura.
+\end{itemize}
+
+La monitorización de los parámetros mencionados anteriormente, es un inicio para una futura automatización de la PTAR de la UTM, con lo cual se podrá garantizar la calidad del agua y una minimización significativa en los costos de operación, que son generados por los equipos de la planta que se mantienen en operación durante las 24 horas del día, lo cual significa un gran consumo de energía eléctrica \cite{Cap2Bib:Schneider}.
+
+Por lo anterior, este proyecto de tesis plantea el diseño y construcción de un sistema de monitoreo remoto para la PTAR de la UTM. El sistema que se desarrolló tiene como objetivo implementar un sistema SCADA para monitorear de manera remota y automatizada el estado de pH, OD y temperatura de la PTAR de la UTM. El sistema almacenará registros de mediciones y proporcionará una GUI a través de una aplicación Web.
+
+\section{Planteamiento del problema}
+\label{cap1:Planteamiento}
+
+La necesidad inicial, que generó este trabajo de tesis, es la automatización de la planta de tratamiento de aguas residuales. El propósito de la automatización es asegurar la calidad del agua y hacer eficiente la operación del sistema de difusores, los cuales actualmente se mantienen operando las 24 horas del día y generan un gran consumo de energía. La automatización permite que el consumo de energía sea sustancialmente bajo, lo cual tiene un impacto directo en los costos de operación \cite{Cap2Bib:Schneider}. 
+
+Dicho lo anterior, el primer paso para la automatización de la PTAR es la caracterización de la planta, esto se logra con un sistema de monitoreo de los parámetros que se han mencionado previamente. Por lo que, este trabajo de tesis propone el diseño y construcción de un prototipo de sistema de monitoreo para la PTAR de la UTM, dicho sistema será implementado bajo el concepto de sistemas SCADA. 
+
+El sistema SCADA servirá para monitorear de manera remota y automatizada el estado de pH, OD y temperatura de la PTAR de la UTM. Dicho sistema constará de sensores de propósito industrial, se almacenará la información de las mediciones en un servidor de bases de datos y ofrecerá acceso Web mediante una GUI que permitirá visualizar el estado de los parámetros medidos de manera gráfica y tabular.
+
+La etapa de elementos \emph{hardware} del sistema SCADA tiene como entradas las órdenes y peticiones provenientes de una MTU y como salidas la interacción con los sensores, como se ilustra en la figura~\ref{fig:cap1:PTARDiaHW}. El \emph{hardware} estará constituido por los siguientes elementos: una etapa de acoplamiento de sensores, en la cual se realiza el acondicionamiento de señal de los sensores, esta etapa es necesaria porque los sensores de pH, OD y temperatura requieren el uso de amplificadores operacionales de instrumentación para poder operar las señales de dichos sensores, un sistema basado en un microcontrolador (MCU) como unidad de procesamiento remota (o RTU), una interfaz de comunicación serie RS-485 para establecer la comunicación de la RTU con la MTU mediante el protocolo Modbus.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Introduccion/PTARDiaHW.pdf}
+	\end{center}
+	\caption{Elementos \emph{hardware} del sistema SCADA.} \label{fig:cap1:PTARDiaHW}
+\end{figure}
+
+Los elementos \emph{software} tendrán como entradas la interacción de un usuario Administrador del sistema y como salidas las solicitudes de monitoreo hacia la RTU, como se ilustra en la figura~\ref{fig:cap1:PTARDiaSW}. El software estará constituido por los siguientes elementos: el \emph{software} de la MTU, que se encargará de enviar solicitudes de monitoreo a la RTU y almacenar registros de mediciones en el servidor de base de datos; una aplicación Web con una GUI, la cual se ejecutará en un servidor Web, dicha aplicación Web permitirá la visualización de los registros de mediciones de manera gráfica y tabular, permitirá la interacción del usuario final con el sistema mediante el uso de navegadores Web como \emph{Chrome}, \emph{Mozilla}, \emph{Opera}, \emph{Internet Explorer}, y otros.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Introduccion/PTARDiaSW.pdf}
+	\end{center}
+	\caption{Elementos \emph{software} del sistema SCADA.} \label{fig:cap1:PTARDiaSW}
+\end{figure}
+
+\section{Justificación}
+\label{cap1:Justificacion}
+
+En la planta de tratamiento de aguas residuales de la Universidad Tecnológica de la Mixteca aún no se cuenta con un sistema de monitoreo automatizado, por lo que este proceso se realiza de manera manual por los encargados.
+
+Debido a la situación anterior, es necesario diseñar y construir un prototipo de sistema de monitoreo. Este sistema debe permitir la adquisición de datos de los parámetros involucrados en los procesos de tratamiento de la planta, almacenar dicha información en forma de registros en una base de datos, los cuales puedan ser visualizados por los usuarios finales a través de una GUI en una aplicación Web.
+
+\section{Hipótesis}
+\label{cap1:Hipotesis}
+
+Del prototipo de sistema de monitoreo para la planta de tratamiento de aguas residuales de la Universidad Tecnológica de la Mixteca, se obtendrá una herramienta para almacenar y acceder a la información del estado actual y estados previos de temperatura, pH y Oxígeno Disuelto, así como realizar un análisis en base a un historial de registros de mediciones para conocer el comportamiento de la planta.
+
+%Con el diseño y construcción de un prototipo de sistema de monitoreo remoto para la PTAR de la UTM, los encargados de dicha planta podrán tener acceso a la información acerca del estado actual y de los estados previos de temperatura, pH y Oxígeno Disuelto. Esto les permitirá realizar un análisis en base a un historial de registros de mediciones para conocer el comportamiento de la planta.
+
+\section{Objetivos}
+\label{cap1:Objetivos}
+
+\subsection{Objetivo general}
+\label{cap1:ObjetivoG}
+
+Diseñar y construir un prototipo de Sistema de Monitoreo para la Planta de Tratamiento de Aguas Residuales de la Universidad Tecnológica de la Mixteca.
+
+%Diseñar y construir un prototipo de sistema de monitoreo remoto de temperatura, pH y Oxígeno Disuelto. El sistema estará basado en un sistema SCADA con los siguientes elementos: una RTU basada en MCU, una computadora como MTU y un servidor Web y de Base de Datos. Dicho sistema almacenará, en una base de datos, registros de mediciones tomadas de los sensores y ofrecerá una interfaz web de usuario con capacidades gráficas.
+
+\subsection{Objetivos específicos}
+\label{cap1:ObjetivoE}
+
+\begin{itemize} \itemsep=-0.5em
+	\item Diseñar un sistema de acondicionamiento de señal para cada uno de los sensores haciendo uso de amplificadores operacionales de instrumentación.
+	\item Usar un MCU de la marca ATMEL para implementar la RTU.
+	\item Hacer uso del protocolo Modbus para establecer la comunicación entre la RTU y la MTU.
+%	\item Implementar en el MCU el protocolo Modbus esclavo, y en la MTU el protocolo Modbus maestro.
+	\item Realizar la comunicación entre la RTU y la MTU a través de una interfaz serie RS-485.
+	\item Almacenar registros de mediciones en un servidor de base de datos MySQL.
+	\item Diseñar una aplicación Web usando el \emph{framework Yii} para PHP.
+\end{itemize}
+
+\section{Contenido del documento de tesis}
+\label{cap1:Contenido}
+
+La estructura de este documento de tesis es la siguiente:
+
+En el capítulo 1 se presenta una breve introducción acerca de los sistemas de monitoreo, el planteamiento del problema, la justificación, hipótesis y los objetivos de este proyecto de investigación.
+
+El capítulo 2 presenta las bases teóricas que sustentan este proyecto de investigación. Se describen las principales características de los sistemas SCADA, sus elementos \emph{hardware} y \emph{software}, los protocolos de comunicación, se da una descripción de la PTAR de la UTM, los sensores con los que cuenta la UTM y las herramientas tecnológicas para desarrollar el sistema.
+
+En el capítulo 3 se detalla el desarrollo del sistema empleando la metodología de desarrollo para mejoramiento de procesos de producción y la metodología de sistemas empotrados, por lo que se expone de manera detallada las fases de desarrollo del sistema SCADA.
+
+El capítulo 4 presenta la verificación y validación del sistema SCADA en base a los requerimientos.
+
+En el capítulo 5 se plantean las conclusiones y los futuros trabajos de investigación..
+
+Por último, se presentan las referencias bibliográficas utilizadas, los diagramas esquemáticos, el diseño completo del circuito impreso y diagramas del diseño software. 
+
+
+

@@ -1,0 +1,79 @@
+This is BibTeX, Version 0.99d (Web2C 2011)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Tesis.aux
+A level-1 auxiliary file: Presentacion/Portada/Portada.aux
+A level-1 auxiliary file: Presentacion/DedicAgradec/DedicatoriaAgradecimientos.aux
+A level-1 auxiliary file: Presentacion/DedicAgradec/FrasesCelebres.aux
+A level-1 auxiliary file: Presentacion/Resumen/Resumen.aux
+A level-1 auxiliary file: Contenido/1-Introduccion.aux
+A level-1 auxiliary file: Contenido/2-MarcoTeorico.aux
+A level-1 auxiliary file: Contenido/3-Desarrollo.aux
+A level-1 auxiliary file: Contenido/4-Verificacion.aux
+A level-1 auxiliary file: Contenido/5-Conclusiones.aux
+The style file: IEEEtranS.bst
+A level-1 auxiliary file: Apendices/Apendices.aux
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: Referencias/referencias.bib
+-- IEEEtranS.bst version 1.13 (2008/09/30) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+** Sorting version - not for normal IEEE work.
+Warning--missing institution in Cap2Bib:ATmega8
+Warning--missing institution in Cap2Bib:CA3140
+Warning--missing institution in Cap2Bib:MAX489
+Warning--missing institution in Cap2Bib:OD
+Warning--missing institution in Cap2Bib:Modbus1
+Warning--missing institution in Cap2Bib:Modbus3
+Warning--missing institution in Cap2Bib:Modbus2
+Warning--missing institution in Cap2Bib:LM35
+Warning--missing institution in Cap2Bib:DAC0808
+Warning--missing institution in Cap2Bib:MAX232
+Warning--missing institution in Cap2Bib:TL081
+
+Done.
+You've used 49 entries,
+            4498 wiz_defined-function locations,
+            1200 strings with 15345 characters,
+and the built_in function-call counts, 27029 in all, are:
+= -- 2252
+> -- 628
+< -- 106
++ -- 259
+- -- 160
+* -- 1434
+:= -- 4470
+add.period$ -- 98
+call.type$ -- 49
+change.case$ -- 226
+chr.to.int$ -- 240
+cite$ -- 60
+duplicate$ -- 2004
+empty$ -- 2405
+format.name$ -- 179
+if$ -- 5851
+int.to.chr$ -- 0
+int.to.str$ -- 49
+missing$ -- 359
+newline$ -- 172
+num.names$ -- 98
+pop$ -- 1007
+preamble$ -- 1
+purify$ -- 178
+quote$ -- 2
+skip$ -- 1922
+stack$ -- 0
+substring$ -- 605
+swap$ -- 1202
+text.length$ -- 26
+text.prefix$ -- 0
+top$ -- 6
+type$ -- 363
+warning$ -- 11
+while$ -- 141
+width$ -- 51
+write$ -- 415
+(There were 11 warnings)

@@ -1,0 +1,1052 @@
+%---------------------------------------------------------------------
+%
+%             Capítulo 2
+%
+%---------------------------------------------------------------------
+
+\chapter{Marco teórico}
+\label{cap2}
+
+\section{Sistemas SCADA}
+\label{cap2:SCADA}
+
+La telemetría, tele-medida o medida a distancia, es requerida para conectar equipos y sistemas separados por distancias muy grandes, principalmente en procesos industriales, procesos de manufactura moderna, industria minera, industrias de seguridad y otras. El rango de distancia puede ser desde unos cuantos metros a miles de kilómetros. La telemetría es usada para enviar órdenes, programas y recibir información de monitoreo desde ubicaciones remotas (Monitoreo Remoto) \cite{Cap2Bib:PracticalScada, Cap2Bib:SistemasScada}.\par
+
+Un sistema de monitoreo remoto (\emph{Remote Monitoring System}) se define como un sistema que permite realizar rutinariamente monitoreo y supervisión a través de una infraestructura de red \cite{Cap2Bib:Esarda, Cap2Bib:TesisDavid}.\par 
+
+El concepto de Control con Supervisión y Adquisición de Datos (SCADA, \emph{Supervisory Control and Data Acquisition}) se refiere a la combinación de telemetría y adquisición de datos. Se da el nombre de SCADA a cualquier sistema que consta de componentes \emph{hardware} y \emph{software}, el cual permite el acceso a datos remotos y el control de un proceso mediante el uso de sistemas de comunicaciones.\par
+
+Actualmente, los sistemas SCADA son usados por las empresas industriales modernas en aplicaciones como: plantas de energía, telecomunicaciones, transporte, tratamiento de agua y desechos, etc., en donde los componentes \emph{hardware} obtienen los datos y los emiten a una computadora, la cual cuenta con \emph{software} para procesamiento de la información y para mostrarla en pantallas personalizadas (interfaces gráficas). De esta manera, los sistemas SCADA permiten a los operadores monitorizar y controlar los equipos desde una estación central.\par
+
+Los sistemas SCADA han evolucionado en paralelo con las tecnologías modernas, y con ello la mayoría de dichos sistemas presentan dos topologías:\par
+
+\begin{itemize} \itemsep=-0.5em
+
+\item \emph{Sistemas SCADA centralizados}: En los sistemas centralizados o monolíticos, una computadora central es la encargada de realizar el monitoreo completo de la planta (industrial) y todos la información es almacenada en una base de datos dentro de la misma computadora \cite{Cap2Bib:PracticalScada}. Este tipo de red SCADA se implementa para comunicarse con unidades terminales remotas (RTU, \emph{Remote Terminal Unit}) en el área de campo y a través de buses de campo (FieldBus) \cite{Cap2Bib:IndustrialCT}, tal como se ilustra en la figura~\ref{fig:cap2:SCADA:mon}.
+
+Las desventajas comunes de los sistemas SCADA centralizados o monolíticos son: para un sistema pequeño los costos iniciales son bastante altos y debido al tamaño fijo del sistema, una expansión gradual para la mejora de la planta no es posible.
+
+\item \emph{Sistemas SCADA distribuidos}: Un sistema SCADA distribuido es soportado por un conjunto de computadoras, las cuales están interconectadas a través de una red y cuyos componentes de \emph{software} se encuentran dispersos entre dichas computadoras para realizar las tareas de manera colaborativa, lo cual permite la escalabilidad del sistema \cite{Cap2Bib:PracticalScada, Cap2Bib:PAInternet, Cap2Bib:ApDistribuidas}. Un sistema SCADA distribuido generalmente hace uso de la arquitectura cliente/servidor.
+\end{itemize}
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/SCADAMonolitico.pdf}
+	\end{center}
+	\caption{Configuración de un sistema SCADA centralizado.} \label{fig:cap2:SCADA:mon}
+\end{figure}
+
+Debido a las desventajas que presentan los sistemas SCADA centralizados, en este proyecto de investigación se implementará un sistema SCADA distribuido, por lo que en esta sección se hará énfasis a la teoría relacionada con sistemas SCADA distribuidos.
+
+Ahora, cada computadora dentro de un sistema SCADA distribuido tiene una función específica, por ejemplo: algunas computadoras sirven como procesadores de comunicación con dispositivos de campo o RTUs; otras sirven como interfaces de operador que proporcionan interfaces humano máquina (HMI, \emph{Human Machine Interface}); y algunas computadoras se utilizan como servidores de bases de datos para procesamiento de información \cite{Cap2Bib:IndustrialCT}. En la figura~\ref{fig:cap2:SCADA:dist} se ilustra una configuración típica de un sistema SCADA distribuido.\par
+
+La distribución de funciones provee una mayor capacidad de procesamiento comparado con un sistema que consta de una sola computadora. Las tareas esenciales de un sistema SCADA distribuido, que requieren procesamiento de manera individual, son las siguientes \cite{Cap2Bib:PracticalScada, Cap2Bib:IndustrialCT}:
+
+\begin{itemize} \itemsep=-0.5em
+	\item \emph{Entradas y salidas}: Son la interfaz entre el sistema de monitoreo y las instalaciones de la planta.
+	\item \emph{Bases de datos}: Se encarga de almacenar todos los datos provenientes de las entradas y salidas, al mismo tiempo permite el acceso a esta información, de tal manera que las demás tareas puedan realizar sus funciones.
+	\item \emph{Alarmas}: Esta tarea administra todas las alarmas del sistema a través de la comparación de las entradas con un valor de umbral predeterminado.
+	\item \emph{Tendencias}: Captura todos los datos de las variables que se desean monitorizar con el propósito de mostrar su evolución con respecto al tiempo.
+	\item \emph{Reportes}: Los reportes son generados a partir de los datos de la planta y pueden ser creados a petición del usuario u operador.
+	\item \emph{Presentación}: Administra todos los datos que el operador va a monitorizar a través de una GUI \cite{Cap2Bib:Automatizacion}.
+\end{itemize}
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/SCADADistribuido.pdf}
+	\end{center}
+	\caption{Configuración de un sistema SCADA distribuido.} \label{fig:cap2:SCADA:dist}
+\end{figure}
+
+\subsection{Componentes \emph{hardware} de un sistema SCADA distribuido}
+\label{cap1:SCADA:HW}
+En esta sección se aborda el concepto de sistemas de telemetría (sistemas de medición a distancia) y sus fundamentos con base a la arquitectura de un sistema SCADA distribuido. Por lo tanto, se describen los componentes \emph{hardware} (figura~\ref{fig:cap2:SCADA:dist:HW}), los cuales se han clasificado en los siguientes niveles de jerarquía \cite{Cap2Bib:PracticalScada, Cap2Bib:SistemasScada, Cap2Bib:IndustrialCT}:
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/SCADAHW.pdf}
+	\end{center}
+	\caption{Niveles de jerarquía de \emph{hardware} en un sistema SCADA.} \label{fig:cap2:SCADA:dist:HW}
+\end{figure}
+
+\begin{itemize} \itemsep=-0.5em
+	\item Dispositivos de instrumentación y control a nivel de campo\footnote{Los dispositivos de campo son los que están en contacto directo con la planta industrial.}.
+	\item Uno o más dispositivos de interfaces de datos de campo. Dichos dispositivos son las RTUs que desempeñan el papel de interfaz con los dispositivos de instrumentación y control a nivel campo.
+	\item Un servidor o conjunto de servidores como sistema central, los cuales usualmente son denominados como centro del sistema SCADA, estaciones maestras o MTUs. La MTU de un sistema distribuido consta de un conjunto de servidores que realizan las tareas de: entradas y salidas, bases de datos, alarmas, tendencias, reportes y presentación.
+	\item Un sistema de comunicaciones para el intercambio de datos entre RTUs y MTUs.
+	%Este sistema puede ser radio, línea telefónica, cableado, microondas, fibra óptica, satélite, o bien puede ser cualquier combinación de éstos.
+\end{itemize}
+
+\subsubsection{Instrumentación}
+
+La instrumentación electrónica se aplica en el sensado y procesamiento de la información proveniente de variables físicas\footnote{Temperatura, presión, volumen, etc.} y de otro tipo\footnote{Variables de referencia en dispositivos de control o variables de umbral en sistemas de alarmas.}, a partir de las cuales se realiza el monitoreo y control de procesos, empleando dispositivos y tecnologías electrónicas.
+
+Para su funcionamiento la instrumentación se divide en tres etapas: 
+
+\begin{itemize} \itemsep=-0.5em
+	\item \emph{Los sensores}: Son aquellos que transforman la magnitud de una variable física que se desea medir a una señal eléctrica.
+	\item \emph{Acondicionamiento}: Como su nombre lo indica, acondiciona los niveles de la señal de salida de un sensor. Esto se debe a que en la mayoría de los casos la señal de los sensores suele no ser adecuada para su procesamiento. En general los sensores entregan señales muy pequeñas y vulnerables a ruido, por lo que el acondicionamiento generalmente consiste de dos subetapas: la etapa de amplificación y la etapa de filtrado. Dichas subetapas se realizan a través de un amplificador operacional de instrumentación.
+	\item \emph{Digitalización}: La digitalización proporciona un código digital (binario) equivalente a la señal de entrada proveniente de la etapa de acoplamiento. Dicho código permite el procesamiento de las señales a través de sistemas basados en MCU, procesadores o computadoras.
+\end{itemize}
+
+\subsubsection{Componentes de la RTU}
+
+Una RTU es una unidad independiente cuyas tareas son: adquisición de datos, gestión de equipos de control en un proceso industrial (ubicado en un lugar remoto) y transferir dichos datos a la MTU \cite{Cap2Bib:PracticalScada}.
+
+Generalmente una RTU consiste en un sistema empotrado (\emph{Embedded System}), el cual tiene como unidad principal un procesador \cite{Cap2Bib:TesisDavid}. La complejidad de la unidad central de procesamiento determina la clasificación del sistema empotrado, microprocesador ($\micro$P) o MCU.
+
+La ventaja de un diseño basado en MCU sobre uno basado en $\micro$P radica en que el MCU incluye internamente tres unidades funcionales: unidad central de procesamiento (CPU, \emph{Central Processing Unit}), memoria de código/datos y periféricos de entrada y salida. En cambio, un $\micro$P necesita de las mismas unidades funcionales pero de manera externa. Un diseño basado en MCU reduce significativamente el tiempo de desarrollo, el tamaño del dispositivo y el costo \cite{Cap2Bib:TesisDavid}. La figura~\ref{fig:cap2:SCADA:dist:HW:RTU} muestra la configuración típica de una RTU basada en MCU.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/SCADA-RTU.pdf}
+	\end{center}
+	\caption{Configuración de una RTU basada en MCU.} \label{fig:cap2:SCADA:dist:HW:RTU}
+\end{figure}
+
+La configuración de una RTU basada en MCU está formada por los siguientes módulos \emph{hardware} \cite{Cap2Bib:PracticalScada, Cap2Bib:SistemasScada}:
+
+\begin{itemize} \itemsep=-0.5em
+\item \emph{Unidad central de procesamiento}: La CPU es la encargada de procesar las instrucciones almacenadas en la memoria de código. Por lo tanto, la CPU tiene acceso a las memorias (de datos y de código), realiza los cálculos asociados o requeridos, controla periféricos de entrada y salida, y periféricos de interfaz de comunicación.
+
+Las instrucciones almacenadas en la memoria de código forman la configuración y el programa de control propias de la RTU. La configuración y el programa de control establecen los parámetros para: periféricos de entrada y salida (analógicas y digitales); la comunicación entre la RTU y la MTU, la cual generalmente consiste en un protocolo industrial de control y monitoreo \cite{Cap2Bib:TesisDavid}; y, los programas de aplicación de la RTU, tal es el caso de un control analógico de lazo cerrado PID (\emph{Proporcional Integral Diferencial}).
+
+\item \emph{Entradas analógicas}: Estos periféricos permiten la adquisición de datos de las señales que proporcionan los módulos de instrumentación (sensores y acondicionamiento).
+
+El elemento principal de este módulo es un convertidor análogo-digital (ADC, \emph{Analog-Digital Converter}), cuya función es tomar un voltaje analógico como entrada y entregar como salida un código digital (código binario) correspondiente a dicho voltaje de entrada (figura~\ref{fig:cap2:SCADA:dist:HW::RTU:ADC}). Este código digital es adecuado para su procesamiento a través de un MCU.
+
+\item \emph{Salidas analógicas}: Un periférico de salida analógica en general consiste de dos módulos: un registro de salidas digitales (usualmente 8 bits) y un convertidor digital-análogo (DAC, \emph{Digital-Analog Converter}). El DAC es un dispositivo que recibe un código digital (binario) y genera un nivel de voltaje de salida (analógico), como se ilustra en la figura~\ref{fig:cap2:SCADA:dist:HW::RTU:DAC}.
+
+En una RTU, una salida analógica frecuentemente se usa como voltaje de referencia para el controlador de algún dispositivo analógico, como puede ser el controlador de un motor, una bomba, un sistema de enfriamiento, un calefactor, etc. Una salida analógica también puede ser usada como fuente de alimentación para dispositivos de bajo consumo de energía, por ejemplo, la alimentación o polarización de un sensor de Oxígeno Disuelto y otros.
+
+\item \emph{Entradas y salidas digitales}: Las entradas y salidas digitales se usan para indicar información como señales de estados lógicos de alarmas y otros dispositivos. Por ejemplo el estado (encendido o apagado) de un relevador que controla una válvula, un actuador o cualquier dispositivo analógico o de las alarmas que indican el estado crítico de alguna variable en el proceso de una RTU. Dichas alarmas son procesadas por la MTU para tomar medidas de control o simplemente mostrarlas en una pantalla de operador.
+
+Es importante considerar un aislamiento adecuado para las entradas y salidas digitales, ya que los periféricos de un MCU normalmente operan con niveles de voltaje TTL. Una buena opción es emplear dispositivos de aislamiento óptico, relevadores o transformadores.
+
+\item \emph{Interfaces de comunicación}: En una RTU, para la comunicación con la MTU, se pueden manejar diferentes interfaces de comunicación según sean las necesidades. Actualmente, las interfaces de comunicación que una RTU debe soportar abarcan: interfaces serie RS-232/RS-485, línea telefónica, fibra óptica, microondas, satélite o radio vía portadora (VHF, UHF o 900 MHz).
+\end{itemize}
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/SCADA-RTU-ADC.pdf}
+	\end{center}
+	\caption{Función del ADC.} \label{fig:cap2:SCADA:dist:HW::RTU:ADC}
+\end{figure}
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/SCADA-RTU-DAC.pdf}
+	\end{center}
+	\caption{Función del DAC.} \label{fig:cap2:SCADA:dist:HW::RTU:DAC}
+\end{figure}
+
+\subsubsection{Componentes de la MTU}
+
+Una MTU es el centro de un sistema SCADA y está formada por un servidor o conjunto de servidores (usualmente computadoras) interconectados a través de una red para realizar tareas de manera colaborativa. La MTU es la que inicia toda la comunicación con las RTUs, reúne los datos, almacena la información, realiza el procesamiento y proporciona las interfaces de usuario para los operadores \cite{Cap2Bib:PracticalScada, Cap2Bib:SistemasScada, Cap2Bib:IndustrialCT}.
+ 
+Las funciones principales de una MTU son obtener periódicamente los datos de campo de las RTUs, monitorizar y controlar remotamente los dispositivos a través de las estaciones de operador. Los componentes y características básicas de una MTU son:
+
+\begin{itemize} \itemsep=-0.5em
+\item \emph{Servidores e interfaz de operador}: Una MTU consta de una o más estaciones (computadoras) de operador, las cuales cuentan con una interfaz de usuario para mostrar el estado de las RTUs y permitir el control al operador; un servidor para el manejo de bases de datos; el servidor de alarmas; un servidor de presentación, el cual muestra la evolución de las variables monitoreadas a través de gráficas de tendencias; un servidor para generar reportes; un servidor de interfaces de usuario; y un servidor de entradas y salidas, el cual tiene bajo su control a los dispositivos de campo (RTU), este servidor también es conocido como el controlador de las RTUs. 
+
+\item \emph{Software de la MTU}: El \emph{software} en una MTU se divide en dos categorías: el sistema operativo, el cual puede ir desde un sistema MS-DOS, Windows, Windows NT a los distintos sistemas Unix (Linux) y el \emph{software} del sistema SCADA, generalmente consiste en la adquisición de datos, control, archivado o almacenamiento en base de datos y la interfaz de operador o HMI.
+
+\item \emph{Interfaces de comunicación}: La MTU establece la comunicación con las RTUs a través de una interfaz de comunicación. %como las que se mencionaron en la sección~\ref{cap2:SCADA:dist:HW}. 
+Esta comunicación generalmente se realiza haciendo uso de buses de campo\footnote{El término ``bus de campo'' engloba varios protocolos de control industrial, por ejemplo Modbus, PROFIBUS, WorldFIP y CAN}.
+\end{itemize}
+
+Las estaciones de operador y los servidores de la MTU se intercomunican haciendo uso de las tecnologías de redes LAN, WAN, Internet y la suite de protocolos TCP/IP.
+
+Para distribuir el procesamiento a través de los múltiples servidores, los sistemas SCADA distribuidos hacen uso de las siguientes tecnologías\cite{Cap2Bib:Cisco}: redes de área local (LAN, \emph{Local Area Network}), tal es el caso de la familia de redes Ethernet o estándar IEEE 802.3; las redes de área amplia (WAN, \emph{Wide Area Network}); y la suite de protocolos de Internet, de los cuales los más conocidos globalmente son el Protocolo de Control de Transmisión (TCP, \emph{Transmission Control Protocol}) y el Protocolo de Internet (IP, \emph{Internet Protocol}), estos protocolos forman parte de un conjunto de protocolos conocidos como TCP/IP.
+
+%En casos particulares de sistemas SCADA es necesario instalar estaciones submaestras, las cuales permiten obtener sitios de control dentro de una región específica. Una estación submaestra tiene las siguientes funcionalidades:
+
+%\begin{itemize}\itemsep=-0.5em
+%\item Adquisición de datos de las RTUs dentro de la región asignada.
+%\item Registrar y mostrar estos datos en una estación local de operador.
+%\item Pasar los datos a la MTU.
+%\item Proporcionar a las RTUs, dentro de su región, las peticiones de control provenientes de la MTU.
+%\end{itemize}
+
+\subsection{Componentes \emph{software} del sistema SCADA distribuido}
+
+El \emph{software} de un sistema SCADA distribuido es multitareas y está basado principalmente en bases de datos de tiempo real localizados en uno o más servidores. La arquitectura general del \emph{software} de un sistema SCADA se ilustra en la figura~\ref{fig:cap2:SCADA:dist:SW} y sus componentes son \cite{Cap2Bib:PracticalScada, Cap2Bib:SistemasScada, Cap2Bib:IndustrialCT}:
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/SCADASW.pdf}
+	\end{center}
+	\caption{Arquitectura general del \emph{software} de un sistema SCADA.} \label{fig:cap2:SCADA:dist:SW}
+\end{figure}
+
+\begin{itemize}\itemsep=-0.5em
+\item Interfaz de usuario.
+\item Servidor de representaciones gráficas de tendencias.
+\item Servidor de alarmas y eventos.
+\item Servidor para generación de reportes.
+\item Bases de datos.
+\item Acceso a los datos.
+\item Manejo de redes.
+\item Interfaces RTU.
+\end{itemize}
+
+Generalmente, los componentes de interfaz de usuario, representaciones gráficas, servidor de alarmas y eventos, servidor de reportes y servidor de bases de datos, consisten en aplicaciones distribuidas con arquitectura cliente/servidor, de las cuales las aplicaciones Web son las más conocidas globalmente. En cambio las aplicaciones para interfaces RTU se desarrollan empleando lenguajes de programación como C/C++, Visual Basic y Java.
+
+\subsubsection{Comunicación con dispositivos de campo}
+
+Los servidores de datos realizan solicitudes periódicamente a los controladores de dispositivos de campo (RTU). La comunicación entre la MTU y la RTU globalmente se realiza a través de buses de campo, por ejemplo Modbus, PROFIBUS, WorldFIP y CAN. Por lo tanto el \emph{software} SCADA debe proporcionar las herramientas necesarias para llevar a cabo dicha comunicación \cite{Cap2Bib:PracticalScada, Cap2Bib:IndustrialCT}.
+
+\subsubsection{Comunicación entre aplicaciones}
+
+La comunicación interna entre el conjunto de servidores para procesamiento de datos, se realiza usando la arquitectura distribuida cliente/servidor. En general esta comunicación se realiza mediante la suite de protocolos TCP/IP \cite{Cap2Bib:PracticalScada, Cap2Bib:IndustrialCT}.
+
+Los métodos más conocidos para el intercambio de información entre las aplicaciones de los servidores son ODBC (\emph{Open Data Base Conectivity}) y SQL (\emph{Structured Query Language}) \cite{Cap2Bib:SistemasScada}.
+
+\paragraph{ODBC}
+ODBC es una tecnología de Microsoft Windows y es un estándar que permite a las aplicaciones el acceso a datos en sistemas de gestión de bases de datos (DBMS, \emph{Data Base Managment Systems}) utilizando SQL como método estándar de acceso \cite{Cap2Bib:SistemasScada}.
+
+Una aplicación desarrollada en lenguajes estándares de programación (C, C++, Visual Basic o Java), necesita la inclusión del controlador ODBC correspondiente para tener acceso a distintas bases de datos, dicho controlador es una librería de enlace dinámico (DLL, \emph{Dynamic Link Library}).
+
+La interfaz ODBC define los siguientes aspectos: una librería de llamadas a funciones ODBC, la sintaxis SQL necesaria, códigos de error estándar, el método de conexión a un DBMS y el formato de presentación de los datos.
+
+\paragraph{SQL}
+SQL es un estándar para la comunicación con bases de datos, que permite una interfaz común para el acceso a los datos por parte de cualquier aplicación que se apegue a dicho estándar \cite{Cap2Bib:SistemasScada}.
+
+Las posibilidades de esta tecnología incluyen: 
+
+\begin{itemize}\itemsep=-0.5em
+\item \emph{Procedimientos}: Son bibliotecas de órdenes almacenadas en la base de datos que permiten reducir el tráfico en la red y simplifican los procedimientos de acceso a los usuarios de las bases de datos.
+\item \emph{Eventos}: Son órdenes que se activan de forma automática bajo unas ciertas condiciones, facilitando el mantenimiento de la integridad de los datos.
+\item \emph{Replicación}: Permite la duplicación y sincronización de bases de datos; la accesibilidad, permite el intercambio o envío de información basándose en eventos.
+\end{itemize}
+
+\subsubsection{Bases de datos relacionales}
+
+Las bases de datos relacionales (\emph{Relational Data Base}) proporcionan estructuras de datos, independientemente del tipo de aplicaciones que acceden a éstos o de su estructura \cite{Cap2Bib:SistemasScada}.
+
+Una base de datos relacional es un conjunto de tablas de datos que contienen campos. Éstos sirven como nexos de unión a través de los cuales se pueden establecer múltiples combinaciones. Las combinaciones posibles prácticamente son ilimitadas, todo depende de la configuración del método de búsqueda (consulta, \emph{Query}), o el tipo de datos que se requiera consultar.
+
+Este tipo de organización permite el uso de la arquitectura cliente/servidor y con ello se simplifican la administración de los datos y las aplicaciones que los usan, se disminuye el espacio de almacenamiento y se reducen los problemas asociados a las bases de datos redundantes. 
+
+Los usuarios y las aplicaciones pueden acceder a los datos de forma rápida y sencilla, ya que pueden personalizar sus propias consultas y obtener los datos de acuerdo a sus necesidades.
+
+\subsubsection{Interfaces de usuario (UI)}
+
+El término ``interfaz gráfica de usuario'' (GUI) se refiere a los métodos y dispositivos usados en la interacción entre máquinas y los seres humanos que las usan. La interfaz de usuario de un sistema mecánico, un vehículo o las instalaciones de una industria, frecuentemente es llamada HMI \cite{Cap2Bib:SistemasScada}.
+
+En un sistema de control industrial, una HMI se usa para proporcionar a los operadores información de una máquina o planta y permite monitorizar, controlar y archivar dicho sistema. Por lo tanto, las tareas fundamentales que una HMI debe realizar son: la comunicación de información de la máquina al usuario y la comunicación de información del usuario a la máquina.
+
+Las HMI de tipo supervisoras son usadas en sistemas en donde la distancia, entre la estación de control y la estación remota (o planta), es considerablemente grande. Las HMI de este tipo son propias de un sistema SCADA, en el cual se encuentran dispositivos tales como bombas, ventiladores o indicadores de purificación de aguas.
+
+Una HMI de un sistema SCADA permite que desde una interfaz de operador se pueda monitorizar completamente la planta y muestra una representación gráfica del estado actual de cada componente, el estado de las alarmas que indican cuando algún parámetro está fuera del rango de operación adecuado. Estas tareas se realizan gracias a la retroalimentación por parte de los sensores que miden los parámetros de los procesos en la planta.
+
+\subsection{SCADA en la Internet}
+
+La Internet es simplemente la red virtual en donde todas las estaciones se interconectan fácilmente sin tener que preocuparse por las conexiones físicas.
+
+Actualmente el modelo de Internet gira en torno a la suite de protocolos abiertos TCP/IP \cite{Cap2Bib:PracticalScada, Cap2Bib:RedesComp}, en donde el protocolo IP ofrece la capacidad de realizar el ruteo permitiendo que los paquetes sean enviados a través de redes interconectadas con topologías diferentes y el protocolo TCP permite que los paquetes sean enviados desde un punto a otro garantizando que lleguen a su destino.
+
+El protocolo de aplicación más usado en Internet es el protocolo de transferencia de hipertexto (HTTP, \emph{Hypertext Transfer Protocol}), el cual es la base para la WWW (\emph{World Wide Web}). El protocolo HTTP es de arquitectura cliente/servidor, por lo tanto, el uso más frecuente que se le da es el de un navegador (cliente) que accede a un servidor Web. Los datos que pueden ser transferidos por este protocolo son: texto nativo, hipertexto, audio, imágenes, etc.
+
+El protocolo HTTP permite el desarrollo de aplicaciones de interfaces gráficas de usuario para sistemas SCADA, ya que es posible transferir representaciones gráficas y estados de los dispositivos de campo. Además, la arquitectura cliente/servidor permite que más de un usuario u operador acceder al sistema SCADA a través de un navegador Web ejecutado en una computadora desde cualquier lugar permitiendo el monitoreo y control de la planta como si el operador estuviese en las instalaciones de la misma.
+
+\section{Planta de tratamiento de aguas residuales de la UTM}
+
+\subsection{El Agua Residual}
+
+Esencialmente el agua residual, es el agua usada por una comunidad en una gran variedad de aplicaciones. Según la Norma Oficial Mexicana \emph{NOM-001-ECOL-1996} emitida por la Secretaría de Medio Ambiente y Recursos Naturales (SEMARNAT) \cite{Cap2Bib:NOM001}, se definen las aguas residuales como: 
+
+\emph{``Las aguas de composición variada provenientes de las descargas de usos municipales, industriales, comerciales, de servicios, agrícolas, pecuarios, domésticos, incluyendo fraccionamientos y en general cualquier otro uso, así como la mezcla de ellas''.}
+
+Las fuentes principales de aguas residuales son \cite{Cap2Bib:TesisIzcoatl, Cap2Bib:Metcalf1}: 
+\begin{itemize}\itemsep=-0.5em
+\item \emph{Las aguas residuales domésticas}: Engloban las aguas residuales generadas por los hogares, instalaciones comerciales e instituciones públicas. La contaminación es orgánica en su mayoría, compuesta de materia fecal, papel, jabón, suciedad, restos de alimentos (basura) y otras sustancias.
+\item \emph{Las aguas residuales industriales}: En donde predominan los desechos industriales, están en función del tipo y tamaño de la industria. Algunas son aguas de enjuague; otras se encuentran muy cargadas de materia orgánica o mineral, o con sustancias corrosivas, venenosas, inflamables o explosivas.
+\end{itemize}
+
+\subsection{Sistema de tratamiento de aguas residuales de la UTM}
+
+Los métodos de tratamiento de aguas residuales en donde predomina la aplicación de fuerzas de contacto físico son conocidos como unidades de operación. Los métodos de tratamiento de aguas residuales en los cuales la eliminación de contaminantes se realiza a través de reacciones químicas o biológicas son conocidos como unidades de procesamiento. Ambos métodos son agrupados para permitir varios niveles de tratamiento conocidos como: preliminar, primario, secundario y avanzado (o terciario) \cite{Cap2Bib:Metcalf7}.
+
+Los niveles de tratamiento (Figura~\ref{fig:cap2:PTAR}) con los que cuenta la PTAR de la UTM son los siguientes \cite{Cap2Bib:TesisIzcoatl}:
+\begin{itemize}\itemsep=-0.5em
+
+\item \emph{Tratamiento preliminar}: Consiste en un sistema de rejas o cribas (figura~\ref{fig:cap2:PTAR:rej}) para separar los sólidos mayores o flotantes y con ello proteger los equipos de los siguientes niveles de tratamiento. 
+
+\item \emph{Tratamiento primario}: Emplea el proceso físico de asentamiento en un tanque de sedimentación, para eliminar la mayoría de los sólidos suspendidos y sedimentales que se encuentran en el agua residual. Este proceso utiliza un tanque mezclador (figura~\ref{fig:cap2:PTAR:Mez}) para homogenizar el efluente (agua residual) y controlar el flujo de entrada al siguiente tratamiento.
+
+\item \emph{Tratamiento secundario}: Emplea el proceso biológico conocido como Sistema de Tratamiento por Lodos Activados (STLA), para remover la mayor parte de la materia orgánica del agua residual. La biodegradación de la materia orgánica se lleva a cabo en un bioreactor (figura~\ref{fig:cap2:PTAR:STLA}).
+
+\item \emph{Tratamiento terciario}: En donde se utiliza un tanque (figura~\ref{fig:cap2:PTAR:Cl}) para adherir una solución de hipoclorito de sodio (o cloro) para la eliminación de bacterias.
+
+\end{itemize}
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Tratamiento preliminar.]{%
+				\label{fig:cap2:PTAR:rej}%
+				\includegraphics[scale=0.78]{Imagenes/MarcoTeorico/Rejillas.png}} &
+			\subfloat[Tratamiento primario.]{%
+				\label{fig:cap2:PTAR:Mez}%
+				\includegraphics[scale=0.78]{Imagenes/MarcoTeorico/Mezclador.png}} \\
+			\subfloat[Tratamiento secundario.]{%
+				\label{fig:cap2:PTAR:STLA}%
+				\includegraphics[scale=0.2]{Imagenes/MarcoTeorico/Bioreactor.JPG}} &
+			\subfloat[Tratamiento terciario.]{%
+				\label{fig:cap2:PTAR:Cl}
+				\includegraphics[scale=0.2]{Imagenes/MarcoTeorico/Cloracion.JPG}} \\
+		\end{tabular}	
+	\end{center}
+	\caption{Niveles de tratamiento de la PTAR.} \label{fig:cap2:PTAR}
+\end{figure}
+
+La NOM-001-ECOL-1996 establece la concentración máxima de contaminantes básicos, metales pesados y cianuros para las descargas de aguas residuales a aguas y bienes nacionales. El rango del potencial hidrógeno (pH) permisible es de 5 a 10 unidades \cite{Cap2Bib:NOM001, Cap2Bib:Metcalf7}.
+
+El pH es la expresión de la concentración de los iones ${H}^{+}$ en el agua \cite{Cap2Bib:Metcalf7}. Elevadas concentraciones de este ión confieren al agua condiciones de pH ácido mientras que bajas concentraciones del ión significan que el agua tiene condiciones básicas. El pH del agua afecta diversos procesos como puede ser la solubilidad y el estado químico de muchos compuestos y elementos (por ejemplo, de los metales pesados), la actividad de algunas enzimas y la sobrevivencia de numerosas especies.
+
+Desde el punto de vista biológico, la mayoría de las especies prefieren valores de pH cercanos a la neutralidad (aproximadamente 7). Sin embargo existen especies adaptadas a vivir en condiciones extremas de pH, ya sea hacia la parte ácida o básica de la escala.
+
+\subsubsection{Sistema de tratamiento por lodos activados}
+
+El principio básico de este proceso consiste en que las aguas residuales se pongan en contacto con una población microbiana mixta en forma de suspensión floculenta (o lodo) en un sistema aireado y agitado \cite{Cap2Bib:Metcalf7}.
+
+El funcionamiento de procesos aeróbicos, tal es el caso de el sistema de lodos activados, depende de la disponibilidad de cantidades suficientes de oxígeno en el sistema. La transferencia de oxígeno es el proceso mediante el cual el oxígeno es transferido de un medio gaseoso a un medio líquido.
+
+Una vez que se alcanza el grado de tratamiento que se desea, el lodo se separa del agua residual por asentamiento, esta etapa es también conocida como sedimentación. El ``sobrenadante'' de la etapa de separación es el agua residual tratada y libre de lodos. La mayor parte del lodo asentado en la etapa de separación se regresa a la etapa de aireación para mantener la concentración de los lodos en el tanque de aireación al nivel necesario para un tratamiento efectivo. 
+
+Las etapas esenciales del proceso de lodos activados son: aireación, separación y reciclaje de lodos. Los sistemas de aireación disponibles para usar en la etapa de aireación, generalmente se pueden dividir en sistemas de aireación por burbujas, sistemas de difusores y sistemas mecánicos de aireación. El sistema de aireación de la PTAR de la UTM consiste en un sistema de difusores como se muestra en la figura~\ref{fig:cap2:PTAR:Dif} \cite{Cap2Bib:TesisIzcoatl}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.2]{Imagenes/MarcoTeorico/Difusores.JPG}
+	\end{center}
+	\caption{Sistema de difusores.} \label{fig:cap2:PTAR:Dif}
+\end{figure}
+
+%-------------------------------------------------------------------
+\section{Descripción de sensores}
+%-------------------------------------------------------------------
+\label{cap2:sec:Sensores}
+
+\subsection{Electrodo de pH}
+\label{cap2:Sensores:pH}
+
+Los electrodos de pH se usan en una gran variedad de aplicaciones incluyendo el tratamiento de aguas, procesos químicos, instrumentación médica y sistemas de evaluación ambiental \cite{Cap2Bib:PHElectrode}.%Designing with pH Electrodes
+
+En este trabajo de tesis se utiliza un electrodo para medición de pH de la marca \emph{Cole Parmer}, cuyo modelo es \emph{EW-05992-10}. Esta marca maneja dos tipos de electrodos, uno de unión simple y otro de unión doble. En este caso se ha usado el de unión doble, como el que se ilustra en la figura~\ref{fig:cap2:sec:Sensores:pH1}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.3,angle=90]{Imagenes/MarcoTeorico/ElectrodopH.png}
+	\end{center}
+	\caption{Electrodo de pH de la marca \emph{Cole Parmer}.}\label{fig:cap2:sec:Sensores:pH1}
+\end{figure}
+
+\subsubsection{Principio de funcionamiento del electrodo de pH}
+\label{cap2:sec:Sensores:pH:PF}
+
+Un electrodo de pH mide la actividad de iones de hidrógeno ($H^{+}$) y produce un potencial eléctrico o voltaje. La operación del electrodo de pH está basada en el principio de que un potencial eléctrico se genera cuando dos líquidos con diferente pH entran en contacto en los lados opuestos de una membrana delgada de cristal \cite{Cap2Bib:PHElectrode}.
+
+Los electrodos de pH modernos son una combinación de electrodos compuestos de dos partes principales, un electrodo cristal y un electrodo de referencia como se ilustra en la figura~\ref{fig:cap2:sec:Sensores:pH2}. El pH es determinado esencialmente a través de la medición de la diferencia de voltaje entre estos dos electrodos.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/ElectrodopH.pdf}
+	\end{center}
+	\caption{Características del electrodo de pH.}\label{fig:cap2:sec:Sensores:pH2}
+\end{figure}
+
+En la punta del electrodo se encuentra la membrana pequeña, la cual es un tipo de cristal específico capaz de intercambiar iones. Éste es el elemento que sensa la concentración de hidrógeno de la solución de prueba. El potencial del electrodo de referencia es constante y es producido por el elemento interno del mismo, ya que se encuentra en contacto con la solución de relleno de referencia, la cual tiene un pH constante con un valor de siete.
+
+\subsubsection{Características del electrodo de pH}
+\label{cap2:sec:Sensores:pH:Ca}
+
+Los electrodos de pH son sensores activos, lo que significa que no requieren de una fuente de excitación o polarización (voltaje o corriente) externa. Este electrodo se clasifica como un sensor bipolar debido a que la salida del electrodo puede oscilar por arriba o por abajo del punto de referencia. El electrodo produce un voltaje de salida, el cual es linealmente proporcional al valor de pH de la solución que está siendo medida. El rango de valores de pH en que opera el electrodo es de 0 a 14 \cite{Cap2Bib:PHElectrode}.
+
+La impedancia de salida en este electrodo de pH es muy alta, esto se debe a que el bulbo de cristal tiene una resistencia que típicamente se encuentra en el rango de $10 - 1000\mega\ohm$. Esto significa que el electrodo solamente puede ser monitoreado por un dispositivo de medición con una impedancia de entrada muy alta.
+
+Las funciones de transferencia mostradas en la figura~\ref{fig:cap2:sec:Sensores:pH3} y la figura ~\ref{fig:cap2:sec:Sensores:pH4} indican que cuando el pH de la solución incrementa, el voltaje producido por el electrodo de pH decrementa. Como se observa en la figura~\ref{fig:cap2:sec:Sensores:pH3}, la sensibilidad del electrodo de pH varía con respecto a la temperatura.
+
+\begin{center}
+	\input{Imagenes/MarcoTeorico/ElectrodopHFT.tex}
+	\captionof{figure}{Función de transferencia del electrodo de pH.} \label{fig:cap2:sec:Sensores:pH3}
+\end{center}
+
+El electrodo ideal a una temperatura de $25\degreecelsius$ tiene una sensibilidad de $59.16\milli\volt \per pH$, lo que significa que la señal de salida del electrodo oscila de $+414.12\milli\volt$ a $-414.12\milli\volt$ para el rango de pH entre $0$ y $14$ respectivamente.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/pHTF.pdf}
+	\end{center}
+	\caption{Voltaje de salida del sensor en función del nivel de pH.} \label{fig:cap2:sec:Sensores:pH4}
+\end{figure}
+
+\subsection{Electrodo de oxígeno disuelto}
+\label{cap2:sec:Sensores:OD}
+
+Existen dos principales tipos de electrodos de oxígeno disuelto (OD): electrodos sin membrana y electrodos con membrana permeable (\emph{Principio de Clark}) \cite{Cap2Bib:OD}.
+
+Actualmente los electrodos con membrana que funcionan con el principio de Clark son los más usados globalmente, los cuales permiten mediciones de oxígeno en gases y soluciones, otra ventaja es que el electrodo y la solución no se contaminan mutuamente.
+
+En la UTM se cuenta con un electrodo de OD marca \emph{Mettler-Toledo}, cuyo modelo es \emph{InPro 6800} como el que se muestra en la figura~\ref{fig:cap2:sec:Sensores:OD1}. Este electrodo está destinado a mediciones en línea (\emph{Inline Measurement}) de la presión parcial de oxígeno en líquidos y gases .
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.4]{Imagenes/MarcoTeorico/DOElectrode.png}
+	\end{center}
+	\caption{Electrodo de oxígeno disuelto de la marca \emph{Mettler Toledo}.}\label{fig:cap2:sec:Sensores:OD1}
+\end{figure}
+
+Algunas de las aplicaciones de estos electrodos de OD son: fermentación, propagación de levadura, aireación de mosto, acondicionamiento de agua de manantial y almacenamiento y procesado de jugo de frutas.
+
+\subsubsection{Principio de funcionamiento del electrodo de oxígeno disuelto}
+\label{cap2:sec:Sensores:OD:PF}
+
+El electrodo \emph{InPro 6800} está basado en el principio de medición polarográfica (\emph{Clark Polarographic Sensor}), el cual consiste de un electrodo de operación (\emph{cátodo}), un electrodo de contra-referencia (\emph{ánodo}) y una membrana permeable al oxígeno, dicha membrana separa los electrodos de la muestra. En la figura~\ref{fig:cap2:sec:Sensores:OD2} se ilustran los componentes del electrodo de oxígeno disuelto \cite{Cap2Bib:OD}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/ElectrodoOD.pdf}
+	\end{center}
+	\caption{Características del electrodo de oxígeno disuelto.} \label{fig:cap2:sec:Sensores:OD2}
+\end{figure}
+
+
+El electrodo de OD es un sensor pasivo, lo que quiere decir que requiere una fuente de excitación, en este caso se le llama fuente de polarización. Esta fuente de polarización debe proporcionar un voltaje constante al cátodo para reducir el oxígeno. 
+
+Las moléculas de oxígeno que migran a través de la membrana permeable son reducidas en el cátodo. Al mismo tiempo se origina una oxidación en el ánodo, por lo que el metal (\emph{Plata}) oxidado del ánodo es liberado en forma de iones de plata dentro de un electrolito. El electrolito provoca que se cierre el circuito eléctrico entre el ánodo y el cátodo (conductividad iónica).
+
+La corriente producida por las reacciones descritas anteriormente es proporcional a la presión parcial del oxígeno en la muestra.
+
+\subsubsection{Características del electrodo de oxígeno disuelto}
+\label{cap2:sec:Sensores:OD:Ca}
+
+Para un funcionamiento correcto, el electrodo \emph{InPro 6800} requiere de una polarización completa, lo cual se logra cuando se mantiene conectado el electrodo al voltaje de polarización constantemente por $6$ horas. Si el sensor es desconectado por más de 5 minutos, se debe volver a realizar el proceso de polarización \cite{Cap2Bib:OD}.
+
+En aplicaciones estándares, como en este caso, el voltaje de polarización debe ser de $675\milli\volt$ y debe permanecer constante. La señal de salida del sensor de OD oscila de $50\nano\ampere$ a $110\nano\ampere$ al aire ambiente.
+
+El rango de temperatura para una correcta operación es de $0-80\degreecelsius$. El rango de operación del electrodo es de $0$ppm a $60$ppm (ppm, \emph{partes por millón}). La precisión que proporciona es menor o igual a $1\%+6$ppm para lecturas en líquidos. El material con el que está construido el cátodo es platino (\emph{Pt}) y el ánodo es de plata (\emph{Ag}).
+
+\subsection{Sensor de temperatura LM35}
+\label{cap2:sec:Sensores:Temp}
+
+El sensor de circuito integrado \emph{LM35} es un sensor de temperatura de precisión, el cual es un sensor pasivo cuyo voltaje de salida es linealmente proporcional a la temperatura en grados centígrados ($\degreecelsius$). En la figura~\ref{fig:cap2:sec:Sensores:Temp1} se ilustra el encapsulado y la configuración del sensor \cite{Cap2Bib:LM35}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/LM35.pdf}
+	\end{center}
+	\caption{Configuración del sensor LM35.} \label{fig:cap2:sec:Sensores:Temp1}
+\end{figure}
+
+\subsubsection{Funcionamiento y características del sensor LM35}
+\label{cap2:sec:Sensores:Temp:PFCa}
+
+El voltaje de operación del sensor \emph{LM35} es de $4$ a $30\volt$, tiene un rango de operación de $-55$ a $150\degreecelsius$ y tiene una sensibilidad de $10\milli\volt \per \degreecelsius$. El LM35 no requiere de una calibración externa y proporciona una precisión de $\pm0.25\milli\volt$ \cite{Cap2Bib:LM35}.
+
+La impedancia de salida del LM35 es baja, además permite el uso de una fuente individual de excitación, lo que facilita el diseño del circuito electrónico de interfaz.
+
+%-------------------------------------------------------------------------------
+\section{Protocolos de comunicaciones}
+%-------------------------------------------------------------------------------
+\label{cap2:sec:Protocolos}
+
+Un protocolo de comunicaciones es un conjunto de reglas y convenciones que deben seguir dos equipos cualesquiera (computadoras o dispositivos) para intercambiar información a través de una red. Un protocolo es una regla o estándar que controla o permite la comunicación en su forma más simple. Puede ser definido como las reglas que dominan la sintaxis, semántica y sincronización de la comunicación. Puede ser implementado por \emph{hardware}, \emph{software} o una combinación de ambos \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:ProtocolEngineering}.
+
+Cualquier red de comunicaciones de datos requiere un sistema para organizar el flujo de datos. Para ordenar los protocolos de comunicaciones, la Organización Internacional de Estándares (ISO, \emph{International Organization for Standarization}), propuso en el año de 1984 el modelo de referencia para la Interconexión de Sistemas Abiertos (OSI, \emph{Open System Interconnection}) \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:ProtocolEngineering}.
+
+El modelo OSI describe las reglas que los equipos de comunicaciones deben seguir para que el intercambio de datos sea posible dentro de una infraestructura que está compuesta por una gran variedad de productos de diferentes fabricantes \cite{Cap2Bib:Cisco}.
+
+\subsection{El modelo de referencia OSI}
+
+Las recomendaciones del modelo OSI no son normas concretas, sino reglas genéricas para separar en siete niveles, o capas, el proceso de comunicación entre dos sistemas. Las capas del modelo OSI son (figura~\ref{fig:cap2:PC:OSI}): física, enlace de datos, red, transporte, sesión, presentación y aplicación \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:ProtocolEngineering}.
+
+El modelo OSI permite que cada nivel se encargue de tareas específicas y utilice los servicios de los niveles inferiores sin preocuparse de cómo funcionan. Por lo que resulta fácil realizar cambios en una parte sin tener que alterar el resto de las especificaciones. La comunicación entre dos sistemas solo puede realizarse entre capas del mismo nivel, en la figura~\ref{fig:cap2:PC:OSI} se muestra el flujo de datos entre capas de dos sistemas que se comunican empleando el modelo de referencia OSI.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/OSIComm.pdf}
+	\end{center}
+	\caption{Arquitectura de protocolos del modelo de referencia OSI.} \label{fig:cap2:PC:OSI}
+\end{figure}
+
+\subsubsection{Capa física}
+
+En la capa física se especifican las características mecánicas y eléctricas del sistema físico de transporte (par trenzado, coaxial, fibra óptica, etc.) y de las interfaces que permiten la conexión física de los equipos a dichos sistemas de transporte \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:ProtocolEngineering}.
+
+En este nivel se definen las topologías aceptadas, el modo de emisión o forma de la señal y el soporte de transmisión (banda base o señal portadora).
+
+Las características de las señales y conexiones que se definen son: características físicas de los conectores, características eléctricas de las señales (voltaje e impedancia), características eléctricas del \emph{hardware}, implementación de las señales y la codificación.
+
+El objetivo primordial de la capa física consiste en transmitir bits por un canal de comunicación, de manera que todo lo que envíe el transmisor llegue al receptor sin sufrir alteraciones.
+
+Globalmente las interfaces de capa física para comunicaciones de datos incluyen interfaces serie como \emph{EIA/TIA-232} y \emph{EIA/TIA-485}, interfaces paralelas, y las especificaciones físicas para sistemas LAN tales como \emph{Ethernet} (figura~\ref{fig:cap2:PC:OSI}) y \emph{Token Ring}. Los sistemas inalámbricos cuentan con interfaces aéreas que definen la transmisión de datos usando radio, microondas o señales infrarrojas.
+
+\subsubsection{Capa de enlace de datos}
+
+La capa de enlace de datos define las reglas para enviar y recibir información a través de una conexión física entre dos sistemas. Establece la forma de agrupar los datos en paquetes o tramas de longitud adecuada y añade los mecanismos necesarios para controlar la transmisión de información y detectar y corregir los errores que puedan aparecer \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:ProtocolEngineering}.
+
+El acceso al medio físico puede ser de tres maneras:
+\begin{itemize}\itemsep=-0.5em
+
+\item \emph{Controlado por un equipo único}: Este sistema emplea la arquitectura Maestro/Esclavo (por ejemplo el protocolo Modbus).
+
+\item \emph{Condicionado por un derecho}: En este sistema el derecho de acceso es proporcionado por un testigo, el equipo que tiene dicho testigo puede emitir un mensaje y transmitir el testigo al siguiente equipo (por ejemplo el protocolo Profibus).
+
+\item \emph{Aleatorio o descentralizado}: El equipo que quiere emitir verifica que la línea de transmisión esté libre. Si dos equipos emiten de forma simultánea, se origina una colisión y ambos mensajes se destruyen. Tal es el caso de los protocolos del tipo CSMA (\emph{Carrier Sense Multiple Access}) empleados principalmente en redes Ethernet.
+\end{itemize}
+
+\subsubsection{Capa de red}
+
+Esta capa provee servicios de interconexión de redes para la distribución de datos a través de múltiples redes. La capa de red se ocupa del direccionamiento a través de sistemas mediante técnicas de encaminamiento (ruteo, \emph{Routing}) y el control de flujo. El esquema de direccionamiento de redes asigna una dirección única a cada red y a cada equipo conectado \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:ProtocolEngineering}.
+
+El protocolo IP dentro de la suite de protocolos TPC/IP, es un ejemplo de protocolo de capa de red.
+
+\subsubsection{Capa de transporte}
+
+La capa de transporte provee servicios de comunicaciones entre dos sistemas. Tiene la función de garantizar un enlace fiable asegurando que los datos sean entregados. Ambos sistemas establecen una conexión y mantienen un diálogo para llevar el control de la entrega de paquetes a través de la red \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:ProtocolEngineering}.
+
+Un protocolo de la capa de transporte divide la información en paquetes manejables por el sistema de transmisión y controla la gestión de paquetes (orden de envío y recepción, formatos de transmisión, peticiones de reenvío en caso de error, etc.).
+
+\subsubsection{Capa de sesión}
+
+La capa de sesión establece, administra y termina las sesiones de comunicación entre equipos. Las sesiones de comunicación consisten de peticiones y respuestas de servicio, las cuales se llevan a cabo entre aplicaciones de diferentes equipos en la red \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:ProtocolEngineering}.
+
+\subsubsection{Capa de presentación}
+
+La capa de presentación provee una variedad de funciones de codificación y conversión que son aplicados a los datos de la capa de aplicación. Estas funciones aseguran que la información enviada desde la capa de aplicación de un sistema sea entendible por la capa de aplicación de otro sistema \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:ProtocolEngineering}.
+
+\subsubsection{Capa de aplicación}
+
+La capa de aplicación es la más cercana al usuario final, por lo tanto, el usuario final y la capa de aplicación interactúan directamente con el \emph{software} de aplicación \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:ProtocolEngineering}.
+
+Esta capa es un espacio de libre utilización para fabricantes y usuarios. Presta servicios al usuario, los cuales comprenden la interacción directa con los procesos de aplicación. Algunos ejemplos de implementaciones en la capa de aplicación incluyen Telnet, el protocolo de transferencia de ficheros (FTP, \emph{File Transfer Protocol}), bases de datos y el protocolo de transferencia de correo simple (SMTP, \emph{Simple Mail Transfer Protocol}).
+
+\subsection{Interfaces serie}
+
+En las comunicaciones del entorno industrial, las conexiones físicas se realizan mediante interfaces serie, las cuales son normalizadas por la Asociación de Industrias Electrónicas (EIA, \emph{Electronic Industrial Asociation}) y la Asociación de la Industria de Telecomunicaciones (TIA, \emph{Telecommunications Industry Association}) \cite{Cap2Bib:PracticalScada,  Cap2Bib:CommEmpresa, Cap2Bib:DataCommunications}.
+
+Los estándares de interfaces serie más conocidos son: \emph{EIA/TIA-232} o \emph{RS-232}, y \emph{EIA/TIA-485} o \emph{RS-485}. Los cuales forman el elemento principal para la transferencia de información digital entre una RTU y un módem (modulador/demodulador). El módem es aquel que convierte las señales digitales (TTL), generadas por una computadora o un sistema basado en MCU, en una forma analógica adecuada para la transmisión a distancias grandes a través de cables o un sistema de radio.
+
+En los estándares RS-232 y RS-485 se definen las características eléctricas y los detalles mecánicos que permiten a equipos de comunicaciones, de diferentes fabricantes, conectarse y funcionar eficientemente.
+
+\subsubsection{Comunicación de datos serie en el estándar RS-232}
+
+El estándar de interfaz RS-232 define la interfaz entre un Equipo Terminal de Datos (DTE, \emph{Data Terminal Equipment}) y un Equipo de Comunicaciones de Datos (DCE, \emph{Data Communication Equipment}) empleando el intercambio de datos binarios serie, en donde el DCE es el dispositivo que emite datos y el DTE es que recibe dichos datos \cite{Cap2Bib:PracticalScada, Cap2Bib:CommEmpresa, Cap2Bib:DataCommunications}.
+
+El estándar RS-232 consiste principalmente de tres partes, las cuales definen las características de las señales eléctricas, las características de la interfaz mecánica y la descripción funcional de los circuitos de intercambio.
+
+Los conectores comúnmente asociados al estándar RS-232 son el DB-25 (tipo D de 25 pines) y el DB-9 (tipo D de 9 pines) \cite{Cap2Bib:CommEmpresa}, de los cuales el conector DB-9 es el más usado globalmente en computadoras y dispositivos en el ámbito industrial. En la figura~\ref{fig:cap2:PC:DB9} se muestra la asignación de terminales y las señales del conector DB-9 del estándar RS-232.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/DB-9.pdf}
+	\end{center}
+	\caption{Asignación de terminales y señales del conector DB-9 para el estándar RS-232.} \label{fig:cap2:PC:DB9}
+\end{figure}
+
+\paragraph{Características de las señales eléctricas}
+
+El estándar de interfaz RS-232 está diseñado para la comunicación de dispositivos DTE y DCE, en donde un dispositivo DTE es aquel que transmite los datos y un dispositivo DCE es aquel que los recibe \cite{Cap2Bib:PracticalScada, Cap2Bib:CommEmpresa, Cap2Bib:DataCommunications}.
+
+Para un receptor RS-232, las especificaciones de los niveles de voltaje se describen en la tabla~\ref{tab:cap01:PC:RS232}.
+
+\begin{table}[htb]
+	\caption{Niveles de voltaje del receptor del estándar RS-232.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{ll}
+		\hline \hline \hline \hline
+		\headcol \textbf{Estados lógicos} & \textbf{Niveles de voltaje} \\ 
+		\hline \hline \hline \hline
+
+		Estado Lógico 0 	& $+3\volt$ a $+25\volt$\\
+		\rowcol Estado Lógico 1 	& $-3\volt$ a $-25\volt$\\
+		Estado Indefinido	& $-3\volt$ a $+3\volt$\\
+
+		\hline \hline	\hline \hline 	 		
+	\end{tabular}
+	\label{tab:cap01:PC:RS232}
+\end{table}
+
+De manera similar al receptor, el transmisor RS-232 debe producir niveles de voltaje ligeramente más elevados para contrarrestar las caídas de voltaje a lo largo de la línea de transmisión (tabla~\ref{tab:cap01:PC:RS232-2}).
+
+\begin{table}[htb]
+	\caption{Niveles de voltaje del transmisor del estándar RS-232.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{ll}
+		\hline \hline \hline \hline
+		\headcol \textbf{Estados lógicos}&\textbf{Niveles de voltaje}\\
+		\hline \hline \hline \hline
+		Estado Lógico 0 	& $+5\volt$ a $+25\volt$\\
+		\rowcol Estado Lógico 1 	& $-5\volt$ a $-25\volt$\\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:cap01:PC:RS232-2}
+\end{table}
+
+\paragraph{Descripción funcional de los circuitos de intercambio}
+
+Las funciones de los circuitos de intercambio definidos en el estándar RS-232, son las conexiones o señales eléctricas involucradas en la comunicación, las cuales se describen en la tabla~\ref{tab:cap01:PC:RS232-3} \cite{Cap2Bib:PracticalScada, Cap2Bib:CommEmpresa, Cap2Bib:DataCommunications}.
+
+\begin{table}[htb]
+	\caption{Señales del estándar RS-232.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{lll}
+		\hline \hline \hline \hline
+		\headcol \textbf{Señal}&\textbf{Nombre completo}&\textbf{Descripción}\\
+		\hline \hline \hline \hline
+		Common	&	Signal Ground	&	Es la línea común de referencia.\\
+		\rowcol TXD	&	Transmit Data	&	Es la portadora de datos serie de un DTE a un DCE.\\
+		RXD	&	Received Data	&	Es la portadora de datos serie de un DCE a un DTE.\\
+		\rowcol RTS	&	Request to Send	&	Esta línea habilita la transmisión.\\
+		CTS	&	Clear to Send	&	Es la señal de inicializacion para enviar.\\
+		\rowcol DSR	&	Data Set Ready	&	Indica que el DCE está listo para recibir.\\
+		DCD	&	Data Carrier Detect	&	Detecta la señal de la línea de entrada.\\
+		\rowcol DTR	&	Data Terminal Ready	&	Indica que el DTE está listo para enviar.\\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:cap01:PC:RS232-3}
+\end{table}
+
+\subsubsection{Comunicación de datos serie en el estándar RS-485}
+\label{cap2:PC:RS-485}
+El estándar RS-485 es una expansión del estándar RS-422, es un método de comunicación usado en aplicaciones industriales. El estándar RS-485 define una interfaz de comunicación de datos balanceado o diferencial, haciendo uso de dos cables separados para cada señal. Esto permite velocidades de transferencia de datos muy elevadas y minimiza los problemas de las variaciones de potencial en la tierra (ground, GND), a diferencia del estándar RS-232, la tierra no es usada como voltaje de referencia \cite{Cap2Bib:PracticalScada, Cap2Bib:CommEmpresa, Cap2Bib:DataCommunications}.
+
+El estándar RS-485 permite una conexión de red multipuntos en dos alambres y una comunicación de datos serie confiable con las siguientes características: una distancia máxima de alcance de $1200\meter$, una tasa máxima de transferencia de datos de 10 Mbps (megabits por segundo), permite la conexión de 32 transmisores de línea (line driver) y 32 receptores de línea (line receiver) como máximo en la misma línea.
+
+Los rangos de voltaje en la línea son: $-1.5\volt$ a $-6.0\volt$ para el estado lógico ``1'', y $+1.5\volt$ a $+6.0\volt$ para el estado lógico ``0''. Los puntos de referencia usados para estos voltajes son las terminales A y B de los transmisores/receptores de línea mostrados en la figura~\ref{fig:cap2:PC:rs485}. El transmisor de línea, para una interfaz RS-485, produce un voltaje diferencial de $\pm5\volt$ en los dos alambres.
+
+La mejora más importante del estándar RS-485 con respecto al estándar RS-232 es que el modo de operación del transmisor de línea consiste de 3 estados: estado lógico ``0'', estado lógico ``1'' y ``alta impedancia''. Dichos estados se definen de la siguiente manera:
+
+\begin{itemize}\itemsep=-0.5em
+
+\item Cuando la terminal A del driver es negativa, con respecto a la terminal B, la línea está en el estado lógico 1.
+
+\item Cuando la terminal A del driver es positiva, con respecto a la terminal B, la línea está en el estado lógico 0. 
+
+\item El estado de alta impedancia, también conocido como estado deshabilitado, puede ser iniciado por una señal en una terminal de control en el circuito integrado del transmisor de línea.
+
+\end{itemize}
+
+Para sistemas \emph{full-duplex} se requiere de cinco alambres, en cambio para sistemas \emph{half-duplex}, solo se requieren tres alambres. En la figura~\ref{fig:cap2:PC:rs485} se ilustra un ejemplo de configuración del estándar de interfaz RS-485 multipunto \cite{Cap2Bib:CommEmpresa}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/RS-485Multipunto2.pdf}
+	\end{center}
+	\caption{Interfaz multipunto del estándar RS-485.} \label{fig:cap2:PC:rs485}
+\end{figure}
+
+Los receptores de línea, solamente son sensitivos a la diferencia entre dos señales de entrada, por lo que, las señales comunes de ruido se presentan en ambos alambres y solamente tendrán un pequeño efecto en la operación del receptor.
+
+El estándar de interfaz RS-485 es útil en sistemas que requieren la conexión de múltiples dispositivos separados por distancias grandes haciendo uso del mismo par de líneas. En dichos sistemas se requiere un \emph{software} de control para establecer qué dispositivo de la red puede estar activo. En la mayoría de los casos una MTU controla qué transmisor/receptor estará activo en algún momento.
+
+\subsection{Modbus}
+
+Modbus es un protocolo de comunicaciones clasificado como bus de campo. Un bus de campo es un bus de transferencia de información en serie utilizado en la industria. Los buses de campo están orientados a procesos discretos (automóviles, electrodomésticos, etc.) y procesos continuos (petroquímicas, electricidad, agua, etc.) \cite{Cap2Bib:CommEmpresa, Cap2Bib:DataCommunications, Cap2Bib:IndustrialCT}.
+
+Según la definición de la Comisión Electrotécnica Internacional (IEC, \emph{International Electrotechnical Commision}) y la Sociedad de Instrumentación de América (ISA, \emph{Instrument Society of America}), un bus de campo es una conexión serie digital que permite la transferencia de datos entre elementos primarios de automatización (instrumentos de campo), que realizan funciones de medida y control, y elementos de automatización y control de más alto nivel.
+
+Un bus de campo, al igual que una red LAN, satisface los dos primeros niveles del modelo OSI y el último (figura~\ref{fig:cap2:PC:MB}). No obstante presenta mensajes más cortos (órdenes, eventos, medidas, etc.), con tiempos de respuesta entre $5\milli\second$ y $100\milli\second$ y alta seguridad en la comunicación, sobre distancias entre $200\meter$ y $2\kilo\meter$, a velocidades que suelen ser inferiores a $1\mega$bps.
+
+Normalmente en el medio físico de un bus de campo de bajo costo, consiste de un par de hilos con una interfaz serie RS-485, aunque se encuentran aplicaciones con coaxial, fibra óptica, radio e infrarrojos.
+
+El estándar Modbus define un protocolo de mensajes de la capa de aplicación, posicionado en el nivel siete del modelo OSI, que provee comunicaciones con arquitectura cliente/servidor entre dispositivos conectados en diferentes tipos de buses o redes \cite{Cap2Bib:Modbus1, Cap2Bib:Modbus3, Cap2Bib:Modbus2}. El estándar Modbus define un protocolo específico para interfaz serie (Modbus sobre una línea serie) para el intercambio de peticiones Modbus haciendo uso de la arquitectura Maestro/Esclavo. En la figura~\ref{fig:cap2:PC:MB} se ilustra el protocolo Modbus con respecto al modelo de referencia OSI \cite{Cap2Bib:Modbus2}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/ModeloOSI-Modbus.pdf}
+	\end{center}
+	\caption{Protocolo Modbus relacionado con el Modelo OSI.} \label{fig:cap2:PC:MB}
+\end{figure}
+
+En la actualidad, el protocolo Modbus, es implementado sobre TCP/IP en redes Ethernet y transmisión serie asíncrona en interfaces físicas como RS-485 (Sección~\ref{cap2:PC:RS-485}).
+
+\subsubsection{Capa de enlace de datos del protocolo Modbus}
+
+El protocolo Modbus sobre una línea serie es un protocolo con arquitectura Maestro/Esclavo posicionado en la capa dos del modelo de referencia OSI (figura~\ref{fig:cap2:PC:MB}) \cite{Cap2Bib:Modbus1, Cap2Bib:Modbus2, Cap2Bib:DataCommunications}.
+
+Los principios generales de la comunicación Modbus son: solo un nodo Maestro debe estar conectado al bus o red y un máximo de 247 nodos Esclavos, el nodo Maestro iniciará la comunicación, los nodos Esclavos no transmitirán datos sin haber recibido una petición del nodo Maestro, los nodos Esclavos no se comunicarán entre ellos y el nodo Maestro mantendrá comunicación con un solo nodo Esclavo a la vez.
+
+El nodo Maestro puede emitir peticiones Modbus de dos modos:
+\begin{itemize}\itemsep=-0.5em
+\item \emph{Unicast}: Se usa cuando el Maestro se dirige a un nodo Esclavo en específico. El nodo Esclavo, después de recibir e interpretar la petición, retornará un mensaje o respuesta al nodo Maestro.
+\item \emph{Broadcast}: En este modo el nodo Maestro manda una petición a todos los nodos Esclavo, en este modo no hay una respuesta retornada por los nodos Esclavo.
+\end{itemize}
+
+El espacio para direccionamiento del protocolo Modbus comprende 256 diferentes direcciones, las cuales están distribuidas de la siguiente manera: la dirección 0 está destinada para peticiones broadcast, por lo que todos los nodos Esclavo deben reconocer esta dirección; el nodo Maestro no tiene una dirección en particular; los nodos Esclavos tienen una dirección única en un bus serie, las direcciones de un nodo Esclavo pueden ser desde 1 a 247; las direcciones desde la 248 a la 255 están reservadas.
+
+El protocolo Modbus de aplicación define una Unidad de Datos de Protocolo (PDU, Protocol Data Unit) \cite{Cap2Bib:Modbus3}, que se muestra en la figura~\ref{fig:cap2:PC:MB2}, la cual es independiente de las capas inferiores de comunicación (modelo de referencia OSI).
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/ModbusPDU.pdf}
+	\end{center}
+	\caption{Unidad de datos de protocolo de MODBUS.} \label{fig:cap2:PC:MB2}
+\end{figure}
+
+La implementación del protocolo Modbus sobre una línea serie requiere campos adicionales en la PDU (figura~\ref{fig:cap2:PC:MB3}) formando así una Unidad de Datos de Aplicación (ADU, Application Data Unit) \cite{Cap2Bib:Modbus3}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/ModbusADU.pdf}
+	\end{center}
+	\caption{Unidad de datos de aplicación de MODBUS.} \label{fig:cap2:PC:MB3}
+\end{figure}
+
+Los campos de la ADU son:
+
+\begin{itemize}\itemsep=-0.5em
+\item \emph{Dirección}: En el cual el nodo Maestro indica a que nodo Esclavo se dirige y el nodo Esclavo coloca su propia dirección para indicar de qué nodo Esclavo proviene la respuesta.
+\item \emph{Código de función}: Para indicar al nodo Esclavo que acción debe realizar.
+\item \emph{Datos}: En donde el nodo Maestro establece los parámetros de la acción y el nodo Esclavo coloca la información o respuesta adecuada a la acción solicitada.
+\item \emph{Verificación de error}: Es el resultado de un cálculo de verificación de redundancia realizado sobre el contenido del mensaje o ADU (todos los campos anteriores), para este cálculo se usan dos tipos de métodos según sea el modo de transmisión: CRC (\emph{Cyclical Redundancy Check}) y LRC (\emph{Longitudinal Redundancy Check}).
+\end{itemize}
+
+En Modbus la transmisión de ADUs se realizan de dos maneras:
+\begin{itemize}\itemsep=-0.5em
+
+\item \emph{RTU}: En donde la codificación es binaria, es decir, cada byte (8-bit) de información es enviado como dos caracteres de 4 bits hexadecimales. Cada carácter consta de un bit de inicio, 8 bits de codificación de datos, un bit de paridad (opcional) y uno o dos bits de paro, dando un total de 10 a 12 bits por carácter. Para la comprobación de errores en las tramas que usan RTU se emplea una secuencia de código CRC.
+
+\item \emph{ASCII}: En el cual la codificación es hexadecimal, es decir, cada byte (8-bit) de información es enviado como dos caracteres ASCII. Por ejemplo, el byte de 0x5B es codificado como caracteres: 0x35 y 0x42 en código ASCII, en donde 0x35 = ``5'' y 0x42 = ``B''. Cada carácter consta de un bit de inicio, 7 bits de codificación de datos, un bit de paridad y uno o dos bits de paro, dando un total de 9 a 11 bits por carácter. Para la comprobación de errores en las ADUs se emplea una secuencia de código LRC.
+\end{itemize}
+
+\subsubsection{Descripción de los códigos de función del protocolo Modbus}
+
+Existen tres categorías de códigos de función Modbus: códigos públicos, códigos definidos por el usuario y los códigos reservados \cite{Cap2Bib:Modbus1, Cap2Bib:Modbus3}. En la tabla~\ref{tab:cap01:PC:Modbus} se muestran los códigos de función públicos que se emplean con mayor frecuencia en equipos y dispositivos conectados en una red serie.
+
+\begin{table}[htb]
+	\caption{Códigos de función MODBUS implementados en redes serie.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{ll}
+		\hline \hline \hline \hline
+		\headcol\textbf{Códigos de Función (hex)}&\textbf{Descripción}\\
+		\hline \hline \hline \hline
+		0x01 & Lectura de Salidas Digitales o Relevadores.\\
+		\rowcol 0x02 & Lectura de Entradas Digitales.\\
+		0x04 & Lectura de Registros de Entrada.\\
+		\rowcol 0x05 & Escritura de una Salida Digital o Relevador Individual.\\		
+		0x06 & Escritura de un Registro Individual.\\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:cap01:PC:Modbus}
+\end{table}
+
+\paragraph{0x01 Lectura de Salidas Digitales o Relevadores}
+Este código de función es usado para leer los estados de 1 a 2000 salidas digitales continuas en un dispositivo remoto \cite{Cap2Bib:Modbus1, Cap2Bib:Modbus3}.
+
+La PDU de petición (tabla~\ref{tab:MB-Func-01R}) del nodo Maestro especifica los siguientes campos: la dirección de la salida digital de inicio, es decir, la dirección de la primera salida digital especificada; y, la cantidad de salidas digitales. En la PDU las direcciones de las salidas digitales empiezan desde la dirección cero.
+
+\begin{table}[htb]
+	\caption{PDU de Petición de la función 0x01.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{lll}
+		\hline \hline \hline \hline
+		\headcol\textbf{Código de Función}&\textbf{Dirección de Inicio}&\textbf{Cantidad de Salidas}\\
+		\hline \hline \hline \hline\hline
+		1 Byte			& 2 Bytes			& 2 Bytes \\
+		\rowcol \textbf{0x01}		& 0x0000 hasta 0xFFFF		& 1 hasta 2000(0x7D0)\\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:MB-Func-01R}
+\end{table}
+
+En la PDU de respuesta (tabla~\ref{tab:MB-Func-01A}) del nodo Esclavo, cada estado de una salida digital es representado con un bit en el campo de datos. El estado lógico ``1'' indica que la salida digital está habilitada y el estado lógico ``0'' indica que está deshabilitada. El bit menos significativo indica el estado correspondiente a la primera salida digital y así sucesivamente hasta el bit más significativo. El campo de cantidad de bytes especifica la cantidad de bytes en el campo de datos.
+
+\begin{table}[htb]
+	\caption{PDU de Respuesta de la función 0x01.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{lll}
+		\hline \hline \hline \hline
+		\headcol\textbf{Código de Función}&\textbf{Cantidad de bytes}&\textbf{Array de Estado de Salidas}\\
+		\hline \hline \hline \hline\hline
+		1 Byte			& 1 Bytes			& n*Bytes \\
+		\rowcol \textbf{0x01}		& N bytes			& n=N ó n=N+1\\
+		\hline \hline \hline \hline\hline
+	\end{tabular}
+	\label{tab:MB-Func-01A}
+\end{table}
+
+\paragraph{0x02 Lectura de Entradas Digitales}
+Este código de función es usado para leer los estados de 1 a 2000 entradas digitales continuas en un dispositivo remoto \cite{Cap2Bib:Modbus1, Cap2Bib:Modbus3}.
+
+La PDU de petición (tabla~\ref{tab:MB-Func-02Req}) del nodo Maestro especifica los siguientes campos: la dirección de la entrada digital de inicio, es decir, la dirección de la primera entrada digital especificada; y la cantidad de entradas digitales. En la PDU las direcciones de las entradas digitales empiezan desde la dirección cero.
+
+\begin{table}[htb]
+	\caption{PDU de Petición de la función 0x02.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{lll}
+		\hline \hline \hline \hline
+		\headcol\textbf{Código de Función}&\textbf{Dirección de Inicio}&\textbf{Cantidad de Entradas}\\
+		\hline \hline \hline \hline
+		1 Byte			& 2 Bytes			& 2 Bytes \\
+		\rowcol \textbf{0x02}		& 0x0000 hasta 0xFFFF		& 1 hasta 2000(0x7D0)\\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:MB-Func-02Req}
+\end{table}
+
+En la PDU de respuesta (tabla~\ref{tab:MB-Func-02Res}) del nodo Esclavo, cada estado de una entrada digital es representado con un bit en el campo de datos. El estado lógico ``1'' indica que la entrada digital está habilitada y el estado lógico ``0'' indica que está deshabilitada. El bit menos significativo indica el estado correspondiente a la primera entrada digital y así sucesivamente hasta el bit más significativo. El campo de cantidad de bytes especifica la cantidad de bytes en el campo de datos.
+
+\begin{table}[htb]
+	\caption{PDU de Respuesta de la función 0x02.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{lll}
+
+		\hline \hline \hline \hline
+		\headcol\textbf{Código de Función}&\textbf{Cantidad de bytes}&\textbf{Array de Estado de Entradas}\\
+		\hline \hline \hline \hline
+		1 Byte			& 1 Bytes			& n Bytes \\
+		\rowcol \textbf{0x02}		& N bytes			& n=N ó n=N+1\\
+		\hline \hline \hline \hline
+
+	\end{tabular}
+	\label{tab:MB-Func-02Res}
+\end{table}
+
+\paragraph{0x04 Lectura de Registros de Entrada}
+Este código de función es usado para leer los estados de 1 a 125 registros de entrada continuos en un dispositivo remoto \cite{Cap2Bib:Modbus1, Cap2Bib:Modbus3}.
+
+La PDU de petición (tabla~\ref{tab:MB-Func-04Req}) del nodo Maestro especifica los siguientes campos: la dirección del registro de entrada de inicio, es decir, la dirección del primer registro de entrada especificado; y, la cantidad de registros de entradas. En la PDU las direcciones de los registros de entrada empiezan desde la dirección cero.
+
+\begin{table}[htb]
+	\caption{PDU de Petición de la función 0x04.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{lll}
+		\hline \hline \hline \hline
+		\headcol\textbf{Código de Función} 	& \textbf{Dirección de Inicio} 	& \textbf{Cantidad de Registros de Entrada}\\
+		\hline \hline \hline \hline
+		1 Byte			& 2 Bytes			& 2 Bytes \\
+		\rowcol \textbf{0x04}		& 0x0000 hasta 0xFFFF		& 0x0001 hasta 0x007D\\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:MB-Func-04Req}
+\end{table}
+
+En la PDU de respuesta (tabla~\ref{tab:MB-Func-04Res}) del nodo Esclavo, los datos de cada registro de entrada constan de 2 bytes y su contenido binario está alineado a la derecha. Como cada registro de entrada es de 16 bits separados en 2 bytes, por cada registro, el primer byte contiene los bits de la parte alta y el segundo contiene los bits de la parte baja. El campo de cantidad de bytes especifica la cantidad de bytes en el campo de datos.
+
+\begin{table}[htb]
+	\caption{PDU de Respuesta de la función 0x04.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{lll}
+		\hline \hline \hline \hline
+		\headcol\textbf{Código de Función}&\textbf{Cantidad de bytes}&\textbf{Array de Estado de Entradas}\\
+		\hline \hline \hline \hline
+		1 Byte			& 1 Bytes			& Nx2 Bytes \\
+		\rowcol \textbf{0x04}		& 2xN				& \\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:MB-Func-04Res}
+\end{table}
+
+\paragraph{0x05 Escritura de una Salida Digital o Relevador Individual}
+Este código de función es usado para escribir o establecer el estado de una salida digital individual en un dispositivo remoto \cite{Cap2Bib:Modbus1, Cap2Bib:Modbus3}.
+
+En la PDU de petición (tabla~\ref{tab:MB-Func-05Req}) del nodo Maestro se especifica la dirección de la salida digital individual y el estado (habilitado o deshabilitado) se especifica a través de un valor constante en el campo de datos de la PDU, el valor hexadecimal ``FF 00'' especifica que la salida digital sea habilitada y el valor hexadecimal ``00 00'' especifica que la salida digital sea deshabilitada.
+
+\begin{table}[htb]
+	\caption{PDU de la función 0x05.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{lll}
+		\hline \hline \hline \hline
+		\headcol\textbf{Código de Función} 	& \textbf{Dirección de la Salida} 	& \textbf{Valor de Salida}\\
+		\hline \hline \hline \hline
+		1 Byte			& 2 Bytes			& 2 Bytes \\
+		\rowcol \textbf{0x05}		& 0x0000 hasta 0xFFFF		& 0x0000 ó 0xFF00\\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:MB-Func-05Req}
+\end{table}
+
+La PDU de respuesta (tabla~\ref{tab:MB-Func-05Req}) del nodo Esclavo es un eco de la PDU de petición, la cual usualmente es retornada después de haber establecido el estado de la salida individual.
+
+\paragraph{0x06 Escritura de un Registro Individual}
+Este código de función es usado para escribir o establecer un registro individual en un dispositivo remoto \cite{Cap2Bib:Modbus1, Cap2Bib:Modbus3}.
+
+En la PDU de petición (tabla~\ref{tab:MB-Func-06Req}) del nodo Maestro, se especifica la dirección del registro individual a ser escrito. En la PDU las direcciones de los registros mantenidos empiezan desde la dirección cero.
+
+\begin{table}[htb]
+	\caption{PDU de la función 0x06.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{lll}
+		\hline \hline \hline \hline
+		\headcol\textbf{Código de Función} 	& \textbf{Dirección de la Salida} 	& \textbf{Valor de Salida}\\
+		\hline \hline \hline \hline
+		1 Byte			& 2 Bytes			& 2 Bytes \\
+		\rowcol \textbf{0x06}		& 0x0000 hasta 0xFFFF		& 0x0000 hasta 0xFFFF\\
+		\hline \hline \hline \hline
+
+	\end{tabular}
+	\label{tab:MB-Func-06Req}
+\end{table}
+
+La PDU de respuesta (tabla~\ref{tab:MB-Func-06Req}), del nodo Esclavo es un eco de la PDU de petición, la cual usualmente es retornada después de haber escrito o establecido el registro individual.
+
+\subsection{Suite de protocolos TCP/IP}
+
+El modelo de la Internet utiliza la suite de protocolos TCP/IP. IP es un protocolo de capa de red que proporciona mecanismos de interconexión entre redes de área local y TCP es un protocolo de capa de transporte que proporciona mecanismos de control de flujo y errores entre los extremos de la comunicación \cite{Cap2Bib:PAInternet, Cap2Bib:IndustrialCT, Cap2Bib:RedesComp}.
+
+El esquema de capas TCP/IP organiza los grupos funcionales de protocolos en 4 capas: enlace, red, transporte y aplicación. El modelo de referencia OSI puede ser relacionado con la suite de protocolos TCP/IP (Figura~\ref{fig:cap2:PC:TCPIP1}).
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/ModeloOSI-TCP-IP.pdf}
+	\end{center}
+	\caption{Modelo OSI relacionado con el modelo TCP/IP.} \label{fig:cap2:PC:TCPIP1}
+\end{figure}
+
+\subsubsection{Capa de enlace}
+
+La capa de enlace o capa de interfaz de red es responsable de gestionar el medio físico, tal como LAN (Etnernet) o WAN. Todos los equipos conectados a Internet implementan este nivel \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:IndustrialCT}.
+
+Algunos ejemplos relevantes de protocolos en esta capa son los siguientes: ARP (\emph{Address Resolution Protocol}), HDLC (\emph{High-level Data Link Dontrol}) y PPP (\emph{Point-to-Point Protocol}).
+
+\subsubsection{Capa de internet}
+
+La capa de Internet es responsable de la comunicación máquina a máquina, en donde una máquina puede ser un anfitrión\footnote{Computadora} (\emph{host}) o una puerta de enlace (\emph{gateway}) \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:IndustrialCT}.
+
+El paquete (de información) recibido de la capa de transporte, para su transmisión es encapsulado en un datagrama de Protocolo de Internet. La capa de Internet determina si enviar el datagrama directamente o a través de una puerta de enlace, posteriormente envía el datagrama a la capa de enlace para la transmisión.
+
+La capa de Internet también se encarga de los datagramas de entrada. Se verifica la validez de cada datagrama y se determina si el datagrama debería ser procesado de manera local o ser enviado.
+
+Algunos protocolos de la capa de Internet son: IP e ICMP (\emph{Internet Control Message Protocol}).
+
+\subsubsection{Capa de transporte}
+
+Esta capa tiene la responsabilidad de proveer la comunicación entre las aplicaciones de \emph{software} del \emph{host} fuente y el \emph{host} destino y regular el flujo de información entre ellos \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:IndustrialCT}.
+
+La capa de transporte también provee mecanismos confiables de transporte a la capa de aplicación, asegurándose que los datos son pasados a la capa de aplicación en la secuencia correcta, sin duplicidad y sin errores.
+
+Algunos protocolos de la capa de transporte son: TCP y UDP (\emph{User Datagram Protocol}).
+
+\subsubsection{Capa de aplicación}
+
+En este nivel los usuarios solicitan procesos de aplicación que acceden a la red. La aplicación interactúa con los protocolos de la capa de transporte para enviar o recibir los datos emitidos por los procesos \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:IndustrialCT}.
+
+Algunos de los protocolos comunes de la capa de aplicación son: clientes y servidores de WWW, TELNET, FTP (\emph{File Transfer Protocol}) y SMTP (\emph{Simple Mail Transfer Protocol}).
+
+\section{Herramientas de desarrollo de aplicaciones Web y de escritorio}
+
+Los usuarios finales, de un sistema de monitoreo y control, requieren de GUIs para interactuar con los dispositivos de una planta industrial. Generalmente, dichas interfaces gráficas consisten en aplicaciones Web y de escritorio. 
+
+Las aplicaciones Web son aplicaciones distribuidas que emplean la arquitectura Cliente/Servidor. Dicha arquitectura se caracteriza por tener los siguientes elementos \cite{Cap2Bib:PAInternet}: 
+
+\begin{itemize}\itemsep=-0.5em
+	\item Cliente: Es el que hace peticiones de servicio y normalmente son los que inician la comunicación. 
+	\item Servidores: Estos proveen servicios y esperan a recibir peticiones. Una vez que han recibido una petición, la resuelven y retornan una respuesta. 
+\end{itemize}
+
+Las aplicaciones Web se basan en el hecho de contar con toda la capacidad de procesamiento en un servidor Web que se accede desde un navegador Web. Las aplicaciones Web se desarrollan empleando numerosos lenguajes de programación, entre ellos destacan: PHP, JavaScript y SQL.
+
+Actualmente para el desarrollo de aplicaciones Web existen herramientas que facilitan su desarrollo y mantenimiento. Para PHP predominan los \emph{frameworks} con arquitectura Modelo Vista Controlador (MVC, \emph{Model View Controller}), éstos facilitan la creación de aplicaciones Web gracias a que dividen el desarrollo en tareas sencillas e intuitivas para el desarrollador \cite{Cap2Bib:Yii2, Cap2Bib:Yii1}. Entre los frameworks más destacados se encuentran: Yii, Symfony, CodeIgniter, CakePHP y Zend.
+
+Las interfaces de comunicación entre dispositivos (RTU) y computadoras de un sistema SCADA, usualmente requieren de aplicaciones de escritorio, las cuales se desarrollan empleando lenguajes de programación como: Java, C/C++ y Visual Basic.
+
+En un sistema SCADA las aplicaciones Web y de escritorio requieren de bases de datos para almacenar información útil para el usuario. Existen programas denominados Sistemas Gestores de Bases de Datos (SGBD), que permiten almacenar y posteriormente acceder a los datos de forma rápida y estructurada, los SGBDs más usados hoy en día son: MySQL, PostgreSQL, Oracle, Microsoft SQL Server, entre otros.
+
+\subsection{Java}
+Java es un lenguaje de programación de propósito general, concurrente, basado en clases, orientado a objetos e independiente de la plataforma (Windows o Unix). Java fue desarrollado por Sun Microsystems en la década de los 90s, gran parte de su sintaxis está basada en los lenguajes de programación C y C++, aunque su modelo de objetos es más simple y elimina las herramientas de bajo nivel \cite{Cap2Bib:Java}.
+
+El concepto orientado a objetos se refiere a un método de programación y al diseño del lenguaje. Es diseñar el \emph{software} de forma que los distintos tipos de datos que usen estén unidos a sus operaciones. Por lo tanto, los datos y el código (funciones o métodos) se combinan en entidades llamadas objetos. Un objeto puede verse como un paquete que contiene el comportamiento (código) y el estado (datos).
+
+\subsection{PHP}
+PHP es un lenguaje interpretado por parte del servidor, diseñado originalmente para la creación de páginas Web dinámicas, el cual se caracteriza por su potencia, versatilidad, robustez y modularidad \cite{Cap2Bib:Yii2, Cap2Bib:Yii1}.
+ 
+Los programas escritos en PHP son embebidos directamente en el código HTML y ejecutados por el servidor Web a través de un intérprete antes de transferir al cliente, que lo ha solicitado, un resultado en forma de código HTML puro. 
+
+PHP es un lenguaje multiplataforma (Windows y Unix). En la actualidad PHP permite realizar una multitud de tareas en el entorno Web, por ejemplo: sistemas de correo electrónico vía Web, funciones de gestión y administración de bases de datos, funciones de gestión de directorios y ficheros, funciones de tratamiento de imágenes y librerías de funciones gráficas y funciones para la generación de documentos en formato pdf.
+
+\subsection{MySQL}
+
+MySQL es un sistema gestor de bases de datos (SGBD o DBMS, \emph{Data Base Managment System}) rápido, robusto y fácil de usar. Permite la administración de datos en un entorno de red, especialmente en las arquitecturas Cliente/Servidor. Cuenta con muchas herramientas y es compatible con varios lenguajes de programación (por ejemplo PHP y Java), también es compatible con el servidor de páginas Web Apache \cite{Cap2Bib:MySQL}.
+
+Las principales características de MySQL son las siguientes: 
+\begin{itemize}\itemsep=-0.5em
+\item Está escrito en C/C++ y probado en numerosos compiladores. 
+\item Funciona en sistemas operativos Windows y Unix. 
+\item Dispone de un driver ODBC (\emph{Open DataBase Conectivity}) para Windows, aportando compatibilidad con la mayoría de lenguajes de programación de este sistema operativo. 
+\item Se puede comunicar haciendo uso del lenguaje SQL, lo cual permite que sea compatible con otros sistemas de administración de bases de datos.
+\end{itemize}
+
+\subsection{Framework Yii}
+
+Yii es un \emph{framework} de aplicaciones Web escrito en PHP5, de alto rendimiento y basado en componentes. El nombre Yii es un acrónimo de \emph{Yes, it is}. Yii abarca la filosofía de convención sobre configuración, es decir, que tiene parámetros por defecto para casi todos los aspectos usados en la configuración de una aplicación. Gracias a esto, se requiere escribir menos código y toma menos tiempo para desarrollar una aplicación. Sin embargo, permite personalizar todos los parámetros por defecto para un uso en particular \cite{Cap2Bib:Yii2, Cap2Bib:Yii1}.
+
+Yii puede ser usado en aplicaciones a cualquier escala, lo que significa que se puede desarrollar una aplicación sencilla (relativamente) como un sitio Web informativo, como una aplicación de uso empresarial o industrial. Yii fomenta la reusabilidad de código en la mayor medida posible en la programación Web, lo que acelera significativamente el proceso de desarrollo.
+
+El \emph{framework} Yii está diseñado para ayudar a desarrollar con la filosofía DRY (\emph{Don't Repeat Yourself}), el cual es un concepto clave en el desarrollo de aplicaciones ágiles. Todas las aplicaciones Yii son construidas usando la arquitectura MVC, por ello, este patrón de desarrollo se fomenta con la asignación de directorios (Rutas) específicos en donde se almacena cada fragmento de código MVC. Esto minimiza la duplicación de código, promueve la reusabilidad de código y facilita el mantenimiento. En la figura~\ref{fig:cap2:YiiMVC} se ilustra el diagrama de la estructura estática de una aplicación Yii.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/YiiMVC.pdf}
+	\end{center}
+	\caption{Arquitectura MVC del framework Yii.} \label{fig:cap2:YiiMVC}
+\end{figure}
+
+Los componentes de la arquitectura MVC se describen a continuación:
+\begin{itemize}\itemsep=-0.5em
+\item \emph{Modelo}: En una arquitectura MVC, el Modelo es responsable de la información y debe encapsular las reglas de intercambio (\emph{Business Rules}) que aplican a dicha información.
+En Yii se hace uso del patrón de diseño \emph{Active Record} (AR) para el acceso de base de datos abstracto en forma de objetos. Es decir, se obtienen las relaciones (Tablas) de la base de datos en forma de objetos PHP.
+\item \emph{Vista}: La Vista es responsable de presentar la interfaz de usuario, la cual frecuentemente está basada en la información contenida en los modelos. En la Vista se puede hacer uso de \emph{Widgets}, que son pequeños programas o aplicaciones, usualmente presentados en archivos o ficheros pequeños que son ejecutados por un motor de widgets o \emph{Widget Engine}. Actualmente existen muchos widgets para el framework Yii y son utilizados para acelerar el desarrollo.
+
+\item \emph{Controlador}: El Controlador es el actor y director principal de una solicitud a una ruta (de la aplicación). Es responsable de tomar los datos de entrada del usuario (que realizó la solicitud), interactuar con el Modelo e indicar a la Vista que se actualice y despliegue apropiadamente la información solicitada.
+\end{itemize}
+
+En la figura~\ref{fig:cap2:YiiRequest} y~\ref{fig:cap2:YiiRequestSimplified} se ilustra, de manera detallada y simplificada respectivamente, el flujo de trabajo en una aplicación Yii cuando se procesa una solicitud realizada por el usuario final \cite{Cap2Bib:Yii2, Cap2Bib:Yii1}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{c}
+			\subfloat[Flujo detallado.]{%
+				\label{fig:cap2:YiiRequest}%
+				\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/YiiRequest.pdf}}\\
+			\subfloat[Flujo simplificado]{%
+				\label{fig:cap2:YiiRequestSimplified}%
+				\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/YiiRequestSimplified.pdf}} \\
+		\end{tabular}	
+	\end{center}
+	\caption{Flujo de trabajo en una aplicación Yii.} \label{fig:cap2:YiiApp}
+\end{figure}
+
+Los diagramas de flujo de trabajo de la figura~\ref{fig:cap2:YiiApp} se describen paso a paso de la siguiente manera:
+\begin{itemize}\itemsep=-0.5em
+
+\item El usuario realiza una solicitud a través de una URL y el servidor Web la procesa ejecutando el \emph{script} (archivo de código) principal index.php. El cual crea una instancia de la Aplicación y la ejecuta.
+\item La aplicación obtiene información detallada de la solicitud del usuario.
+\item La aplicación determina el controlador y acción con la ayuda del componente de la aplicación llamado urlManager y crea una instancia de dicho controlador para procesar la solicitud del usuario.
+\item Al realizar una Acción principalmente se tienen dos casos: que el usuario desee guardar o modificar información de un Modelo o simplemente pedir información del mismo.
+\item La Acción despliega una vista con la información del Modelo. Generalmente las vistas están asociadas a las Acciones de un Controlador.
+\item La vista puede ejecutar widgets y el resultado de la presentación es empotrada (Integrada) en el diseño principal (\emph{Layout}).
+\item Por último, la acción completa la presentación de la vista desplegando el resultado al usuario.
+\end{itemize}
+
+\subsection{JavaScript}
+
+JavaScript es un lenguaje de programación para el desarrollo de aplicaciones con arquitectura Cliente/Servidor a través de Internet. Una aplicación en JavaScript tiene la particularidad de que está insertado dentro del mismo documento HTML, el cual presenta dicha aplicación al usuario \cite{Cap2Bib:Javascript}. 
+
+Una aplicación en JavaScript, es un sistema interactivo que tiene la capacidad de detectar eventos o acciones realizadas por los usuarios. JavaScript fue diseñado para ser un lenguaje de elaboración de \emph{scripts} que pudieran incrustarse en archivos HTML. No es compilado, sino que, en vez de ello, es interpretado por el navegador como código fuente.
+
+En la actualidad existen muchas herramientas que aceleran el desarrollo de aplicaciones usando JavaScript, estas herramientas se denominan frameworks. Los framework de JavaScript más populares son: JQuery, Ext JS, Prototype, entre otros.
+
+
+
+% Variable local para emacs, para que encuentre el fichero maestro de
+% compilación y funcionen mejor algunas teclas rápidas de AucTeX
+%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../Tesis.tex"
+%%% End:

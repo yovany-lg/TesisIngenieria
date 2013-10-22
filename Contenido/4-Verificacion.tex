@@ -1,0 +1,643 @@
+%------------------------
+%Capítulo 4: Verificación y validación
+%------------------------
+
+\chapter{Verificación y validación del producto final: pruebas y resultados}
+\label{cap4}
+
+En este apartado se presenta la verificación o comprobación de la hipótesis inicialmente planteada y la validación de que el sistema cumple con los requerimientos funcionales de la propuesta.
+
+La verificación consiste en realizar pruebas de funcionalidad e integridad que validan el cumplimiento de los requerimientos funcionales. Para abarcar todos los casos de prueba posibles, las pruebas se dividen en tres etapas: pruebas de caja blanca, pruebas de caja gris y pruebas de caja negra.
+
+Las pruebas de caja blanca (\emph{White Box Testing}) consisten en probar más allá de la interfaz de usuario, es decir, las pruebas se efectúan en los aspectos esenciales del sistema. El sistema es visualizado como una caja transparente en donde claramente se observan dichos aspectos \cite{Cap2Bib:SWTest}. %[Tesing Article]
+
+Generalmente, las pruebas de caja gris (\emph{Gray Box Testing}) son orientadas a pruebas de funcionalidad o dominios de intercambio (\emph{Business Domain}) \cite{Cap2Bib:SWTest}. Básicamente, las pruebas de funcionalidad son efectuadas para verificar la interacciones entre sistemas \cite{Cap2Bib:sommerville}.
+
+La técnica de pruebas de caja negra (\emph{Black Box Testing}) se emplea (de manera superficial) en pruebas de funcionalidad sin observar la estructura interna \cite{Cap2Bib:SWTest}. Este tipo de pruebas están basados totalmente en los requerimientos y la especificación del sistema \cite{Cap2Bib:sommerville}.
+
+Dicho lo anterior, las pruebas de caja blanca se enfocan específicamente en el funcionamiento de los elementos o módulos \emph{hardware}, mientras que las pruebas de caja gris toman un enfoque general, es decir, el funcionamiento del sistema es sometido a pruebas en su totalidad. Las pruebas de caja negra están orientadas para realizar pruebas de funcionamiento en algunos casos de uso de la aplicación Web. El plan de pruebas destinado a las tres etapas descritas anteriormente se detallan en las siguientes secciones. 
+
+\section{Pruebas de caja blanca}
+
+Las pruebas de caja blanca consisten en verificar que las conexiones entre módulos \emph{hardware} sean realizadas satisfactoriamente, es decir, que no se presenten problemas de cortocircuito, que no existan problemas de compatibilidad de impedancias de entrada y salida\footnote{Estos problemas se presentan frecuentemente en las entradas y salidas de los dispositivos op-amp y en las salidas de los sensores.} y que las salidas de los módulos \emph{hardware} sean consistentes con el diseño (Apartado~\ref{cap3:Definicion:DHW}).
+
+Las pruebas de caja blanca se llevan a cabo siguiendo el diagrama de actividades de la figura~\ref{fig:cap4:WhiteBoxTest}. Estas pruebas se dividen en tres secciones: configuración inicial del sistema, generación de ${V}_{offset}$ y ${V}_{POD}$ y por último variaciones de voltaje en las entradas.
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[scale=0.9]{Imagenes/Verificacion/WhiteBoxTest.pdf}
+\end{center}
+ \caption{Diagrama de actividades para las pruebas de caja blanca.} \label{fig:cap4:WhiteBoxTest}
+\end{figure}
+
+En general, los instrumentos de medición empleados para realizar las pruebas son los siguientes: multímetro marca \emph{FLUKE} modelo \emph{189} (Figura~\ref{fig:cap4:LabMultimetro2}) y multímetro marca \emph{BK PRECISION} modelo \emph{2831E} (Figura~\ref{fig:cap4:LabMultimetro}). La fuente de voltaje utilizada es de la marca \emph{MATRIX} modelo \emph{MPS-3005L-3} (Figura~\ref{fig:cap4:TestConexiones}), la cual cuenta con dos salidas de voltaje variable y una fuente de voltaje con una salida fija de $5\volt$.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{c@{\hskip 0.5in}c}
+			\subfloat[Multímetro \emph{FLUKE 189}.]{%
+				\label{fig:cap4:LabMultimetro2}%
+				\includegraphics[scale=0.19]{Imagenes/Verificacion/LabMultimetro2.png}} &
+			\subfloat[Multímetro \emph{BK PRECISION 2831E}.]{%
+				\label{fig:cap4:LabMultimetro}%
+				\includegraphics[scale=0.20]{Imagenes/Verificacion/LabMultimetro.png}} \\
+		\end{tabular}
+	\end{center}
+	\caption{Instrumentos de medición empleados en las pruebas.} \label{fig:cap4:RTUFinal}
+\end{figure}
+
+
+\subsection{Prueba de configuración inicial del sistema}
+
+La prueba de configuración inicial consiste en que los módulos \emph{hardware} (Sección~\ref{cap3:DHWPCB}) sean conectados entre sí para formar la RTU. Para un mejor manejo de la RTU, ésta se monta en un gabinete construido a base de acrílico (Figura~\ref{fig:cap4:RTUFinal}). 
+
+El módulo del dispositivo CAS del sensor de pH y el módulo del CAS del sensor de OD y temperatura se conectan\footnote{La conexión entre los módulos \emph{hardware} se realiza a través de los conectores de entrada y salida descritos en la sección~\ref{cap3:DHWPCB}.} al módulo del MCU para formar la RTU. Debido a que la fuente de alimentación se comparte entre los distintos módulos \emph{hardware}, se configura una conexión cableada entre los conectores de alimentación de cada módulo. En la figura~\ref{fig:cap4:RTUFinal} se muestran las conexiones de módulos \emph{hardware} y la instalación de dichos módulos en el gabinete. La configuración de las terminales de entrada y salida externas del gabinete de la RTU se detallan en la figura~\ref{fig:cap4:RTUTerminales}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Vista frontal de la RTU.]{%
+				\label{fig:cap4:RTU}%
+				\includegraphics[scale=0.3]{Imagenes/Verificacion/RTU.png}} &
+			\subfloat[Vista trasera de la RTU.]{%
+				\label{fig:cap4:RTU2}%
+				\includegraphics[scale=0.295]{Imagenes/Verificacion/RTU2.png}} \\
+		\end{tabular}
+	\end{center}
+	\caption{Presentación final de la RTU.} \label{fig:cap4:RTUFinal}
+\end{figure}
+
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Terminales de comunicaciones y alimentación.]{%
+				\label{fig:cap4:RTUTerminales1}%
+				\includegraphics[scale=0.8]{Imagenes/Verificacion/RTUTerminales1.pdf}} &
+			\subfloat[Terminales de entrada de sensores.]{%
+				\label{fig:cap4:RTUTerminales2}%
+				\includegraphics[scale=0.8]{Imagenes/Verificacion/RTUTerminales2.pdf}} \\
+		\end{tabular}
+	\end{center}
+	\caption{Configuración de terminales en el gabinete de la RTU.} \label{fig:cap4:RTUTerminales}
+\end{figure}
+
+\newpage
+La fuente de voltaje MATRIX cuenta con botones de configuración para las salidas de voltaje, por lo que dichos botones se configuran para obtener una fuente de voltaje simétrica\footnote{Esta configuración es equivalente a conectar en serie ambas salidas de voltaje.} y se establece un voltaje de salida de $12\volt$ para cada una de dichas salidas. En la figura~\ref{fig:cap4:TestConexiones} se muestra la RTU conectada a la fuente de voltaje o alimentación, y se valida que la conexión de módulos \emph{hardware} de la RTU se ha realizado satisfactoriamente.
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[scale=0.30]{Imagenes/Verificacion/TestConexiones.png}
+\end{center}
+ \caption{Prueba de conexiones de la RTU.} \label{fig:cap4:TestConexiones}
+\end{figure}
+
+
+\subsection{Prueba de generación de $\pmb{{V}_{offset}}$ y $\pmb{{V}_{POD}}$}
+\label{cap04:VOffset}
+Esta prueba se realiza para verificar el funcionamiento de los dispositivos que generan el voltaje ${V}_{offset}$ y ${V}_{POD}$. La medición del voltaje ${V}_{offset}$ se realiza en la entrada negativa del sensor de OD, por ello, la medición se toma en la parte externa del conector BNC\footnote{En general, todas las mediciones se realizan haciendo referencia al plano de tierra.}. 
+
+El valor medido de ${V}_{offset}$ es de $505.6\milli\volt$ y para ${V}_{POD}$ es de $672.2\milli\volt$, con lo cual se valida que el funcionamiento de dichos dispositivos es correcto en base al diseño (Figura~\ref{fig:cap4:VoffsetVpod}). ${V}_{offset}$ garantiza que se obtengan niveles de voltaje positivos del sensor de pH y el voltaje ${V}_{POD}$, aunque presenta un error mínimo, garantiza un voltaje de polarización adecuado para el sensor de OD. Por lo tanto estos resultados son congruentes con el diseño de la sección~\ref{Cap3:DHWCASpH}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Medición de ${V}_{offset}$.]{%
+				\label{fig:cap4:Voffset}%
+				\includegraphics[scale=0.17]{Imagenes/Verificacion/Voffset.png}} &
+			\subfloat[Medición de ${V}_{POD}$.]{%
+				\label{fig:cap4:Vpod}%
+				\includegraphics[scale=0.17]{Imagenes/Verificacion/Vpod.png}} \\
+		\end{tabular}
+	\end{center}
+	\caption{Mediciones de las salidas en los dispositivos para generar ${V}_{offset}$ y ${V}_{POD}$.} \label{fig:cap4:VoffsetVpod}
+\end{figure}
+
+\subsection{Prueba de variaciones de voltaje en las entradas}
+\label{cap4:TestSensores1}
+Esta prueba consiste en introducir voltajes o corriente (Según sea requerido) en las entradas de los dispositivos CAS para verificar su funcionamiento. Estas entradas estan en el rango y dominio de las salidas de los sensores descritos en la sección~\ref{cap2:sec:Sensores}.
+
+El método empleado para simular la entrada del sensor de pH consiste en conectar una punta de prueba con conector macho tipo BNC e introducir niveles de voltaje en el rango definido para dicho sensor (Figura~\ref{fig:cap4:TestSimpH}). Para simular el sensor de OD se utiliza un arreglo simple que consta de una fuente de voltaje (${V}_{P}$) y una resistencia (${R}_{P}$) para generar una corriente (${I}_{OD}$) dentro del rango definido para dicho sensor (Figura~\ref{fig:cap4:TestSimOD}). Por su simplicidad, para el sensor de temperatura, solo se utiliza una fuente de voltaje variable.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Conexión de punta de pruebas con conector BNC.]{%
+				\label{fig:cap4:TestSimpH}%
+				\includegraphics[scale=0.25]{Imagenes/Verificacion/TestEntradas.png}} &
+			\subfloat[Generación de ${I}_{OD}$ para pruebas.]{%
+				\label{fig:cap4:TestSimOD}%
+				\includegraphics[scale=1]{Imagenes/Verificacion/TestIOD.pdf}} \\
+		\end{tabular}
+	\end{center}
+	\caption{Configuración para pruebas de variaciones de voltaje.} \label{fig:cap4:TestCAS}
+\end{figure}
+
+En la tabla~\ref{tab:cap4:TestCASpH1} se muestran las mediciones tomadas del dispositivo CAS del sensor de pH. Para esta prueba se hizo un barrido de voltaje en la entrada respetando el dominio definido en la sección~\ref{Cap3:DHWCASpH}. Con la finalidad de hacer una comparación de resultados, en la tabla~\ref{tab:cap4:TestCASpH1} se incluyen los resultados de la simulación y los valores teóricos, los cuales se calculan empleando la ecuación~\ref{cap3:eq:VCASpH}, con ello se realiza una comparación gráfica como se ilustra en la figura~\ref{fig:cap4:TestCASpH2}. En la figura~\ref{fig:cap4:TestCASpH2} se observa que el dispositivo CAS para el sensor de pH presenta un mínimo error en comparación con la gráfica teórica, lo cual valida el funcionamiento de dicho dispositivo.
+
+\begin{table}[htp]
+	\caption{Mediciones ${V}_{CASpH}$ con variaciones en el voltaje de entrada del sensor de pH.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{cccc}
+		\hline \hline \hline \hline
+		\headcol$\pmb{{V}_{pH}}$&$\pmb{{V}_{CASpH}}$&$\pmb{{V}_{CASpH}}$ \textbf{Teórico}&$\pmb{{V}_{CASpH}}$ \textbf{Simulado}\\
+		\hline \hline \hline \hline
+		$404.7\milli\volt$ & $1.8172\volt$ & $1.8112\volt$ & $1.93\volt$\\
+		\rowcol $307.8\milli\volt$ & $1.6236\volt$ & $1.6112\volt$ & $1.73\volt$\\
+		$209.7\milli\volt$ & $1.4277\volt$ & $1.4112\volt$ & $1.53\volt$\\
+		\rowcol $100.7\milli\volt$ & $1.2097\volt$ & $1.2112\volt$ & $1.33\volt$\\
+		$4\milli\volt$ & $1.0165\volt$ & $1.0112\volt$ & $1.13\volt$\\
+		\rowcol $-102.3\milli\volt$ & $797.6\milli\volt$ & $811.2\milli\volt$& $934\milli\volt$\\
+		$-209.4\milli\volt$ & $583\milli\volt$ & $611.2\milli\volt$& $734\milli\volt$\\
+		\rowcol $-307\milli\volt$ & $387\milli\volt$ & $411.2\milli\volt$& $534\milli\volt$\\
+		$-404\milli\volt$ & $192.1\milli\volt$ & $211.2\milli\volt$& $334\milli\volt$\\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:cap4:TestCASpH1}
+\end{table}
+
+\begin{center}
+	\input{Imagenes/Desarrollo/DiseñoHardware/GraficaTestCASpH.tex}
+	\captionof{figure}{Gráfica de resultados arrojados en las pruebas, la simulación y de manera teórica para el CAS del sensor de pH.} \label{fig:cap4:TestCASpH2}
+\end{center}
+
+Las mediciones tomadas del dispositivo CAS para el sensor de OD se muestran en la tabla~\ref{tab:cap4:TestCASOD1}. En esta prueba se toma una resistencia ${R}_{P}= 10.165\mega\ohm$ y se hace un barrido en la fuente ${V}_{P}$ de $300\milli\volt$ a $1.2\milli\volt$.
+
+\begin{table}[htp]
+	\caption{Mediciones ${V}_{CASOD}$ con variaciones en la corriente de entrada del sensor de OD.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{ccc}
+		\hline \hline \hline \hline
+		\headcol\textbf{Voltaje de prueba}&\textbf{$\pmb{{I}_{OD}}$ de entrada}&$\pmb{{V}_{CASOD}}$\\
+		\hline \hline \hline \hline
+		$307\milli\volt$ & $30.201\nano\ampere$& $33.9\milli\volt$\\
+		\rowcol $404\milli\volt$ & $39.744\nano\ampere$& $43.8\milli\volt$\\
+		$502\milli\volt$ & $49.385\nano\ampere$& $53.76\milli\volt$\\
+		\rowcol $600\milli\volt$ & $59.026\nano\ampere$& $63.7\milli\volt$\\
+		$713\milli\volt$ & $70.142\nano\ampere$& $75.2\milli\volt$\\
+		\rowcol $812\milli\volt$ & $79.881\nano\ampere$& $85.29\milli\volt$\\
+		$910\milli\volt$ & $89.522\nano\ampere$& $95.26\milli\volt$\\
+		\rowcol $1\volt$ & $99.163\nano\ampere$& $105.2\milli\volt$\\
+		$1.107\volt$ & $108.903\nano\ampere$& $115.2\milli\volt$\\
+		\rowcol $1.204\volt$ & $118.446\nano\ampere$& $125.18\milli\volt$\\
+
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:cap4:TestCASOD1}
+\end{table}
+
+Para el dispositivo CAS del sensor de temperatura, las mediciones tomadas se muestran en la tabla~\ref{tab:cap4:TestCASTemp1}. El barrido del voltaje de entrada varía de $280\milli\volt$ a $320\milli\volt$, el cual se realiza mediante variaciones pequeñas en el voltaje.
+
+\begin{table}[htp]
+	\caption{Mediciones ${V}_{CASTemp}$ con variaciones en el voltaje de entrada del sensor de temperatura.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{cc}
+		\hline \hline \hline \hline
+		\headcol\textbf{Voltaje de entrada}&$\pmb{{V}_{CASTemp}}$\\
+		\hline \hline \hline \hline
+		$278\milli\volt$ & $1.122\volt$\\		
+		\rowcol $286\milli\volt$ & $1.157\volt$\\
+		$290\milli\volt$ & $1.174\volt$\\
+		\rowcol $291.6\milli\volt$ & $1.179\volt$\\
+		$300\milli\volt$ & $1.217\volt$\\
+		\rowcol $320\milli\volt$ & $1.296\volt$\\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:cap4:TestCASTemp1}
+\end{table}
+
+\section{Pruebas de caja gris}
+
+Las pruebas de caja gris se dividen en dos grupos con diferentes objetivos: realizar pruebas de comunicación entre subsistemas y pruebas de funcionalidad del sistema en general.
+
+Las pruebas de comunicación consisten básicamente en verificar que la comunicación entre la RTU y la MTU se realice de manera satisfactoria, y que se lleve a cabo la comunicación entre el \emph{software} de la MTU y la base de datos. Este grupo de pruebas se ilustra en el diagrama de flujo de la figura~\ref{fig:cap4:GrayBoxTestComm}. Para verificar que de manera general el sistema funciona adecuadamente, se realizan pruebas con los sensores reales, con ello, se verifica que el \emph{software} de la MTU y la aplicación Web muestren las mediciones de manera correcta. En la figura~\ref{fig:cap4:GrayBoxTestMonitor} se ilustra el diagrama de flujo para este grupo de pruebas.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{c@{\hskip 0.5in}c}
+			\subfloat[Pruebas de comunicación.]{%
+				\label{fig:cap4:GrayBoxTestComm}%
+				\includegraphics[scale=0.9]{Imagenes/Verificacion/GrayBoxTestComm.pdf}} &
+			\subfloat[Pruebas de funcionalidad.]{%
+				\label{fig:cap4:GrayBoxTestMonitor}%
+				\includegraphics[scale=0.9]{Imagenes/Verificacion/GrayBoxTestMonitor.pdf}} \\
+		\end{tabular}
+	\end{center}
+	\caption{Diagramas de actividades para las pruebas de caja gris.} \label{fig:cap4:GrayBoxTest}
+\end{figure}
+
+\subsection{Prueba de comunicación serie entre la MTU y la RTU}
+
+La prueba de comunicación serie entre la MTU y la RTU consiste en verificar que la comunicación entre la RTU y el \emph{software} de la MTU se lleve a cabo bajo el estándar definido por el protocolo Modbus y la configuración de la interfaz serie definida en el apartado~\ref{cap3:DSW:RTUDA}. Dicha comunicación serie se realiza a través de la pasarela RS-232/RS-485, cuya presentación final se muestra en la figura~\ref{fig:cap4:Pasarela232485}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{c@{\hskip 0.5in}c}
+			\subfloat[Vista frontal de la pasarela RS-232/RS-485.]{%
+				\label{fig:cap4:Pasarela232485_1}%
+				\includegraphics[scale=0.15]{Imagenes/Verificacion/Pasarela232-485.png}} &
+			\subfloat[Vista trasera de la pasarela RS-232/RS-485.]{%
+				\label{fig:cap4:Pasarela232485_2}%
+				\includegraphics[scale=0.15]{Imagenes/Verificacion/Pasarela232-485_2.png}} \\
+		\end{tabular}
+	\end{center}
+	\caption{Presentación final de la pasarela RS-232/RS-485.} \label{fig:cap4:Pasarela232485}
+\end{figure}
+
+Debido a que en esta prueba se utiliza una computadora portátil (\emph{Notebook}), se requiere usar un dispositivo o cable convertidor de USB a la interfaz serie RS-232 (Figura~\ref{fig:cap4:USB-SER}). 
+
+Para conectar la pasarela RS-232/RS-485 a la interfaz serie RS-232 se construye un cable serie que consta de un conector \emph{DB-9} hembra y un conector hembra de tres terminales\footnote{La configuración de terminales para el cable serie se describe en la sección~\ref{cap3:IHWRS232RS485}.} que se conecta a dicha pasarela (Figura~\ref{fig:cap4:Cableserie}). 
+
+La fuente de alimentación utilizada para la pasarela RS-232/RS-485 es un convertidor de voltaje (o eliminador) de $4.5\volt$, el cual se muestra en la figura~\ref{fig:cap4:LabFuente5v}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{ccc}
+			\subfloat[Cable convertidor de USB a la interfaz serie RS-232.]{%
+				\label{fig:cap4:USB-SER}%
+				\includegraphics[scale=0.18]{Imagenes/Verificacion/USB-SER.png}} &
+			\subfloat[Cable serie para conectar la pasarela a la interfaz RS-232.]{%
+				\label{fig:cap4:Cableserie}%
+				\includegraphics[scale=0.18]{Imagenes/Verificacion/CableSerial.png}} &
+			\subfloat[Fuente de alimentación para la pasarela RS-232/RS-485.]{%
+				\label{fig:cap4:LabFuente5v}%
+				\includegraphics[scale=0.18]{Imagenes/Verificacion/LabFuente5v.png}}\\
+		\end{tabular}
+	\end{center}
+	\caption{Elementos requeridos para la comunicación serie.} \label{fig:cap4:ElemPasarela}
+\end{figure}
+
+La configuración de conexiones para la comunicación entre la RTU y la MTU se muestra en la figura~\ref{fig:cap4:TestComm}. Como se observa, la conexión entre la RTU y la pasarela RS-232/RS-485 se realiza a través de un cable de par trenzado (UTP, \emph{Unshielded Twisted Pair}). 
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Conexión del cable UTP a la RTU.]{
+				\label{fig:cap4:TestComm1}
+				\includegraphics[scale=0.3]{Imagenes/Verificacion/TestComm.png}} &
+			\subfloat[Conexión del cabe UTP a la pasarela y conexión a la \emph{notebook}.]{
+				\label{fig:cap4:TestComm2}
+				\includegraphics[scale=0.3]{Imagenes/Verificacion/TestComm2.png}}\\
+		\end{tabular}
+	\end{center}
+	\caption{Configuración de conexiones para la comunicación entre la RTU y la MTU.} \label{fig:cap4:TestComm}
+\end{figure}
+
+Para verificar que la comunicación se lleve a cabo satisfactoriamente, las pruebas de comunicación se realizan empleando dos cables UTP de diferentes longitudes: uno de aproximadamente $1\meter$ y otro de $3\meter$, con esto se valida que la comunicación se mantiene conforme la distancia aumenta.
+
+\newpage
+Se utiliza el \emph{software} \emph{Docklight}, con el que se envía a la RTU una ADU válida de manera constante simulando el monitoreo del \emph{software} de la RTU (Figura~\ref{fig:cap4:TestCommDock1}). Docklight se configura en base a los parámetros del diseño de la interfaz serie, según se muestra en la figura~\ref{fig:cap4:TestCommDock2}. 
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[ADU de prueba para Docklight.]{
+				\label{fig:cap4:TestCommDock1}
+				\includegraphics[scale=1.4]{Imagenes/Verificacion/TestCommDock1.png}} &
+			\subfloat[Configuración del \emph{software} Docklight.]{
+				\label{fig:cap4:TestCommDock2}
+				\includegraphics[scale=1.4]{Imagenes/Verificacion/TestCommDock2.png}}\\
+		\end{tabular}
+	\end{center}
+	\caption{Configuración del \emph{software} Docklight.} \label{fig:cap4:TestCommDockConfig}
+\end{figure}
+
+
+En la figura~\ref{fig:cap4:TestCommDockserie} se muestran los resultados de las pruebas de comunicación serie para los cables UTP de $1\meter$ y $3\meter$ respectivamente. En estas pruebas se consideraron tiempos de muestreo de $1\second$ y $3\second$, sin embargo, solo se muestra la prueba de $1\second$ debido a que es la prueba con mayor demanda en la comunicación serie. Con estos resultados se valida que la comunicación serie entre la RTU y la MTU se realiza satisfactoriamente.
+
+\begin{figure}[H]
+	\begin{center}
+		\begin{tabular}{c}
+			\subfloat[Prueba de comunicación serie con el cable UTP de $1\meter$ de longitud.]{
+				\label{fig:cap4:TestCommDock4}
+				\includegraphics[scale=1.5]{Imagenes/Verificacion/TestCommDock4.png}}\\
+			\subfloat[Prueba de comunicación serie con el cable UTP de $3\meter$ de longitud.]{
+				\label{fig:cap4:TestCommDock6}
+				\includegraphics[scale=1.5]{Imagenes/Verificacion/TestCommDock6.png}}\\
+		\end{tabular}
+	\end{center}
+	\caption{Resultados de las pruebas de comunicación serie con cables UTP de diferente longitud.} \label{fig:cap4:TestCommDockserie}
+\end{figure}
+
+Como se observa en la parte de los registros de comunicación de \emph{Docklight}, el texto en color verde muestra el registro de hora y fecha en que las ADUs son emitidas y recibidas, el texto en color azul muestra la ADU (en código hexadecimal) emitida y en color rojo se muestra la ADU que la RTU responde.
+
+En la figura~\ref{fig:cap4:TestCommMTURTU} se muestra el comportamiento del \emph{software} de la MTU ante dos situaciones: cuando la RTU está desconectada de la interfaz serie, está apagada o se presentó un problema de comunicación y cuando la RTU está en funcionamiento y conectada adecuadamente a la interfaz serie.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{c}
+			\subfloat[Comportamiento del \emph{software} de la MTU cuando no hay comunicación con la RTU.]{
+				\label{fig:cap4:TestCommMTU}
+				\includegraphics[scale=2]{Imagenes/Verificacion/TestCommMTU.png}} \\
+			\subfloat[Comportamiento del \emph{software} de la MTU cuando hay comunicación con la RTU.]{
+				\label{fig:cap4:TestCommMTU2}
+				\includegraphics[scale=2]{Imagenes/Verificacion/TestCommMTU2.png}}\\
+		\end{tabular}
+	\end{center}
+	\caption{Comportamiento del \emph{software} ante fallos en la comunicación serie.} \label{fig:cap4:TestCommMTURTU}
+\end{figure}
+
+\clearpage
+\subsection{Prueba de comunicación entre la MTU y la base de datos}
+
+Esta prueba se realiza para verificar que el \emph{software} de la MTU se comunique adecuadamente con la base de datos. En la figura~\ref{fig:cap4:TestCommMTU2} se muestra el comportamiento del \emph{software} de la MTU cuando la conexión con la base de datos se realiza de manera satisfactoria. En cambio, la figura~\ref{fig:cap4:TestCommMTUDB} muestra su comportamiento ante los siguientes casos: el servidor de base de datos está apagado y cuando se han presentado pérdidas de información en la comunicación.
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[scale=1.8]{Imagenes/Verificacion/TestCommMTUDB.png}
+\end{center}
+ \caption{Comportamiento del \emph{software} de la MTU ante fallos de comunicación con la base de datos.} \label{fig:cap4:TestCommMTUDB}
+\end{figure}
+
+\subsection{Prueba de conexión de sensores a la RTU}
+\label{cap4:TestSensoresRTU}
+
+Esta prueba consiste en verificar que la conexión entre los dispositivos CAS y cada sensor (respectivamente) se realice sin problemas en cuanto a compatibilidad de impedancias y que la salida de los dispositivo CAS sea correcta. Por ello, se conectan los sensores a la RTU y se toman las mediciones en las salidas del dispositivo CAS de cada sensor. 
+
+Para probar el sensor de pH se utilizan tres muestras de laboratorio con los siguientes valores de pH fijo (Figura~\ref{fig:cap4:LabMuestras}): 4.01, 7.0 y 10.0. En la figura~\ref{fig:cap4:TestSensores} se muestra la instalación del sensor de pH y su conexión con la RTU.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Muestras de laboratorio con valores de pH fijo.]{
+				\label{fig:cap4:LabMuestras}
+				\includegraphics[scale=0.3]{Imagenes/Verificacion/LabMuestras.png}} &
+			\subfloat[Instalación del sensor de pH y conexión con la RTU.]{
+				\label{fig:cap4:TestSensores}
+				\includegraphics[scale=0.3]{Imagenes/Verificacion/TestSensores.png}}\\
+		\end{tabular}
+	\end{center}
+	\caption{Conexión del sensor de pH a la RTU.} \label{fig:cap4:TestSensorpH}
+\end{figure}
+
+Los resultados al tomar las mediciones de cada muestra de laboratorio se describen en la tabla~\ref{tab:cap4:TestCASpH2}. En dicha tabla se incluye la medición de la salida correspondiente a ${V}_{pH}+{V}_{offset}$ que sirve para calcular el valor de pH base a las especificaciones del sensor y el diseño \emph{hardware}. El valor de pH calculado valida que la conexión del sensor de pH al dispositivo CAS se ha realizado satisfactoriamente. 
+
+\begin{table}[htp]
+	\caption{Resultados en la prueba de conexión del sensor de pH.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{cccc}
+		\hline \hline \hline \hline
+		\headcol\textbf{pH de la muestra}&$\pmb{{V}_{pH}+{V}_{offset}}$&$\pmb{{V}_{CASpH}}$&\textbf{pH Calculado}\\
+		\hline \hline \hline \hline
+		$4.01$ & $640.3\milli\volt$ & $1.2785\volt$&$4.62$\\		
+		\rowcol $7.0$ & $455.9\milli\volt$ & $913.8\milli\volt$ & $7.74$\\
+		$10.0$ & $272.5\milli\volt$ & $543.2\milli\volt$& $10.84$\\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:cap4:TestCASpH2}
+\end{table}
+
+Cabe mencionar que el sensor de pH puede perder su precisión tras el uso constante, por ello, el valor de pH obtenido del cálculo difiere ligeramente al de la muestra, este error se corrige en el \emph{software} de la MTU al realizar la calibración del sensor.
+
+Para probar el sensor de temperatura se construyó una extensión, la cual consiste en el sensor de temperatura y un cable con tres salidas conectadas a cada terminal del sensor, de esta manera se facilita el manejo y la instalación de dicho sensor. En la figura~\ref{fig:cap4:TestSensorTemp2} se muestra la configuración y la conexión del sensor de temperatura a la RTU.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.35]{Imagenes/Verificacion/TestSensorTemp.png}
+	\end{center}
+	\caption{Conexión del sensor de temperatura a la RTU.} \label{fig:cap4:TestSensorTemp2}
+\end{figure}
+
+Los resultados de la prueba de conexión del sensor de temperatura se muestran en la tabla~\ref{tab:cap4:TestCASTemp2}, en donde se muestran las mediciones del sensor y la temperatura calculada en base a las especificaciones del sensor y el diseño \emph{hardware}. Estas mediciones validan que el sensor de temperatura se ha conectado de manera satisfactoria a la RTU.
+
+\begin{table}[htp]
+	\caption{Resultados en la prueba de conexión del sensor de temperatura.}%
+	\centering
+	\footnotesize
+	\begin{tabular}{ccc}
+		\hline \hline \hline \hline
+		\headcol\textbf{Voltaje del sensor}&\textbf{$\pmb{{V}_{CASTemp}}$}&\textbf{Temperatura Calculada}\\
+		\hline \hline \hline \hline
+		$275\milli\volt$ & $1.114\volt$ & $27.45\degree$\\		
+		\rowcol $278\milli\volt$ & $1.122\volt$ & $27.69\degree$\\
+		$283\milli\volt$ & $1.140\volt$ & $28.14\degree$\\		
+		\rowcol $290\milli\volt$ & $1.173\volt$ & $28.95\degree$\\
+		$300\milli\volt$ & $1.211\volt$ & $29.89\degree$\\		
+		\rowcol $310\milli\volt$ & $1.250\volt$ & $30.85\degree$\\
+		\hline \hline \hline \hline
+	\end{tabular}
+	\label{tab:cap4:TestCASTemp2}
+\end{table}
+
+Debido a que el sensor de OD (\emph{Mettler-Toledo InPro 6800}) con el que cuenta el Instituto de Agroindustrias de la UTM no funciona adecuadamente, no fue posible llevar a cabo la prueba para este sensor. En cambio se verifica que, en base a las especificaciones de este sensor descritas en el apartado~\ref{cap2:sec:Sensores:OD}, el dispositivo CAS entrega las salidas acorde a dichas especificaciones y necesidades del diseño \emph{hardware} y \emph{software}. En efecto, las pruebas de la sección~\ref{cap4:TestSensores1} validan el funcionamiento de dicho dispositivo CAS.
+
+\subsection{Prueba del \emph{software} de la MTU}
+
+En esta prueba se verifica que el \emph{software} de la MTU realiza los cálculos de las mediciones basándose en el diseño \emph{hardware} y las especificaciones de los sensores. El \emph{software} de la MTU presenta dichos cálculos en la interfaz de usuario y almacena un registro de medición en la base de datos.
+
+En la figura~\ref{fig:cap4:TestMTUSensorpHFinal} se muestra el estado del \emph{software} de la MTU mientras se realizan las pruebas del sensor de pH\footnote{Solo se presentan las mediciones de las muestras con valor de pH de 4.01 y 7.0.} de la sección~\ref{cap4:TestSensoresRTU}. Como se observa, las mediciones que este \emph{software} presenta en la interfaz gráfica, son consistentes con los cálculos de la tabla~\ref{tab:cap4:TestCASpH2}, por lo que se genera el registro de medición que es almacenado en la base de datos. De esta manera se valida que el \emph{software} de la MTU presenta las mediciones adecuadamente.
+
+Como se mencionó anteriormente, es posible corregir el error de medición que se presenta debido al desgaste del sensor de pH. Ésto se logra haciendo una calibración, la cual permite ajustar la ecuación de dicho sensor y así obtener de manera correcta los valores de las muestras.
+
+El proceso de calibración consiste en tomar dos mediciones de muestras con pH fijo, se toma una a la vez y el \emph{software} de la MTU ajusta de manera automática la ecuación de pH para el sensor. En la figura~\ref{fig:cap4:TestMTUCalibracion} se muestra la ventana de calibración de pH y cuando se finaliza la calibración. Como se observa, en la calibración se pueden escoger de tres muestras con diferentes valores de pH, para esta prueba se tomaron las muestras con valor de pH de 4 y 7.
+
+\begin{figure}[H]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Mediciones para la muestra con valor de pH de 4.01.]{
+				\label{fig:cap4:TestMTUSensorpH}
+				\includegraphics[scale=0.5]{Imagenes/Verificacion/TestMTUSensorpH.png}}\\
+			\subfloat[Mediciones para la muestra con valor de pH de 7.0.]{
+				\label{fig:cap4:TestMTUSensorpH_7}
+				\includegraphics[scale=0.5]{Imagenes/Verificacion/TestMTUSensorpH_7.png}}\\
+		\end{tabular}
+	\end{center}
+	\caption{Presentación de mediciones de pH en el \emph{software} de la MTU.} \label{fig:cap4:TestMTUSensorpHFinal}
+\end{figure}
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Ventana de calibración de pH.]{
+				\label{fig:cap4:TestMTUCalibracion1}
+				\includegraphics[scale=1.2]{Imagenes/Verificacion/TestMTUCalibracion1.png}}&
+			\subfloat[Ventana de calibración finalizada.]{
+				\label{fig:cap4:TestMTUCalibracion2}
+				\includegraphics[scale=1.2]{Imagenes/Verificacion/TestMTUCalibracion2.png}}\\
+		\end{tabular}
+	\end{center}
+	\caption{Pruebas de calibración del sensor de pH.} \label{fig:cap4:TestMTUCalibracion}
+\end{figure}
+
+Cuando la calibración ha finalizado, se vuelve a hacer el proceso de medición de las muestras de pH fijo. El resultado se muestra en la figura~\ref{fig:cap4:TestMTUSensorpHFinalCal}, en donde se observa que el \emph{software} de la MTU ajusta la gráfica de pH de acuerdo al funcionamiento actual del sensor, esto permite obtener mediciones mas precisas y corregir los errores de medición debido al desgaste del sensor por el uso constante. Con estos resultados se valida que el módulo de calibración para el sensor de pH realiza el ajuste de manera exitosa.
+
+En la figura~\ref{fig:cap4:TestMTUSensorTemp} se muestra como el \emph{software} de la MTU presenta las mediciones de temperatura, dichas mediciones se registran y almacenan en la base de datos. Esta medición se toma mientras se realiza la prueba de la sección~\ref{cap4:TestSensoresRTU}, por ello, estas mediciones de temperatura son consistentes con la tabla~\ref{tab:cap4:TestCASTemp1}.
+
+Para las mediciones de OD se considera la corriente de $110\nano\ampere$ como la corriente máxima de saturación, es decir, indica el $100\%$ de saturación de OD\footnote{De acuerdo a las especificaciones del sensor de OD}. En base a las referencias \cite{Cap2Bib:TesisIzcoatl, Cap2Bib:PresionB}, se obtiene que para la ciudad de Huajuapan de León, Oaxaca, el índice máximo de saturación de oxígeno es de $6.864\frac{\milli\gram {O}_{2}}{\liter}$. En la figura~\ref{fig:cap4:TestMTUSensorOD} se muestra que, al hacer el barrido de corriente como en la tabla~\ref{tab:cap4:TestCASOD1} de la sección~\ref{cap4:TestSensores1}, el índice y el porcentaje de saturación de OD varían en proporción a la corriente de entrada al dispositivo CAS del sensor de OD.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Mediciones para la muestra con valor de pH de 4.01.]{
+				\label{fig:cap4:TestMTUSensorpH_4_2}
+				\includegraphics[scale=0.5]{Imagenes/Verificacion/TestMTUSensorpH_4_2.png}}\\
+			\subfloat[Mediciones para la muestra con valor de pH de 7.0.]{
+				\label{fig:cap4:TestMTUSensorpH_7_2}
+				\includegraphics[scale=0.5]{Imagenes/Verificacion/TestMTUSensorpH_7_2.png}}\\
+		\end{tabular}
+	\end{center}
+	\caption{Mediciones en el \emph{software} de la MTU después de realizar la calibración del sensor de pH.} \label{fig:cap4:TestMTUSensorpHFinalCal}
+\end{figure}
+
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.5]{Imagenes/Verificacion/TestMTUSensorTemp.png}
+	\end{center}
+	\caption{Presentación de mediciones de temperatura en el \emph{software} de la MTU.} \label{fig:cap4:TestMTUSensorTemp}
+\end{figure}
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Mediciones para un porcentaje de saturación de OD de $100\%$ aproximadamente.]{
+				\label{fig:cap4:TestMTUSensorOD1}
+				\includegraphics[scale=0.5]{Imagenes/Verificacion/TestMTUSensorOD1.png}}\\
+			\subfloat[Mediciones para un porcentaje de saturación de OD de $75\%$ aproximadamente.]{
+				\label{fig:cap4:TestMTUSensorOD2}
+				\includegraphics[scale=0.5]{Imagenes/Verificacion/TestMTUSensorOD2.png}}\\
+		\end{tabular}
+	\end{center}
+	\caption{Presentación de mediciones de OD en el \emph{software} de la MTU} \label{fig:cap4:TestMTUSensorOD}
+\end{figure}
+
+\clearpage
+Se considera que el sensor de OD puede cambiar su precisión conforme el uso, dicho deterioro se compensa en el \emph{software} de la MTU a través de la calibración de dicho sensor. Esta calibración consiste en tomar un nuevo valor de corriente (del sensor de OD) como corriente máxima de saturación, no obstante, se requiere la presión barométrica para ajustar el índice máximo de saturación de OD conforme a la altitud del lugar donde se tomen las mediciones.
+
+De acuerdo a la referencia \cite{Cap2Bib:TesisIzcoatl}, la presión barométrica varía en función de la altitud del lugar, por lo que la presión barométrica para la ciudad de Huajuapan de León, Oaxaca, es de $631.19\milli\meter$Hg\footnote{Este valor de presión barométrica se tomará como valor por defecto si otro no es especificado y cuando se selecciona la opción de cargar valores por defecto. Las unidades $\milli\meter$Hg significan milímetros de mercurio.}. Finalmente, el \emph{software} de la MTU ajusta los cálculos de OD de acuerdo a dichos parámetros. En la figura~\ref{fig:cap4:TestMTUCalibracion2} se muestra la ventana de calibración del sensor de OD.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Ventana de calibración de OD.]{
+				\label{fig:cap4:TestMTUCalibracion3}
+				\includegraphics[scale=1.1]{Imagenes/Verificacion/TestMTUCalibracion3.png}}&
+			\subfloat[Ventana de calibración finalizada.]{
+				\label{fig:cap4:TestMTUCalibracion4}
+				\includegraphics[scale=1.1]{Imagenes/Verificacion/TestMTUCalibracion4.png}}\\
+		\end{tabular}
+	\end{center}
+	\caption{Pruebas de calibración del sensor de OD.} \label{fig:cap4:TestMTUCalibracion2}
+\end{figure}
+
+\subsection{Prueba de la aplicación Web}
+
+Esta prueba consiste en verificar que la aplicación Web presente los registros de mediciones almacenados en la base de datos. Por comodidad, la aplicación Web se divide en cinco módulos funcionales: mediciones de pH, mediciones de OD, mediciones de temperatura, entradas digitales y salidas digitales. Estas pruebas se enfocan en verificar que los registros de mediciones de los módulos de mediciones de pH, temperatura y OD se muestren de manera satisfactoria.
+
+En la figura~\ref{fig:cap4:TestYiiSensorpH} se muestra la gráfica de las mediciones de pH, en la figura~\ref{fig:cap4:TestYiiSensorTempOD} se muestran las gráficas de temperatura y de OD y en la figura~\ref{fig:cap4:TestYiiSensorTab} se muestran los registros de medición en forma tabular. Estas capturas fueron tomadas mientras se realizaban las pruebas de la sección~\ref{cap4:TestSensoresRTU} (para pH y temperatura) y la sección~\ref{cap4:TestSensores1} (para OD).
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Gráfica de mediciones para la muestra con un valor de pH de 4.]{
+				\label{fig:cap4:TestYiiSensorpH_4}
+				\includegraphics[scale=1.5]{Imagenes/Verificacion/TestYiiSensorpH_4.png}}\\
+			\subfloat[Gráfica de mediciones para la muestra con un valor de pH de 7.]{
+				\label{fig:cap4:TestYiiSensorpH_7}
+				\includegraphics[scale=1.5]{Imagenes/Verificacion/TestYiiSensorpH_7.png}}\\
+		\end{tabular}
+	\end{center}
+	\caption{Presentación de mediciones de pH en la aplicación Web.} \label{fig:cap4:TestYiiSensorpH}
+\end{figure}
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Gráfica de mediciones de temperatura.]{
+				\label{fig:cap4:TestYiiSensorTemp}
+				\includegraphics[scale=1.5]{Imagenes/Verificacion/TestYiiSensorTemp.png}}\\
+			\subfloat[Gráfica de mediciones de OD.]{
+				\label{fig:cap4:TestYiiSensorOD}
+				\includegraphics[scale=1.5]{Imagenes/Verificacion/TestYiiSensorOD.png}}\\
+		\end{tabular}
+	\end{center}
+	\caption{Presentación de mediciones de temperatura y OD en la aplicación Web.} \label{fig:cap4:TestYiiSensorTempOD}
+\end{figure}
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Tabla de mediciones de pH.]{
+				\label{fig:cap4:TestYiiSensorpH_7_2}
+				\includegraphics[scale=1.5]{Imagenes/Verificacion/TestYiiSensorpH_7_2.png}}\\
+			\subfloat[Tabla de mediciones de temperatura.]{
+				\label{fig:cap4:TestYiiSensorTemp2}
+				\includegraphics[scale=1.5]{Imagenes/Verificacion/TestYiiSensorTemp2.png}}\\
+		\end{tabular}
+	\end{center}
+	\caption{Presentación de los registros de mediciones en forma tabular.} \label{fig:cap4:TestYiiSensorTab}
+\end{figure}
+
+\clearpage
+\section{Pruebas de caja negra}
+
+Las pruebas de caja negra consisten en verificar el funcionamiento de los módulos de sesión de usuario y la gestión de entradas y salidas digitales. Con estas pruebas se verifica que la aplicación Web gestiona de manera adecuada la seguridad de la misma y se verifica que la presentación y gestión de estados digitales se realice de manera exitosa. Las pruebas de caja negra se ilustran en el diagrama de actividades de la figura~\ref{fig:cap4:BlackBoxTest}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/Verificacion/BlackBoxTest.pdf}
+	\end{center}
+	\caption{Diagrama de actividades para las pruebas de caja negra.} \label{fig:cap4:BlackBoxTest}
+\end{figure}
+
+\subsection{Prueba de gestión de sesión de usuario}
+
+Esta prueba se realiza para verificar que la gestión de usuario se realiza de manera adecuada, es decir, que solo el administrador pueda tener acceso a los módulos de registros de mediciones. No obstante, cualquier usuario podrá acceder a la ruta principal de la aplicación Web, dicha ruta solo muestra una vista de bienvenida (Figura~\ref{fig:cap3:YiiScadaGUI}). Pero, al intentar acceder a algún módulo se debe solicitar el inicio de sesión del Administrador, aunque se puede iniciar sesión desde el menú de usuario. En a figura~\ref{fig:cap4:TestYiiUsuarioSesion} se muestra la opción del menú de usuario y el formulario para iniciar sesión.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Menú de usuario para iniciar sesión.]{
+				\label{fig:cap4:TestYiiSesion2}
+				\includegraphics[scale=1.4]{Imagenes/Verificacion/TestYiiSesion2.png}}\\
+			\subfloat[Formulario para iniciar sesión.]{
+				\label{fig:cap4:TestYiiSesion}
+				\includegraphics[scale=1.5]{Imagenes/Verificacion/TestYiiSesion.png}}\\
+		\end{tabular}
+	\end{center}
+	\caption{Gestión de usuarios en la aplicación Web.} \label{fig:cap4:TestYiiUsuarioSesion}
+\end{figure}
+
+
+\clearpage
+\subsection{Prueba de gestión de estados digitales}
+
+En esta prueba se verifica que la aplicación Web presenta los registros de estados digitales de manera correcta. En la figura~\ref{fig:cap4:TestYiiSD1} se muestra la forma en que se presentan los registros de estados digitales (entradas\footnote{No se muestra la captura para las entradas digitales ya que es idéntica a la presentación de las salidas, obviamente la vista de las entradas digitales no incluye el botón para establecer estados digitales.} y salidas) y en la figura~\ref{fig:cap4:TestYiiSD2} se muestra el formulario para que el Administrador establezca los estados de las salidas digitales. 
+
+Como se observa en la figura~\ref{fig:cap4:TestYiiSD1}, el icono en color rojo indica un estado activo (ON) y el icono en color gris indica un estado inactivo (OFF). Ahora, Si el formulario es aceptado, se construye una ADU de solicitud y es enviada a la MTU, la cual, por medio del servidor Web (Implementado con un \emph{socket}) recibe la ADU y la transfiere a la RTU a través de la interfaz serie.
+
+En la figura~\ref{fig:cap4:TestMTUSD1} se muestra cuando el \emph{software} de la MTU recibe la ADU de solicitud que se emite desde la aplicación Web, dicha ADU es enviada a la RTU. En la figura~\ref{fig:cap4:TestMTUSD2} se muestra como establecer las salidas digitales desde el \emph{software} de la MTU.
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Presentación de registros de estados digitales.]{
+				\label{fig:cap4:TestYiiSD1}
+				\includegraphics[scale=1.4]{Imagenes/Verificacion/TestYiiSD1.png}}\\
+			\subfloat[Formulario para establecer salidas digitales.]{
+				\label{fig:cap4:TestYiiSD2}
+				\includegraphics[scale=1.4]{Imagenes/Verificacion/TestYiiSD2.png}}\\
+		\end{tabular}
+	\end{center}
+	\caption{Presentación y gestión de salidas digitales en la aplicación Web.} \label{fig:cap4:TestYiiSD}
+\end{figure}
+
+\begin{figure}[htb]
+	\begin{center}
+		\begin{tabular}{cc}
+			\subfloat[Recepción de la ADU emitida desde la aplicación Web.]{
+				\label{fig:cap4:TestMTUSD1}
+				\includegraphics[scale=0.35]{Imagenes/Verificacion/TestMTUSD1.png}}\\
+			\subfloat[Gestión de salidas digitales desde el \emph{software} de la MTU.]{
+				\label{fig:cap4:TestMTUSD2}
+				\includegraphics[scale=0.35]{Imagenes/Verificacion/TestMTUSD2.png}}\\
+		\end{tabular}
+	\end{center}
+	\caption{Recepción de la ADU emitida desde la aplicación Web y gestión de salidas digitales desde el \emph{software} de la MTU.} \label{fig:cap4:TestSWMTUSD}
+\end{figure}
+
+

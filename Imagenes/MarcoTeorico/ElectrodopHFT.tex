@@ -1,0 +1,34 @@
+\pgfplotsset{every axis/.append style={thick,tick style={thin},font=\footnotesize}}
+
+\begin{tikzpicture}
+\tikzset{
+every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\scriptsize},
+small dot/.style={fill=black,circle,scale=0.3}
+}
+	\begin{axis}[use units,x=.4cm,y=6cm,
+		minor tick num=3,
+		axis y line=left,
+		axis x line=middle,
+		x unit=pH,
+		y unit=V, y unit prefix=m,ylabel=Salida
+				]
+
+	\addplot[smooth,teal,mark=none,domain=0:14,samples=40]
+		%{sin(deg(x))};
+		{(x-7)*-0.05916};
+	\addplot[smooth,orange,mark=none,domain=0:14,samples=40]
+		%{sin(deg(x))};
+		{(x-7)*-0.07004};
+	\addplot[smooth,blue,mark=none,domain=0:14,samples=40]
+		%{sin(deg(x))};
+		{(x-7)*-0.05420};
+
+\node[small dot,pin=0:{$100\:\degreecelsius$ $(70.04\:\milli\volt\per pH)$}] at (axis description cs:0.06,.94) {};
+\node[small dot,pin=3:{$25\:\degreecelsius$ $(59.16\:\milli\volt\per pH))$}] at (axis description cs:.205,.75) {};
+\node[small dot,pin=200:{$0\:\degreecelsius$ $(54.20\:\milli\volt\per pH))$}] at (axis description cs:.76,0.3) {};
+	\end{axis}
+	
+	
+\end{tikzpicture}
+
+

@@ -1,0 +1,19 @@
+\pgfplotsset{every axis/.append style={thick,tick style={thin},font=\footnotesize}}
+\begin{tikzpicture}
+\tikzset{
+every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\scriptsize},
+small dot/.style={fill=black,circle,scale=0.3}
+}
+	\begin{axis}[use units,x=5cm,y=2cm,
+		minor tick num=3,
+		axis y line=middle,
+		axis x line=middle,
+		x unit=V,xlabel=${V}_{pH}$,
+		y unit=V,ylabel=${V}_{CASpH}$,
+		ymin=0
+				]
+		\addplot[smooth,blue, domain=-3:3] table[x={vph}, y={vcasph}]{CASpHSimulation.data};
+	\end{axis}
+\end{tikzpicture}
+
+

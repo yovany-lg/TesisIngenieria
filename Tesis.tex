@@ -1,0 +1,50 @@
+\input{Config/packages}
+\include{Imagenes/Desarrollo/DiseñoHardware/SimulacionesPruebas}
+
+\begin{document}
+
+	\renewcommand{\tablename}{Tabla}				%Para cambiar Cuadro(default) por Tabla.
+	\renewcommand{\listtablename}{\'{I}ndice de tablas}
+	%\newcommand{\linea}{\noindent\rule{0.7\textwidth}{.1pt}\\}
+	
+	\frontmatter
+		\pagestyle{precuerpo}
+		\markright{\small Prototipo de Sistema de Monitoreo para la PTAR de la Universidad Tecnológica de la Mixteca}
+			
+		\include{Presentacion/Portada/Portada}	
+%		\include{Presentacion/Presentada/Presentada}
+		\include{Presentacion/DedicAgradec/DedicatoriaAgradecimientos} 
+		\include{Presentacion/DedicAgradec/FrasesCelebres} 
+		\include{Presentacion/Resumen/Resumen}
+			
+		\tableofcontents
+			\addcontentsline{toc}{chapter}{Índice general}
+		\listoftables	
+		\listoffigures
+		\cleardoublepage
+			
+			
+	\mainmatter 
+		\pagestyle{cuerpo}
+			
+%		\include{Contenido/1-Introduccion}
+%		\include{Contenido/2-MarcoTeorico}
+%		\include{Contenido/3-Desarrollo}
+		\include{Contenido/4-Verificacion}
+%		\include{Contenido/5-Conclusiones}
+	
+
+%	\backmatter
+		%\nocite{*}  %citar todos
+		\nocite{*}
+		\bibliographystyle{IEEEtranS}
+%	\bibliographystyle{Referencias/babelbib_spanish/aplain}
+		%\bibliographystyle{babplain}
+		%\bibliographystyle{dinat}
+		\bibliography{Referencias/referencias}
+%\printbibliography
+		\appendix
+		%\printglossary[type=\acronymtype, title={Acrónimos},toctitle={Acrónimos}]
+		\include{Apendices/Apendices}
+	
+\end{document}
