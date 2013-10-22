@@ -133,7 +133,7 @@ El método empleado para simular la entrada del sensor de pH consiste en conectar
 	\caption{Configuración para pruebas de variaciones de voltaje.} \label{fig:cap4:TestCAS}
 \end{figure}
 
-En la tabla~\ref{tab:cap4:TestCASpH1} se muestran las mediciones tomadas del dispositivo CAS del sensor de pH. Para esta prueba se hizo un barrido de voltaje en la entrada respetando el dominio definido en la sección~\ref{Cap3:DHWCASpH}. Con la finalidad de hacer una comparación de resultados, en la tabla~\ref{tab:cap4:TestCASpH1} se incluyen los resultados de la simulación y los valores teóricos, los cuales se calculan empleando la ecuación~\ref{cap3:eq:VCASpH}, con ello se realiza una comparación gráfica como se ilustra en la figura~\ref{fig:cap4:TestCASpH2}. En la figura~\ref{fig:cap4:TestCASpH2} se observa que el dispositivo CAS para el sensor de pH presenta un mínimo error en comparación con la gráfica teórica, lo cual valida el funcionamiento de dicho dispositivo.
+En la tabla~\ref{tab:cap4:TestCASpH1} se muestran las mediciones tomadas del dispositivo CAS del sensor de pH. Para esta prueba se hizo un barrido de voltaje en la entrada respetando el dominio definido en la sección~\ref{Cap3:DHWCASpH}. Con la finalidad de hacer una comparación de resultados, en la tabla~\ref{tab:cap4:TestCASpH1} se incluyen los resultados de la simulación y los valores teóricos, los cuales se calculan empleando la ecuación~\ref{cap3:eq:VCASpH}. Se realiza una comparación gráfica como se ilustra en la figura~\ref{fig:cap4:TestCASpH2}, en donde se observa que el dispositivo CAS para el sensor de pH presenta un mínimo error en comparación con la gráfica teórica, lo cual valida el funcionamiento de dicho dispositivo.
 
 \begin{table}[htp]
 	\caption{Mediciones ${V}_{CASpH}$ con variaciones en el voltaje de entrada del sensor de pH.}%
@@ -162,31 +162,33 @@ En la tabla~\ref{tab:cap4:TestCASpH1} se muestran las mediciones tomadas del dis
 	\captionof{figure}{Gráfica de resultados arrojados en las pruebas, la simulación y de manera teórica para el CAS del sensor de pH.} \label{fig:cap4:TestCASpH2}
 \end{center}
 
-Las mediciones tomadas del dispositivo CAS para el sensor de OD se muestran en la tabla~\ref{tab:cap4:TestCASOD1}. En esta prueba se toma una resistencia ${R}_{P}= 10.165\mega\ohm$ y se hace un barrido en la fuente ${V}_{P}$ de $300\milli\volt$ a $1.2\milli\volt$.
+En la prueba del dispositivo CAS para el sensor de OD se toma una resistencia ${R}_{P}= 10\mega\ohm$ y se hace un barrido en la fuente ${V}_{P}$ de $300\milli\volt$ a $1.2\milli\volt$, con lo cual se obtiene como entrada una corriente ${I}_{OD}$ de $50\nano\ampere$ a $110\nano\ampere$ (Figura~\ref{fig:cap4:TestSimOD}). Las mediciones tomadas del dispositivo CAS para el sensor de OD se muestran en la tabla~\ref{tab:cap4:TestCASOD1}, en donde se incluyen las mediciones de la simulación y los valores teóricos en base a ecuación~\ref{cap3:eq:VCASOD}.
 
 \begin{table}[htp]
 	\caption{Mediciones ${V}_{CASOD}$ con variaciones en la corriente de entrada del sensor de OD.}%
 	\centering
 	\footnotesize
-	\begin{tabular}{ccc}
+	\begin{tabular}{ccccc}
 		\hline \hline \hline \hline
-		\headcol\textbf{Voltaje de prueba}&\textbf{$\pmb{{I}_{OD}}$ de entrada}&$\pmb{{V}_{CASOD}}$\\
+		\headcol$\pmb{{V}_{P}}$&$\pmb{{I}_{OD}}$&$\pmb{{V}_{CASOD}}$&\textbf{$\pmb{{V}_{CASOD}}$ Teórico}&\textbf{$\pmb{{V}_{CASOD}}$ Simulado}\\
 		\hline \hline \hline \hline
-		$307\milli\volt$ & $30.201\nano\ampere$& $33.9\milli\volt$\\
-		\rowcol $404\milli\volt$ & $39.744\nano\ampere$& $43.8\milli\volt$\\
-		$502\milli\volt$ & $49.385\nano\ampere$& $53.76\milli\volt$\\
-		\rowcol $600\milli\volt$ & $59.026\nano\ampere$& $63.7\milli\volt$\\
-		$713\milli\volt$ & $70.142\nano\ampere$& $75.2\milli\volt$\\
-		\rowcol $812\milli\volt$ & $79.881\nano\ampere$& $85.29\milli\volt$\\
-		$910\milli\volt$ & $89.522\nano\ampere$& $95.26\milli\volt$\\
-		\rowcol $1\volt$ & $99.163\nano\ampere$& $105.2\milli\volt$\\
-		$1.107\volt$ & $108.903\nano\ampere$& $115.2\milli\volt$\\
-		\rowcol $1.204\volt$ & $118.446\nano\ampere$& $125.18\milli\volt$\\
-
+		$502\milli\volt$ & $49.385\nano\ampere$& $53.76\milli\volt$&$49.385\milli\volt$&$44.9\milli\volt$\\
+		\rowcol $600\milli\volt$ & $59.026\nano\ampere$& $63.7\milli\volt$&$59.026\milli\volt$&$54.9\milli\volt$\\
+		$713\milli\volt$ & $70.142\nano\ampere$& $75.2\milli\volt$& $70.142\milli\volt$& $64.9\milli\volt$\\
+		\rowcol $812\milli\volt$ & $79.881\nano\ampere$& $85.29\milli\volt$& $79.881\milli\volt$& $74.9\milli\volt$\\
+		$910\milli\volt$ & $89.522\nano\ampere$& $95.26\milli\volt$& $89.522\milli\volt$& $84.9\milli\volt$\\
+		\rowcol $1\volt$ & $99.163\nano\ampere$& $105.2\milli\volt$& $99.163\milli\volt$& $94.9\milli\volt$\\
+		$1.107\volt$ & $108.903\nano\ampere$& $115.2\milli\volt$& $108.903\milli\volt$& $105.9\milli\volt$\\
 		\hline \hline \hline \hline
 	\end{tabular}
 	\label{tab:cap4:TestCASOD1}
 \end{table}
+
+\begin{center}
+	\input{Imagenes/Desarrollo/DiseñoHardware/GraficaTestCASOD.tex}
+	\captionof{figure}{Gráfica de resultados arrojados en las pruebas, la simulación y de manera teórica para el CAS del sensor de OD.} \label{fig:cap4:TestCASpH2}
+\end{center}
+
 
 Para el dispositivo CAS del sensor de temperatura, las mediciones tomadas se muestran en la tabla~\ref{tab:cap4:TestCASTemp1}. El barrido del voltaje de entrada varía de $280\milli\volt$ a $320\milli\volt$, el cual se realiza mediante variaciones pequeñas en el voltaje.
 

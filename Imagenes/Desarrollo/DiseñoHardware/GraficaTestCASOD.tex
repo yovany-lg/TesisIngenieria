@@ -1,0 +1,26 @@
+\pgfplotsset{every axis/.append style={thick,tick style={thin},font=\footnotesize}}
+\begin{tikzpicture}
+\tikzset{
+every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\scriptsize},
+small dot/.style={fill=black,circle,scale=0.3}
+}
+	\begin{axis}[use units,x=0.075cm,y=0.075cm,
+			minor tick num=3,
+			axis y line=middle,
+			axis x line=middle,
+			x unit=nA,xlabel=${I}_{OD}$,
+			y unit=mV,ylabel=${V}_{CASOD}$,
+			xmin=0
+		]
+		\addplot[smooth,blue,domain=0:120] table[x={iod}, y={vcasod}]{CASODSimulation.data};
+		\addplot[smooth,teal,domain=50:100,samples=40]
+			{x};
+		\addplot[smooth,orange,domain=0:120] table[x={iod}, y={vcasod}]{CASODTest.data};
+		%pin=degree:comment at (...:x,y)
+		\node[small dot,pin=165:{Gr{\'a}fica de Simulaci{\'o}n}] at (axis description cs:0.77,.81) {};
+		\node[small dot,pin=90:{Gr{\'a}fica Te{\'o}rica}] at (axis description cs:.23,.3) {};
+		\node[small dot,pin=280:{Gr{\'a}fica de Pruebas}] at (axis description cs:.6,0.6) {};
+	\end{axis}
+\end{tikzpicture}
+
+
