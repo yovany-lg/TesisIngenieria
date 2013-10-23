@@ -15,14 +15,14 @@ La monitorización y automatización remota se engloba en el concepto de SCADA (Co
 
 Actualmente, los sistemas SCADA son usados en aplicaciones como: plantas de energía, telecomunicaciones, transporte, tratamiento de agua y desechos, y otras. En un sistema SCADA, los componentes \emph{hardware} obtienen datos y los emiten a una computadora, la cual cuenta con \emph{software} para procesamiento de información para mostrarla por medio de GUIs.
 
-La Universidad Tecnológica de la Mixteca (UTM) cuenta con una planta de tratamiento de aguas residuales (PTAR), la cual consta de una etapa preliminar (sistema de rejas o cribas, figura~\ref{fig:cap2:PTAR:rej}) y tres procesos principales (Figura~\ref{fig:cap1:PTARProcess})\cite{Cap2Bib:TesisIzcoatl}: 
+La Universidad Tecnológica de la Mixteca (UTM) cuenta con una planta de tratamiento de aguas residuales (PTAR), la cual consta de una etapa preliminar (sistema de rejas o cribas) y tres procesos principales (Figura~\ref{fig:cap1:PTARProcess})\cite{Cap2Bib:TesisIzcoatl}: 
 
 \begin{itemize} \itemsep=-0.5em
 	\item\emph{Tratamiento primario}: En este proceso se utiliza un tanque mezclador para homogenizar el efluente (agua residual) y controlar el flujo de entrada del siguiente tratamiento.
 
 	\item\emph{Tratamiento secundario}: Este tratamiento emplea un Sistema de Tratamiento por  Lodos Activados (STLA), en donde la biodegradación de la materia orgánica se lleva a cabo en un bioreactor. 
 
-	\item\emph{Tratamiento terciario}: En este proceso se utiliza un tanque en el que se adhiere una solución de hipoclorito de sodio (o cloro) para la eliminación de bacterias.
+	\item\emph{Tratamiento terciario}: En este proceso se utiliza un tanque en el que se dosifica una solución de hipoclorito de sodio para la eliminación de bacterias.
 \end{itemize}
 
 \begin{figure}[htb]
@@ -32,21 +32,21 @@ La Universidad Tecnológica de la Mixteca (UTM) cuenta con una planta de tratamie
 	\caption{Procesos de la PTAR de la UTM.} \label{fig:cap1:PTARProcess}
 \end{figure}
 
-Los parámetros importantes en estos procesos de tratamiento son \cite{Cap2Bib:Tratamiento}: 
+Los parámetros importantes en el proceso de tratamiento son \cite{Cap2Bib:Tratamiento}: 
 \begin{itemize} \itemsep=-0.5em
-	\item \emph{pH}: Este parámetro es importante para el tratamiento primario y secundario. Este parámetro determina si el agua es ácida o alcalina, por lo que el valor del pH debe estar en un rango de 7 a 7.5 unidades.
-	\item\emph{Oxígeno Disuelto (OD)}: Para el tratamiento secundario este parámetro es fundamental, ya que se puede determinar si se está aireando correctamente el bioreactor STLA, el valor del OD debe estar por arriba de $3 a 4\frac{\milli\gram {O}_{2}}{\liter}$. 
-	\item\emph{Temperatura}: Para las mediciones de pH del agua, la temperatura (del agua)\footnote{Es decir, que las mediciones de pH varían con la temperatura del agua} es importante, ya que dichas mediciones de pH varían en función de la temperatura.
+	\item \emph{pH}: La medición de pH es importante para el tratamiento primario y secundario. Este parámetro determina si el agua es ácida o alcalina, por lo que el valor del pH debe estar en un rango de 7 a 7.5 unidades~\cite{Cap2Bib:Metcalf}.
+	\item\emph{Oxígeno Disuelto (OD)}: Para el tratamiento secundario este parámetro es fundamental, ya que determina la cantidad de $O_2$ disponible por los microorganismos presentes en el tratamiento secundario. Se recomienda que el valor del OD este por arriba de $3 a 4\frac{\milli\gram {O}_{2}}{\liter}$ \cite{Cap2Bib:Metcalf}.
+	\item\emph{Temperatura}: La temperatura es importante para asegurar el crecimiento óptimo de los microorganismos en el tratamiento secundario, se recomienda que la temperatura este entre $28$ y $30\degreecelsius$.
 \end{itemize}
 
-La monitorización de los parámetros mencionados anteriormente, es un inicio para una futura automatización de la PTAR de la UTM, con lo cual se podrá garantizar la calidad del agua y una minimización significativa en los costos de operación, que son generados por los equipos de la planta que se mantienen en operación durante las 24 horas del día, lo cual significa un gran consumo de energía eléctrica \cite{Cap2Bib:Schneider}.
+El monitoreo de los parámetros anteriormente mencionados, es un inicio para una futura automatización de la PTAR de la UTM, con lo cual se podría garantizar una minimización significativa en los costos de operación, que son generados por los equipos de la planta que se mantienen en operación las 24 horas del día, lo cual significa un gran consumo de energía eléctrica \cite{Cap2Bib:Schneider}.
 
 Por lo anterior, este proyecto de tesis plantea el diseño y construcción de un sistema de monitoreo remoto para la PTAR de la UTM. El sistema que se desarrolló tiene como objetivo implementar un sistema SCADA para monitorear de manera remota y automatizada el estado de pH, OD y temperatura de la PTAR de la UTM. El sistema almacenará registros de mediciones y proporcionará una GUI a través de una aplicación Web.
 
 \section{Planteamiento del problema}
 \label{cap1:Planteamiento}
 
-La necesidad inicial, que generó este trabajo de tesis, es la automatización de la planta de tratamiento de aguas residuales. El propósito de la automatización es asegurar la calidad del agua y hacer eficiente la operación del sistema de difusores, los cuales actualmente se mantienen operando las 24 horas del día y generan un gran consumo de energía. La automatización permite que el consumo de energía sea sustancialmente bajo, lo cual tiene un impacto directo en los costos de operación \cite{Cap2Bib:Schneider}. 
+La necesidad inicial, que generó este trabajo de tesis, es la automatización de la PTAR. El propósito de la automatización es hacer eficiente la operación del sistema de aireación, el cual actualmente están en operación las 24 horas del día y generan un gran consumo de energía eléctrica. La automatización permite que el consumo de energía sea sustancialmente bajo, lo cual tiene un impacto directo en los costos de operación \cite{Cap2Bib:Schneider}.
 
 Dicho lo anterior, el primer paso para la automatización de la PTAR es la caracterización de la planta, esto se logra con un sistema de monitoreo de los parámetros que se han mencionado previamente. Por lo que, este trabajo de tesis propone el diseño y construcción de un prototipo de sistema de monitoreo para la PTAR de la UTM, dicho sistema será implementado bajo el concepto de sistemas SCADA. 
 
@@ -80,7 +80,7 @@ Debido a la situación anterior, es necesario diseñar y construir un prototipo de
 \section{Hipótesis}
 \label{cap1:Hipotesis}
 
-Del prototipo de sistema de monitoreo para la planta de tratamiento de aguas residuales de la Universidad Tecnológica de la Mixteca, se obtendrá una herramienta para almacenar y acceder a la información del estado actual y estados previos de temperatura, pH y Oxígeno Disuelto, así como realizar un análisis en base a un historial de registros de mediciones para conocer el comportamiento de la planta.
+Del prototipo de sistema de monitoreo para la planta de tratamiento de aguas residuales de la Universidad Tecnológica de la Mixteca, se obtendrá una herramienta para almacenar y acceder a la información del estado actual y estados previos de temperatura, pH y Oxígeno Disuelto, así como realizar un análisis en base a un historial de registros de mediciones y conocer el comportamiento de la planta.
 
 %Con el diseño y construcción de un prototipo de sistema de monitoreo remoto para la PTAR de la UTM, los encargados de dicha planta podrán tener acceso a la información acerca del estado actual y de los estados previos de temperatura, pH y Oxígeno Disuelto. Esto les permitirá realizar un análisis en base a un historial de registros de mediciones para conocer el comportamiento de la planta.
 
