@@ -107,6 +107,14 @@ W.~Hayt, W.~Hayt, J.~Kemmerly, and S.~Durbin, \emph{Engineering Circuit
 M.~Lapeña, \emph{Tratamiento de aguas industriales: aguas de proceso y
   residuales}, 1st~ed.\hskip 1em plus 0.5em minus 0.4em\relax Marcombo, 1989.
 
+\bibitem{Cap2Bib:SWTesting}
+\BIBentryALTinterwordspacing
+T.~Majchrzak, \emph{Improving Software Testing: Technical and Organizational
+  Developments}, ser. SpringerBriefs in Information Systems.\hskip 1em plus
+  0.5em minus 0.4em\relax Springer, 2012. [Online]. Available:
+  \url{http://books.google.com.mx/books?id=elYTKcDjgdIC}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Cap2Bib:MAX489}
 {MAXIM}, ``\BIBforeignlanguage{english}{Low-power, slew-rate-limited
   rs-485/rs-422 transceivers},'' Datasheet 19-0122, 2003.
@@ -199,23 +207,14 @@ I.~Sommerville and M.~Galipienso, \emph{Ingenier{\'\i}a del software}, ser.
   Fuera de colecci{\'o}n Out of series.\hskip 1em plus 0.5em minus 0.4em\relax
   Pearson Educaci{\'o}n, 2005.
 
-\bibitem{Cap2Bib:Metcalf2}
-G.~Tchobanoglous, F.~L.~Burton, and H.~D. Stensel,
-  \emph{\BIBforeignlanguage{spanish}{Constituents in wastewater}},
-  4th~ed.\hskip 1em plus 0.5em minus 0.4em\relax McGraw-Hill, 2003, vol.~1,
-  ch.~2, pp. 27--152.
-
-\bibitem{Cap2Bib:Metcalf7}
-G.~Tchobanoglous, F.~{L. Burton}, and H.~Stensel,
-  \emph{\BIBforeignlanguage{spanish}{Fundamentals of biological treatment}},
-  4th~ed.\hskip 1em plus 0.5em minus 0.4em\relax McGraw-Hill, 2003, vol.~2,
-  ch.~7, pp. 545--658.
-
-\bibitem{Cap2Bib:Metcalf1}
-G.~Tchobanoglous, F.~L.~Burton, and H.~D. Stensel,
-  \emph{\BIBforeignlanguage{spanish}{Wastewater engineering: An overview}},
-  4th~ed.\hskip 1em plus 0.5em minus 0.4em\relax McGraw-Hill, 2003, vol.~1,
-  ch.~1, pp. 1--26.
+\bibitem{Cap2Bib:Metcalf}
+\BIBentryALTinterwordspacing
+G.~Tchobanoglous, F.~Burton, M.~. Eddy, and H.~Stensel, \emph{Wastewater
+  Engineering: Treatment and Reuse}, ser. McGraw-Hill Series in Civil and
+  Environmental Engineering.\hskip 1em plus 0.5em minus 0.4em\relax McGraw-Hill
+  Education, 2004. [Online]. Available:
+  \url{http://books.google.com.mx/books?id=U9OmPwAACAAJ}
+\BIBentrySTDinterwordspacing
 
 \bibitem{Cap2Bib:DAC0808}
 {Texas Instruments}, ``\BIBforeignlanguage{english}{Dac0808 8-bit d/a

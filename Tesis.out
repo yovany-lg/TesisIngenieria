@@ -4,23 +4,135 @@
 \BOOKMARK [0][-]{chapter*.5}{\315ndice general}{}% 4
 \BOOKMARK [0][-]{chapter*.6}{\315ndice de tablas}{}% 5
 \BOOKMARK [0][-]{chapter*.7}{\315ndice de figuras}{}% 6
-\BOOKMARK [0][-]{chapter.1}{Verificaci\363n y validaci\363n del producto final: pruebas y resultados}{}% 7
-\BOOKMARK [1][-]{section.1.1}{Pruebas de caja blanca}{chapter.1}% 8
-\BOOKMARK [2][-]{subsection.1.1.1}{Prueba de configuraci\363n inicial del sistema}{section.1.1}% 9
-\BOOKMARK [2][-]{subsection.1.1.2}{Prueba de generaci\363n de Voffset-.4 y VPOD-.4}{section.1.1}% 10
-\BOOKMARK [2][-]{subsection.1.1.3}{Prueba de variaciones de voltaje en las entradas}{section.1.1}% 11
-\BOOKMARK [1][-]{section.1.2}{Pruebas de caja gris}{chapter.1}% 12
-\BOOKMARK [2][-]{subsection.1.2.1}{Prueba de comunicaci\363n serie entre la MTU y la RTU}{section.1.2}% 13
-\BOOKMARK [2][-]{subsection.1.2.2}{Prueba de comunicaci\363n entre la MTU y la base de datos}{section.1.2}% 14
-\BOOKMARK [2][-]{subsection.1.2.3}{Prueba de conexi\363n de sensores a la RTU}{section.1.2}% 15
-\BOOKMARK [2][-]{subsection.1.2.4}{Prueba del software de la MTU}{section.1.2}% 16
-\BOOKMARK [2][-]{subsection.1.2.5}{Prueba de la aplicaci\363n Web}{section.1.2}% 17
-\BOOKMARK [1][-]{section.1.3}{Pruebas de caja negra}{chapter.1}% 18
-\BOOKMARK [2][-]{subsection.1.3.1}{Prueba de gesti\363n de sesi\363n de usuario}{section.1.3}% 19
-\BOOKMARK [2][-]{subsection.1.3.2}{Prueba de gesti\363n de estados digitales}{section.1.3}% 20
-\BOOKMARK [0][-]{chapter*.43}{Bibliograf\355a}{}% 21
-\BOOKMARK [0][-]{appendix.Alph1}{Diagramas esquem\341ticos}{}% 22
-\BOOKMARK [0][-]{appendix.Alph2}{PCB}{}% 23
-\BOOKMARK [0][-]{appendix.Alph3}{Dise\361o Software}{}% 24
-\BOOKMARK [1][-]{section.Alph3.1}{Clases}{appendix.Alph3}% 25
-\BOOKMARK [1][-]{section.Alph3.2}{Diagramas de actividades}{appendix.Alph3}% 26
+\BOOKMARK [0][-]{chapter.1}{Introducci\363n}{}% 7
+\BOOKMARK [1][-]{section.1.1}{Planteamiento del problema}{chapter.1}% 8
+\BOOKMARK [1][-]{section.1.2}{Justificaci\363n}{chapter.1}% 9
+\BOOKMARK [1][-]{section.1.3}{Hip\363tesis}{chapter.1}% 10
+\BOOKMARK [1][-]{section.1.4}{Objetivos}{chapter.1}% 11
+\BOOKMARK [2][-]{subsection.1.4.1}{Objetivo general}{section.1.4}% 12
+\BOOKMARK [2][-]{subsection.1.4.2}{Objetivos espec\355ficos}{section.1.4}% 13
+\BOOKMARK [1][-]{section.1.5}{Contenido del documento de tesis}{chapter.1}% 14
+\BOOKMARK [0][-]{chapter.2}{Marco te\363rico}{}% 15
+\BOOKMARK [1][-]{section.2.1}{Sistemas SCADA}{chapter.2}% 16
+\BOOKMARK [2][-]{subsection.2.1.1}{Componentes hardware de un sistema SCADA distribuido}{section.2.1}% 17
+\BOOKMARK [3][-]{subsubsection.2.1.1.1}{Instrumentaci\363n}{subsection.2.1.1}% 18
+\BOOKMARK [3][-]{subsubsection.2.1.1.2}{Componentes de la RTU}{subsection.2.1.1}% 19
+\BOOKMARK [3][-]{subsubsection.2.1.1.3}{Componentes de la MTU}{subsection.2.1.1}% 20
+\BOOKMARK [2][-]{subsection.2.1.2}{Componentes software del sistema SCADA distribuido}{section.2.1}% 21
+\BOOKMARK [3][-]{subsubsection.2.1.2.1}{Comunicaci\363n con dispositivos de campo}{subsection.2.1.2}% 22
+\BOOKMARK [3][-]{subsubsection.2.1.2.2}{Comunicaci\363n entre aplicaciones}{subsection.2.1.2}% 23
+\BOOKMARK [4][-]{paragraph.2.1.2.2.1}{ODBC}{subsubsection.2.1.2.2}% 24
+\BOOKMARK [4][-]{paragraph.2.1.2.2.2}{SQL}{subsubsection.2.1.2.2}% 25
+\BOOKMARK [3][-]{subsubsection.2.1.2.3}{Bases de datos relacionales}{subsection.2.1.2}% 26
+\BOOKMARK [3][-]{subsubsection.2.1.2.4}{Interfaces de usuario \(UI\)}{subsection.2.1.2}% 27
+\BOOKMARK [2][-]{subsection.2.1.3}{SCADA en la Internet}{section.2.1}% 28
+\BOOKMARK [1][-]{section.2.2}{Planta de tratamiento de aguas residuales de la UTM}{chapter.2}% 29
+\BOOKMARK [2][-]{subsection.2.2.1}{El Agua Residual}{section.2.2}% 30
+\BOOKMARK [2][-]{subsection.2.2.2}{Sistema de tratamiento de aguas residuales de la UTM}{section.2.2}% 31
+\BOOKMARK [3][-]{subsubsection.2.2.2.1}{Sistema de tratamiento por lodos activados}{subsection.2.2.2}% 32
+\BOOKMARK [1][-]{section.2.3}{Descripci\363n de sensores}{chapter.2}% 33
+\BOOKMARK [2][-]{subsection.2.3.1}{Electrodo de pH}{section.2.3}% 34
+\BOOKMARK [3][-]{subsubsection.2.3.1.1}{Principio de funcionamiento del electrodo de pH}{subsection.2.3.1}% 35
+\BOOKMARK [3][-]{subsubsection.2.3.1.2}{Caracter\355sticas del electrodo de pH}{subsection.2.3.1}% 36
+\BOOKMARK [2][-]{subsection.2.3.2}{Electrodo de OD}{section.2.3}% 37
+\BOOKMARK [3][-]{subsubsection.2.3.2.1}{Principio de funcionamiento del electrodo de OD}{subsection.2.3.2}% 38
+\BOOKMARK [3][-]{subsubsection.2.3.2.2}{Caracter\355sticas del electrodo de OD}{subsection.2.3.2}% 39
+\BOOKMARK [2][-]{subsection.2.3.3}{Sensor de temperatura LM35}{section.2.3}% 40
+\BOOKMARK [3][-]{subsubsection.2.3.3.1}{Funcionamiento y caracter\355sticas del sensor LM35}{subsection.2.3.3}% 41
+\BOOKMARK [1][-]{section.2.4}{Protocolos de comunicaciones}{chapter.2}% 42
+\BOOKMARK [2][-]{subsection.2.4.1}{El modelo de referencia OSI}{section.2.4}% 43
+\BOOKMARK [3][-]{subsubsection.2.4.1.1}{Capa f\355sica}{subsection.2.4.1}% 44
+\BOOKMARK [3][-]{subsubsection.2.4.1.2}{Capa de enlace de datos}{subsection.2.4.1}% 45
+\BOOKMARK [3][-]{subsubsection.2.4.1.3}{Capa de red}{subsection.2.4.1}% 46
+\BOOKMARK [3][-]{subsubsection.2.4.1.4}{Capa de transporte}{subsection.2.4.1}% 47
+\BOOKMARK [3][-]{subsubsection.2.4.1.5}{Capa de sesi\363n}{subsection.2.4.1}% 48
+\BOOKMARK [3][-]{subsubsection.2.4.1.6}{Capa de presentaci\363n}{subsection.2.4.1}% 49
+\BOOKMARK [3][-]{subsubsection.2.4.1.7}{Capa de aplicaci\363n}{subsection.2.4.1}% 50
+\BOOKMARK [2][-]{subsection.2.4.2}{Interfaces serie}{section.2.4}% 51
+\BOOKMARK [3][-]{subsubsection.2.4.2.1}{Comunicaci\363n de datos serie en el est\341ndar RS-232}{subsection.2.4.2}% 52
+\BOOKMARK [4][-]{paragraph.2.4.2.1.1}{Caracter\355sticas de las se\361ales el\351ctricas}{subsubsection.2.4.2.1}% 53
+\BOOKMARK [4][-]{paragraph.2.4.2.1.2}{Descripci\363n funcional de los circuitos de intercambio}{subsubsection.2.4.2.1}% 54
+\BOOKMARK [3][-]{subsubsection.2.4.2.2}{Comunicaci\363n de datos serie en el est\341ndar RS-485}{subsection.2.4.2}% 55
+\BOOKMARK [2][-]{subsection.2.4.3}{Modbus}{section.2.4}% 56
+\BOOKMARK [3][-]{subsubsection.2.4.3.1}{Capa de enlace de datos del protocolo Modbus}{subsection.2.4.3}% 57
+\BOOKMARK [3][-]{subsubsection.2.4.3.2}{Descripci\363n de los c\363digos de funci\363n del protocolo Modbus}{subsection.2.4.3}% 58
+\BOOKMARK [4][-]{paragraph.2.4.3.2.1}{0x01 Lectura de Salidas Digitales o Relevadores}{subsubsection.2.4.3.2}% 59
+\BOOKMARK [4][-]{paragraph.2.4.3.2.2}{0x02 Lectura de Entradas Digitales}{subsubsection.2.4.3.2}% 60
+\BOOKMARK [4][-]{paragraph.2.4.3.2.3}{0x04 Lectura de Registros de Entrada}{subsubsection.2.4.3.2}% 61
+\BOOKMARK [4][-]{paragraph.2.4.3.2.4}{0x05 Escritura de una Salida Digital o Relevador Individual}{subsubsection.2.4.3.2}% 62
+\BOOKMARK [4][-]{paragraph.2.4.3.2.5}{0x06 Escritura de un Registro Individual}{subsubsection.2.4.3.2}% 63
+\BOOKMARK [2][-]{subsection.2.4.4}{Suite de protocolos TCP/IP}{section.2.4}% 64
+\BOOKMARK [3][-]{subsubsection.2.4.4.1}{Capa de enlace}{subsection.2.4.4}% 65
+\BOOKMARK [3][-]{subsubsection.2.4.4.2}{Capa de internet}{subsection.2.4.4}% 66
+\BOOKMARK [3][-]{subsubsection.2.4.4.3}{Capa de transporte}{subsection.2.4.4}% 67
+\BOOKMARK [3][-]{subsubsection.2.4.4.4}{Capa de aplicaci\363n}{subsection.2.4.4}% 68
+\BOOKMARK [1][-]{section.2.5}{Herramientas de desarrollo de aplicaciones Web y de escritorio}{chapter.2}% 69
+\BOOKMARK [2][-]{subsection.2.5.1}{Java}{section.2.5}% 70
+\BOOKMARK [2][-]{subsection.2.5.2}{PHP}{section.2.5}% 71
+\BOOKMARK [2][-]{subsection.2.5.3}{MySQL}{section.2.5}% 72
+\BOOKMARK [2][-]{subsection.2.5.4}{Framework Yii}{section.2.5}% 73
+\BOOKMARK [2][-]{subsection.2.5.5}{JavaScript}{section.2.5}% 74
+\BOOKMARK [0][-]{chapter.3}{Desarrollo del sistema}{}% 75
+\BOOKMARK [1][-]{section.3.1}{Iniciativa}{chapter.3}% 76
+\BOOKMARK [2][-]{subsection.3.1.1}{Estado actual de la PTAR}{section.3.1}% 77
+\BOOKMARK [2][-]{subsection.3.1.2}{Propuesta}{section.3.1}% 78
+\BOOKMARK [1][-]{section.3.2}{Gestionamiento}{chapter.3}% 79
+\BOOKMARK [2][-]{subsection.3.2.1}{Requerimientos funcionales de la propuesta}{section.3.2}% 80
+\BOOKMARK [3][-]{subsubsection.3.2.1.1}{Clasificaci\363n y an\341lisis de requerimientos}{subsection.3.2.1}% 81
+\BOOKMARK [2][-]{subsection.3.2.2}{Divisi\363n hardware y software}{section.3.2}% 82
+\BOOKMARK [3][-]{subsubsection.3.2.2.1}{Selecci\363n de hardware}{subsection.3.2.2}% 83
+\BOOKMARK [3][-]{subsubsection.3.2.2.2}{Selecci\363n de herramientas software de dise\361o y desarrollo}{subsection.3.2.2}% 84
+\BOOKMARK [1][-]{section.3.3}{Definici\363n}{chapter.3}% 85
+\BOOKMARK [2][-]{subsection.3.3.1}{Dise\361o hardware}{section.3.3}% 86
+\BOOKMARK [3][-]{subsubsection.3.3.1.1}{Dise\361o de la etapa de acondicionamiento de los sensores}{subsection.3.3.1}% 87
+\BOOKMARK [4][-]{paragraph.3.3.1.1.1}{CAS del sensor de pH}{subsubsection.3.3.1.1}% 88
+\BOOKMARK [4][-]{paragraph.3.3.1.1.2}{CAS del sensor de OD}{subsubsection.3.3.1.1}% 89
+\BOOKMARK [4][-]{paragraph.3.3.1.1.3}{CAS del sensor de temperatura}{subsubsection.3.3.1.1}% 90
+\BOOKMARK [3][-]{subsubsection.3.3.1.2}{Entradas y salidas de la RTU}{subsection.3.3.1}% 91
+\BOOKMARK [3][-]{subsubsection.3.3.1.3}{Interfaz RS-485}{subsection.3.3.1}% 92
+\BOOKMARK [3][-]{subsubsection.3.3.1.4}{Transceptor RS-232/RS-485}{subsection.3.3.1}% 93
+\BOOKMARK [2][-]{subsection.3.3.2}{Dise\361o software}{section.3.3}% 94
+\BOOKMARK [3][-]{subsubsection.3.3.2.1}{software de la RTU}{subsection.3.3.2}% 95
+\BOOKMARK [4][-]{paragraph.3.3.2.1.1}{Requerimientos formales}{subsubsection.3.3.2.1}% 96
+\BOOKMARK [4][-]{paragraph.3.3.2.1.2}{Clases}{subsubsection.3.3.2.1}% 97
+\BOOKMARK [4][-]{paragraph.3.3.2.1.3}{Diagramas de actividades}{subsubsection.3.3.2.1}% 98
+\BOOKMARK [3][-]{subsubsection.3.3.2.2}{software de la MTU}{subsection.3.3.2}% 99
+\BOOKMARK [4][-]{paragraph.3.3.2.2.1}{Requerimientos formales}{subsubsection.3.3.2.2}% 100
+\BOOKMARK [4][-]{paragraph.3.3.2.2.2}{Clases}{subsubsection.3.3.2.2}% 101
+\BOOKMARK [4][-]{paragraph.3.3.2.2.3}{Casos de uso}{subsubsection.3.3.2.2}% 102
+\BOOKMARK [4][-]{paragraph.3.3.2.2.4}{Diagramas de actividades}{subsubsection.3.3.2.2}% 103
+\BOOKMARK [3][-]{subsubsection.3.3.2.3}{software de la aplicaci\363n Web}{subsection.3.3.2}% 104
+\BOOKMARK [4][-]{paragraph.3.3.2.3.1}{Requerimientos formales}{subsubsection.3.3.2.3}% 105
+\BOOKMARK [4][-]{paragraph.3.3.2.3.2}{Clases}{subsubsection.3.3.2.3}% 106
+\BOOKMARK [4][-]{paragraph.3.3.2.3.3}{Modelo entidad-relaci\363n}{subsubsection.3.3.2.3}% 107
+\BOOKMARK [4][-]{paragraph.3.3.2.3.4}{Casos de uso}{subsubsection.3.3.2.3}% 108
+\BOOKMARK [4][-]{paragraph.3.3.2.3.5}{Diagramas de actividades}{subsubsection.3.3.2.3}% 109
+\BOOKMARK [2][-]{subsection.3.3.3}{Integraci\363n de elementos hardware y software}{section.3.3}% 110
+\BOOKMARK [3][-]{subsubsection.3.3.3.1}{Dise\361o del PCB de los m\363dulos hardware}{subsection.3.3.3}% 111
+\BOOKMARK [4][-]{paragraph.3.3.3.1.1}{Dise\361o del PCB para el CAS del sensor de pH}{subsubsection.3.3.3.1}% 112
+\BOOKMARK [4][-]{paragraph.3.3.3.1.2}{Dise\361o PCB para el CAS del sensor de OD y temperatura}{subsubsection.3.3.3.1}% 113
+\BOOKMARK [4][-]{paragraph.3.3.3.1.3}{Dise\361o del PCB para el m\363dulo del MCU}{subsubsection.3.3.3.1}% 114
+\BOOKMARK [4][-]{paragraph.3.3.3.1.4}{Dise\361o del PCB para el transceptor RS-232/RS-485}{subsubsection.3.3.3.1}% 115
+\BOOKMARK [3][-]{subsubsection.3.3.3.2}{Dise\361o de interfaces gr\341ficas}{subsection.3.3.3}% 116
+\BOOKMARK [0][-]{chapter.4}{Verificaci\363n y validaci\363n del producto final: pruebas y resultados}{}% 117
+\BOOKMARK [1][-]{section.4.1}{Pruebas de caja blanca}{chapter.4}% 118
+\BOOKMARK [2][-]{subsection.4.1.1}{Prueba de configuraci\363n inicial del sistema}{section.4.1}% 119
+\BOOKMARK [2][-]{subsection.4.1.2}{Prueba de generaci\363n de Voffset-.4 y VPOD-.4}{section.4.1}% 120
+\BOOKMARK [2][-]{subsection.4.1.3}{Prueba de variaciones de voltaje en las entradas}{section.4.1}% 121
+\BOOKMARK [1][-]{section.4.2}{Pruebas de caja gris}{chapter.4}% 122
+\BOOKMARK [2][-]{subsection.4.2.1}{Prueba de comunicaci\363n serie entre la MTU y la RTU}{section.4.2}% 123
+\BOOKMARK [2][-]{subsection.4.2.2}{Prueba de comunicaci\363n entre la MTU y la base de datos}{section.4.2}% 124
+\BOOKMARK [2][-]{subsection.4.2.3}{Prueba de conexi\363n de sensores a la RTU}{section.4.2}% 125
+\BOOKMARK [2][-]{subsection.4.2.4}{Prueba del software de la MTU}{section.4.2}% 126
+\BOOKMARK [2][-]{subsection.4.2.5}{Prueba de la aplicaci\363n Web}{section.4.2}% 127
+\BOOKMARK [1][-]{section.4.3}{Pruebas de caja negra}{chapter.4}% 128
+\BOOKMARK [2][-]{subsection.4.3.1}{Prueba de gesti\363n de sesi\363n de usuario}{section.4.3}% 129
+\BOOKMARK [2][-]{subsection.4.3.2}{Prueba de gesti\363n de estados digitales}{section.4.3}% 130
+\BOOKMARK [0][-]{chapter.5}{Conclusiones}{}% 131
+\BOOKMARK [1][-]{section.5.1}{L\355neas futuras de investigaci\363n}{chapter.5}% 132
+\BOOKMARK [0][-]{chapter*.157}{Bibliograf\355a}{}% 133
+\BOOKMARK [0][-]{appendix.Alph1}{Diagramas esquem\341ticos}{}% 134
+\BOOKMARK [0][-]{appendix.Alph2}{PCB}{}% 135
+\BOOKMARK [0][-]{appendix.Alph3}{Dise\361o Software}{}% 136
+\BOOKMARK [1][-]{section.Alph3.1}{Clases}{appendix.Alph3}% 137
+\BOOKMARK [1][-]{section.Alph3.2}{Diagramas de actividades}{appendix.Alph3}% 138

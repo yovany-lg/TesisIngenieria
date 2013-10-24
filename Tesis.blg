@@ -5,11 +5,7 @@ A level-1 auxiliary file: Presentacion/Portada/Portada.aux
 A level-1 auxiliary file: Presentacion/DedicAgradec/DedicatoriaAgradecimientos.aux
 A level-1 auxiliary file: Presentacion/DedicAgradec/FrasesCelebres.aux
 A level-1 auxiliary file: Presentacion/Resumen/Resumen.aux
-A level-1 auxiliary file: Contenido/1-Introduccion.aux
-A level-1 auxiliary file: Contenido/2-MarcoTeorico.aux
-A level-1 auxiliary file: Contenido/3-Desarrollo.aux
 A level-1 auxiliary file: Contenido/4-Verificacion.aux
-A level-1 auxiliary file: Contenido/5-Conclusiones.aux
 The style file: IEEEtranS.bst
 A level-1 auxiliary file: Apendices/Apendices.aux
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -35,45 +31,45 @@ Warning--missing institution in Cap2Bib:MAX232
 Warning--missing institution in Cap2Bib:TL081
 
 Done.
-You've used 49 entries,
+You've used 48 entries,
             4498 wiz_defined-function locations,
-            1200 strings with 15345 characters,
-and the built_in function-call counts, 27029 in all, are:
-= -- 2252
-> -- 628
-< -- 106
-+ -- 259
-- -- 160
-* -- 1434
-:= -- 4470
-add.period$ -- 98
-call.type$ -- 49
-change.case$ -- 226
-chr.to.int$ -- 240
-cite$ -- 60
-duplicate$ -- 2004
-empty$ -- 2405
-format.name$ -- 179
-if$ -- 5851
+            1193 strings with 15326 characters,
+and the built_in function-call counts, 25045 in all, are:
+= -- 2090
+> -- 575
+< -- 71
++ -- 233
+- -- 152
+* -- 1314
+:= -- 4242
+add.period$ -- 96
+call.type$ -- 48
+change.case$ -- 217
+chr.to.int$ -- 162
+cite$ -- 59
+duplicate$ -- 1873
+empty$ -- 2273
+format.name$ -- 169
+if$ -- 5380
 int.to.chr$ -- 0
-int.to.str$ -- 49
-missing$ -- 359
-newline$ -- 172
-num.names$ -- 98
-pop$ -- 1007
+int.to.str$ -- 48
+missing$ -- 344
+newline$ -- 173
+num.names$ -- 96
+pop$ -- 968
 preamble$ -- 1
-purify$ -- 178
+purify$ -- 172
 quote$ -- 2
-skip$ -- 1922
+skip$ -- 1796
 stack$ -- 0
-substring$ -- 605
-swap$ -- 1202
-text.length$ -- 26
+substring$ -- 441
+swap$ -- 1077
+text.length$ -- 17
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 363
+type$ -- 358
 warning$ -- 11
-while$ -- 141
-width$ -- 51
-write$ -- 415
+while$ -- 124
+width$ -- 50
+write$ -- 407
 (There were 11 warnings)

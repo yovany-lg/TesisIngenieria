@@ -117,7 +117,7 @@ El elemento principal de este módulo es un convertidor análogo-digital (ADC, \em
 
 \item \emph{Salidas analógicas}: Un periférico de salida analógica en general consiste de dos módulos: un registro de salidas digitales (usualmente 8 bits) y un convertidor digital-análogo (DAC, \emph{Digital-Analog Converter}). El DAC es un dispositivo que recibe un código digital (binario) y genera un nivel de voltaje de salida (analógico), como se ilustra en la figura~\ref{fig:cap2:SCADA:dist:HW::RTU:DAC}.
 
-En una RTU, una salida analógica frecuentemente se usa como voltaje de referencia para el controlador de algún dispositivo analógico, como puede ser el controlador de un motor, una bomba, un sistema de enfriamiento, un calefactor, etc. Una salida analógica también puede ser usada como fuente de alimentación para dispositivos de bajo consumo de energía, por ejemplo, la alimentación o polarización de un sensor de Oxígeno Disuelto y otros.
+En una RTU, una salida analógica frecuentemente se usa como voltaje de referencia para el controlador de algún dispositivo analógico, como puede ser el controlador de un motor, una bomba, un sistema de enfriamiento, un calefactor, etc. Una salida analógica también puede ser usada como fuente de alimentación para dispositivos de bajo consumo de energía, por ejemplo, la alimentación o polarización de un sensor de OD y otros.
 
 \item \emph{Entradas y salidas digitales}: Las entradas y salidas digitales se usan para indicar información como señales de estados lógicos de alarmas y otros dispositivos. Por ejemplo el estado (encendido o apagado) de un relevador que controla una válvula, un actuador o cualquier dispositivo analógico o de las alarmas que indican el estado crítico de alguna variable en el proceso de una RTU. Dichas alarmas son procesadas por la MTU para tomar medidas de control o simplemente mostrarlas en una pantalla de operador.
 
@@ -311,7 +311,7 @@ Desde el punto de vista biológico, la mayoría de las especies prefieren valores 
 
 El principio básico de este proceso consiste en que las aguas residuales se pongan en contacto con una población microbiana mixta en forma de suspensión floculenta (o lodo) en un sistema aireado y agitado \cite{Cap2Bib:Metcalf7}.
 
-El funcionamiento de procesos aeróbicos, tal es el caso de el sistema de lodos activados, depende de la disponibilidad de cantidades suficientes de oxígeno en el sistema. La transferencia de oxígeno es el proceso mediante el cual el oxígeno es transferido de un medio gaseoso a un medio líquido.
+El funcionamiento de procesos aeróbicos, tal es el caso de el sistema de lodos activados, depende de la disponibilidad de cantidades suficientes de ${O}_{2}$ en el sistema. La transferencia de ${O}_{2}$ es el proceso mediante el cual el ${O}_{2}$ es transferido de un medio gaseoso a un medio líquido.
 
 Una vez que se alcanza el grado de tratamiento que se desea, el lodo se separa del agua residual por asentamiento, esta etapa es también conocida como sedimentación. El ``sobrenadante'' de la etapa de separación es el agua residual tratada y libre de lodos. La mayor parte del lodo asentado en la etapa de separación se regresa a la etapa de aireación para mantener la concentración de los lodos en el tanque de aireación al nivel necesario para un tratamiento efectivo. 
 
@@ -382,44 +382,44 @@ El electrodo ideal a una temperatura de $25\degreecelsius$ tiene una sensibilida
 	\caption{Voltaje de salida del sensor en función del nivel de pH.} \label{fig:cap2:sec:Sensores:pH4}
 \end{figure}
 
-\subsection{Electrodo de oxígeno disuelto}
+\subsection{Electrodo de OD}
 \label{cap2:sec:Sensores:OD}
 
-Existen dos principales tipos de electrodos de oxígeno disuelto (OD): electrodos sin membrana y electrodos con membrana permeable (\emph{Principio de Clark}) \cite{Cap2Bib:OD}.
+Principalmente existen dos tipos de electrodos de OD: electrodos sin membrana y electrodos con membrana permeable (\emph{Principio de Clark}) \cite{Cap2Bib:OD}.
 
-Actualmente los electrodos con membrana que funcionan con el principio de Clark son los más usados globalmente, los cuales permiten mediciones de oxígeno en gases y soluciones, otra ventaja es que el electrodo y la solución no se contaminan mutuamente.
+Actualmente los electrodos con membrana que funcionan con el principio de Clark son los más usados globalmente, los cuales permiten mediciones de ${O}_{2}$ en gases y soluciones, otra ventaja es que el electrodo y la solución no se contaminan mutuamente.
 
-En la UTM se cuenta con un electrodo de OD marca \emph{Mettler-Toledo}, cuyo modelo es \emph{InPro 6800} como el que se muestra en la figura~\ref{fig:cap2:sec:Sensores:OD1}. Este electrodo está destinado a mediciones en línea (\emph{Inline Measurement}) de la presión parcial de oxígeno en líquidos y gases .
+En la UTM se cuenta con un electrodo de OD marca \emph{Mettler-Toledo}, cuyo modelo es \emph{InPro 6800} como el que se muestra en la figura~\ref{fig:cap2:sec:Sensores:OD1}. Este electrodo está destinado a mediciones en línea (\emph{Inline Measurement}) de la presión parcial de ${O}_{2}$ en líquidos y gases .
 
 \begin{figure}[htb]
 	\begin{center}
 		\includegraphics[scale=0.4]{Imagenes/MarcoTeorico/DOElectrode.png}
 	\end{center}
-	\caption{Electrodo de oxígeno disuelto de la marca \emph{Mettler Toledo}.}\label{fig:cap2:sec:Sensores:OD1}
+	\caption{Electrodo de OD de la marca \emph{Mettler Toledo}.}\label{fig:cap2:sec:Sensores:OD1}
 \end{figure}
 
 Algunas de las aplicaciones de estos electrodos de OD son: fermentación, propagación de levadura, aireación de mosto, acondicionamiento de agua de manantial y almacenamiento y procesado de jugo de frutas.
 
-\subsubsection{Principio de funcionamiento del electrodo de oxígeno disuelto}
+\subsubsection{Principio de funcionamiento del electrodo de OD}
 \label{cap2:sec:Sensores:OD:PF}
 
-El electrodo \emph{InPro 6800} está basado en el principio de medición polarográfica (\emph{Clark Polarographic Sensor}), el cual consiste de un electrodo de operación (\emph{cátodo}), un electrodo de contra-referencia (\emph{ánodo}) y una membrana permeable al oxígeno, dicha membrana separa los electrodos de la muestra. En la figura~\ref{fig:cap2:sec:Sensores:OD2} se ilustran los componentes del electrodo de oxígeno disuelto \cite{Cap2Bib:OD}.
+El electrodo \emph{InPro 6800} está basado en el principio de medición polarográfica (\emph{Clark Polarographic Sensor}), el cual consiste de un electrodo de operación (\emph{cátodo}), un electrodo de contra-referencia (\emph{ánodo}) y una membrana permeable al ${O}_{2}$, dicha membrana separa los electrodos de la muestra. En la figura~\ref{fig:cap2:sec:Sensores:OD2} se ilustran los componentes del electrodo de OD \cite{Cap2Bib:OD}.
 
 \begin{figure}[htb]
 	\begin{center}
 		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/ElectrodoOD.pdf}
 	\end{center}
-	\caption{Características del electrodo de oxígeno disuelto.} \label{fig:cap2:sec:Sensores:OD2}
+	\caption{Características del electrodo de OD.} \label{fig:cap2:sec:Sensores:OD2}
 \end{figure}
 
 
-El electrodo de OD es un sensor pasivo, lo que quiere decir que requiere una fuente de excitación, en este caso se le llama fuente de polarización. Esta fuente de polarización debe proporcionar un voltaje constante al cátodo para reducir el oxígeno. 
+El electrodo de OD es un sensor pasivo, lo que quiere decir que requiere una fuente de excitación, en este caso se le llama fuente de polarización. Esta fuente de polarización debe proporcionar un voltaje constante al cátodo para reducir el ${O}_{2}$. 
 
-Las moléculas de oxígeno que migran a través de la membrana permeable son reducidas en el cátodo. Al mismo tiempo se origina una oxidación en el ánodo, por lo que el metal (\emph{Plata}) oxidado del ánodo es liberado en forma de iones de plata dentro de un electrolito. El electrolito provoca que se cierre el circuito eléctrico entre el ánodo y el cátodo (conductividad iónica).
+Las moléculas de ${O}_{2}$ que migran a través de la membrana permeable son reducidas en el cátodo. Al mismo tiempo se origina una oxidación en el ánodo, por lo que el metal (\emph{Plata}) oxidado del ánodo es liberado en forma de iones de plata dentro de un electrolito. El electrolito provoca que se cierre el circuito eléctrico entre el ánodo y el cátodo (conductividad iónica).
 
-La corriente producida por las reacciones descritas anteriormente es proporcional a la presión parcial del oxígeno en la muestra.
+La corriente producida por las reacciones descritas anteriormente es proporcional a la presión parcial del ${O}_{2}$ en la muestra.
 
-\subsubsection{Características del electrodo de oxígeno disuelto}
+\subsubsection{Características del electrodo de OD}
 \label{cap2:sec:Sensores:OD:Ca}
 
 Para un funcionamiento correcto, el electrodo \emph{InPro 6800} requiere de una polarización completa, lo cual se logra cuando se mantiene conectado el electrodo al voltaje de polarización constantemente por $6$ horas. Si el sensor es desconectado por más de 5 minutos, se debe volver a realizar el proceso de polarización \cite{Cap2Bib:OD}.

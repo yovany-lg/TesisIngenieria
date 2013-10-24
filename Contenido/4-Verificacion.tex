@@ -237,27 +237,27 @@ Las pruebas de comunicación consisten básicamente en verificar que la comunicaci
 
 \subsection{Prueba de comunicación serie entre la MTU y la RTU}
 
-La prueba de comunicación serie entre la MTU y la RTU consiste en verificar que la comunicación entre la RTU y el \emph{software} de la MTU se lleve a cabo bajo el estándar definido por el protocolo Modbus y la configuración de la interfaz serie definida en el apartado~\ref{cap3:DSW:RTUDA}. Dicha comunicación serie se realiza a través de la pasarela RS-232/RS-485, cuya presentación final se muestra en la figura~\ref{fig:cap4:Pasarela232485}.
+La prueba de comunicación serie entre la MTU y la RTU consiste en verificar que la comunicación entre la RTU y el \emph{software} de la MTU se lleve a cabo bajo el estándar definido por el protocolo Modbus y la configuración de la interfaz serie definida en el apartado~\ref{cap3:DSW:RTUDA}. Dicha comunicación serie se realiza a través del transceptor RS-232/RS-485, cuya presentación final se muestra en la figura~\ref{fig:cap4:Pasarela232485}.
 
 \begin{figure}[htb]
 	\begin{center}
 		\begin{tabular}{c@{\hskip 0.5in}c}
-			\subfloat[Vista frontal de la pasarela RS-232/RS-485.]{%
+			\subfloat[Vista frontal del transceptor RS-232/RS-485.]{%
 				\label{fig:cap4:Pasarela232485_1}%
 				\includegraphics[scale=0.15]{Imagenes/Verificacion/Pasarela232-485.png}} &
-			\subfloat[Vista trasera de la pasarela RS-232/RS-485.]{%
+			\subfloat[Vista trasera del transceptor RS-232/RS-485.]{%
 				\label{fig:cap4:Pasarela232485_2}%
 				\includegraphics[scale=0.15]{Imagenes/Verificacion/Pasarela232-485_2.png}} \\
 		\end{tabular}
 	\end{center}
-	\caption{Presentación final de la pasarela RS-232/RS-485.} \label{fig:cap4:Pasarela232485}
+	\caption{Presentación final del transceptor RS-232/RS-485.} \label{fig:cap4:Pasarela232485}
 \end{figure}
 
 Debido a que en esta prueba se utiliza una computadora portátil (\emph{Notebook}), se requiere usar un dispositivo o cable convertidor de USB a la interfaz serie RS-232 (Figura~\ref{fig:cap4:USB-SER}). 
 
-Para conectar la pasarela RS-232/RS-485 a la interfaz serie RS-232 se construye un cable serie que consta de un conector \emph{DB-9} hembra y un conector hembra de tres terminales\footnote{La configuración de terminales para el cable serie se describe en la sección~\ref{cap3:IHWRS232RS485}.} que se conecta a dicha pasarela (Figura~\ref{fig:cap4:Cableserie}). 
+Para conectar el transceptor RS-232/RS-485 a la interfaz serie RS-232 se construye un cable serie que consta de un conector \emph{DB-9} hembra y un conector hembra de tres terminales\footnote{La configuración de terminales para el cable serie se describe en la sección~\ref{cap3:IHWRS232RS485}.} que se conecta a dicho transceptor (Figura~\ref{fig:cap4:Cableserie}). 
 
-La fuente de alimentación utilizada para la pasarela RS-232/RS-485 es un convertidor de voltaje (o eliminador) de $4.5\volt$, el cual se muestra en la figura~\ref{fig:cap4:LabFuente5v}.
+La fuente de alimentación utilizada para el transceptor RS-232/RS-485 es un convertidor de voltaje (o eliminador) de $4.5\volt$, el cual se muestra en la figura~\ref{fig:cap4:LabFuente5v}.
 
 \begin{figure}[htb]
 	\begin{center}
@@ -265,10 +265,10 @@ La fuente de alimentación utilizada para la pasarela RS-232/RS-485 es un convert
 			\subfloat[Cable convertidor de USB a la interfaz serie RS-232.]{%
 				\label{fig:cap4:USB-SER}%
 				\includegraphics[scale=0.18]{Imagenes/Verificacion/USB-SER.png}} &
-			\subfloat[Cable serie para conectar la pasarela a la interfaz RS-232.]{%
+			\subfloat[Cable serie para conectar el transceptor a la interfaz RS-232.]{%
 				\label{fig:cap4:Cableserie}%
 				\includegraphics[scale=0.18]{Imagenes/Verificacion/CableSerial.png}} &
-			\subfloat[Fuente de alimentación para la pasarela RS-232/RS-485.]{%
+			\subfloat[Fuente de alimentación para el transceptor RS-232/RS-485.]{%
 				\label{fig:cap4:LabFuente5v}%
 				\includegraphics[scale=0.18]{Imagenes/Verificacion/LabFuente5v.png}}\\
 		\end{tabular}
@@ -276,7 +276,7 @@ La fuente de alimentación utilizada para la pasarela RS-232/RS-485 es un convert
 	\caption{Elementos requeridos para la comunicación serie.} \label{fig:cap4:ElemPasarela}
 \end{figure}
 
-La configuración de conexiones para la comunicación entre la RTU y la MTU se muestra en la figura~\ref{fig:cap4:TestComm}. Como se observa, la conexión entre la RTU y la pasarela RS-232/RS-485 se realiza a través de un cable de par trenzado (UTP, \emph{Unshielded Twisted Pair}). 
+La configuración de conexiones para la comunicación entre la RTU y la MTU se muestra en la figura~\ref{fig:cap4:TestComm}. Como se observa, la conexión entre la RTU y el transceptor RS-232/RS-485 se realiza a través de un cable de par trenzado (UTP, \emph{Unshielded Twisted Pair}). 
 
 \begin{figure}[htb]
 	\begin{center}
@@ -284,7 +284,7 @@ La configuración de conexiones para la comunicación entre la RTU y la MTU se mue
 			\subfloat[Conexión del cable UTP a la RTU.]{
 				\label{fig:cap4:TestComm1}
 				\includegraphics[scale=0.3]{Imagenes/Verificacion/TestComm.png}} &
-			\subfloat[Conexión del cabe UTP a la pasarela y conexión a la \emph{notebook}.]{
+			\subfloat[Conexión del cabe UTP al transceptor y conexión a la \emph{notebook}.]{
 				\label{fig:cap4:TestComm2}
 				\includegraphics[scale=0.3]{Imagenes/Verificacion/TestComm2.png}}\\
 		\end{tabular}

@@ -2,26 +2,138 @@
 \contentsline {chapter}{Dedicatoria}{\es@scroman {iii}}{chapter*.1}
 \contentsline {chapter}{Agradecimientos}{\es@scroman {v}}{chapter*.2}
 \contentsline {chapter}{Resumen}{\es@scroman {ix}}{chapter*.4}
-\contentsline {chapter}{\'Indice general}{\es@scroman {xi}}{chapter*.5}
-\contentsline {chapter}{\'{I}ndice de tablas}{\es@scroman {xiii}}{chapter*.6}
-\contentsline {chapter}{\'{I}ndice de figuras}{\es@scroman {xv}}{chapter*.7}
-\contentsline {chapter}{\numberline {1}Verificaci\'on y validaci\'on del producto final: pruebas y resultados}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Pruebas de caja blanca}{2}{section.1.1}
-\contentsline {subsection}{\numberline {1.1.1}Prueba de configuraci\'on inicial del sistema}{2}{subsection.1.1.1}
-\contentsline {subsection}{\numberline {1.1.2}Prueba de generaci\'on de $\pmb {{V}_{offset}}$ y $\pmb {{V}_{POD}}$}{4}{subsection.1.1.2}
-\contentsline {subsection}{\numberline {1.1.3}Prueba de variaciones de voltaje en las entradas}{5}{subsection.1.1.3}
-\contentsline {section}{\numberline {1.2}Pruebas de caja gris}{8}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Prueba de comunicaci\'on serie entre la MTU y la RTU}{8}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}Prueba de comunicaci\'on entre la MTU y la base de datos}{14}{subsection.1.2.2}
-\contentsline {subsection}{\numberline {1.2.3}Prueba de conexi\'on de sensores a la RTU}{14}{subsection.1.2.3}
-\contentsline {subsection}{\numberline {1.2.4}Prueba del \emph {software} de la MTU}{16}{subsection.1.2.4}
-\contentsline {subsection}{\numberline {1.2.5}Prueba de la aplicaci\'on Web}{22}{subsection.1.2.5}
-\contentsline {section}{\numberline {1.3}Pruebas de caja negra}{26}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}Prueba de gesti\'on de sesi\'on de usuario}{26}{subsection.1.3.1}
-\contentsline {subsection}{\numberline {1.3.2}Prueba de gesti\'on de estados digitales}{28}{subsection.1.3.2}
-\contentsline {chapter}{Bibliograf\'{\i }a}{31}{chapter*.43}
-\contentsline {chapter}{\numberline {A}Diagramas esquem\'aticos}{35}{appendix.Alph1}
-\contentsline {chapter}{\numberline {B}PCB}{37}{appendix.Alph2}
-\contentsline {chapter}{\numberline {C}Dise\~no Software}{41}{appendix.Alph3}
-\contentsline {section}{\numberline {C.1}Clases}{41}{section.Alph3.1}
-\contentsline {section}{\numberline {C.2}Diagramas de actividades}{46}{section.Alph3.2}
+\contentsline {chapter}{\'Indice general}{\es@scroman {xiv}}{chapter*.5}
+\contentsline {chapter}{\'{I}ndice de tablas}{\es@scroman {xv}}{chapter*.6}
+\contentsline {chapter}{\'{I}ndice de figuras}{\es@scroman {xvii}}{chapter*.7}
+\contentsline {chapter}{\numberline {1}Introducci\'on}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Planteamiento del problema}{3}{section.1.1}
+\contentsline {section}{\numberline {1.2}Justificaci\'on}{4}{section.1.2}
+\contentsline {section}{\numberline {1.3}Hip\'otesis}{4}{section.1.3}
+\contentsline {section}{\numberline {1.4}Objetivos}{4}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Objetivo general}{4}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}Objetivos espec\IeC {\'\i }ficos}{5}{subsection.1.4.2}
+\contentsline {section}{\numberline {1.5}Contenido del documento de tesis}{5}{section.1.5}
+\contentsline {chapter}{\numberline {2}Marco te\'orico}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}Sistemas SCADA}{7}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Componentes \emph {hardware} de un sistema SCADA distribuido}{9}{subsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.1.1}Instrumentaci\'on}{10}{subsubsection.2.1.1.1}
+\contentsline {subsubsection}{\numberline {2.1.1.2}Componentes de la RTU}{11}{subsubsection.2.1.1.2}
+\contentsline {subsubsection}{\numberline {2.1.1.3}Componentes de la MTU}{13}{subsubsection.2.1.1.3}
+\contentsline {subsection}{\numberline {2.1.2}Componentes \emph {software} del sistema SCADA distribuido}{14}{subsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.2.1}Comunicaci\'on con dispositivos de campo}{15}{subsubsection.2.1.2.1}
+\contentsline {subsubsection}{\numberline {2.1.2.2}Comunicaci\'on entre aplicaciones}{15}{subsubsection.2.1.2.2}
+\contentsline {paragraph}{\numberline {2.1.2.2.1}ODBC}{15}{paragraph.2.1.2.2.1}
+\contentsline {paragraph}{\numberline {2.1.2.2.2}SQL}{16}{paragraph.2.1.2.2.2}
+\contentsline {subsubsection}{\numberline {2.1.2.3}Bases de datos relacionales}{16}{subsubsection.2.1.2.3}
+\contentsline {subsubsection}{\numberline {2.1.2.4}Interfaces de usuario (UI)}{16}{subsubsection.2.1.2.4}
+\contentsline {subsection}{\numberline {2.1.3}SCADA en la Internet}{17}{subsection.2.1.3}
+\contentsline {section}{\numberline {2.2}Planta de tratamiento de aguas residuales de la UTM}{17}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}El Agua Residual}{17}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Sistema de tratamiento de aguas residuales de la UTM}{18}{subsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.2.1}Sistema de tratamiento por lodos activados}{19}{subsubsection.2.2.2.1}
+\contentsline {section}{\numberline {2.3}Descripci\'on de sensores}{20}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Electrodo de pH}{20}{subsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.1.1}Principio de funcionamiento del electrodo de pH}{20}{subsubsection.2.3.1.1}
+\contentsline {subsubsection}{\numberline {2.3.1.2}Caracter\IeC {\'\i }sticas del electrodo de pH}{21}{subsubsection.2.3.1.2}
+\contentsline {subsection}{\numberline {2.3.2}Electrodo de OD}{22}{subsection.2.3.2}
+\contentsline {subsubsection}{\numberline {2.3.2.1}Principio de funcionamiento del electrodo de OD}{23}{subsubsection.2.3.2.1}
+\contentsline {subsubsection}{\numberline {2.3.2.2}Caracter\IeC {\'\i }sticas del electrodo de OD}{23}{subsubsection.2.3.2.2}
+\contentsline {subsection}{\numberline {2.3.3}Sensor de temperatura LM35}{24}{subsection.2.3.3}
+\contentsline {subsubsection}{\numberline {2.3.3.1}Funcionamiento y caracter\IeC {\'\i }sticas del sensor LM35}{24}{subsubsection.2.3.3.1}
+\contentsline {section}{\numberline {2.4}Protocolos de comunicaciones}{24}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}El modelo de referencia OSI}{25}{subsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.1.1}Capa f\IeC {\'\i }sica}{25}{subsubsection.2.4.1.1}
+\contentsline {subsubsection}{\numberline {2.4.1.2}Capa de enlace de datos}{26}{subsubsection.2.4.1.2}
+\contentsline {subsubsection}{\numberline {2.4.1.3}Capa de red}{26}{subsubsection.2.4.1.3}
+\contentsline {subsubsection}{\numberline {2.4.1.4}Capa de transporte}{27}{subsubsection.2.4.1.4}
+\contentsline {subsubsection}{\numberline {2.4.1.5}Capa de sesi\'on}{27}{subsubsection.2.4.1.5}
+\contentsline {subsubsection}{\numberline {2.4.1.6}Capa de presentaci\'on}{27}{subsubsection.2.4.1.6}
+\contentsline {subsubsection}{\numberline {2.4.1.7}Capa de aplicaci\'on}{27}{subsubsection.2.4.1.7}
+\contentsline {subsection}{\numberline {2.4.2}Interfaces serie}{27}{subsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.2.1}Comunicaci\'on de datos serie en el est\'andar RS-232}{28}{subsubsection.2.4.2.1}
+\contentsline {paragraph}{\numberline {2.4.2.1.1}Caracter\IeC {\'\i }sticas de las se\~nales el\'ectricas}{28}{paragraph.2.4.2.1.1}
+\contentsline {paragraph}{\numberline {2.4.2.1.2}Descripci\'on funcional de los circuitos de intercambio}{29}{paragraph.2.4.2.1.2}
+\contentsline {subsubsection}{\numberline {2.4.2.2}Comunicaci\'on de datos serie en el est\'andar RS-485}{29}{subsubsection.2.4.2.2}
+\contentsline {subsection}{\numberline {2.4.3}Modbus}{30}{subsection.2.4.3}
+\contentsline {subsubsection}{\numberline {2.4.3.1}Capa de enlace de datos del protocolo Modbus}{31}{subsubsection.2.4.3.1}
+\contentsline {subsubsection}{\numberline {2.4.3.2}Descripci\'on de los c\'odigos de funci\'on del protocolo Modbus}{33}{subsubsection.2.4.3.2}
+\contentsline {paragraph}{\numberline {2.4.3.2.1}0x01 Lectura de Salidas Digitales o Relevadores}{33}{paragraph.2.4.3.2.1}
+\contentsline {paragraph}{\numberline {2.4.3.2.2}0x02 Lectura de Entradas Digitales}{34}{paragraph.2.4.3.2.2}
+\contentsline {paragraph}{\numberline {2.4.3.2.3}0x04 Lectura de Registros de Entrada}{34}{paragraph.2.4.3.2.3}
+\contentsline {paragraph}{\numberline {2.4.3.2.4}0x05 Escritura de una Salida Digital o Relevador Individual}{35}{paragraph.2.4.3.2.4}
+\contentsline {paragraph}{\numberline {2.4.3.2.5}0x06 Escritura de un Registro Individual}{35}{paragraph.2.4.3.2.5}
+\contentsline {subsection}{\numberline {2.4.4}Suite de protocolos TCP/IP}{36}{subsection.2.4.4}
+\contentsline {subsubsection}{\numberline {2.4.4.1}Capa de enlace}{36}{subsubsection.2.4.4.1}
+\contentsline {subsubsection}{\numberline {2.4.4.2}Capa de internet}{37}{subsubsection.2.4.4.2}
+\contentsline {subsubsection}{\numberline {2.4.4.3}Capa de transporte}{37}{subsubsection.2.4.4.3}
+\contentsline {subsubsection}{\numberline {2.4.4.4}Capa de aplicaci\'on}{37}{subsubsection.2.4.4.4}
+\contentsline {section}{\numberline {2.5}Herramientas de desarrollo de aplicaciones Web y de escritorio}{37}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Java}{38}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}PHP}{38}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}MySQL}{39}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}Framework Yii}{39}{subsection.2.5.4}
+\contentsline {subsection}{\numberline {2.5.5}JavaScript}{41}{subsection.2.5.5}
+\contentsline {chapter}{\numberline {3}Desarrollo del sistema}{43}{chapter.3}
+\contentsline {section}{\numberline {3.1}Iniciativa}{44}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Estado actual de la PTAR}{44}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Propuesta}{44}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Gestionamiento}{45}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Requerimientos funcionales de la propuesta}{45}{subsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.1.1}Clasificaci\'on y an\'alisis de requerimientos}{45}{subsubsection.3.2.1.1}
+\contentsline {subsection}{\numberline {3.2.2}Divisi\'on \emph {hardware} y \emph {software}}{47}{subsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2.1}Selecci\'on de hardware}{47}{subsubsection.3.2.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2.2}Selecci\'on de herramientas \emph {software} de dise\~no y desarrollo}{49}{subsubsection.3.2.2.2}
+\contentsline {section}{\numberline {3.3}Definici\'on}{50}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Dise\~no hardware}{50}{subsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.1.1}Dise\~no de la etapa de acondicionamiento de los sensores}{50}{subsubsection.3.3.1.1}
+\contentsline {paragraph}{\numberline {3.3.1.1.1}CAS del sensor de pH}{50}{paragraph.3.3.1.1.1}
+\contentsline {paragraph}{\numberline {3.3.1.1.2}CAS del sensor de OD}{54}{paragraph.3.3.1.1.2}
+\contentsline {paragraph}{\numberline {3.3.1.1.3}CAS del sensor de temperatura}{57}{paragraph.3.3.1.1.3}
+\contentsline {subsubsection}{\numberline {3.3.1.2}Entradas y salidas de la RTU}{59}{subsubsection.3.3.1.2}
+\contentsline {subsubsection}{\numberline {3.3.1.3}Interfaz RS-485}{59}{subsubsection.3.3.1.3}
+\contentsline {subsubsection}{\numberline {3.3.1.4}Transceptor RS-232/RS-485}{60}{subsubsection.3.3.1.4}
+\contentsline {subsection}{\numberline {3.3.2}Dise\~no \emph {software}}{61}{subsection.3.3.2}
+\contentsline {subsubsection}{\numberline {3.3.2.1}\emph {software} de la RTU}{61}{subsubsection.3.3.2.1}
+\contentsline {paragraph}{\numberline {3.3.2.1.1}Requerimientos formales}{61}{paragraph.3.3.2.1.1}
+\contentsline {paragraph}{\numberline {3.3.2.1.2}Clases}{62}{paragraph.3.3.2.1.2}
+\contentsline {paragraph}{\numberline {3.3.2.1.3}Diagramas de actividades}{62}{paragraph.3.3.2.1.3}
+\contentsline {subsubsection}{\numberline {3.3.2.2}\emph {software} de la MTU}{66}{subsubsection.3.3.2.2}
+\contentsline {paragraph}{\numberline {3.3.2.2.1}Requerimientos formales}{66}{paragraph.3.3.2.2.1}
+\contentsline {paragraph}{\numberline {3.3.2.2.2}Clases}{67}{paragraph.3.3.2.2.2}
+\contentsline {paragraph}{\numberline {3.3.2.2.3}Casos de uso}{68}{paragraph.3.3.2.2.3}
+\contentsline {paragraph}{\numberline {3.3.2.2.4}Diagramas de actividades}{70}{paragraph.3.3.2.2.4}
+\contentsline {subsubsection}{\numberline {3.3.2.3}\emph {software} de la aplicaci\'on Web}{72}{subsubsection.3.3.2.3}
+\contentsline {paragraph}{\numberline {3.3.2.3.1}Requerimientos formales}{72}{paragraph.3.3.2.3.1}
+\contentsline {paragraph}{\numberline {3.3.2.3.2}Clases}{74}{paragraph.3.3.2.3.2}
+\contentsline {paragraph}{\numberline {3.3.2.3.3}Modelo entidad-relaci\'on}{75}{paragraph.3.3.2.3.3}
+\contentsline {paragraph}{\numberline {3.3.2.3.4}Casos de uso}{75}{paragraph.3.3.2.3.4}
+\contentsline {paragraph}{\numberline {3.3.2.3.5}Diagramas de actividades}{77}{paragraph.3.3.2.3.5}
+\contentsline {subsection}{\numberline {3.3.3}Integraci\'on de elementos \emph {hardware} y \emph {software}}{78}{subsection.3.3.3}
+\contentsline {subsubsection}{\numberline {3.3.3.1}Dise\~no del PCB de los m\'odulos \emph {hardware}}{80}{subsubsection.3.3.3.1}
+\contentsline {paragraph}{\numberline {3.3.3.1.1}Dise\~no del PCB para el CAS del sensor de pH}{80}{paragraph.3.3.3.1.1}
+\contentsline {paragraph}{\numberline {3.3.3.1.2}Dise\~no PCB para el CAS del sensor de OD y temperatura}{82}{paragraph.3.3.3.1.2}
+\contentsline {paragraph}{\numberline {3.3.3.1.3}Dise\~no del PCB para el m\'odulo del MCU}{84}{paragraph.3.3.3.1.3}
+\contentsline {paragraph}{\numberline {3.3.3.1.4}Dise\~no del PCB para el transceptor RS-232/RS-485}{86}{paragraph.3.3.3.1.4}
+\contentsline {subsubsection}{\numberline {3.3.3.2}Dise\~no de interfaces gr\'aficas}{87}{subsubsection.3.3.3.2}
+\contentsline {chapter}{\numberline {4}Verificaci\'on y validaci\'on del producto final: pruebas y resultados}{89}{chapter.4}
+\contentsline {section}{\numberline {4.1}Pruebas de caja blanca}{90}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Prueba de configuraci\'on inicial del sistema}{90}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Prueba de generaci\'on de $\pmb {{V}_{offset}}$ y $\pmb {{V}_{POD}}$}{92}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Prueba de variaciones de voltaje en las entradas}{93}{subsection.4.1.3}
+\contentsline {section}{\numberline {4.2}Pruebas de caja gris}{96}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Prueba de comunicaci\'on serie entre la MTU y la RTU}{96}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Prueba de comunicaci\'on entre la MTU y la base de datos}{102}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Prueba de conexi\'on de sensores a la RTU}{102}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Prueba del \emph {software} de la MTU}{104}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}Prueba de la aplicaci\'on Web}{110}{subsection.4.2.5}
+\contentsline {section}{\numberline {4.3}Pruebas de caja negra}{114}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Prueba de gesti\'on de sesi\'on de usuario}{114}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Prueba de gesti\'on de estados digitales}{116}{subsection.4.3.2}
+\contentsline {chapter}{\numberline {5}Conclusiones}{119}{chapter.5}
+\contentsline {section}{\numberline {5.1}L\IeC {\'\i }neas futuras de investigaci\'on}{121}{section.5.1}
+\contentsline {chapter}{Bibliograf\'{\i }a}{123}{chapter*.157}
+\contentsline {chapter}{\numberline {A}Diagramas esquem\'aticos}{127}{appendix.Alph1}
+\contentsline {chapter}{\numberline {B}PCB}{129}{appendix.Alph2}
+\contentsline {chapter}{\numberline {C}Dise\~no Software}{133}{appendix.Alph3}
+\contentsline {section}{\numberline {C.1}Clases}{133}{section.Alph3.1}
+\contentsline {section}{\numberline {C.2}Diagramas de actividades}{138}{section.Alph3.2}

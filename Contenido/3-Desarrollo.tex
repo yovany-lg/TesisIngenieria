@@ -59,7 +59,7 @@ El sistema realizará el monitoreo de manera automatizada, las mediciones serán t
 
 \subsection{Requerimientos funcionales de la propuesta}
 
-En la figura~\ref{fig:cap3:DB2scada} se muestra de manera detallada el sistema SCADA propuesto. Este sistema realizará el monitoreo remoto de pH, OD y temperatura de la PTAR. Las mediciones proporcionadas por cada sensor pasarán por una etapa de acondicionamiento de señal mediante un sistema electrónico (CAS,\emph{Circuito de Acondicionamiento de Señal}). El MCU ATmega8 desempeñará el papel de RTU, implementará las funciones del protocolo Modbus, procesará solicitudes de la MTU y realizará la adquisición de datos de los sensores a través de un módulo ADC (integrado en el MCU). El sistema de comunicaciones implementará una interfaz serie o pasarela RS-485/RS-232 para la comunicación de la RTU con la MTU. La MTU (Computadora) implementará las funciones del protocolo Modbus para solicitar información de la RTU, almacenará registros de mediciones en una base de datos y recibirá órdenes que emite el usuario a través de la interfaz Web. Los servidores proporcionan el gestor de bases de datos, la base de datos y la aplicación Web (Interfaz gráfica del usuario final). La aplicación Web incluye, la gestión de usuarios (Administrador), visualización de tendencias y de entradas y salidas digitales.
+En la figura~\ref{fig:cap3:DB2scada} se muestra de manera detallada el sistema SCADA propuesto. Este sistema realizará el monitoreo remoto de pH, OD y temperatura de la PTAR. Las mediciones proporcionadas por cada sensor pasarán por una etapa de acondicionamiento de señal mediante un sistema electrónico (CAS,\emph{Circuito de Acondicionamiento de Señal}). El MCU ATmega8 desempeñará el papel de RTU, implementará las funciones del protocolo Modbus, procesará solicitudes de la MTU y realizará la adquisición de datos de los sensores a través de un módulo ADC (integrado en el MCU). El sistema de comunicaciones implementará una interfaz serie RS-232/RS-485 a través de un transceptor (\emph{Transceiver}), que servirá para la comunicación entre la RTU y la MTU. La MTU (Computadora) implementará las funciones del protocolo Modbus para solicitar información de la RTU, almacenará registros de mediciones en una base de datos y recibirá órdenes que emite el usuario a través de la interfaz Web. Los servidores proporcionan el gestor de bases de datos, la base de datos y la aplicación Web (Interfaz gráfica del usuario final). La aplicación Web incluye, la gestión de usuarios (Administrador), visualización de tendencias y de entradas y salidas digitales.
 
 \begin{figure}[htb]
 	\begin{center}
@@ -77,7 +77,7 @@ Los requerimientos funcionales de la propuesta, para un mejor análisis, son clas
 	\item \emph{Especificación del CAS de cada sensor}: Para los sensores de pH y temperatura, el CAS para cada uno de ellos se ha dividido en tres etapas: Aislamiento, Filtrado y Amplificación. El CAS para el sensor de OD se ha dividido en las siguientes etapas: Conversión de corriente a voltaje, Amplificación y Filtrado. 
 	\item \emph{Software de la RTU}: Para implementar la RTU del protocolo Modbus en el MCU ATmega8, se requiere de un \emph{software}. Dicho \emph{software} se construye en lenguaje C, en el que se codifican los parámetros de configuración de periféricos de entrada/salida, los formatos de las ADU de solicitudes y respuestas y el procesamiento de solicitudes de la MTU.
 	\item \emph{Funciones de la RTU}: Las funciones primordiales del MCU (RTU) son obtener mediciones de los sensores, proporcionar el voltaje de alimentación para el sensor de OD, recibir y procesar las ADUs de solicitud que emite la MTU y construir y enviar las ADU de respuesta (con la información solicitada) a la MTU. 
-	\item \emph{Comunicación MTU-RTU}: La comunicación entre la RTU y la MTU se realizará a través de una interfaz serie RS-485 como medio físico. La MTU (Computadora) cuenta con un puerto serie, cuyo funcionamiento se basa en el estándar RS-232, por ello, se requiere una pasarela entre las interfaces RS-485 y RS-232.
+	\item \emph{Comunicación MTU-RTU}: La comunicación entre la RTU y la MTU se realizará a través de una interfaz serie RS-485 como medio físico. La MTU (Computadora) cuenta con un puerto serie, cuyo funcionamiento se basa en el estándar RS-232, por ello, se requiere un transceptor entre las interfaces RS-485 y RS-232.
 	\item \emph{Software de la MTU}: El protocolo Modbus de la MTU se implementará desarrollando un \emph{software} en lenguaje Java, en el cual se codifican los formatos de las ADU de solicitudes y respuestas Modbus. 
 	Este \emph{software} contará con un controlador para la gestionar la comunicación serie con la RTU (Figura~\ref{fig:cap3:RTUMTU2}), un gestor de monitoreo discreto de la RTU, un módulo que comunica la MTU con el servidor de bases de datos y un módulo de comunicación con la aplicación Web (Figura~\ref{fig:cap3:MTU-Servidores}).
 	\item \emph{Servidor Web y base de datos}: La aplicación Web se desarrollará haciendo uso del Framework Yii (arquitectura MVC), dicha aplicación restringirá el acceso sólo al Administrador del sistema, permitirá (al Administrador) visualizar el estado de pH, OD y temperatura a través de gráficas de tendencias, visualizar el estado de las alarmas a través de indicadores (switch) y cambiar el estado de las salidas digitales en la RTU.
@@ -114,7 +114,7 @@ Las fases de diseño e implementación de \emph{hardware} y \emph{software} del si
 		Acondicionamiento de los sensores & Diseño \emph{software} de la RTU\\
 		\rowcol Entradas y salidas de la RTU	& Diseño \emph{software} de la MTU\\
 		Interfaz RS-485	& Diseño \emph{software} de la aplicación Web\\
-		\rowcol Pasarela RS-485/RS-232	\\
+		\rowcol Transceptor RS-232/RS-485	\\
 		\hline \hline \hline \hline
 \end{tabular}
 \label{tab:cap3:Thwsw}
@@ -164,7 +164,7 @@ En la tabla~\ref{tab:cap3:tareas-componentes-hw} se muestra la relación entre la
 		\hline \hline \hline \hline
 		Acondicionamiento &	X	&	X	&	&	&	&\\
 		\rowcol Entradas/salidas de la RTU	&	&	&	X	&	&	&	\\
-		Interfaz RS-485/RS-232	&	&	&	X	&	X	&	X	&\\
+		Interfaz RS-232/RS-485	&	&	&	X	&	X	&	X	&\\
 		\rowcol Alimentación del sensor de OD	&	&	&	X	&	&	&	X\\
 		\hline \hline \hline \hline
 	\end{tabular}
@@ -209,7 +209,7 @@ Como se describe en la tabla~\ref{tab:cap3:Thwsw}, el desarrollo del sistema se 
 	\item \emph{Etapa de acondicionamiento de los sensores}: En esta etapa se detalla el diseño específico de acondicionamiento para cada sensor en particular.
 	\item\emph{Entradas y salidas de la RTU}: Esta etapa describe la configuración de entradas y salidas del MCU ATmega8 y la distribución de terminales.
 	\item\emph{Interfaz RS-485}: Describe la configuración de la interfaz serie RS-485.
-	\item\emph{Pasarela RS-485/RS-232}: Especifica el diseño de la comunicación entre las interfaces RS-485 y RS-232. La interfaz RS-485 es usada por la RTU y la interfaz RS-232 es usada por la MTU.
+	\item\emph{Transceptor RS-232/RS-485}: Especifica el diseño de la comunicación entre las interfaces RS-485 y RS-232. La interfaz RS-485 es usada por la RTU y la interfaz RS-232 es usada por la MTU.
 \end{itemize}
 
 \subsubsection{Diseño de la etapa de acondicionamiento de los sensores}
@@ -589,10 +589,10 @@ La configuración empleada para el diseño de la interfaz RS-485 se muestra en la 
 \end{figure}
 
 
-\subsubsection{Pasarela RS-485/RS-232}
+\subsubsection{Transceptor RS-232/RS-485}
 \label{cap3:DHW:RS232RS485}
 
-La MTU (computadora) cuenta con un puerto serie cuyo funcionamiento está basado en el estándar RS-232, debido a esto, para comunicar la MTU con la RTU es necesario implementar una pasarela RS-485/RS-232 (figura~\ref{fig:cap3:RTU-MTU}). 
+La MTU (computadora) cuenta con un puerto serie cuyo funcionamiento está basado en el estándar RS-232, debido a esto, para comunicar la MTU con la RTU es necesario implementar un transceptor RS-232/RS-485 (figura~\ref{fig:cap3:RTU-MTU}). 
 
 \begin{figure}[htb]
 	\begin{center}
@@ -602,7 +602,7 @@ La MTU (computadora) cuenta con un puerto serie cuyo funcionamiento está basado 
 \end{figure}
 
 %\newpage
-La pasarela RS-485/RS-232 se divide en dos etapas, la primer etapa consiste en obtener los datos serie de la interfaz RS-485 en niveles TTL, lo cual se realiza empleando el dispositivo MAX489; y, la segunda etapa convierte los niveles TTL a voltajes del estándar RS-232, lo cual se realiza utilizando el dispositivo MAX232.
+El transceptor RS-232/RS-485 se divide en dos etapas, la primer etapa consiste en obtener los datos serie de la interfaz RS-485 en niveles TTL, lo cual se realiza empleando el dispositivo MAX489; y, la segunda etapa convierte los niveles TTL a voltajes del estándar RS-232, lo cual se realiza utilizando el dispositivo MAX232.
 
 El dispositivo MAX489 se configura para operar en modo \emph{full-duplex} y la configuración empleada para el dispositivo MAX232 utiliza capacitores externos para su funcionamiento \cite{Cap2Bib:MAX489, Cap2Bib:MAX232}. Dicha configuración se ilustra en la figura~\ref{fig:cap3:Pasarela}.
 
@@ -610,7 +610,7 @@ El dispositivo MAX489 se configura para operar en modo \emph{full-duplex} y la c
 	\begin{center}
 		\includegraphics[scale=.95]{Imagenes/Desarrollo/DiseñoHardware/Pasarela485-232.pdf}
 	\end{center}
-	 \caption{Pasarela RS-485/RS-232.} \label{fig:cap3:Pasarela}
+	 \caption{Transceptor RS-232/RS-485.} \label{fig:cap3:Pasarela}
 \end{figure}
 
 
@@ -1367,9 +1367,9 @@ La lista de materiales empleados en este diseño se describe en la tabla~\ref{tab
 \end{figure}
 
 \clearpage
-\paragraph{Diseño del PCB para la pasarela RS-485/RS-232}
+\paragraph{Diseño del PCB para el transceptor RS-232/RS-485}
 \label{cap3:IHWRS232RS485}
-El diseño del PCB para la pasarela RS-485/RS-232 se muestra en la figura~\ref{fig:cap3:RS232-RS485PCB}. Este módulo cuenta con el dispositivo de comunicación con la interfaz RS-232\footnote{La interfaz RS-232 es la interfaz serie con la que cuenta la MTU.} empleando el CI MAX232 y para la interfaz serie RS-485 se usa el CI MAX489.
+El diseño del PCB para el transceptor RS-232/RS-485 se muestra en la figura~\ref{fig:cap3:RS232-RS485PCB}. Este módulo cuenta con el dispositivo de comunicación con la interfaz RS-232\footnote{La interfaz RS-232 es la interfaz serie con la que cuenta la MTU.} empleando el CI MAX232 y para la interfaz serie RS-485 se usa el CI MAX489.
 
 \begin{figure}[htb]
 	\begin{center}
@@ -1382,12 +1382,12 @@ El diseño del PCB para la pasarela RS-485/RS-232 se muestra en la figura~\ref{fi
 				\includegraphics[scale=0.9]{Imagenes/Desarrollo/Integracion/RS232-RS485CIs.pdf}} \\
 		\end{tabular}
 	\end{center}
-	\caption{PCB de la pasarela RS-485/RS-232, las imágenes no están a escala.} \label{fig:cap3:RS232-RS485PCB}
+	\caption{PCB del transceptor RS-232/RS-485, las imágenes no están a escala.} \label{fig:cap3:RS232-RS485PCB}
 \end{figure}
 
-Debido a que la pasarela RS-485/RS-232 estará a una distancia relativamente grande de la RTU, este módulo requiere una fuente de alimentación diferente a la fuente de alimentación de la RTU. Por ello, se incluye un conector (V5) para dicha fuente de alimentación. La conexión cableada RS-485 entre este módulo y el módulo del MCU requiere la conexión entre las terminales de los conectores RS-485 de cada módulo, la configuración de dicha conexión se detalla en los apartados~\ref{cap3:DHW:RS485} y~\ref{cap3:DHW:RS232RS485}.
+Debido a que el transceptor RS-232/RS-485 estará a una distancia relativamente grande de la RTU, este módulo requiere una fuente de alimentación diferente a la fuente de alimentación de la RTU. Por ello, se incluye un conector (V5) para dicha fuente de alimentación. La conexión cableada RS-485 entre este módulo y el módulo del MCU requiere la conexión entre las terminales de los conectores RS-485 de cada módulo, la configuración de dicha conexión se detalla en los apartados~\ref{cap3:DHW:RS485} y~\ref{cap3:DHW:RS232RS485}.
 
-Los materiales empleados para este diseño se describen en la tabla~\ref{tab:cap3:RS232-RS485PCBMateriales} y en la figura~\ref{fig:cap3:RS232-RS4853D} se muestra una vista en 3D de la pasarela RS-485/RS-232.
+Los materiales empleados para este diseño se describen en la tabla~\ref{tab:cap3:RS232-RS485PCBMateriales} y en la figura~\ref{fig:cap3:RS232-RS4853D} se muestra una vista en 3D del transceptor RS-232/RS-485.
 
 \begin{table}[htp]
 	\caption{Descripción de materiales empleados en el diseño PCB de la RTU.}%
@@ -1415,7 +1415,7 @@ Los materiales empleados para este diseño se describen en la tabla~\ref{tab:cap3
 \begin{center}
  \includegraphics[scale=0.35]{Imagenes/Desarrollo/Integracion/RS232-RS4853D.pdf}
 \end{center}
- \caption{Vista 3D de la pasarela RS-485/RS-232.} \label{fig:cap3:RS232-RS4853D}
+ \caption{Vista 3D del Transceptor RS-232/RS-485.} \label{fig:cap3:RS232-RS4853D}
 \end{figure}
 
 \newpage
