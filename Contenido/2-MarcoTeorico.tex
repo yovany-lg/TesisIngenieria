@@ -14,19 +14,19 @@ La telemetría, tele-medida o medida a distancia, es requerida para conectar equi
 
 Un sistema de monitoreo remoto (\emph{Remote Monitoring System}) se define como un sistema que permite realizar rutinariamente monitoreo y supervisión a través de una infraestructura de red \cite{Cap2Bib:Esarda, Cap2Bib:TesisDavid}.\par 
 
-El concepto de Control con Supervisión y Adquisición de Datos (SCADA, \emph{Supervisory Control and Data Acquisition}) se refiere a la combinación de telemetría y adquisición de datos. Se da el nombre de SCADA a cualquier sistema que consta de componentes \emph{hardware} y \emph{software}, el cual permite el acceso a datos remotos y el control de un proceso mediante el uso de sistemas de comunicaciones.\par
+El concepto de Control con Supervisión y Adquisición de Datos (SCADA) se refiere a la combinación de telemetría y adquisición de datos. Se da el nombre de SCADA a cualquier sistema que consta de componentes \emph{hardware} y \emph{software}, el cual permite el acceso a datos remotos y el control de un proceso mediante el uso de sistemas de comunicaciones.\par
 
-Actualmente, los sistemas SCADA son usados por las empresas industriales modernas en aplicaciones como: plantas de energía, telecomunicaciones, transporte, tratamiento de agua y desechos, etc., en donde los componentes \emph{hardware} obtienen los datos y los emiten a una computadora, la cual cuenta con \emph{software} para procesamiento de la información y para mostrarla en pantallas personalizadas (interfaces gráficas). De esta manera, los sistemas SCADA permiten a los operadores monitorizar y controlar los equipos desde una estación central.\par
+Actualmente, los sistemas SCADA son usados por las empresas industriales modernas en aplicaciones como: plantas de energía, telecomunicaciones, transporte, tratamiento de agua y desechos, etc., en donde los componentes \emph{hardware} obtienen los datos y los emiten a una computadora, la cual cuenta con \emph{software} para procesamiento de la información y para mostrarla en pantallas personalizadas (GUIs). De esta manera, los sistemas SCADA permiten a los operadores monitorizar y controlar los equipos desde una estación central.\par
 
 Los sistemas SCADA han evolucionado en paralelo con las tecnologías modernas, y con ello la mayoría de dichos sistemas presentan dos topologías:\par
 
 \begin{itemize} \itemsep=-0.5em
 
-\item \emph{Sistemas SCADA centralizados}: En los sistemas centralizados o monolíticos, una computadora central es la encargada de realizar el monitoreo completo de la planta (industrial) y todos la información es almacenada en una base de datos dentro de la misma computadora \cite{Cap2Bib:PracticalScada}. Este tipo de red SCADA se implementa para comunicarse con unidades terminales remotas (RTU, \emph{Remote Terminal Unit}) en el área de campo y a través de buses de campo (FieldBus) \cite{Cap2Bib:IndustrialCT}, tal como se ilustra en la figura~\ref{fig:cap2:SCADA:mon}.
+\item \emph{Sistemas SCADA centralizados}: En los sistemas centralizados o monolíticos, una computadora central es la encargada de realizar el monitoreo completo de la planta (industrial) y toda la información es almacenada en una base de datos dentro de la misma computadora \cite{Cap2Bib:PracticalScada}. Este tipo de red SCADA se implementa para comunicarse con RTUs en el área de campo y a través de buses de campo (\emph{FieldBus}) \cite{Cap2Bib:IndustrialCT}, tal como se ilustra en la figura~\ref{fig:cap2:SCADA:mon}.
 
 Las desventajas comunes de los sistemas SCADA centralizados o monolíticos son: para un sistema pequeño los costos iniciales son bastante altos y debido al tamaño fijo del sistema, una expansión gradual para la mejora de la planta no es posible.
 
-\item \emph{Sistemas SCADA distribuidos}: Un sistema SCADA distribuido es soportado por un conjunto de computadoras, las cuales están interconectadas a través de una red y cuyos componentes de \emph{software} se encuentran dispersos entre dichas computadoras para realizar las tareas de manera colaborativa, lo cual permite la escalabilidad del sistema \cite{Cap2Bib:PracticalScada, Cap2Bib:PAInternet, Cap2Bib:ApDistribuidas}. Un sistema SCADA distribuido generalmente hace uso de la arquitectura cliente/servidor.
+\item \emph{Sistemas SCADA distribuidos}: Un sistema SCADA distribuido es soportado por un conjunto de computadoras, las cuales están interconectadas a través de una red y cuyos componentes \emph{software} se encuentran dispersos entre dichas computadoras para realizar tareas de manera colaborativa, lo cual permite la escalabilidad del sistema \cite{Cap2Bib:PracticalScada, Cap2Bib:PAInternet, Cap2Bib:ApDistribuidas}. Un sistema SCADA distribuido generalmente hace uso de la arquitectura cliente/servidor.
 \end{itemize}
 
 \begin{figure}[htb]
@@ -38,9 +38,9 @@ Las desventajas comunes de los sistemas SCADA centralizados o monolíticos son: p
 
 Debido a las desventajas que presentan los sistemas SCADA centralizados, en este proyecto de investigación se implementará un sistema SCADA distribuido, por lo que en esta sección se hará énfasis a la teoría relacionada con sistemas SCADA distribuidos.
 
-Ahora, cada computadora dentro de un sistema SCADA distribuido tiene una función específica, por ejemplo: algunas computadoras sirven como procesadores de comunicación con dispositivos de campo o RTUs; otras sirven como interfaces de operador que proporcionan interfaces humano máquina (HMI, \emph{Human Machine Interface}); y algunas computadoras se utilizan como servidores de bases de datos para procesamiento de información \cite{Cap2Bib:IndustrialCT}. En la figura~\ref{fig:cap2:SCADA:dist} se ilustra una configuración típica de un sistema SCADA distribuido.\par
+Ahora, cada computadora dentro de un sistema SCADA distribuido tiene una función específica, por ejemplo: algunas computadoras sirven como procesadores de comunicación con dispositivos de campo o RTUs; otras sirven como interfaces de operador que proporcionan interfaces humano máquina (HMI, \emph{Human Machine Interface}); y algunas computadoras se utilizan como servidores de bases de datos para procesamiento de información \cite{Cap2Bib:IndustrialCT}. En la figura~\ref{fig:cap2:SCADA:dist} se ilustra la configuración típica de un sistema SCADA distribuido.\par
 
-La distribución de funciones provee una mayor capacidad de procesamiento comparado con un sistema que consta de una sola computadora. Las tareas esenciales de un sistema SCADA distribuido, que requieren procesamiento de manera individual, son las siguientes \cite{Cap2Bib:PracticalScada, Cap2Bib:IndustrialCT}:
+La distribución de funciones provee una mayor capacidad de procesamiento comparado con un sistema centralizado. Las tareas esenciales de un sistema SCADA distribuido, que requieren procesamiento de manera individual, son las siguientes \cite{Cap2Bib:PracticalScada, Cap2Bib:IndustrialCT}:
 
 \begin{itemize} \itemsep=-0.5em
 	\item \emph{Entradas y salidas}: Son la interfaz entre el sistema de monitoreo y las instalaciones de la planta.
@@ -48,7 +48,7 @@ La distribución de funciones provee una mayor capacidad de procesamiento compara
 	\item \emph{Alarmas}: Esta tarea administra todas las alarmas del sistema a través de la comparación de las entradas con un valor de umbral predeterminado.
 	\item \emph{Tendencias}: Captura todos los datos de las variables que se desean monitorizar con el propósito de mostrar su evolución con respecto al tiempo.
 	\item \emph{Reportes}: Los reportes son generados a partir de los datos de la planta y pueden ser creados a petición del usuario u operador.
-	\item \emph{Presentación}: Administra todos los datos que el operador va a monitorizar a través de una GUI \cite{Cap2Bib:Automatizacion}.
+	\item \emph{Presentación}: A través de una GUI gestiona y presenta la información al operador \cite{Cap2Bib:Automatizacion}.
 \end{itemize}
 
 \begin{figure}[htb]
@@ -60,22 +60,22 @@ La distribución de funciones provee una mayor capacidad de procesamiento compara
 
 \subsection{Componentes \emph{hardware} de un sistema SCADA distribuido}
 \label{cap1:SCADA:HW}
-En esta sección se aborda el concepto de sistemas de telemetría (sistemas de medición a distancia) y sus fundamentos con base a la arquitectura de un sistema SCADA distribuido. Por lo tanto, se describen los componentes \emph{hardware} (figura~\ref{fig:cap2:SCADA:dist:HW}), los cuales se han clasificado en los siguientes niveles de jerarquía \cite{Cap2Bib:PracticalScada, Cap2Bib:SistemasScada, Cap2Bib:IndustrialCT}:
+En esta sección se describen los componentes \emph{hardware} (figura~\ref{fig:cap2:SCADA:dist:HW}) de un sistema SCADA distribuido, los cuales se clasifican en los siguientes niveles de jerarquía \cite{Cap2Bib:PracticalScada, Cap2Bib:SistemasScada, Cap2Bib:IndustrialCT}:
+
+\begin{itemize} \itemsep=-0.5em
+	\item Dispositivos de instrumentación y control a nivel de campo\footnote{Los dispositivos de campo son los que están en contacto directo con la planta industrial.}.
+	\item Uno o más dispositivos de interfaces de datos de campo. Dichos dispositivos son las RTUs que desempeñan el papel de interfaz con los dispositivos de instrumentación y control a nivel campo.
+	\item Un servidor o conjunto de servidores como sistema central, los cuales usualmente son denominados como centro del sistema SCADA, estaciones maestras o MTUs. La MTU de un sistema distribuido consta de un conjunto de servidores que realizan las siguientes tareas: gestión de entradas y salidas, bases de datos, alarmas, tendencias, reportes y presentación.
+	\item Un sistema de comunicaciones para el intercambio de datos entre RTUs y MTUs.
+	%Este sistema puede ser radio, línea telefónica, cableado, microondas, fibra óptica, satélite, o bien puede ser cualquier combinación de éstos.
+\end{itemize}
 
 \begin{figure}[htb]
 	\begin{center}
 		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/SCADAHW.pdf}
 	\end{center}
-	\caption{Niveles de jerarquía de \emph{hardware} en un sistema SCADA.} \label{fig:cap2:SCADA:dist:HW}
+	\caption{Niveles de jerarquía de \emph{hardware} en un sistema SCADA distribuido.} \label{fig:cap2:SCADA:dist:HW}
 \end{figure}
-
-\begin{itemize} \itemsep=-0.5em
-	\item Dispositivos de instrumentación y control a nivel de campo\footnote{Los dispositivos de campo son los que están en contacto directo con la planta industrial.}.
-	\item Uno o más dispositivos de interfaces de datos de campo. Dichos dispositivos son las RTUs que desempeñan el papel de interfaz con los dispositivos de instrumentación y control a nivel campo.
-	\item Un servidor o conjunto de servidores como sistema central, los cuales usualmente son denominados como centro del sistema SCADA, estaciones maestras o MTUs. La MTU de un sistema distribuido consta de un conjunto de servidores que realizan las tareas de: entradas y salidas, bases de datos, alarmas, tendencias, reportes y presentación.
-	\item Un sistema de comunicaciones para el intercambio de datos entre RTUs y MTUs.
-	%Este sistema puede ser radio, línea telefónica, cableado, microondas, fibra óptica, satélite, o bien puede ser cualquier combinación de éstos.
-\end{itemize}
 
 \subsubsection{Instrumentación}
 
@@ -86,7 +86,7 @@ Para su funcionamiento la instrumentación se divide en tres etapas:
 \begin{itemize} \itemsep=-0.5em
 	\item \emph{Los sensores}: Son aquellos que transforman la magnitud de una variable física que se desea medir a una señal eléctrica.
 	\item \emph{Acondicionamiento}: Como su nombre lo indica, acondiciona los niveles de la señal de salida de un sensor. Esto se debe a que en la mayoría de los casos la señal de los sensores suele no ser adecuada para su procesamiento. En general los sensores entregan señales muy pequeñas y vulnerables a ruido, por lo que el acondicionamiento generalmente consiste de dos subetapas: la etapa de amplificación y la etapa de filtrado. Dichas subetapas se realizan a través de un amplificador operacional de instrumentación.
-	\item \emph{Digitalización}: La digitalización proporciona un código digital (binario) equivalente a la señal de entrada proveniente de la etapa de acoplamiento. Dicho código permite el procesamiento de las señales a través de sistemas basados en MCU, procesadores o computadoras.
+	\item \emph{Digitalización}: La digitalización proporciona un código digital (binario) equivalente a la señal de entrada proveniente de la etapa de acondicionamiento. Dicho código permite el procesamiento de las señales a través de sistemas basados en MCU, procesadores o computadoras.
 \end{itemize}
 
 \subsubsection{Componentes de la RTU}
@@ -119,37 +119,38 @@ El elemento principal de este módulo es un convertidor análogo-digital (ADC, \em
 
 En una RTU, una salida analógica frecuentemente se usa como voltaje de referencia para el controlador de algún dispositivo analógico, como puede ser el controlador de un motor, una bomba, un sistema de enfriamiento, un calefactor, etc. Una salida analógica también puede ser usada como fuente de alimentación para dispositivos de bajo consumo de energía, por ejemplo, la alimentación o polarización de un sensor de OD y otros.
 
-\item \emph{Entradas y salidas digitales}: Las entradas y salidas digitales se usan para indicar información como señales de estados lógicos de alarmas y otros dispositivos. Por ejemplo el estado (encendido o apagado) de un relevador que controla una válvula, un actuador o cualquier dispositivo analógico o de las alarmas que indican el estado crítico de alguna variable en el proceso de una RTU. Dichas alarmas son procesadas por la MTU para tomar medidas de control o simplemente mostrarlas en una pantalla de operador.
+\item \emph{Entradas y salidas digitales}: Las entradas y salidas digitales se usan para indicar información como señales de estados lógicos de alarmas y otros dispositivos. Por ejemplo el estado (encendido o apagado) de un relevador que controla una válvula, un actuador o cualquier dispositivo analógico o de las alarmas que indican el estado crítico de alguna variable en el proceso de una RTU. Dichas alarmas son procesadas por la MTU para tomar medidas de control o simplemente mostrarlas en una GUI.
 
 Es importante considerar un aislamiento adecuado para las entradas y salidas digitales, ya que los periféricos de un MCU normalmente operan con niveles de voltaje TTL. Una buena opción es emplear dispositivos de aislamiento óptico, relevadores o transformadores.
 
-\item \emph{Interfaces de comunicación}: En una RTU, para la comunicación con la MTU, se pueden manejar diferentes interfaces de comunicación según sean las necesidades. Actualmente, las interfaces de comunicación que una RTU debe soportar abarcan: interfaces serie RS-232/RS-485, línea telefónica, fibra óptica, microondas, satélite o radio vía portadora (VHF, UHF o 900 MHz).
+\item \emph{Interfaces de comunicación}: En la comunicación de la RTU con la MTU se pueden manejar diferentes interfaces de comunicación según sean las necesidades. Actualmente, las interfaces de comunicación que una RTU debe soportar abarcan: interfaces serie RS-232/RS-485, línea telefónica, fibra óptica, microondas, satélite o radio vía portadora (VHF, UHF o 900 MHz).
 \end{itemize}
 
 \begin{figure}[htb]
 	\begin{center}
-		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/SCADA-RTU-ADC.pdf}
+		\begin{tabular}{c}
+			\subfloat[Funcionamiento del ADC.]{%
+				\label{fig:cap2:SCADA:dist:HW::RTU:ADC}%
+				\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/SCADA-RTU-ADC.pdf}}\\
+			\subfloat[Funcionamiento del DAC.]{%
+				\label{fig:cap2:SCADA:dist:HW::RTU:DAC}%
+				\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/SCADA-RTU-DAC.pdf}}
+		\end{tabular}	
 	\end{center}
-	\caption{Función del ADC.} \label{fig:cap2:SCADA:dist:HW::RTU:ADC}
+	\caption{Funcionamiento de un ADC y un DAC.} \label{fig:cap2:RTU-ADC-DAC}
 \end{figure}
 
-\begin{figure}[htb]
-	\begin{center}
-		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/SCADA-RTU-DAC.pdf}
-	\end{center}
-	\caption{Función del DAC.} \label{fig:cap2:SCADA:dist:HW::RTU:DAC}
-\end{figure}
 
 \subsubsection{Componentes de la MTU}
 
-Una MTU es el centro de un sistema SCADA y está formada por un servidor o conjunto de servidores (usualmente computadoras) interconectados a través de una red para realizar tareas de manera colaborativa. La MTU es la que inicia toda la comunicación con las RTUs, reúne los datos, almacena la información, realiza el procesamiento y proporciona las interfaces de usuario para los operadores \cite{Cap2Bib:PracticalScada, Cap2Bib:SistemasScada, Cap2Bib:IndustrialCT}.
+Una MTU es el centro de un sistema SCADA y está formada por un servidor o conjunto de servidores (usualmente computadoras) interconectados a través de una red para realizar tareas de manera colaborativa. La MTU es la que inicia toda la comunicación con las RTUs, reúne datos, almacena información, realiza procesamiento y proporciona GUIs \cite{Cap2Bib:PracticalScada, Cap2Bib:SistemasScada, Cap2Bib:IndustrialCT}.
  
-Las funciones principales de una MTU son obtener periódicamente los datos de campo de las RTUs, monitorizar y controlar remotamente los dispositivos a través de las estaciones de operador. Los componentes y características básicas de una MTU son:
+Las funciones principales de una MTU son obtener periódicamente datos de campo de las RTUs, monitorizar y controlar remotamente los dispositivos a través de las estaciones de operador. Los componentes y características básicas de una MTU son:
 
 \begin{itemize} \itemsep=-0.5em
-\item \emph{Servidores e interfaz de operador}: Una MTU consta de una o más estaciones (computadoras) de operador, las cuales cuentan con una interfaz de usuario para mostrar el estado de las RTUs y permitir el control al operador; un servidor para el manejo de bases de datos; el servidor de alarmas; un servidor de presentación, el cual muestra la evolución de las variables monitoreadas a través de gráficas de tendencias; un servidor para generar reportes; un servidor de interfaces de usuario; y un servidor de entradas y salidas, el cual tiene bajo su control a los dispositivos de campo (RTU), este servidor también es conocido como el controlador de las RTUs. 
+\item \emph{Servidores e interfaz de operador}: Una MTU consta de una o más estaciones de operador, las cuales cuentan con una interfaz de usuario para mostrar el estado de las RTUs y permiten el control al operador; un servidor para el manejo de bases de datos; el servidor de alarmas; un servidor de presentación, el cual muestra la evolución de las variables monitoreadas a través de gráficas de tendencias; un servidor para generar reportes; un servidor de interfaces de usuario; y un servidor de entradas y salidas, el cual tiene bajo su control a los dispositivos de campo (RTU), este servidor también es conocido como el controlador de las RTUs. 
 
-\item \emph{Software de la MTU}: El \emph{software} en una MTU se divide en dos categorías: el sistema operativo, el cual puede ir desde un sistema MS-DOS, Windows, Windows NT a los distintos sistemas Unix (Linux) y el \emph{software} del sistema SCADA, generalmente consiste en la adquisición de datos, control, archivado o almacenamiento en base de datos y la interfaz de operador o HMI.
+\item \emph{Software de la MTU}: El \emph{software} en una MTU se divide en dos categorías: el sistema operativo, el cual puede ser: un sistema \emph{MS-DOS}, \emph{Windows}, \emph{Windows NT} y los distintos sistemas \emph{Unix} (\emph{Linux} y \emph{Mac OS}) y el \emph{software} del sistema SCADA, generalmente consiste en la adquisición de datos, control, archivado o almacenamiento en base de datos y la GUI o HMI.
 
 \item \emph{Interfaces de comunicación}: La MTU establece la comunicación con las RTUs a través de una interfaz de comunicación. %como las que se mencionaron en la sección~\ref{cap2:SCADA:dist:HW}. 
 Esta comunicación generalmente se realiza haciendo uso de buses de campo\footnote{El término ``bus de campo'' engloba varios protocolos de control industrial, por ejemplo Modbus, PROFIBUS, WorldFIP y CAN}.
@@ -258,7 +259,7 @@ Esencialmente el agua residual, es el agua usada por una comunidad en una gran v
 
 \emph{``Las aguas de composición variada provenientes de las descargas de usos municipales, industriales, comerciales, de servicios, agrícolas, pecuarios, domésticos, incluyendo fraccionamientos y en general cualquier otro uso, así como la mezcla de ellas''.}
 
-Las fuentes principales de aguas residuales son \cite{Cap2Bib:TesisIzcoatl, Cap2Bib:Metcalf1}: 
+Las fuentes principales de aguas residuales son \cite{Cap2Bib:TesisIzcoatl, Cap2Bib:Metcalf}: 
 \begin{itemize}\itemsep=-0.5em
 \item \emph{Las aguas residuales domésticas}: Engloban las aguas residuales generadas por los hogares, instalaciones comerciales e instituciones públicas. La contaminación es orgánica en su mayoría, compuesta de materia fecal, papel, jabón, suciedad, restos de alimentos (basura) y otras sustancias.
 \item \emph{Las aguas residuales industriales}: En donde predominan los desechos industriales, están en función del tipo y tamaño de la industria. Algunas son aguas de enjuague; otras se encuentran muy cargadas de materia orgánica o mineral, o con sustancias corrosivas, venenosas, inflamables o explosivas.
@@ -266,7 +267,7 @@ Las fuentes principales de aguas residuales son \cite{Cap2Bib:TesisIzcoatl, Cap2
 
 \subsection{Sistema de tratamiento de aguas residuales de la UTM}
 
-Los métodos de tratamiento de aguas residuales en donde predomina la aplicación de fuerzas de contacto físico son conocidos como unidades de operación. Los métodos de tratamiento de aguas residuales en los cuales la eliminación de contaminantes se realiza a través de reacciones químicas o biológicas son conocidos como unidades de procesamiento. Ambos métodos son agrupados para permitir varios niveles de tratamiento conocidos como: preliminar, primario, secundario y avanzado (o terciario) \cite{Cap2Bib:Metcalf7}.
+Los métodos de tratamiento de aguas residuales en donde predomina la aplicación de fuerzas de contacto físico son conocidos como unidades de operación. Los métodos de tratamiento de aguas residuales en los cuales la eliminación de contaminantes se realiza a través de reacciones químicas o biológicas son conocidos como unidades de procesamiento. Ambos métodos son agrupados para permitir varios niveles de tratamiento conocidos como: preliminar, primario, secundario y avanzado (o terciario) \cite{Cap2Bib:Metcalf}.
 
 Los niveles de tratamiento (Figura~\ref{fig:cap2:PTAR}) con los que cuenta la PTAR de la UTM son los siguientes \cite{Cap2Bib:TesisIzcoatl}:
 \begin{itemize}\itemsep=-0.5em
@@ -301,15 +302,15 @@ Los niveles de tratamiento (Figura~\ref{fig:cap2:PTAR}) con los que cuenta la PT
 	\caption{Niveles de tratamiento de la PTAR.} \label{fig:cap2:PTAR}
 \end{figure}
 
-%La NOM-001-ECOL-1996 establece la concentración máxima de contaminantes básicos, metales pesados y cianuros para las descargas de aguas residuales a aguas y bienes nacionales. El rango del potencial hidrógeno (pH) permisible es de 5 a 10 unidades \cite{Cap2Bib:NOM001, Cap2Bib:Metcalf7}.
+%La NOM-001-ECOL-1996 establece la concentración máxima de contaminantes básicos, metales pesados y cianuros para las descargas de aguas residuales a aguas y bienes nacionales. El rango del potencial hidrógeno (pH) permisible es de 5 a 10 unidades \cite{Cap2Bib:NOM001, Cap2Bib:Metcalf}.
 
-El pH es la expresión de la concentración de los iones ${H}^{+}$ en el agua \cite{Cap2Bib:Metcalf7}. Elevadas concentraciones de este ión confieren al agua condiciones de pH ácido mientras que bajas concentraciones del ión significan que el agua tiene condiciones básicas. El pH del agua afecta diversos procesos como puede ser la solubilidad y el estado químico de muchos compuestos y elementos (por ejemplo, de los metales pesados), la actividad de algunas enzimas y la sobrevivencia de numerosas especies.
+El pH es la expresión de la concentración de los iones ${H}^{+}$ en el agua \cite{Cap2Bib:Metcalf}. Elevadas concentraciones de este ión confieren al agua condiciones de pH ácido mientras que bajas concentraciones del ión significan que el agua tiene condiciones básicas. El pH del agua afecta diversos procesos como puede ser la solubilidad y el estado químico de muchos compuestos y elementos (por ejemplo, de los metales pesados), la actividad de algunas enzimas y la sobrevivencia de numerosas especies.
 
 Desde el punto de vista biológico, la mayoría de las especies prefieren valores de pH cercanos a la neutralidad (aproximadamente 7). Sin embargo existen especies adaptadas a vivir en condiciones extremas de pH, ya sea hacia la parte ácida o básica de la escala.
 
 \subsubsection{Sistema de tratamiento por lodos activados}
 
-El principio básico de este proceso consiste en que las aguas residuales se pongan en contacto con una población microbiana mixta en forma de suspensión floculenta (o lodo) en un sistema aireado y agitado \cite{Cap2Bib:Metcalf7}.
+El principio básico de este proceso consiste en que las aguas residuales se pongan en contacto con una población microbiana mixta en forma de suspensión floculenta (o lodo) en un sistema aireado y agitado \cite{Cap2Bib:Metcalf}.
 
 El funcionamiento de procesos aeróbicos, tal es el caso de el sistema de lodos activados, depende de la disponibilidad de cantidades suficientes de ${O}_{2}$ en el sistema. La transferencia de ${O}_{2}$ es el proceso mediante el cual el ${O}_{2}$ es transferido de un medio gaseoso a un medio líquido.
 
