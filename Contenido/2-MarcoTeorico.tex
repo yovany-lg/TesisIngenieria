@@ -26,7 +26,7 @@ Los sistemas SCADA han evolucionado en paralelo con las tecnologías modernas, y 
 
 Las desventajas comunes de los sistemas SCADA centralizados o monolíticos son: para un sistema pequeño los costos iniciales son bastante altos y debido al tamaño fijo del sistema, una expansión gradual para la mejora de la planta no es posible.
 
-\item \emph{Sistemas SCADA distribuidos}: Un sistema SCADA distribuido es soportado por un conjunto de computadoras, las cuales están interconectadas a través de una red y cuyos componentes \emph{software} se encuentran dispersos entre dichas computadoras para realizar tareas de manera colaborativa, lo cual permite la escalabilidad del sistema \cite{Cap2Bib:PracticalScada, Cap2Bib:PAInternet, Cap2Bib:ApDistribuidas}. Un sistema SCADA distribuido generalmente hace uso de la arquitectura cliente/servidor.
+\item \emph{Sistemas SCADA distribuidos}: Un sistema SCADA distribuido es soportado por un conjunto de computadoras, las cuales están interconectadas a través de una red y cuyos componentes \emph{software} se encuentran dispersos entre dichas computadoras para realizar tareas de manera colaborativa, lo cual permite la escalabilidad del sistema \cite{Cap2Bib:PracticalScada, Cap2Bib:PAInternet, Cap2Bib:ApDistribuidas}. Un sistema SCADA distribuido generalmente hace uso de la arquitectura Cliente/Servidor.
 \end{itemize}
 
 \begin{figure}[htb]
@@ -42,6 +42,13 @@ Ahora, cada computadora dentro de un sistema SCADA distribuido tiene una función
 
 La distribución de funciones provee una mayor capacidad de procesamiento comparado con un sistema centralizado. Las tareas esenciales de un sistema SCADA distribuido, que requieren procesamiento de manera individual, son las siguientes \cite{Cap2Bib:PracticalScada, Cap2Bib:IndustrialCT}:
 
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/SCADADistribuido.pdf}
+	\end{center}
+	\caption{Configuración de un sistema SCADA distribuido.} \label{fig:cap2:SCADA:dist}
+\end{figure}
+
 \begin{itemize} \itemsep=-0.5em
 	\item \emph{Entradas y salidas}: Son la interfaz entre el sistema de monitoreo y las instalaciones de la planta.
 	\item \emph{Bases de datos}: Se encarga de almacenar todos los datos provenientes de las entradas y salidas, al mismo tiempo permite el acceso a esta información, de tal manera que las demás tareas puedan realizar sus funciones.
@@ -51,16 +58,16 @@ La distribución de funciones provee una mayor capacidad de procesamiento compara
 	\item \emph{Presentación}: A través de una GUI gestiona y presenta la información al operador \cite{Cap2Bib:Automatizacion}.
 \end{itemize}
 
-\begin{figure}[htb]
-	\begin{center}
-		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/SCADADistribuido.pdf}
-	\end{center}
-	\caption{Configuración de un sistema SCADA distribuido.} \label{fig:cap2:SCADA:dist}
-\end{figure}
-
 \subsection{Componentes \emph{hardware} de un sistema SCADA distribuido}
 \label{cap1:SCADA:HW}
 En esta sección se describen los componentes \emph{hardware} (figura~\ref{fig:cap2:SCADA:dist:HW}) de un sistema SCADA distribuido, los cuales se clasifican en los siguientes niveles de jerarquía \cite{Cap2Bib:PracticalScada, Cap2Bib:SistemasScada, Cap2Bib:IndustrialCT}:
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/SCADAHW.pdf}
+	\end{center}
+	\caption{Niveles de jerarquía de \emph{hardware} en un sistema SCADA distribuido.} \label{fig:cap2:SCADA:dist:HW}
+\end{figure}
 
 \begin{itemize} \itemsep=-0.5em
 	\item Dispositivos de instrumentación y control a nivel de campo\footnote{Los dispositivos de campo son los que están en contacto directo con la planta industrial.}.
@@ -69,13 +76,6 @@ En esta sección se describen los componentes \emph{hardware} (figura~\ref{fig:ca
 	\item Un sistema de comunicaciones para el intercambio de datos entre RTUs y MTUs.
 	%Este sistema puede ser radio, línea telefónica, cableado, microondas, fibra óptica, satélite, o bien puede ser cualquier combinación de éstos.
 \end{itemize}
-
-\begin{figure}[htb]
-	\begin{center}
-		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/SCADAHW.pdf}
-	\end{center}
-	\caption{Niveles de jerarquía de \emph{hardware} en un sistema SCADA distribuido.} \label{fig:cap2:SCADA:dist:HW}
-\end{figure}
 
 \subsubsection{Instrumentación}
 
@@ -156,7 +156,7 @@ Las funciones principales de una MTU son obtener periódicamente datos de campo d
 Esta comunicación generalmente se realiza haciendo uso de buses de campo\footnote{El término ``bus de campo'' engloba varios protocolos de control industrial, por ejemplo Modbus, PROFIBUS, WorldFIP y CAN}.
 \end{itemize}
 
-Las estaciones de operador y los servidores de la MTU se intercomunican haciendo uso de las tecnologías de redes LAN, WAN, Internet y la suite de protocolos TCP/IP.
+%Las estaciones de operador y los servidores de la MTU se intercomunican haciendo uso de las tecnologías de redes LAN, WAN, Internet y la suite de protocolos TCP/IP.
 
 Para distribuir el procesamiento a través de los múltiples servidores, los sistemas SCADA distribuidos hacen uso de las siguientes tecnologías\cite{Cap2Bib:Cisco}: redes de área local (LAN, \emph{Local Area Network}), tal es el caso de la familia de redes Ethernet o estándar IEEE 802.3; las redes de área amplia (WAN, \emph{Wide Area Network}); y la suite de protocolos de Internet, de los cuales los más conocidos globalmente son el Protocolo de Control de Transmisión (TCP, \emph{Transmission Control Protocol}) y el Protocolo de Internet (IP, \emph{Internet Protocol}), estos protocolos forman parte de un conjunto de protocolos conocidos como TCP/IP.
 
@@ -169,7 +169,7 @@ Para distribuir el procesamiento a través de los múltiples servidores, los siste
 %\item Proporcionar a las RTUs, dentro de su región, las peticiones de control provenientes de la MTU.
 %\end{itemize}
 
-\subsection{Componentes \emph{software} del sistema SCADA distribuido}
+\subsection{Componentes \emph{software} de un sistema SCADA distribuido}
 
 El \emph{software} de un sistema SCADA distribuido es multitareas y está basado principalmente en bases de datos de tiempo real localizados en uno o más servidores. La arquitectura general del \emph{software} de un sistema SCADA se ilustra en la figura~\ref{fig:cap2:SCADA:dist:SW} y sus componentes son \cite{Cap2Bib:PracticalScada, Cap2Bib:SistemasScada, Cap2Bib:IndustrialCT}:
 
@@ -177,7 +177,7 @@ El \emph{software} de un sistema SCADA distribuido es multitareas y está basado 
 	\begin{center}
 		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/SCADASW.pdf}
 	\end{center}
-	\caption{Arquitectura general del \emph{software} de un sistema SCADA.} \label{fig:cap2:SCADA:dist:SW}
+	\caption{Arquitectura general del \emph{software} de un sistema SCADA distribuido.} \label{fig:cap2:SCADA:dist:SW}
 \end{figure}
 
 \begin{itemize}\itemsep=-0.5em
@@ -191,7 +191,7 @@ El \emph{software} de un sistema SCADA distribuido es multitareas y está basado 
 \item Interfaces RTU.
 \end{itemize}
 
-Generalmente, los componentes de interfaz de usuario, representaciones gráficas, servidor de alarmas y eventos, servidor de reportes y servidor de bases de datos, consisten en aplicaciones distribuidas con arquitectura cliente/servidor, de las cuales las aplicaciones Web son las más conocidas globalmente. En cambio las aplicaciones para interfaces RTU se desarrollan empleando lenguajes de programación como C/C++, Visual Basic y Java.
+Generalmente, los componentes de interfaz de usuario, representaciones gráficas, servidor de alarmas y eventos, servidor de reportes y servidor de bases de datos, consisten en aplicaciones distribuidas con arquitectura Cliente/Servidor, de las cuales las aplicaciones Web son las más usadas globalmente. En cambio, las aplicaciones para interfaces RTU se desarrollan empleando lenguajes de programación como C/C++, Visual Basic y Java.
 
 \subsubsection{Comunicación con dispositivos de campo}
 
@@ -199,12 +199,12 @@ Los servidores de datos realizan solicitudes periódicamente a los controladores 
 
 \subsubsection{Comunicación entre aplicaciones}
 
-La comunicación interna entre el conjunto de servidores para procesamiento de datos, se realiza usando la arquitectura distribuida cliente/servidor. En general esta comunicación se realiza mediante la suite de protocolos TCP/IP \cite{Cap2Bib:PracticalScada, Cap2Bib:IndustrialCT}.
+La comunicación interna entre el conjunto de servidores para procesamiento de datos, se realiza usando la arquitectura distribuida Cliente/Servidor. En general esta comunicación se realiza mediante la suite de protocolos TCP/IP \cite{Cap2Bib:PracticalScada, Cap2Bib:IndustrialCT}.
 
 Los métodos más conocidos para el intercambio de información entre las aplicaciones de los servidores son ODBC (\emph{Open Data Base Conectivity}) y SQL (\emph{Structured Query Language}) \cite{Cap2Bib:SistemasScada}.
 
 \paragraph{ODBC}
-ODBC es una tecnología de Microsoft Windows y es un estándar que permite a las aplicaciones el acceso a datos en sistemas de gestión de bases de datos (DBMS, \emph{Data Base Managment Systems}) utilizando SQL como método estándar de acceso \cite{Cap2Bib:SistemasScada}.
+ODBC es una tecnología de \emph{Microsoft Windows} y es un estándar que permite a las aplicaciones el acceso a datos en sistemas de gestión de bases de datos (DBMS, \emph{Data Base Managment Systems}) utilizando SQL como método estándar de acceso \cite{Cap2Bib:SistemasScada}.
 
 Una aplicación desarrollada en lenguajes estándares de programación (C, C++, Visual Basic o Java), necesita la inclusión del controlador ODBC correspondiente para tener acceso a distintas bases de datos, dicho controlador es una librería de enlace dinámico (DLL, \emph{Dynamic Link Library}).
 
@@ -217,7 +217,7 @@ Las posibilidades de esta tecnología incluyen:
 
 \begin{itemize}\itemsep=-0.5em
 \item \emph{Procedimientos}: Son bibliotecas de órdenes almacenadas en la base de datos que permiten reducir el tráfico en la red y simplifican los procedimientos de acceso a los usuarios de las bases de datos.
-\item \emph{Eventos}: Son órdenes que se activan de forma automática bajo unas ciertas condiciones, facilitando el mantenimiento de la integridad de los datos.
+\item \emph{Eventos}: Son órdenes que se activan de forma automática bajo unas ciertas condiciones, facilitando el mantenimiento de integridad de datos.
 \item \emph{Replicación}: Permite la duplicación y sincronización de bases de datos; la accesibilidad, permite el intercambio o envío de información basándose en eventos.
 \end{itemize}
 
@@ -227,7 +227,7 @@ Las bases de datos relacionales (\emph{Relational Data Base}) proporcionan estru
 
 Una base de datos relacional es un conjunto de tablas de datos que contienen campos. Éstos sirven como nexos de unión a través de los cuales se pueden establecer múltiples combinaciones. Las combinaciones posibles prácticamente son ilimitadas, todo depende de la configuración del método de búsqueda (consulta, \emph{Query}), o el tipo de datos que se requiera consultar.
 
-Este tipo de organización permite el uso de la arquitectura cliente/servidor y con ello se simplifican la administración de los datos y las aplicaciones que los usan, se disminuye el espacio de almacenamiento y se reducen los problemas asociados a las bases de datos redundantes. 
+Este tipo de organización permite el uso de la arquitectura Cliente/Servidor y con ello se simplifican la administración de los datos y las aplicaciones que los usan, se disminuye el espacio de almacenamiento y se reducen los problemas asociados a las bases de datos redundantes. 
 
 Los usuarios y las aplicaciones pueden acceder a los datos de forma rápida y sencilla, ya que pueden personalizar sus propias consultas y obtener los datos de acuerdo a sus necesidades.
 
@@ -239,19 +239,19 @@ En un sistema de control industrial, una HMI se usa para proporcionar a los oper
 
 Las HMI de tipo supervisoras son usadas en sistemas en donde la distancia, entre la estación de control y la estación remota (o planta), es considerablemente grande. Las HMI de este tipo son propias de un sistema SCADA, en el cual se encuentran dispositivos tales como bombas, ventiladores o indicadores de purificación de aguas.
 
-Una HMI de un sistema SCADA permite que desde una interfaz de operador se pueda monitorizar completamente la planta y muestra una representación gráfica del estado actual de cada componente, el estado de las alarmas que indican cuando algún parámetro está fuera del rango de operación adecuado. Estas tareas se realizan gracias a la retroalimentación por parte de los sensores que miden los parámetros de los procesos en la planta.
+Una HMI de un sistema SCADA permite que desde una interfaz de operador se pueda monitorizar completamente una planta y muestra una representación gráfica del estado actual de cada componente, el estado de las alarmas que indican cuando algún parámetro está fuera del rango de operación adecuado. Estas tareas se realizan gracias a la retroalimentación por parte de los sensores que miden los parámetros de los procesos en la planta.
 
 \subsection{SCADA en la Internet}
 
 La Internet es simplemente la red virtual en donde todas las estaciones se interconectan fácilmente sin tener que preocuparse por las conexiones físicas.
 
-Actualmente el modelo de Internet gira en torno a la suite de protocolos abiertos TCP/IP \cite{Cap2Bib:PracticalScada, Cap2Bib:RedesComp}, en donde el protocolo IP ofrece la capacidad de realizar el ruteo permitiendo que los paquetes sean enviados a través de redes interconectadas con topologías diferentes y el protocolo TCP permite que los paquetes sean enviados desde un punto a otro garantizando que lleguen a su destino.
+Actualmente la Internet hace uso de la suite de protocolos abiertos TCP/IP \cite{Cap2Bib:PracticalScada, Cap2Bib:RedesComp}, en donde el protocolo IP ofrece la capacidad de realizar el ruteo permitiendo que los paquetes sean enviados a través de redes interconectadas con topologías diferentes y el protocolo TCP permite que los paquetes sean enviados desde un punto a otro garantizando que lleguen a su destino.
 
-El protocolo de aplicación más usado en Internet es el protocolo de transferencia de hipertexto (HTTP, \emph{Hypertext Transfer Protocol}), el cual es la base para la WWW (\emph{World Wide Web}). El protocolo HTTP es de arquitectura cliente/servidor, por lo tanto, el uso más frecuente que se le da es el de un navegador (cliente) que accede a un servidor Web. Los datos que pueden ser transferidos por este protocolo son: texto nativo, hipertexto, audio, imágenes, etc.
+El protocolo de aplicación más usado en Internet es el protocolo de transferencia de hipertexto (HTTP, \emph{Hypertext Transfer Protocol}), el cual es la base para la WWW (\emph{World Wide Web}). El protocolo HTTP es de arquitectura Cliente/Servidor, por lo tanto, el uso más frecuente que se le da es en un navegador (cliente) que accede a un servidor Web. Los datos que pueden ser transferidos por este protocolo son: texto nativo, hipertexto, audio, imágenes, etc.
 
-El protocolo HTTP permite el desarrollo de aplicaciones de interfaces gráficas de usuario para sistemas SCADA, ya que es posible transferir representaciones gráficas y estados de los dispositivos de campo. Además, la arquitectura cliente/servidor permite que más de un usuario u operador acceder al sistema SCADA a través de un navegador Web ejecutado en una computadora desde cualquier lugar permitiendo el monitoreo y control de la planta como si el operador estuviese en las instalaciones de la misma.
+El protocolo HTTP permite el desarrollo de aplicaciones de interfaces gráficas de usuario para sistemas SCADA, ya que es posible transferir representaciones gráficas y estados de los dispositivos de campo. Además, la arquitectura Cliente/Servidor permite que más de un usuario u operador acceda al sistema SCADA a través de un navegador Web ejecutado en una computadora desde cualquier lugar, permitiendo el monitoreo y control de la planta como si el operador estuviese en las instalaciones de la misma.
 
-\section{Planta de tratamiento de aguas residuales de la UTM}
+\section{Planta de Tratamiento de Aguas Residuales de la UTM}
 
 \subsection{El Agua Residual}
 
@@ -326,7 +326,7 @@ Las etapas esenciales del proceso de lodos activados son: aireación, separación 
 \end{figure}
 
 %-------------------------------------------------------------------
-\section{Descripción de sensores}
+\section{Descripción de Sensores}
 %-------------------------------------------------------------------
 \label{cap2:sec:Sensores}
 
@@ -363,7 +363,7 @@ En la punta del electrodo se encuentra la membrana pequeña, la cual es un tipo d
 \subsubsection{Características del electrodo de pH}
 \label{cap2:sec:Sensores:pH:Ca}
 
-Los electrodos de pH son sensores activos, lo que significa que no requieren de una fuente de excitación o polarización (voltaje o corriente) externa. Este electrodo se clasifica como un sensor bipolar debido a que la salida del electrodo puede oscilar por arriba o por abajo del punto de referencia. El electrodo produce un voltaje de salida, el cual es linealmente proporcional al valor de pH de la solución que está siendo medida. El rango de valores de pH en que opera el electrodo es de 0 a 14 \cite{Cap2Bib:PHElectrode}.
+Los electrodos de pH son sensores activos, lo que significa que no requieren de una fuente de excitación o polarización (voltaje o corriente) externa. Este electrodo se clasifica como un sensor bipolar debido a que la salida del electrodo puede oscilar por arriba o por abajo del punto de referencia. El electrodo produce un voltaje de salida, el cual es linealmente proporcional al valor de pH de la solución que está siendo medida. El rango de valores de pH en que opera el electrodo es de 0 a 14 unidades \cite{Cap2Bib:PHElectrode}.
 
 La impedancia de salida en este electrodo de pH es muy alta, esto se debe a que el bulbo de cristal tiene una resistencia que típicamente se encuentra en el rango de $10 - 1000\mega\ohm$. Esto significa que el electrodo solamente puede ser monitoreado por un dispositivo de medición con una impedancia de entrada muy alta.
 
@@ -449,13 +449,13 @@ El voltaje de operación del sensor \emph{LM35} es de $4$ a $30\volt$, tiene un r
 La impedancia de salida del LM35 es baja, además permite el uso de una fuente individual de excitación, lo que facilita el diseño del circuito electrónico de interfaz.
 
 %-------------------------------------------------------------------------------
-\section{Protocolos de comunicaciones}
+\section{Protocolos de Comunicaciones}
 %-------------------------------------------------------------------------------
 \label{cap2:sec:Protocolos}
 
 Un protocolo de comunicaciones es un conjunto de reglas y convenciones que deben seguir dos equipos cualesquiera (computadoras o dispositivos) para intercambiar información a través de una red. Un protocolo es una regla o estándar que controla o permite la comunicación en su forma más simple. Puede ser definido como las reglas que dominan la sintaxis, semántica y sincronización de la comunicación. Puede ser implementado por \emph{hardware}, \emph{software} o una combinación de ambos \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:ProtocolEngineering}.
 
-Cualquier red de comunicaciones de datos requiere un sistema para organizar el flujo de datos. Para ordenar los protocolos de comunicaciones, la Organización Internacional de Estándares (ISO, \emph{International Organization for Standarization}), propuso en el año de 1984 el modelo de referencia para la Interconexión de Sistemas Abiertos (OSI, \emph{Open System Interconnection}) \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:ProtocolEngineering}.
+Cualquier red de comunicaciones de datos requiere un sistema para organizar el flujo de datos. Para ordenar los protocolos de comunicaciones, la Organización Internacional de Normalización (ISO, \emph{International Organization for Standarization}), propuso en el año de 1984 el modelo de referencia para la Interconexión de Sistemas Abiertos (OSI, \emph{Open System Interconnection}) \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:ProtocolEngineering}.
 
 El modelo OSI describe las reglas que los equipos de comunicaciones deben seguir para que el intercambio de datos sea posible dentro de una infraestructura que está compuesta por una gran variedad de productos de diferentes fabricantes \cite{Cap2Bib:Cisco}.
 
@@ -656,7 +656,7 @@ Un bus de campo, al igual que una red LAN, satisface los dos primeros niveles de
 
 Normalmente en el medio físico de un bus de campo de bajo costo, consiste de un par de hilos con una interfaz serie RS-485, aunque se encuentran aplicaciones con coaxial, fibra óptica, radio e infrarrojos.
 
-El estándar Modbus define un protocolo de mensajes de la capa de aplicación, posicionado en el nivel siete del modelo OSI, que provee comunicaciones con arquitectura cliente/servidor entre dispositivos conectados en diferentes tipos de buses o redes \cite{Cap2Bib:Modbus1, Cap2Bib:Modbus3, Cap2Bib:Modbus2}. El estándar Modbus define un protocolo específico para interfaz serie (Modbus sobre una línea serie) para el intercambio de peticiones Modbus haciendo uso de la arquitectura Maestro/Esclavo. En la figura~\ref{fig:cap2:PC:MB} se ilustra el protocolo Modbus con respecto al modelo de referencia OSI \cite{Cap2Bib:Modbus2}.
+El estándar Modbus define un protocolo de mensajes de la capa de aplicación, posicionado en el nivel siete del modelo OSI, que provee comunicaciones con arquitectura Cliente/Servidor entre dispositivos conectados en diferentes tipos de buses o redes \cite{Cap2Bib:Modbus1, Cap2Bib:Modbus3, Cap2Bib:Modbus2}. El estándar Modbus define un protocolo específico para interfaz serie (Modbus sobre una línea serie) para el intercambio de peticiones Modbus haciendo uso de la arquitectura Maestro/Esclavo. En la figura~\ref{fig:cap2:PC:MB} se ilustra el protocolo Modbus con respecto al modelo de referencia OSI \cite{Cap2Bib:Modbus2}.
 
 \begin{figure}[htb]
 	\begin{center}
@@ -681,7 +681,7 @@ El nodo Maestro puede emitir peticiones Modbus de dos modos:
 
 El espacio para direccionamiento del protocolo Modbus comprende 256 diferentes direcciones, las cuales están distribuidas de la siguiente manera: la dirección 0 está destinada para peticiones broadcast, por lo que todos los nodos Esclavo deben reconocer esta dirección; el nodo Maestro no tiene una dirección en particular; los nodos Esclavos tienen una dirección única en un bus serie, las direcciones de un nodo Esclavo pueden ser desde 1 a 247; las direcciones desde la 248 a la 255 están reservadas.
 
-El protocolo Modbus de aplicación define una Unidad de Datos de Protocolo (PDU, Protocol Data Unit) \cite{Cap2Bib:Modbus3}, que se muestra en la figura~\ref{fig:cap2:PC:MB2}, la cual es independiente de las capas inferiores de comunicación (modelo de referencia OSI).
+El protocolo Modbus de aplicación define una Unidad de Datos de Protocolo (PDU, \emph{Protocol Data Unit}) \cite{Cap2Bib:Modbus3}, que se muestra en la figura~\ref{fig:cap2:PC:MB2}, la cual es independiente de las capas inferiores de comunicación (modelo de referencia OSI).
 
 \begin{figure}[htb]
 	\begin{center}
@@ -690,7 +690,7 @@ El protocolo Modbus de aplicación define una Unidad de Datos de Protocolo (PDU, 
 	\caption{Unidad de datos de protocolo de MODBUS.} \label{fig:cap2:PC:MB2}
 \end{figure}
 
-La implementación del protocolo Modbus sobre una línea serie requiere campos adicionales en la PDU (figura~\ref{fig:cap2:PC:MB3}) formando así una Unidad de Datos de Aplicación (ADU, Application Data Unit) \cite{Cap2Bib:Modbus3}.
+La implementación del protocolo Modbus sobre una línea serie requiere campos adicionales en la PDU (figura~\ref{fig:cap2:PC:MB3}) formando así una Unidad de Datos de Aplicación (ADU, \emph{Application Data Unit}) \cite{Cap2Bib:Modbus3}.
 
 \begin{figure}[htb]
 	\begin{center}
@@ -917,7 +917,7 @@ Algunos ejemplos relevantes de protocolos en esta capa son los siguientes: ARP (
 
 \subsubsection{Capa de internet}
 
-La capa de Internet es responsable de la comunicación máquina a máquina, en donde una máquina puede ser un anfitrión\footnote{Computadora} (\emph{host}) o una puerta de enlace (\emph{gateway}) \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:IndustrialCT}.
+La capa de Internet es responsable de la comunicación máquina a máquina, en donde una máquina puede ser un anfitrión\footnote{Computadora.} (\emph{host}) o una puerta de enlace (\emph{gateway}) \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:IndustrialCT}.
 
 El paquete (de información) recibido de la capa de transporte, para su transmisión es encapsulado en un datagrama de Protocolo de Internet. La capa de Internet determina si enviar el datagrama directamente o a través de una puerta de enlace, posteriormente envía el datagrama a la capa de enlace para la transmisión.
 
@@ -937,9 +937,9 @@ Algunos protocolos de la capa de transporte son: TCP y UDP (\emph{User Datagram 
 
 En este nivel los usuarios solicitan procesos de aplicación que acceden a la red. La aplicación interactúa con los protocolos de la capa de transporte para enviar o recibir los datos emitidos por los procesos \cite{Cap2Bib:Cisco, Cap2Bib:NetworkProtocols, Cap2Bib:IndustrialCT}.
 
-Algunos de los protocolos comunes de la capa de aplicación son: clientes y servidores de WWW, TELNET, FTP (\emph{File Transfer Protocol}) y SMTP (\emph{Simple Mail Transfer Protocol}).
+Algunos de los protocolos comunes de la capa de aplicación son: clientes y servidores de WWW, TELNET, FTP y SMTP.
 
-\section{Herramientas de desarrollo de aplicaciones Web y de escritorio}
+\section{Herramientas de Desarrollo de Aplicaciones Web y de Escritorio}
 
 Los usuarios finales, de un sistema de monitoreo y control, requieren de GUIs para interactuar con los dispositivos de una planta industrial. Generalmente, dichas interfaces gráficas consisten en aplicaciones Web y de escritorio. 
 

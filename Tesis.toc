@@ -6,7 +6,7 @@
 \contentsline {chapter}{\'{I}ndice de tablas}{\es@scroman {xv}}{chapter*.6}
 \contentsline {chapter}{\'{I}ndice de figuras}{\es@scroman {xvii}}{chapter*.7}
 \contentsline {chapter}{\numberline {1}Introducci\'on}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Planteamiento del problema}{3}{section.1.1}
+\contentsline {section}{\numberline {1.1}Planteamiento del Problema}{3}{section.1.1}
 \contentsline {section}{\numberline {1.2}Justificaci\'on}{4}{section.1.2}
 \contentsline {section}{\numberline {1.3}Hip\'otesis}{4}{section.1.3}
 \contentsline {section}{\numberline {1.4}Objetivos}{4}{section.1.4}
@@ -19,7 +19,7 @@
 \contentsline {subsubsection}{\numberline {2.1.1.1}Instrumentaci\'on}{10}{subsubsection.2.1.1.1}
 \contentsline {subsubsection}{\numberline {2.1.1.2}Componentes de la RTU}{11}{subsubsection.2.1.1.2}
 \contentsline {subsubsection}{\numberline {2.1.1.3}Componentes de la MTU}{13}{subsubsection.2.1.1.3}
-\contentsline {subsection}{\numberline {2.1.2}Componentes \emph {software} del sistema SCADA distribuido}{14}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.2}Componentes \emph {software} de un sistema SCADA distribuido}{14}{subsection.2.1.2}
 \contentsline {subsubsection}{\numberline {2.1.2.1}Comunicaci\'on con dispositivos de campo}{15}{subsubsection.2.1.2.1}
 \contentsline {subsubsection}{\numberline {2.1.2.2}Comunicaci\'on entre aplicaciones}{15}{subsubsection.2.1.2.2}
 \contentsline {paragraph}{\numberline {2.1.2.2.1}ODBC}{15}{paragraph.2.1.2.2.1}
@@ -27,11 +27,11 @@
 \contentsline {subsubsection}{\numberline {2.1.2.3}Bases de datos relacionales}{16}{subsubsection.2.1.2.3}
 \contentsline {subsubsection}{\numberline {2.1.2.4}Interfaces de usuario (UI)}{16}{subsubsection.2.1.2.4}
 \contentsline {subsection}{\numberline {2.1.3}SCADA en la Internet}{17}{subsection.2.1.3}
-\contentsline {section}{\numberline {2.2}Planta de tratamiento de aguas residuales de la UTM}{17}{section.2.2}
+\contentsline {section}{\numberline {2.2}Planta de Tratamiento de Aguas Residuales de la UTM}{17}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}El Agua Residual}{17}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Sistema de tratamiento de aguas residuales de la UTM}{18}{subsection.2.2.2}
 \contentsline {subsubsection}{\numberline {2.2.2.1}Sistema de tratamiento por lodos activados}{19}{subsubsection.2.2.2.1}
-\contentsline {section}{\numberline {2.3}Descripci\'on de sensores}{20}{section.2.3}
+\contentsline {section}{\numberline {2.3}Descripci\'on de Sensores}{20}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Electrodo de pH}{20}{subsection.2.3.1}
 \contentsline {subsubsection}{\numberline {2.3.1.1}Principio de funcionamiento del electrodo de pH}{20}{subsubsection.2.3.1.1}
 \contentsline {subsubsection}{\numberline {2.3.1.2}Caracter\IeC {\'\i }sticas del electrodo de pH}{21}{subsubsection.2.3.1.2}
@@ -40,7 +40,7 @@
 \contentsline {subsubsection}{\numberline {2.3.2.2}Caracter\IeC {\'\i }sticas del electrodo de OD}{23}{subsubsection.2.3.2.2}
 \contentsline {subsection}{\numberline {2.3.3}Sensor de temperatura LM35}{24}{subsection.2.3.3}
 \contentsline {subsubsection}{\numberline {2.3.3.1}Funcionamiento y caracter\IeC {\'\i }sticas del sensor LM35}{24}{subsubsection.2.3.3.1}
-\contentsline {section}{\numberline {2.4}Protocolos de comunicaciones}{24}{section.2.4}
+\contentsline {section}{\numberline {2.4}Protocolos de Comunicaciones}{24}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}El modelo de referencia OSI}{25}{subsection.2.4.1}
 \contentsline {subsubsection}{\numberline {2.4.1.1}Capa f\IeC {\'\i }sica}{25}{subsubsection.2.4.1.1}
 \contentsline {subsubsection}{\numberline {2.4.1.2}Capa de enlace de datos}{26}{subsubsection.2.4.1.2}
@@ -131,7 +131,7 @@
 \contentsline {subsection}{\numberline {4.3.2}Prueba de gesti\'on de estados digitales}{116}{subsection.4.3.2}
 \contentsline {chapter}{\numberline {5}Conclusiones}{119}{chapter.5}
 \contentsline {section}{\numberline {5.1}L\IeC {\'\i }neas futuras de investigaci\'on}{121}{section.5.1}
-\contentsline {chapter}{Bibliograf\'{\i }a}{123}{chapter*.157}
+\contentsline {chapter}{Bibliograf\'{\i }a}{123}{chapter*.156}
 \contentsline {chapter}{\numberline {A}Diagramas esquem\'aticos}{127}{appendix.Alph1}
 \contentsline {chapter}{\numberline {B}PCB}{129}{appendix.Alph2}
 \contentsline {chapter}{\numberline {C}Dise\~no Software}{133}{appendix.Alph3}

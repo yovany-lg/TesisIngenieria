@@ -6,214 +6,215 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces Configuraci\'on de un sistema SCADA centralizado.\relax }}{8}{figure.caption.11}
 \contentsline {figure}{\numberline {\relax 2.2}{\ignorespaces Configuraci\'on de un sistema SCADA distribuido.\relax }}{9}{figure.caption.12}
-\contentsline {figure}{\numberline {\relax 2.3}{\ignorespaces Niveles de jerarqu\IeC {\'\i }a de \emph {hardware} en un sistema SCADA.\relax }}{10}{figure.caption.13}
+\contentsline {figure}{\numberline {\relax 2.3}{\ignorespaces Niveles de jerarqu\IeC {\'\i }a de \emph {hardware} en un sistema SCADA distribuido.\relax }}{10}{figure.caption.13}
 \contentsline {figure}{\numberline {\relax 2.4}{\ignorespaces Configuraci\'on de una RTU basada en MCU.\relax }}{11}{figure.caption.14}
-\contentsline {figure}{\numberline {\relax 2.5}{\ignorespaces Funci\'on del ADC.\relax }}{13}{figure.caption.15}
-\contentsline {figure}{\numberline {\relax 2.6}{\ignorespaces Funci\'on del DAC.\relax }}{13}{figure.caption.16}
-\contentsline {figure}{\numberline {\relax 2.7}{\ignorespaces Arquitectura general del \emph {software} de un sistema SCADA.\relax }}{14}{figure.caption.17}
-\contentsline {figure}{\numberline {\relax 2.8}{\ignorespaces Niveles de tratamiento de la PTAR.\relax }}{19}{figure.caption.18}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Tratamiento preliminar.}}}{19}{subfigure.\relax 2.8.1}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Tratamiento primario.}}}{19}{subfigure.\relax 2.8.2}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Tratamiento secundario.}}}{19}{subfigure.\relax 2.8.3}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Tratamiento terciario.}}}{19}{subfigure.\relax 2.8.4}
-\contentsline {figure}{\numberline {\relax 2.9}{\ignorespaces Sistema de aireadores.\relax }}{20}{figure.caption.19}
-\contentsline {figure}{\numberline {\relax 2.10}{\ignorespaces Electrodo de pH de la marca \emph {Cole Parmer}.\relax }}{20}{figure.caption.20}
-\contentsline {figure}{\numberline {\relax 2.11}{\ignorespaces Caracter\IeC {\'\i }sticas del electrodo de pH.\relax }}{21}{figure.caption.21}
-\contentsline {figure}{\numberline {\relax 2.12}{\ignorespaces Funci\'on de transferencia del electrodo de pH.\relax }}{22}{figure.2.12}
-\contentsline {figure}{\numberline {\relax 2.13}{\ignorespaces Voltaje de salida del sensor en funci\'on del nivel de pH.\relax }}{22}{figure.caption.22}
-\contentsline {figure}{\numberline {\relax 2.14}{\ignorespaces Electrodo de OD de la marca \emph {Mettler Toledo}.\relax }}{23}{figure.caption.23}
-\contentsline {figure}{\numberline {\relax 2.15}{\ignorespaces Caracter\IeC {\'\i }sticas del electrodo de OD.\relax }}{23}{figure.caption.24}
-\contentsline {figure}{\numberline {\relax 2.16}{\ignorespaces Configuraci\'on del sensor LM35.\relax }}{24}{figure.caption.25}
-\contentsline {figure}{\numberline {\relax 2.17}{\ignorespaces Arquitectura de protocolos del modelo de referencia OSI.\relax }}{25}{figure.caption.26}
-\contentsline {figure}{\numberline {\relax 2.18}{\ignorespaces Asignaci\'on de terminales y se\~nales del conector DB-9 para el est\'andar RS-232.\relax }}{28}{figure.caption.27}
-\contentsline {figure}{\numberline {\relax 2.19}{\ignorespaces Interfaz multipunto del est\'andar RS-485.\relax }}{30}{figure.caption.31}
-\contentsline {figure}{\numberline {\relax 2.20}{\ignorespaces Protocolo Modbus relacionado con el Modelo OSI.\relax }}{31}{figure.caption.32}
-\contentsline {figure}{\numberline {\relax 2.21}{\ignorespaces Unidad de datos de protocolo de MODBUS.\relax }}{32}{figure.caption.33}
-\contentsline {figure}{\numberline {\relax 2.22}{\ignorespaces Unidad de datos de aplicaci\'on de MODBUS.\relax }}{32}{figure.caption.34}
-\contentsline {figure}{\numberline {\relax 2.23}{\ignorespaces Modelo OSI relacionado con el modelo TCP/IP.\relax }}{36}{figure.caption.44}
-\contentsline {figure}{\numberline {\relax 2.24}{\ignorespaces Arquitectura MVC del framework Yii.\relax }}{40}{figure.caption.45}
-\contentsline {figure}{\numberline {\relax 2.25}{\ignorespaces Flujo de trabajo en una aplicaci\'on Yii.\relax }}{41}{figure.caption.46}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Flujo detallado.}}}{41}{subfigure.\relax 2.25.1}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Flujo simplificado}}}{41}{subfigure.\relax 2.25.2}
+\contentsline {figure}{\numberline {\relax 2.5}{\ignorespaces Funcionamiento de un ADC y un DAC.\relax }}{13}{figure.caption.15}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Funcionamiento del ADC.}}}{13}{subfigure.\relax 2.5.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Funcionamiento del DAC.}}}{13}{subfigure.\relax 2.5.2}
+\contentsline {figure}{\numberline {\relax 2.6}{\ignorespaces Arquitectura general del \emph {software} de un sistema SCADA distribuido.\relax }}{14}{figure.caption.16}
+\contentsline {figure}{\numberline {\relax 2.7}{\ignorespaces Niveles de tratamiento de la PTAR.\relax }}{19}{figure.caption.17}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Tratamiento preliminar.}}}{19}{subfigure.\relax 2.7.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Tratamiento primario.}}}{19}{subfigure.\relax 2.7.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Tratamiento secundario.}}}{19}{subfigure.\relax 2.7.3}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Tratamiento terciario.}}}{19}{subfigure.\relax 2.7.4}
+\contentsline {figure}{\numberline {\relax 2.8}{\ignorespaces Sistema de aireadores.\relax }}{20}{figure.caption.18}
+\contentsline {figure}{\numberline {\relax 2.9}{\ignorespaces Electrodo de pH de la marca \emph {Cole Parmer}.\relax }}{20}{figure.caption.19}
+\contentsline {figure}{\numberline {\relax 2.10}{\ignorespaces Caracter\IeC {\'\i }sticas del electrodo de pH.\relax }}{21}{figure.caption.20}
+\contentsline {figure}{\numberline {\relax 2.11}{\ignorespaces Funci\'on de transferencia del electrodo de pH.\relax }}{22}{figure.2.11}
+\contentsline {figure}{\numberline {\relax 2.12}{\ignorespaces Voltaje de salida del sensor en funci\'on del nivel de pH.\relax }}{22}{figure.caption.21}
+\contentsline {figure}{\numberline {\relax 2.13}{\ignorespaces Electrodo de OD de la marca \emph {Mettler Toledo}.\relax }}{23}{figure.caption.22}
+\contentsline {figure}{\numberline {\relax 2.14}{\ignorespaces Caracter\IeC {\'\i }sticas del electrodo de OD.\relax }}{23}{figure.caption.23}
+\contentsline {figure}{\numberline {\relax 2.15}{\ignorespaces Configuraci\'on del sensor LM35.\relax }}{24}{figure.caption.24}
+\contentsline {figure}{\numberline {\relax 2.16}{\ignorespaces Arquitectura de protocolos del modelo de referencia OSI.\relax }}{25}{figure.caption.25}
+\contentsline {figure}{\numberline {\relax 2.17}{\ignorespaces Asignaci\'on de terminales y se\~nales del conector DB-9 para el est\'andar RS-232.\relax }}{28}{figure.caption.26}
+\contentsline {figure}{\numberline {\relax 2.18}{\ignorespaces Interfaz multipunto del est\'andar RS-485.\relax }}{30}{figure.caption.30}
+\contentsline {figure}{\numberline {\relax 2.19}{\ignorespaces Protocolo Modbus relacionado con el Modelo OSI.\relax }}{31}{figure.caption.31}
+\contentsline {figure}{\numberline {\relax 2.20}{\ignorespaces Unidad de datos de protocolo de MODBUS.\relax }}{32}{figure.caption.32}
+\contentsline {figure}{\numberline {\relax 2.21}{\ignorespaces Unidad de datos de aplicaci\'on de MODBUS.\relax }}{32}{figure.caption.33}
+\contentsline {figure}{\numberline {\relax 2.22}{\ignorespaces Modelo OSI relacionado con el modelo TCP/IP.\relax }}{36}{figure.caption.43}
+\contentsline {figure}{\numberline {\relax 2.23}{\ignorespaces Arquitectura MVC del framework Yii.\relax }}{40}{figure.caption.44}
+\contentsline {figure}{\numberline {\relax 2.24}{\ignorespaces Flujo de trabajo en una aplicaci\'on Yii.\relax }}{41}{figure.caption.45}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Flujo detallado.}}}{41}{subfigure.\relax 2.24.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Flujo simplificado}}}{41}{subfigure.\relax 2.24.2}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 3.1}{\ignorespaces Niveles de la metodolog\IeC {\'\i }a CMMI.\relax }}{43}{figure.caption.47}
-\contentsline {figure}{\numberline {\relax 3.2}{\ignorespaces Diagrama general del sistema SCADA.\relax }}{44}{figure.caption.48}
-\contentsline {figure}{\numberline {\relax 3.3}{\ignorespaces Diagrama completo del sistema SCADA propuesto.\relax }}{45}{figure.caption.49}
-\contentsline {figure}{\numberline {\relax 3.4}{\ignorespaces Comunicaci\'on de la MTU con la RTU y con el servidor de la aplicaci\'on Web y la base de datos.\relax }}{47}{figure.caption.50}
+\contentsline {figure}{\numberline {\relax 3.1}{\ignorespaces Niveles de la metodolog\IeC {\'\i }a CMMI.\relax }}{43}{figure.caption.46}
+\contentsline {figure}{\numberline {\relax 3.2}{\ignorespaces Diagrama general del sistema SCADA.\relax }}{44}{figure.caption.47}
+\contentsline {figure}{\numberline {\relax 3.3}{\ignorespaces Diagrama completo del sistema SCADA propuesto.\relax }}{45}{figure.caption.48}
+\contentsline {figure}{\numberline {\relax 3.4}{\ignorespaces Comunicaci\'on de la MTU con la RTU y con el servidor de la aplicaci\'on Web y la base de datos.\relax }}{47}{figure.caption.49}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Comunicaci\'on de la MTU con la RTU.}}}{47}{subfigure.\relax 3.4.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Comunicaci\'on de la MTU con los Servidores.}}}{47}{subfigure.\relax 3.4.2}
-\contentsline {figure}{\numberline {\relax 3.5}{\ignorespaces Etapas del CAS para el sensor de pH y de temperatura.\relax }}{50}{figure.caption.53}
-\contentsline {figure}{\numberline {\relax 3.6}{\ignorespaces Configuraci\'on y simulaci\'on de la etapa de adici\'on de ${V}_{offset}$ y etapa de aislamiento para el CAS de pH.\relax }}{51}{figure.caption.54}
+\contentsline {figure}{\numberline {\relax 3.5}{\ignorespaces Etapas del CAS para el sensor de pH y de temperatura.\relax }}{50}{figure.caption.52}
+\contentsline {figure}{\numberline {\relax 3.6}{\ignorespaces Configuraci\'on y simulaci\'on de la etapa de adici\'on de ${V}_{offset}$ y etapa de aislamiento para el CAS de pH.\relax }}{51}{figure.caption.53}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Adici\'on de ${V}_{offset}$ y aislamiento del sensor de pH.}}}{51}{subfigure.\relax 3.6.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Simulaci\'on de la etapa de adici\'on de ${V}_{offset}$.}}}{51}{subfigure.\relax 3.6.2}
-\contentsline {figure}{\numberline {\relax 3.7}{\ignorespaces Configuraci\'on del filtro \emph {pasa-bajas} con ganancia ajustable.\relax }}{52}{figure.caption.55}
-\contentsline {figure}{\numberline {\relax 3.8}{\ignorespaces Simulaci\'on Completa del CAS para el sensor de pH.\relax }}{53}{figure.caption.57}
+\contentsline {figure}{\numberline {\relax 3.7}{\ignorespaces Configuraci\'on del filtro \emph {pasa-bajas} con ganancia ajustable.\relax }}{52}{figure.caption.54}
+\contentsline {figure}{\numberline {\relax 3.8}{\ignorespaces Simulaci\'on Completa del CAS para el sensor de pH.\relax }}{53}{figure.caption.56}
 \contentsline {figure}{\numberline {\relax 3.9}{\ignorespaces Gr\'afica de entradas y salidas de la simulaci\'on del CAS para el sensor de pH.\relax }}{53}{figure.3.9}
-\contentsline {figure}{\numberline {\relax 3.10}{\ignorespaces Etapas del CAS para el sensor de OD.\relax }}{54}{figure.caption.59}
-\contentsline {figure}{\numberline {\relax 3.11}{\ignorespaces Configuraci\'on de la etapa de conversi\'on-amplificaci\'on .\relax }}{54}{figure.caption.60}
-\contentsline {figure}{\numberline {\relax 3.12}{\ignorespaces Configuraci\'on del filtro \emph {pasa-bajas} inversor de ganancia unitaria.\relax }}{55}{figure.caption.61}
-\contentsline {figure}{\numberline {\relax 3.13}{\ignorespaces Simulaci\'on del CAS para el sensor de OD.\relax }}{56}{figure.caption.63}
+\contentsline {figure}{\numberline {\relax 3.10}{\ignorespaces Etapas del CAS para el sensor de OD.\relax }}{54}{figure.caption.58}
+\contentsline {figure}{\numberline {\relax 3.11}{\ignorespaces Configuraci\'on de la etapa de conversi\'on-amplificaci\'on .\relax }}{54}{figure.caption.59}
+\contentsline {figure}{\numberline {\relax 3.12}{\ignorespaces Configuraci\'on del filtro \emph {pasa-bajas} inversor de ganancia unitaria.\relax }}{55}{figure.caption.60}
+\contentsline {figure}{\numberline {\relax 3.13}{\ignorespaces Simulaci\'on del CAS para el sensor de OD.\relax }}{56}{figure.caption.62}
 \contentsline {figure}{\numberline {\relax 3.14}{\ignorespaces Gr\'afica de entradas y salidas de la simulaci\'on del CAS para el sensor de OD.\relax }}{57}{figure.3.14}
-\contentsline {figure}{\numberline {\relax 3.15}{\ignorespaces Configuraci\'on del CAS para el sensor de temperatura.\relax }}{57}{figure.caption.65}
-\contentsline {figure}{\numberline {\relax 3.16}{\ignorespaces Simulaci\'on del CAS para el sensor de temperatura.\relax }}{58}{figure.caption.67}
+\contentsline {figure}{\numberline {\relax 3.15}{\ignorespaces Configuraci\'on del CAS para el sensor de temperatura.\relax }}{57}{figure.caption.64}
+\contentsline {figure}{\numberline {\relax 3.16}{\ignorespaces Simulaci\'on del CAS para el sensor de temperatura.\relax }}{58}{figure.caption.66}
 \contentsline {figure}{\numberline {\relax 3.17}{\ignorespaces Gr\'afica de entradas y salidas de la simulaci\'on del CAS para el sensor de temperatura.\relax }}{58}{figure.3.17}
-\contentsline {figure}{\numberline {\relax 3.18}{\ignorespaces Configuraci\'on de la RTU.\relax }}{59}{figure.caption.69}
-\contentsline {figure}{\numberline {\relax 3.19}{\ignorespaces Distribuci\'on de terminales del ATmega8.\relax }}{60}{figure.caption.70}
-\contentsline {figure}{\numberline {\relax 3.20}{\ignorespaces Configuraci\'on del DAC0808.\relax }}{60}{figure.caption.71}
-\contentsline {figure}{\numberline {\relax 3.21}{\ignorespaces Configuraci\'on del dispositivo MAX489.\relax }}{61}{figure.caption.72}
-\contentsline {figure}{\numberline {\relax 3.22}{\ignorespaces Comunicaci\'on serie de la RTU con la MTU.\relax }}{61}{figure.caption.73}
-\contentsline {figure}{\numberline {\relax 3.23}{\ignorespaces Transceptor RS-232/RS-485.\relax }}{62}{figure.caption.74}
-\contentsline {figure}{\numberline {\relax 3.24}{\ignorespaces Diagrama de requerimientos formales del \emph {software} de la RTU.\relax }}{63}{figure.caption.76}
-\contentsline {figure}{\numberline {\relax 3.25}{\ignorespaces Estructura \emph {software} de la RTU.\relax }}{63}{figure.caption.77}
+\contentsline {figure}{\numberline {\relax 3.18}{\ignorespaces Configuraci\'on de la RTU.\relax }}{59}{figure.caption.68}
+\contentsline {figure}{\numberline {\relax 3.19}{\ignorespaces Distribuci\'on de terminales del ATmega8.\relax }}{60}{figure.caption.69}
+\contentsline {figure}{\numberline {\relax 3.20}{\ignorespaces Configuraci\'on del DAC0808.\relax }}{60}{figure.caption.70}
+\contentsline {figure}{\numberline {\relax 3.21}{\ignorespaces Configuraci\'on del dispositivo MAX489.\relax }}{61}{figure.caption.71}
+\contentsline {figure}{\numberline {\relax 3.22}{\ignorespaces Comunicaci\'on serie de la RTU con la MTU.\relax }}{61}{figure.caption.72}
+\contentsline {figure}{\numberline {\relax 3.23}{\ignorespaces Transceptor RS-232/RS-485.\relax }}{62}{figure.caption.73}
+\contentsline {figure}{\numberline {\relax 3.24}{\ignorespaces Diagrama de requerimientos formales del \emph {software} de la RTU.\relax }}{63}{figure.caption.75}
+\contentsline {figure}{\numberline {\relax 3.25}{\ignorespaces Estructura \emph {software} de la RTU.\relax }}{63}{figure.caption.76}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {M\'odulos del \emph {software} de la RTU.}}}{63}{subfigure.\relax 3.25.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Clase RTU.}}}{63}{subfigure.\relax 3.25.2}
-\contentsline {figure}{\numberline {\relax 3.26}{\ignorespaces Diagramas de actividades del \emph {software} de la RTU\relax }}{64}{figure.caption.79}
+\contentsline {figure}{\numberline {\relax 3.26}{\ignorespaces Diagramas de actividades del \emph {software} de la RTU\relax }}{64}{figure.caption.78}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Inicializaci\'on de m\'odulos del \emph {software} de la RTU.}}}{64}{subfigure.\relax 3.26.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Procesamiento de ADUs de solicitud.}}}{64}{subfigure.\relax 3.26.2}
-\contentsline {figure}{\numberline {\relax 3.27}{\ignorespaces Diagrama de requerimientos formales del \emph {software} de la MTU.\relax }}{66}{figure.caption.83}
-\contentsline {figure}{\numberline {\relax 3.28}{\ignorespaces Divisi\'on de subprocesos del \emph {software} de la MTU.\relax }}{67}{figure.caption.84}
-\contentsline {figure}{\numberline {\relax 3.29}{\ignorespaces Casos de uso para monitoreo principal.\relax }}{69}{figure.caption.86}
-\contentsline {figure}{\numberline {\relax 3.30}{\ignorespaces Casos de uso para la calibraci\'on de sensores.\relax }}{70}{figure.caption.88}
-\contentsline {figure}{\numberline {\relax 3.31}{\ignorespaces Diagrama de actividades de monitoreo autom\'atico.\relax }}{71}{figure.caption.89}
-\contentsline {figure}{\numberline {\relax 3.32}{\ignorespaces Diagrama de requerimientos formales de la aplicaci\'on Web para sesi\'on de usuario.\relax }}{73}{figure.caption.93}
-\contentsline {figure}{\numberline {\relax 3.33}{\ignorespaces Diagrama de requerimientos formales de la aplicaci\'on Web para la presentaci\'on de mediciones y estados digitales.\relax }}{73}{figure.caption.94}
-\contentsline {figure}{\numberline {\relax 3.34}{\ignorespaces Diagrama de requerimientos formales de la aplicaci\'on Web para gestionar las salidas digitales.\relax }}{73}{figure.caption.95}
-\contentsline {figure}{\numberline {\relax 3.35}{\ignorespaces Clases de modelos (MVC) de la aplicaci\'on Web.\relax }}{74}{figure.caption.97}
-\contentsline {figure}{\numberline {\relax 3.36}{\ignorespaces Clases de controladores (MVC) de la aplicaci\'on Web.\relax }}{75}{figure.caption.99}
-\contentsline {figure}{\numberline {\relax 3.37}{\ignorespaces Modelo E-R de la aplicaci\'on Web.\relax }}{76}{figure.caption.100}
-\contentsline {figure}{\numberline {\relax 3.38}{\ignorespaces Diagrama de casos de uso para sesi\'on de usuarios.\relax }}{77}{figure.caption.103}
-\contentsline {figure}{\numberline {\relax 3.39}{\ignorespaces Diagrama de casos de uso para funcionalidades Web.\relax }}{77}{figure.caption.104}
-\contentsline {figure}{\numberline {\relax 3.40}{\ignorespaces Diagrama de actividades para la presentaci\'on de mediciones anal\'ogicas.\relax }}{78}{figure.caption.105}
-\contentsline {figure}{\numberline {\relax 3.41}{\ignorespaces Diagrama de actividades para establecer salidas digitales.\relax }}{79}{figure.caption.106}
-\contentsline {figure}{\numberline {\relax 3.42}{\ignorespaces Integraci\'on del sistema SCADA propuesto.\relax }}{79}{figure.caption.107}
-\contentsline {figure}{\numberline {\relax 3.43}{\ignorespaces PCB del CAS para el sensor de pH, las im\'agenes no est\'an a escala.\relax }}{81}{figure.caption.108}
+\contentsline {figure}{\numberline {\relax 3.27}{\ignorespaces Diagrama de requerimientos formales del \emph {software} de la MTU.\relax }}{66}{figure.caption.82}
+\contentsline {figure}{\numberline {\relax 3.28}{\ignorespaces Divisi\'on de subprocesos del \emph {software} de la MTU.\relax }}{67}{figure.caption.83}
+\contentsline {figure}{\numberline {\relax 3.29}{\ignorespaces Casos de uso para monitoreo principal.\relax }}{69}{figure.caption.85}
+\contentsline {figure}{\numberline {\relax 3.30}{\ignorespaces Casos de uso para la calibraci\'on de sensores.\relax }}{70}{figure.caption.87}
+\contentsline {figure}{\numberline {\relax 3.31}{\ignorespaces Diagrama de actividades de monitoreo autom\'atico.\relax }}{71}{figure.caption.88}
+\contentsline {figure}{\numberline {\relax 3.32}{\ignorespaces Diagrama de requerimientos formales de la aplicaci\'on Web para sesi\'on de usuario.\relax }}{73}{figure.caption.92}
+\contentsline {figure}{\numberline {\relax 3.33}{\ignorespaces Diagrama de requerimientos formales de la aplicaci\'on Web para la presentaci\'on de mediciones y estados digitales.\relax }}{73}{figure.caption.93}
+\contentsline {figure}{\numberline {\relax 3.34}{\ignorespaces Diagrama de requerimientos formales de la aplicaci\'on Web para gestionar las salidas digitales.\relax }}{73}{figure.caption.94}
+\contentsline {figure}{\numberline {\relax 3.35}{\ignorespaces Clases de modelos (MVC) de la aplicaci\'on Web.\relax }}{74}{figure.caption.96}
+\contentsline {figure}{\numberline {\relax 3.36}{\ignorespaces Clases de controladores (MVC) de la aplicaci\'on Web.\relax }}{75}{figure.caption.98}
+\contentsline {figure}{\numberline {\relax 3.37}{\ignorespaces Modelo E-R de la aplicaci\'on Web.\relax }}{76}{figure.caption.99}
+\contentsline {figure}{\numberline {\relax 3.38}{\ignorespaces Diagrama de casos de uso para sesi\'on de usuarios.\relax }}{77}{figure.caption.102}
+\contentsline {figure}{\numberline {\relax 3.39}{\ignorespaces Diagrama de casos de uso para funcionalidades Web.\relax }}{77}{figure.caption.103}
+\contentsline {figure}{\numberline {\relax 3.40}{\ignorespaces Diagrama de actividades para la presentaci\'on de mediciones anal\'ogicas.\relax }}{78}{figure.caption.104}
+\contentsline {figure}{\numberline {\relax 3.41}{\ignorespaces Diagrama de actividades para establecer salidas digitales.\relax }}{79}{figure.caption.105}
+\contentsline {figure}{\numberline {\relax 3.42}{\ignorespaces Integraci\'on del sistema SCADA propuesto.\relax }}{79}{figure.caption.106}
+\contentsline {figure}{\numberline {\relax 3.43}{\ignorespaces PCB del CAS para el sensor de pH, las im\'agenes no est\'an a escala.\relax }}{81}{figure.caption.107}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Dise\~no de pistas PCB.}}}{81}{subfigure.\relax 3.43.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Ordenamiento de CIs.}}}{81}{subfigure.\relax 3.43.2}
-\contentsline {figure}{\numberline {\relax 3.44}{\ignorespaces Vista 3D del dispositivo CAS para el sensor de pH.\relax }}{82}{figure.caption.110}
-\contentsline {figure}{\numberline {\relax 3.45}{\ignorespaces PCB del CAS para el sensor de OD y temperatura, las im\'agenes no est\'an a escala.\relax }}{83}{figure.caption.111}
+\contentsline {figure}{\numberline {\relax 3.44}{\ignorespaces Vista 3D del dispositivo CAS para el sensor de pH.\relax }}{82}{figure.caption.109}
+\contentsline {figure}{\numberline {\relax 3.45}{\ignorespaces PCB del CAS para el sensor de OD y temperatura, las im\'agenes no est\'an a escala.\relax }}{83}{figure.caption.110}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Dise\~no de las pistas PCB.}}}{83}{subfigure.\relax 3.45.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Distribuci\'on de CIs.}}}{83}{subfigure.\relax 3.45.2}
-\contentsline {figure}{\numberline {\relax 3.46}{\ignorespaces Vista 3D del dispositivo CAS para el sensor de OD y temperatura.\relax }}{83}{figure.caption.113}
-\contentsline {figure}{\numberline {\relax 3.47}{\ignorespaces PCB para el m\'odulo del MCU, las im\'agenes no est\'an a escala.\relax }}{84}{figure.caption.114}
+\contentsline {figure}{\numberline {\relax 3.46}{\ignorespaces Vista 3D del dispositivo CAS para el sensor de OD y temperatura.\relax }}{83}{figure.caption.112}
+\contentsline {figure}{\numberline {\relax 3.47}{\ignorespaces PCB para el m\'odulo del MCU, las im\'agenes no est\'an a escala.\relax }}{84}{figure.caption.113}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Dise\~no de las pistas PCB.}}}{84}{subfigure.\relax 3.47.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Distribuci\'on de CIs.}}}{84}{subfigure.\relax 3.47.2}
-\contentsline {figure}{\numberline {\relax 3.48}{\ignorespaces Vista 3D del m\'odulo del MCU.\relax }}{85}{figure.caption.116}
-\contentsline {figure}{\numberline {\relax 3.49}{\ignorespaces PCB del transceptor RS-232/RS-485, las im\'agenes no est\'an a escala.\relax }}{86}{figure.caption.117}
+\contentsline {figure}{\numberline {\relax 3.48}{\ignorespaces Vista 3D del m\'odulo del MCU.\relax }}{85}{figure.caption.115}
+\contentsline {figure}{\numberline {\relax 3.49}{\ignorespaces PCB del transceptor RS-232/RS-485, las im\'agenes no est\'an a escala.\relax }}{86}{figure.caption.116}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Dise\~no de las pistas PCB.}}}{86}{subfigure.\relax 3.49.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Distribuci\'on de CIs.}}}{86}{subfigure.\relax 3.49.2}
-\contentsline {figure}{\numberline {\relax 3.50}{\ignorespaces Vista 3D del Transceptor RS-232/RS-485.\relax }}{87}{figure.caption.119}
-\contentsline {figure}{\numberline {\relax 3.51}{\ignorespaces Ventana principal de la GUI del \emph {software} de la MTU.\relax }}{87}{figure.caption.120}
-\contentsline {figure}{\numberline {\relax 3.52}{\ignorespaces Vista principal de la aplicaci\'on Web.\relax }}{88}{figure.caption.121}
+\contentsline {figure}{\numberline {\relax 3.50}{\ignorespaces Vista 3D del Transceptor RS-232/RS-485.\relax }}{87}{figure.caption.118}
+\contentsline {figure}{\numberline {\relax 3.51}{\ignorespaces Ventana principal de la GUI del \emph {software} de la MTU.\relax }}{87}{figure.caption.119}
+\contentsline {figure}{\numberline {\relax 3.52}{\ignorespaces Vista principal de la aplicaci\'on Web.\relax }}{88}{figure.caption.120}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Diagrama de actividades para las pruebas de caja blanca.\relax }}{90}{figure.caption.122}
-\contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces Instrumentos de medici\'on empleados en las pruebas.\relax }}{91}{figure.caption.123}
+\contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Diagrama de actividades para las pruebas de caja blanca.\relax }}{90}{figure.caption.121}
+\contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces Instrumentos de medici\'on empleados en las pruebas.\relax }}{91}{figure.caption.122}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Mult\IeC {\'\i }metro \emph {FLUKE 189}.}}}{91}{subfigure.\relax 4.2.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Mult\IeC {\'\i }metro \emph {BK PRECISION 2831E}.}}}{91}{subfigure.\relax 4.2.2}
-\contentsline {figure}{\numberline {\relax 4.3}{\ignorespaces Presentaci\'on final de la RTU.\relax }}{91}{figure.caption.124}
+\contentsline {figure}{\numberline {\relax 4.3}{\ignorespaces Presentaci\'on final de la RTU.\relax }}{91}{figure.caption.123}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Vista frontal de la RTU.}}}{91}{subfigure.\relax 4.3.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Vista trasera de la RTU.}}}{91}{subfigure.\relax 4.3.2}
-\contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces Configuraci\'on de terminales en el gabinete de la RTU.\relax }}{92}{figure.caption.125}
+\contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces Configuraci\'on de terminales en el gabinete de la RTU.\relax }}{92}{figure.caption.124}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Terminales de comunicaciones y alimentaci\'on.}}}{92}{subfigure.\relax 4.4.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Terminales de entrada de sensores.}}}{92}{subfigure.\relax 4.4.2}
-\contentsline {figure}{\numberline {\relax 4.5}{\ignorespaces Prueba de conexiones de la RTU.\relax }}{92}{figure.caption.126}
-\contentsline {figure}{\numberline {\relax 4.6}{\ignorespaces Mediciones de las salidas en los dispositivos para generar ${V}_{offset}$ y ${V}_{POD}$.\relax }}{93}{figure.caption.127}
+\contentsline {figure}{\numberline {\relax 4.5}{\ignorespaces Prueba de conexiones de la RTU.\relax }}{92}{figure.caption.125}
+\contentsline {figure}{\numberline {\relax 4.6}{\ignorespaces Mediciones de las salidas en los dispositivos para generar ${V}_{offset}$ y ${V}_{POD}$.\relax }}{93}{figure.caption.126}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Medici\'on de ${V}_{offset}$.}}}{93}{subfigure.\relax 4.6.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Medici\'on de ${V}_{POD}$.}}}{93}{subfigure.\relax 4.6.2}
-\contentsline {figure}{\numberline {\relax 4.7}{\ignorespaces Configuraci\'on para pruebas de variaciones de voltaje.\relax }}{93}{figure.caption.128}
+\contentsline {figure}{\numberline {\relax 4.7}{\ignorespaces Configuraci\'on para pruebas de variaciones de voltaje.\relax }}{93}{figure.caption.127}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Conexi\'on de punta de pruebas con conector BNC.}}}{93}{subfigure.\relax 4.7.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Generaci\'on de ${I}_{OD}$ para pruebas.}}}{93}{subfigure.\relax 4.7.2}
 \contentsline {figure}{\numberline {\relax 4.8}{\ignorespaces Gr\'afica de resultados arrojados en las pruebas, la simulaci\'on y de manera te\'orica para el CAS del sensor de pH.\relax }}{94}{figure.4.8}
 \contentsline {figure}{\numberline {\relax 4.9}{\ignorespaces Gr\'afica de resultados arrojados en las pruebas, la simulaci\'on y de manera te\'orica para el CAS del sensor de OD.\relax }}{95}{figure.4.9}
 \contentsline {figure}{\numberline {\relax 4.10}{\ignorespaces Gr\'afica de resultados arrojados en las pruebas, la simulaci\'on y de manera te\'orica para el CAS del sensor de temperatura.\relax }}{96}{figure.4.10}
-\contentsline {figure}{\numberline {\relax 4.11}{\ignorespaces Diagramas de actividades para las pruebas de caja gris.\relax }}{97}{figure.caption.132}
+\contentsline {figure}{\numberline {\relax 4.11}{\ignorespaces Diagramas de actividades para las pruebas de caja gris.\relax }}{97}{figure.caption.131}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Pruebas de comunicaci\'on.}}}{97}{subfigure.\relax 4.11.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Pruebas de funcionalidad.}}}{97}{subfigure.\relax 4.11.2}
-\contentsline {figure}{\numberline {\relax 4.12}{\ignorespaces Presentaci\'on final del transceptor RS-232/RS-485.\relax }}{98}{figure.caption.133}
+\contentsline {figure}{\numberline {\relax 4.12}{\ignorespaces Presentaci\'on final del transceptor RS-232/RS-485.\relax }}{98}{figure.caption.132}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Vista frontal del transceptor RS-232/RS-485.}}}{98}{subfigure.\relax 4.12.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Vista trasera del transceptor RS-232/RS-485.}}}{98}{subfigure.\relax 4.12.2}
-\contentsline {figure}{\numberline {\relax 4.13}{\ignorespaces Elementos requeridos para la comunicaci\'on serie.\relax }}{98}{figure.caption.134}
+\contentsline {figure}{\numberline {\relax 4.13}{\ignorespaces Elementos requeridos para la comunicaci\'on serie.\relax }}{98}{figure.caption.133}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Cable convertidor de USB a la interfaz serie RS-232.}}}{98}{subfigure.\relax 4.13.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Cable serie para conectar el transceptor a la interfaz RS-232.}}}{98}{subfigure.\relax 4.13.2}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Fuente de alimentaci\'on para el transceptor RS-232/RS-485.}}}{98}{subfigure.\relax 4.13.3}
-\contentsline {figure}{\numberline {\relax 4.14}{\ignorespaces Configuraci\'on de conexiones para la comunicaci\'on entre la RTU y la MTU.\relax }}{99}{figure.caption.135}
+\contentsline {figure}{\numberline {\relax 4.14}{\ignorespaces Configuraci\'on de conexiones para la comunicaci\'on entre la RTU y la MTU.\relax }}{99}{figure.caption.134}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Conexi\'on del cable UTP a la RTU.}}}{99}{subfigure.\relax 4.14.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Conexi\'on del cabe UTP al transceptor y conexi\'on a la \emph {notebook}.}}}{99}{subfigure.\relax 4.14.2}
-\contentsline {figure}{\numberline {\relax 4.16}{\ignorespaces Resultados de las pruebas de comunicaci\'on serie con cables UTP de diferente longitud.\relax }}{99}{figure.caption.137}
+\contentsline {figure}{\numberline {\relax 4.16}{\ignorespaces Resultados de las pruebas de comunicaci\'on serie con cables UTP de diferente longitud.\relax }}{99}{figure.caption.136}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Prueba de comunicaci\'on serie con el cable UTP de $1\meter $ de longitud.}}}{99}{subfigure.\relax 4.16.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Prueba de comunicaci\'on serie con el cable UTP de $3\meter $ de longitud.}}}{99}{subfigure.\relax 4.16.2}
-\contentsline {figure}{\numberline {\relax 4.15}{\ignorespaces Configuraci\'on del \emph {software} Docklight.\relax }}{100}{figure.caption.136}
+\contentsline {figure}{\numberline {\relax 4.15}{\ignorespaces Configuraci\'on del \emph {software} Docklight.\relax }}{100}{figure.caption.135}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {ADU de prueba para Docklight.}}}{100}{subfigure.\relax 4.15.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Configuraci\'on del \emph {software} Docklight.}}}{100}{subfigure.\relax 4.15.2}
-\contentsline {figure}{\numberline {\relax 4.17}{\ignorespaces Comportamiento del \emph {software} ante fallos en la comunicaci\'on serie.\relax }}{101}{figure.caption.138}
+\contentsline {figure}{\numberline {\relax 4.17}{\ignorespaces Comportamiento del \emph {software} ante fallos en la comunicaci\'on serie.\relax }}{101}{figure.caption.137}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Comportamiento del \emph {software} de la MTU cuando no hay comunicaci\'on con la RTU.}}}{101}{subfigure.\relax 4.17.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Comportamiento del \emph {software} de la MTU cuando hay comunicaci\'on con la RTU.}}}{101}{subfigure.\relax 4.17.2}
-\contentsline {figure}{\numberline {\relax 4.18}{\ignorespaces Comportamiento del \emph {software} de la MTU ante fallos de comunicaci\'on con la base de datos.\relax }}{102}{figure.caption.139}
-\contentsline {figure}{\numberline {\relax 4.19}{\ignorespaces Conexi\'on del sensor de pH a la RTU.\relax }}{103}{figure.caption.140}
+\contentsline {figure}{\numberline {\relax 4.18}{\ignorespaces Comportamiento del \emph {software} de la MTU ante fallos de comunicaci\'on con la base de datos.\relax }}{102}{figure.caption.138}
+\contentsline {figure}{\numberline {\relax 4.19}{\ignorespaces Conexi\'on del sensor de pH a la RTU.\relax }}{103}{figure.caption.139}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Muestras de laboratorio con valores de pH fijo.}}}{103}{subfigure.\relax 4.19.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Instalaci\'on del sensor de pH y conexi\'on con la RTU.}}}{103}{subfigure.\relax 4.19.2}
-\contentsline {figure}{\numberline {\relax 4.20}{\ignorespaces Conexi\'on del sensor de temperatura a la RTU.\relax }}{104}{figure.caption.142}
-\contentsline {figure}{\numberline {\relax 4.21}{\ignorespaces Presentaci\'on de mediciones de pH en el \emph {software} de la MTU.\relax }}{105}{figure.caption.144}
+\contentsline {figure}{\numberline {\relax 4.20}{\ignorespaces Conexi\'on del sensor de temperatura a la RTU.\relax }}{104}{figure.caption.141}
+\contentsline {figure}{\numberline {\relax 4.21}{\ignorespaces Presentaci\'on de mediciones de pH en el \emph {software} de la MTU.\relax }}{105}{figure.caption.143}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Mediciones para la muestra con valor de pH de 4.01.}}}{105}{subfigure.\relax 4.21.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Mediciones para la muestra con valor de pH de 7.0.}}}{105}{subfigure.\relax 4.21.2}
-\contentsline {figure}{\numberline {\relax 4.22}{\ignorespaces Pruebas de calibraci\'on del sensor de pH.\relax }}{106}{figure.caption.145}
+\contentsline {figure}{\numberline {\relax 4.22}{\ignorespaces Pruebas de calibraci\'on del sensor de pH.\relax }}{106}{figure.caption.144}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Ventana de calibraci\'on de pH.}}}{106}{subfigure.\relax 4.22.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Ventana de calibraci\'on finalizada.}}}{106}{subfigure.\relax 4.22.2}
-\contentsline {figure}{\numberline {\relax 4.23}{\ignorespaces Mediciones en el \emph {software} de la MTU despu\'es de realizar la calibraci\'on del sensor de pH.\relax }}{107}{figure.caption.146}
+\contentsline {figure}{\numberline {\relax 4.23}{\ignorespaces Mediciones en el \emph {software} de la MTU despu\'es de realizar la calibraci\'on del sensor de pH.\relax }}{107}{figure.caption.145}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Mediciones para la muestra con valor de pH de 4.01.}}}{107}{subfigure.\relax 4.23.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Mediciones para la muestra con valor de pH de 7.0.}}}{107}{subfigure.\relax 4.23.2}
-\contentsline {figure}{\numberline {\relax 4.24}{\ignorespaces Presentaci\'on de mediciones de temperatura en el \emph {software} de la MTU.\relax }}{108}{figure.caption.147}
-\contentsline {figure}{\numberline {\relax 4.25}{\ignorespaces Presentaci\'on de mediciones de OD en el \emph {software} de la MTU\relax }}{109}{figure.caption.148}
+\contentsline {figure}{\numberline {\relax 4.24}{\ignorespaces Presentaci\'on de mediciones de temperatura en el \emph {software} de la MTU.\relax }}{108}{figure.caption.146}
+\contentsline {figure}{\numberline {\relax 4.25}{\ignorespaces Presentaci\'on de mediciones de OD en el \emph {software} de la MTU\relax }}{109}{figure.caption.147}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Mediciones para un porcentaje de saturaci\'on de OD de $100\unskip $\mathsurround \z@ \tmspace +\thinmuskip {.1667em}$\percentsign {}$ aproximadamente.}}}{109}{subfigure.\relax 4.25.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Mediciones para un porcentaje de saturaci\'on de OD de $75\unskip $\mathsurround \z@ \tmspace +\thinmuskip {.1667em}$\percentsign {}$ aproximadamente.}}}{109}{subfigure.\relax 4.25.2}
-\contentsline {figure}{\numberline {\relax 4.26}{\ignorespaces Pruebas de calibraci\'on del sensor de OD.\relax }}{110}{figure.caption.149}
+\contentsline {figure}{\numberline {\relax 4.26}{\ignorespaces Pruebas de calibraci\'on del sensor de OD.\relax }}{110}{figure.caption.148}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Ventana de calibraci\'on de OD.}}}{110}{subfigure.\relax 4.26.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Ventana de calibraci\'on finalizada.}}}{110}{subfigure.\relax 4.26.2}
-\contentsline {figure}{\numberline {\relax 4.27}{\ignorespaces Presentaci\'on de mediciones de pH en la aplicaci\'on Web.\relax }}{111}{figure.caption.150}
+\contentsline {figure}{\numberline {\relax 4.27}{\ignorespaces Presentaci\'on de mediciones de pH en la aplicaci\'on Web.\relax }}{111}{figure.caption.149}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Gr\'afica de mediciones para la muestra con un valor de pH de 4.}}}{111}{subfigure.\relax 4.27.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Gr\'afica de mediciones para la muestra con un valor de pH de 7.}}}{111}{subfigure.\relax 4.27.2}
-\contentsline {figure}{\numberline {\relax 4.28}{\ignorespaces Presentaci\'on de mediciones de temperatura y OD en la aplicaci\'on Web.\relax }}{112}{figure.caption.151}
+\contentsline {figure}{\numberline {\relax 4.28}{\ignorespaces Presentaci\'on de mediciones de temperatura y OD en la aplicaci\'on Web.\relax }}{112}{figure.caption.150}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Gr\'afica de mediciones de temperatura.}}}{112}{subfigure.\relax 4.28.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Gr\'afica de mediciones de OD.}}}{112}{subfigure.\relax 4.28.2}
-\contentsline {figure}{\numberline {\relax 4.29}{\ignorespaces Presentaci\'on de los registros de mediciones en forma tabular.\relax }}{113}{figure.caption.152}
+\contentsline {figure}{\numberline {\relax 4.29}{\ignorespaces Presentaci\'on de los registros de mediciones en forma tabular.\relax }}{113}{figure.caption.151}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Tabla de mediciones de pH.}}}{113}{subfigure.\relax 4.29.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Tabla de mediciones de temperatura.}}}{113}{subfigure.\relax 4.29.2}
-\contentsline {figure}{\numberline {\relax 4.30}{\ignorespaces Diagrama de actividades para las pruebas de caja negra.\relax }}{114}{figure.caption.153}
-\contentsline {figure}{\numberline {\relax 4.31}{\ignorespaces Gesti\'on de usuarios en la aplicaci\'on Web.\relax }}{115}{figure.caption.154}
+\contentsline {figure}{\numberline {\relax 4.30}{\ignorespaces Diagrama de actividades para las pruebas de caja negra.\relax }}{114}{figure.caption.152}
+\contentsline {figure}{\numberline {\relax 4.31}{\ignorespaces Gesti\'on de usuarios en la aplicaci\'on Web.\relax }}{115}{figure.caption.153}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Men\'u de usuario para iniciar sesi\'on.}}}{115}{subfigure.\relax 4.31.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Formulario para iniciar sesi\'on.}}}{115}{subfigure.\relax 4.31.2}
-\contentsline {figure}{\numberline {\relax 4.32}{\ignorespaces Presentaci\'on y gesti\'on de salidas digitales en la aplicaci\'on Web.\relax }}{117}{figure.caption.155}
+\contentsline {figure}{\numberline {\relax 4.32}{\ignorespaces Presentaci\'on y gesti\'on de salidas digitales en la aplicaci\'on Web.\relax }}{117}{figure.caption.154}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Presentaci\'on de registros de estados digitales.}}}{117}{subfigure.\relax 4.32.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Formulario para establecer salidas digitales.}}}{117}{subfigure.\relax 4.32.2}
-\contentsline {figure}{\numberline {\relax 4.33}{\ignorespaces Recepci\'on de la ADU emitida desde la aplicaci\'on Web y gesti\'on de salidas digitales desde el \emph {software} de la MTU.\relax }}{118}{figure.caption.156}
+\contentsline {figure}{\numberline {\relax 4.33}{\ignorespaces Recepci\'on de la ADU emitida desde la aplicaci\'on Web y gesti\'on de salidas digitales desde el \emph {software} de la MTU.\relax }}{118}{figure.caption.155}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Recepci\'on de la ADU emitida desde la aplicaci\'on Web.}}}{118}{subfigure.\relax 4.33.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Gesti\'on de salidas digitales desde el \emph {software} de la MTU.}}}{118}{subfigure.\relax 4.33.2}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax A.1}{\ignorespaces Diagrama esquem\'atico del dispositivo CAS para el sensor de pH.\relax }}{127}{figure.caption.158}
-\contentsline {figure}{\numberline {\relax A.2}{\ignorespaces Diagrama esquem\'atico del dispositivo CAS para el sensor de OD.\relax }}{127}{figure.caption.159}
-\contentsline {figure}{\numberline {\relax A.3}{\ignorespaces Diagrama esquem\'atico del dispositivo CAS para el sensor de temperatura.\relax }}{128}{figure.caption.160}
-\contentsline {figure}{\numberline {\relax A.4}{\ignorespaces Diagrama esquem\'atico para las entradas y salidas del MCU.\relax }}{128}{figure.caption.161}
+\contentsline {figure}{\numberline {\relax A.1}{\ignorespaces Diagrama esquem\'atico del dispositivo CAS para el sensor de pH.\relax }}{127}{figure.caption.157}
+\contentsline {figure}{\numberline {\relax A.2}{\ignorespaces Diagrama esquem\'atico del dispositivo CAS para el sensor de OD.\relax }}{127}{figure.caption.158}
+\contentsline {figure}{\numberline {\relax A.3}{\ignorespaces Diagrama esquem\'atico del dispositivo CAS para el sensor de temperatura.\relax }}{128}{figure.caption.159}
+\contentsline {figure}{\numberline {\relax A.4}{\ignorespaces Diagrama esquem\'atico para las entradas y salidas del MCU.\relax }}{128}{figure.caption.160}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax B.1}{\ignorespaces PCB del CAS para el sensor de pH.\relax }}{129}{figure.caption.162}
+\contentsline {figure}{\numberline {\relax B.1}{\ignorespaces PCB del CAS para el sensor de pH.\relax }}{129}{figure.caption.161}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Dise\~no de pistas PCB de capa inferior.}}}{129}{subfigure.\relax Alph2.1.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Ordenamiento de CIs.}}}{129}{subfigure.\relax Alph2.1.2}
-\contentsline {figure}{\numberline {\relax B.2}{\ignorespaces PCB del CAS para el sensor de OD y temperatura.\relax }}{130}{figure.caption.163}
+\contentsline {figure}{\numberline {\relax B.2}{\ignorespaces PCB del CAS para el sensor de OD y temperatura.\relax }}{130}{figure.caption.162}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Dise\~no de pistas PCB de capa inferior.}}}{130}{subfigure.\relax Alph2.2.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Distribuci\'on de CIs.}}}{130}{subfigure.\relax Alph2.2.2}
-\contentsline {figure}{\numberline {\relax B.3}{\ignorespaces PCB para el m\'odulo del MCU.\relax }}{131}{figure.caption.164}
+\contentsline {figure}{\numberline {\relax B.3}{\ignorespaces PCB para el m\'odulo del MCU.\relax }}{131}{figure.caption.163}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Dise\~no de pistas PCB de capa inferior.}}}{131}{subfigure.\relax Alph2.3.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Distribuci\'on de CIs.}}}{131}{subfigure.\relax Alph2.3.2}
-\contentsline {figure}{\numberline {\relax B.4}{\ignorespaces PCB de la pasarela RS-232/RS-485.\relax }}{131}{figure.caption.165}
+\contentsline {figure}{\numberline {\relax B.4}{\ignorespaces PCB de la pasarela RS-232/RS-485.\relax }}{131}{figure.caption.164}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Dise\~no de pistas PCB de capa inferior.}}}{131}{subfigure.\relax Alph2.4.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Distribuci\'on de CIs.}}}{131}{subfigure.\relax Alph2.4.2}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax C.1}{\ignorespaces Diagrama de clases para monitoreo de entradas anal\'ogicas.\relax }}{134}{figure.caption.166}
-\contentsline {figure}{\numberline {\relax C.2}{\ignorespaces Diagrama de clases para monitoreo de entradas digitales.\relax }}{135}{figure.caption.167}
-\contentsline {figure}{\numberline {\relax C.3}{\ignorespaces Diagrama de clases para monitoreo y control de salidas digitales.\relax }}{136}{figure.caption.168}
-\contentsline {figure}{\numberline {\relax C.4}{\ignorespaces Diagrama de clases para calibraci\'on de sensores.\relax }}{137}{figure.caption.169}
-\contentsline {figure}{\numberline {\relax C.5}{\ignorespaces Diagrama de actividades de la gesti\'on de la interfaz serial.\relax }}{138}{figure.caption.170}
-\contentsline {figure}{\numberline {\relax C.6}{\ignorespaces Diagrama de actividades del procesamiento de ADUs.\relax }}{138}{figure.caption.171}
-\contentsline {figure}{\numberline {\relax C.7}{\ignorespaces Diagrama de actividades para establecer el tiempo de muestreo.\relax }}{139}{figure.caption.172}
-\contentsline {figure}{\numberline {\relax C.8}{\ignorespaces Diagrama de actividades para calibrar el sensor de pH.\relax }}{139}{figure.caption.173}
-\contentsline {figure}{\numberline {\relax C.9}{\ignorespaces Diagrama de actividades para calibrar el sensor de OD.\relax }}{140}{figure.caption.174}
+\contentsline {figure}{\numberline {\relax C.1}{\ignorespaces Diagrama de clases para monitoreo de entradas anal\'ogicas.\relax }}{134}{figure.caption.165}
+\contentsline {figure}{\numberline {\relax C.2}{\ignorespaces Diagrama de clases para monitoreo de entradas digitales.\relax }}{135}{figure.caption.166}
+\contentsline {figure}{\numberline {\relax C.3}{\ignorespaces Diagrama de clases para monitoreo y control de salidas digitales.\relax }}{136}{figure.caption.167}
+\contentsline {figure}{\numberline {\relax C.4}{\ignorespaces Diagrama de clases para calibraci\'on de sensores.\relax }}{137}{figure.caption.168}
+\contentsline {figure}{\numberline {\relax C.5}{\ignorespaces Diagrama de actividades de la gesti\'on de la interfaz serial.\relax }}{138}{figure.caption.169}
+\contentsline {figure}{\numberline {\relax C.6}{\ignorespaces Diagrama de actividades del procesamiento de ADUs.\relax }}{138}{figure.caption.170}
+\contentsline {figure}{\numberline {\relax C.7}{\ignorespaces Diagrama de actividades para establecer el tiempo de muestreo.\relax }}{139}{figure.caption.171}
+\contentsline {figure}{\numberline {\relax C.8}{\ignorespaces Diagrama de actividades para calibrar el sensor de pH.\relax }}{139}{figure.caption.172}
+\contentsline {figure}{\numberline {\relax C.9}{\ignorespaces Diagrama de actividades para calibrar el sensor de OD.\relax }}{140}{figure.caption.173}

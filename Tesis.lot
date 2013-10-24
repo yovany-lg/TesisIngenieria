@@ -1,51 +1,51 @@
 \select@language {spanish}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {\relax 2.1}{\ignorespaces Niveles de voltaje del receptor del est\'andar RS-232.\relax }}{29}{table.caption.28}
-\contentsline {table}{\numberline {\relax 2.2}{\ignorespaces Niveles de voltaje del transmisor del est\'andar RS-232.\relax }}{29}{table.caption.29}
-\contentsline {table}{\numberline {\relax 2.3}{\ignorespaces Se\~nales del est\'andar RS-232.\relax }}{29}{table.caption.30}
-\contentsline {table}{\numberline {\relax 2.4}{\ignorespaces C\'odigos de funci\'on MODBUS implementados en redes serie.\relax }}{33}{table.caption.35}
-\contentsline {table}{\numberline {\relax 2.5}{\ignorespaces PDU de Petici\'on de la funci\'on 0x01.\relax }}{33}{table.caption.36}
-\contentsline {table}{\numberline {\relax 2.6}{\ignorespaces PDU de Respuesta de la funci\'on 0x01.\relax }}{34}{table.caption.37}
-\contentsline {table}{\numberline {\relax 2.7}{\ignorespaces PDU de Petici\'on de la funci\'on 0x02.\relax }}{34}{table.caption.38}
-\contentsline {table}{\numberline {\relax 2.8}{\ignorespaces PDU de Respuesta de la funci\'on 0x02.\relax }}{34}{table.caption.39}
-\contentsline {table}{\numberline {\relax 2.9}{\ignorespaces PDU de Petici\'on de la funci\'on 0x04.\relax }}{35}{table.caption.40}
-\contentsline {table}{\numberline {\relax 2.10}{\ignorespaces PDU de Respuesta de la funci\'on 0x04.\relax }}{35}{table.caption.41}
-\contentsline {table}{\numberline {\relax 2.11}{\ignorespaces PDU de la funci\'on 0x05.\relax }}{35}{table.caption.42}
-\contentsline {table}{\numberline {\relax 2.12}{\ignorespaces PDU de la funci\'on 0x06.\relax }}{36}{table.caption.43}
+\contentsline {table}{\numberline {\relax 2.1}{\ignorespaces Niveles de voltaje del receptor del est\'andar RS-232.\relax }}{29}{table.caption.27}
+\contentsline {table}{\numberline {\relax 2.2}{\ignorespaces Niveles de voltaje del transmisor del est\'andar RS-232.\relax }}{29}{table.caption.28}
+\contentsline {table}{\numberline {\relax 2.3}{\ignorespaces Se\~nales del est\'andar RS-232.\relax }}{29}{table.caption.29}
+\contentsline {table}{\numberline {\relax 2.4}{\ignorespaces C\'odigos de funci\'on MODBUS implementados en redes serie.\relax }}{33}{table.caption.34}
+\contentsline {table}{\numberline {\relax 2.5}{\ignorespaces PDU de Petici\'on de la funci\'on 0x01.\relax }}{33}{table.caption.35}
+\contentsline {table}{\numberline {\relax 2.6}{\ignorespaces PDU de Respuesta de la funci\'on 0x01.\relax }}{34}{table.caption.36}
+\contentsline {table}{\numberline {\relax 2.7}{\ignorespaces PDU de Petici\'on de la funci\'on 0x02.\relax }}{34}{table.caption.37}
+\contentsline {table}{\numberline {\relax 2.8}{\ignorespaces PDU de Respuesta de la funci\'on 0x02.\relax }}{34}{table.caption.38}
+\contentsline {table}{\numberline {\relax 2.9}{\ignorespaces PDU de Petici\'on de la funci\'on 0x04.\relax }}{35}{table.caption.39}
+\contentsline {table}{\numberline {\relax 2.10}{\ignorespaces PDU de Respuesta de la funci\'on 0x04.\relax }}{35}{table.caption.40}
+\contentsline {table}{\numberline {\relax 2.11}{\ignorespaces PDU de la funci\'on 0x05.\relax }}{35}{table.caption.41}
+\contentsline {table}{\numberline {\relax 2.12}{\ignorespaces PDU de la funci\'on 0x06.\relax }}{36}{table.caption.42}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {\relax 3.1}{\ignorespaces Etapas \emph {hardware} y \emph {software}.\relax }}{47}{table.caption.51}
-\contentsline {table}{\numberline {\relax 3.2}{\ignorespaces Relaci\'on entre tareas y componentes hardware.\relax }}{48}{table.caption.52}
-\contentsline {table}{\numberline {\relax 3.3}{\ignorespaces Par\'ametros usados en el CAS del sensor de pH.\relax }}{52}{table.caption.56}
-\contentsline {table}{\numberline {\relax 3.4}{\ignorespaces Tabla de entradas y salidas de la simulaci\'on del CAS para el sensor de pH.\relax }}{54}{table.caption.58}
-\contentsline {table}{\numberline {\relax 3.5}{\ignorespaces Par\'ametros usados en el CAS del sensor de OD.\relax }}{56}{table.caption.62}
-\contentsline {table}{\numberline {\relax 3.6}{\ignorespaces Tabla de entradas y salidas de la simulaci\'on del CAS para el sensor de OD.\relax }}{56}{table.caption.64}
-\contentsline {table}{\numberline {\relax 3.7}{\ignorespaces Par\'ametros usados en el CAS del sensor de temperatura.\relax }}{58}{table.caption.66}
-\contentsline {table}{\numberline {\relax 3.8}{\ignorespaces Tabla de entradas y salidas de la simulaci\'on del CAS para el sensor de temperatura.\relax }}{59}{table.caption.68}
-\contentsline {table}{\numberline {\relax 3.9}{\ignorespaces Requerimientos formales del \emph {software} de la RTU.\relax }}{62}{table.caption.75}
-\contentsline {table}{\numberline {\relax 3.10}{\ignorespaces Operaciones de la clase RTU.\relax }}{64}{table.caption.78}
-\contentsline {table}{\numberline {\relax 3.11}{\ignorespaces Configuraci\'on de dispositivos del MCU ATmega8.\relax }}{65}{table.caption.80}
-\contentsline {table}{\numberline {\relax 3.12}{\ignorespaces Configuraci\'on de terminales del MCU ATmega8.\relax }}{65}{table.caption.81}
-\contentsline {table}{\numberline {\relax 3.13}{\ignorespaces Requerimientos formales del \emph {software} de la MTU\relax }}{66}{table.caption.82}
-\contentsline {table}{\numberline {\relax 3.14}{\ignorespaces Casos de uso del monitoreo principal.\relax }}{68}{table.caption.85}
-\contentsline {table}{\numberline {\relax 3.15}{\ignorespaces Casos de uso de la calibraci\'on de sensores.\relax }}{69}{table.caption.87}
-\contentsline {table}{\numberline {\relax 3.16}{\ignorespaces Requerimientos formales de la aplicaci\'on Web para sesi\'on de usuario.\relax }}{72}{table.caption.90}
-\contentsline {table}{\numberline {\relax 3.17}{\ignorespaces Requerimientos formales de la aplicaci\'on Web para la presentaci\'on de mediciones y estados digitales.\relax }}{72}{table.caption.91}
-\contentsline {table}{\numberline {\relax 3.18}{\ignorespaces Requerimientos formales de la aplicaci\'on Web para gestionar las salidas digitales.\relax }}{72}{table.caption.92}
-\contentsline {table}{\numberline {\relax 3.19}{\ignorespaces Descripci\'on de clases de modelos (MVC) de la aplicaci\'on Web.\relax }}{74}{table.caption.96}
-\contentsline {table}{\numberline {\relax 3.20}{\ignorespaces Descripci\'on de clases de controladores (MVC) de la aplicaci\'on Web.\relax }}{75}{table.caption.98}
-\contentsline {table}{\numberline {\relax 3.21}{\ignorespaces Casos de uso para sesi\'on de usuarios.\relax }}{76}{table.caption.101}
-\contentsline {table}{\numberline {\relax 3.22}{\ignorespaces Casos de uso para funcionalidades Web.\relax }}{76}{table.caption.102}
-\contentsline {table}{\numberline {\relax 3.23}{\ignorespaces Descripci\'on de materiales empleados en el dise\~no PCB del CAS para el sensor pH.\relax }}{81}{table.caption.109}
-\contentsline {table}{\numberline {\relax 3.24}{\ignorespaces Descripci\'on de materiales del dise\~no PCB para el CAS del sensor de OD y temperatura.\relax }}{82}{table.caption.112}
-\contentsline {table}{\numberline {\relax 3.25}{\ignorespaces Descripci\'on de materiales empleados en el dise\~no PCB de la RTU.\relax }}{85}{table.caption.115}
-\contentsline {table}{\numberline {\relax 3.26}{\ignorespaces Descripci\'on de materiales empleados en el dise\~no PCB de la RTU.\relax }}{86}{table.caption.118}
+\contentsline {table}{\numberline {\relax 3.1}{\ignorespaces Etapas \emph {hardware} y \emph {software}.\relax }}{47}{table.caption.50}
+\contentsline {table}{\numberline {\relax 3.2}{\ignorespaces Relaci\'on entre tareas y componentes hardware.\relax }}{48}{table.caption.51}
+\contentsline {table}{\numberline {\relax 3.3}{\ignorespaces Par\'ametros usados en el CAS del sensor de pH.\relax }}{52}{table.caption.55}
+\contentsline {table}{\numberline {\relax 3.4}{\ignorespaces Tabla de entradas y salidas de la simulaci\'on del CAS para el sensor de pH.\relax }}{54}{table.caption.57}
+\contentsline {table}{\numberline {\relax 3.5}{\ignorespaces Par\'ametros usados en el CAS del sensor de OD.\relax }}{56}{table.caption.61}
+\contentsline {table}{\numberline {\relax 3.6}{\ignorespaces Tabla de entradas y salidas de la simulaci\'on del CAS para el sensor de OD.\relax }}{56}{table.caption.63}
+\contentsline {table}{\numberline {\relax 3.7}{\ignorespaces Par\'ametros usados en el CAS del sensor de temperatura.\relax }}{58}{table.caption.65}
+\contentsline {table}{\numberline {\relax 3.8}{\ignorespaces Tabla de entradas y salidas de la simulaci\'on del CAS para el sensor de temperatura.\relax }}{59}{table.caption.67}
+\contentsline {table}{\numberline {\relax 3.9}{\ignorespaces Requerimientos formales del \emph {software} de la RTU.\relax }}{62}{table.caption.74}
+\contentsline {table}{\numberline {\relax 3.10}{\ignorespaces Operaciones de la clase RTU.\relax }}{64}{table.caption.77}
+\contentsline {table}{\numberline {\relax 3.11}{\ignorespaces Configuraci\'on de dispositivos del MCU ATmega8.\relax }}{65}{table.caption.79}
+\contentsline {table}{\numberline {\relax 3.12}{\ignorespaces Configuraci\'on de terminales del MCU ATmega8.\relax }}{65}{table.caption.80}
+\contentsline {table}{\numberline {\relax 3.13}{\ignorespaces Requerimientos formales del \emph {software} de la MTU\relax }}{66}{table.caption.81}
+\contentsline {table}{\numberline {\relax 3.14}{\ignorespaces Casos de uso del monitoreo principal.\relax }}{68}{table.caption.84}
+\contentsline {table}{\numberline {\relax 3.15}{\ignorespaces Casos de uso de la calibraci\'on de sensores.\relax }}{69}{table.caption.86}
+\contentsline {table}{\numberline {\relax 3.16}{\ignorespaces Requerimientos formales de la aplicaci\'on Web para sesi\'on de usuario.\relax }}{72}{table.caption.89}
+\contentsline {table}{\numberline {\relax 3.17}{\ignorespaces Requerimientos formales de la aplicaci\'on Web para la presentaci\'on de mediciones y estados digitales.\relax }}{72}{table.caption.90}
+\contentsline {table}{\numberline {\relax 3.18}{\ignorespaces Requerimientos formales de la aplicaci\'on Web para gestionar las salidas digitales.\relax }}{72}{table.caption.91}
+\contentsline {table}{\numberline {\relax 3.19}{\ignorespaces Descripci\'on de clases de modelos (MVC) de la aplicaci\'on Web.\relax }}{74}{table.caption.95}
+\contentsline {table}{\numberline {\relax 3.20}{\ignorespaces Descripci\'on de clases de controladores (MVC) de la aplicaci\'on Web.\relax }}{75}{table.caption.97}
+\contentsline {table}{\numberline {\relax 3.21}{\ignorespaces Casos de uso para sesi\'on de usuarios.\relax }}{76}{table.caption.100}
+\contentsline {table}{\numberline {\relax 3.22}{\ignorespaces Casos de uso para funcionalidades Web.\relax }}{76}{table.caption.101}
+\contentsline {table}{\numberline {\relax 3.23}{\ignorespaces Descripci\'on de materiales empleados en el dise\~no PCB del CAS para el sensor pH.\relax }}{81}{table.caption.108}
+\contentsline {table}{\numberline {\relax 3.24}{\ignorespaces Descripci\'on de materiales del dise\~no PCB para el CAS del sensor de OD y temperatura.\relax }}{82}{table.caption.111}
+\contentsline {table}{\numberline {\relax 3.25}{\ignorespaces Descripci\'on de materiales empleados en el dise\~no PCB de la RTU.\relax }}{85}{table.caption.114}
+\contentsline {table}{\numberline {\relax 3.26}{\ignorespaces Descripci\'on de materiales empleados en el dise\~no PCB de la RTU.\relax }}{86}{table.caption.117}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {\relax 4.1}{\ignorespaces Mediciones ${V}_{CASpH}$ con variaciones en el voltaje de entrada del sensor de pH.\relax }}{94}{table.caption.129}
-\contentsline {table}{\numberline {\relax 4.2}{\ignorespaces Mediciones ${V}_{CASOD}$ con variaciones en la corriente de entrada del sensor de OD.\relax }}{95}{table.caption.130}
-\contentsline {table}{\numberline {\relax 4.3}{\ignorespaces Mediciones ${V}_{CASTemp}$ con variaciones en el voltaje de entrada del sensor de temperatura.\relax }}{95}{table.caption.131}
-\contentsline {table}{\numberline {\relax 4.4}{\ignorespaces Resultados en la prueba de conexi\'on del sensor de pH.\relax }}{103}{table.caption.141}
-\contentsline {table}{\numberline {\relax 4.5}{\ignorespaces Resultados en la prueba de conexi\'on del sensor de temperatura.\relax }}{103}{table.caption.143}
+\contentsline {table}{\numberline {\relax 4.1}{\ignorespaces Mediciones ${V}_{CASpH}$ con variaciones en el voltaje de entrada del sensor de pH.\relax }}{94}{table.caption.128}
+\contentsline {table}{\numberline {\relax 4.2}{\ignorespaces Mediciones ${V}_{CASOD}$ con variaciones en la corriente de entrada del sensor de OD.\relax }}{95}{table.caption.129}
+\contentsline {table}{\numberline {\relax 4.3}{\ignorespaces Mediciones ${V}_{CASTemp}$ con variaciones en el voltaje de entrada del sensor de temperatura.\relax }}{95}{table.caption.130}
+\contentsline {table}{\numberline {\relax 4.4}{\ignorespaces Resultados en la prueba de conexi\'on del sensor de pH.\relax }}{103}{table.caption.140}
+\contentsline {table}{\numberline {\relax 4.5}{\ignorespaces Resultados en la prueba de conexi\'on del sensor de temperatura.\relax }}{103}{table.caption.142}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
