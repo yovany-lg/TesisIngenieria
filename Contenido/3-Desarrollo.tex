@@ -2,7 +2,7 @@
 %Capítulo 3: Desarrollo
 %------------------------
 
-\chapter{Desarrollo del sistema}
+\chapter{Desarrollo del Sistema}
 \label{cap3}
 
 En este capítulo se presenta el desarrollo del prototipo de sistema de monitoreo para la PTAR de la UTM utilizando una metodología de desarrollo para mejoramiento de procesos de producción. Dicha metodología es conocida como Modelo de Integración de Capacidad y Madurez (CMMI, \emph{Capability Maturity Model Integration}) \cite{Cap2Bib:CMMI}.
@@ -30,21 +30,22 @@ El monitoreo de pH se realiza mediante los siguientes pasos:
 \item Se tabulan los resultados.
 \end{enumerate}
 
-El monitoreo de oxígeno disuelto (OD) se realiza de la siguiente manera:
+El monitoreo de OD se realiza de la siguiente manera:
 
 \begin{enumerate} \itemsep=-0.7em
-\item Se calibra previamente el electrodo de $O_2$, el cual se utiliza para medir este parámetro.
+\item Se calibra previamente el electrodo de OD, el cual se utiliza para medir este parámetro.
 \item Se sumerge el electrodo en el bioreactor y se toman las lecturas.
 \item Se registra el valor de la medición en una bitácora. 
 \item Se tabulan los resultados.
 \end{enumerate}
 
 
-Por lo anterior y considerando que no se lleva a cabo el monitoreo de temperatura, se propone realizar la medición de pH, OD y temperatura mediante un sistema automatizado, almacenar registros de las mediciones en una base de datos y mostrar gráficamente y de manera tabular el historial de los registros de mediciones.
+Por lo anterior y considerando que no se lleva a cabo el monitoreo de temperatura, se propone realizar la medición de pH, OD y temperatura mediante un sistema automatizado.
+%, almacenar registros de las mediciones en una base de datos y mostrar gráficamente y de manera tabular el historial de los registros de mediciones.
 
 \subsection{Propuesta}
 
-El sistema que se propone desarrollar tiene como objetivo implementar un sistema SCADA para monitorear remotamente y de manera automatizada el estado de pH, OD y temperatura de la PTAR de la UTM. Dicho sistema consta de sensores de propósito industrial, los cuales se describen en la sección~\ref{cap2:sec:Sensores}; una RTU; la MTU; un sistema de comunicaciones que consta de una interfaz serie RS-485; servidores de procesamiento distribuido; y, acceso Web con una interfaz de usuario. En la figura~\ref{fig:cap3:DBscada} se muestra un diagrama general del sistema propuesto.
+El sistema que se propone desarrollar tiene como objetivo implementar un sistema SCADA para monitorear remotamente y de manera automatizada el estado de pH, OD y temperatura de la PTAR de la UTM. Dicho sistema consta de sensores de propósito industrial (Sección~\ref{cap2:sec:Sensores}); una RTU; la MTU; un sistema de comunicaciones que consta de una interfaz serie RS-485; servidores de procesamiento distribuido; y, acceso Web con una interfaz de usuario. En la figura~\ref{fig:cap3:DBscada} se muestra un diagrama general del sistema propuesto.
 
 \begin{figure}[htb]
 	\begin{center}
@@ -53,13 +54,13 @@ El sistema que se propone desarrollar tiene como objetivo implementar un sistema
 	 \caption{Diagrama general del sistema SCADA.} \label{fig:cap3:DBscada}
 \end{figure}
 
-El sistema realizará el monitoreo de manera automatizada, las mediciones serán tomadas discretamente, es decir, se tomarán mediciones cada cierto intervalo de tiempo. El sistema almacenará registros de mediciones en una base de datos y mediante una aplicación Web proporcionará una interfaz de usuario. El usuario del sistema podrá visualizar el estado de pH, OD y temperatura de la PTAR desde cualquier lugar a través de una computadora (Cliente) con acceso a Internet.
+%El sistema realizará el monitoreo de manera automatizada, las mediciones serán tomadas discretamente, es decir, se tomarán mediciones cada cierto intervalo de tiempo. El sistema almacenará registros de mediciones en una base de datos y mediante una aplicación Web proporcionará una interfaz de usuario. El usuario del sistema podrá visualizar el estado de pH, OD y temperatura de la PTAR desde cualquier lugar a través de una computadora (Cliente) con acceso a Internet.
 
 \section{Gestionamiento}
 
 \subsection{Requerimientos funcionales de la propuesta}
 
-En la figura~\ref{fig:cap3:DB2scada} se muestra de manera detallada el sistema SCADA propuesto. Este sistema realizará el monitoreo remoto de pH, OD y temperatura de la PTAR. Las mediciones proporcionadas por cada sensor pasarán por una etapa de acondicionamiento de señal mediante un sistema electrónico (CAS,\emph{Circuito de Acondicionamiento de Señal}). El MCU ATmega8 desempeñará el papel de RTU, implementará las funciones del protocolo Modbus, procesará solicitudes de la MTU y realizará la adquisición de datos de los sensores a través de un módulo ADC (integrado en el MCU). El sistema de comunicaciones implementará una interfaz serie RS-232/RS-485 a través de un transceptor (\emph{Transceiver}), que servirá para la comunicación entre la RTU y la MTU. La MTU (Computadora) implementará las funciones del protocolo Modbus para solicitar información de la RTU, almacenará registros de mediciones en una base de datos y recibirá órdenes que emite el usuario a través de la interfaz Web. Los servidores proporcionan el gestor de bases de datos, la base de datos y la aplicación Web (Interfaz gráfica del usuario final). La aplicación Web incluye, la gestión de usuarios (Administrador), visualización de tendencias y de entradas y salidas digitales.
+En la figura~\ref{fig:cap3:DB2scada} se muestra de manera detallada el sistema SCADA propuesto. Este sistema realizará el monitoreo remoto de pH, OD y temperatura de la PTAR. Las mediciones proporcionadas por cada sensor pasarán por una etapa de acondicionamiento de señal mediante un sistema electrónico (CAS,\emph{Circuito de Acondicionamiento de Señal}). El MCU ATmega8 desempeñará el papel de RTU, implementará las funciones del protocolo Modbus, procesará solicitudes de la MTU y realizará la adquisición de datos de los sensores a través de un módulo ADC (integrado en el MCU). El sistema de comunicaciones implementará una interfaz serie RS-232/RS-485 a través de un transceptor (\emph{Transceiver}), que servirá para la comunicación entre la RTU y la MTU. La MTU (Computadora) implementará las funciones del protocolo Modbus para solicitar información de la RTU, almacenará registros de mediciones en una base de datos y recibirá órdenes que emite el usuario a través de la interfaz Web. Los servidores proporcionan el gestor de bases de datos, la base de datos y la aplicación Web (GUI). La aplicación Web incluye, la gestión de usuarios (Administrador), visualización de tendencias y de entradas y salidas digitales.
 
 \begin{figure}[htb]
 	\begin{center}
@@ -80,8 +81,8 @@ Los requerimientos funcionales de la propuesta, para un mejor análisis, son clas
 	\item \emph{Comunicación MTU-RTU}: La comunicación entre la RTU y la MTU se realizará a través de una interfaz serie RS-485 como medio físico. La MTU (Computadora) cuenta con un puerto serie, cuyo funcionamiento se basa en el estándar RS-232, por ello, se requiere un transceptor entre las interfaces RS-485 y RS-232.
 	\item \emph{Software de la MTU}: El protocolo Modbus de la MTU se implementará desarrollando un \emph{software} en lenguaje Java, en el cual se codifican los formatos de las ADU de solicitudes y respuestas Modbus. 
 	Este \emph{software} contará con un controlador para la gestionar la comunicación serie con la RTU (Figura~\ref{fig:cap3:RTUMTU2}), un gestor de monitoreo discreto de la RTU, un módulo que comunica la MTU con el servidor de bases de datos y un módulo de comunicación con la aplicación Web (Figura~\ref{fig:cap3:MTU-Servidores}).
-	\item \emph{Servidor Web y base de datos}: La aplicación Web se desarrollará haciendo uso del Framework Yii (arquitectura MVC), dicha aplicación restringirá el acceso sólo al Administrador del sistema, permitirá (al Administrador) visualizar el estado de pH, OD y temperatura a través de gráficas de tendencias, visualizar el estado de las alarmas a través de indicadores (switch) y cambiar el estado de las salidas digitales en la RTU.
-	\item \emph{Herramientas de diseño y desarrollo}: En el diseño\emph{hardware} se emplearán herramientas de simulación y diseño de circuitos electrónicos. Para el desarrollo del \emph{software} del MCU, se empleará un entorno de desarrollo exclusivo del MCU, el cual utiliza el lenguaje de programación C. En el desarrollo del \emph{software} de la MTU y de la aplicación Web, se emplearán entornos de desarrollo para lenguajes de programación orientado a objetos y de alto nivel.
+	\item \emph{Servidor Web y base de datos}: La aplicación Web se desarrollará haciendo uso del \emph{framework Yii} (arquitectura MVC), dicha aplicación restringirá el acceso sólo al Administrador del sistema, permitirá (al Administrador) visualizar el estado de pH, OD y temperatura a través de gráficas de tendencias y de manera tabular, visualizar el estado de las alarmas a través de indicadores y cambiar el estado de las salidas digitales en la RTU.
+	\item \emph{Herramientas de diseño y desarrollo}: En el diseño \emph{hardware} se emplearán herramientas de simulación y diseño de circuitos electrónicos. Para el desarrollo del \emph{software} del MCU, se empleará un entorno de desarrollo exclusivo del MCU, el cual utiliza el lenguaje de programación C. En el desarrollo del \emph{software} de la MTU y de la aplicación Web, se emplearán entornos de desarrollo para lenguajes de programación orientado a objetos y de alto nivel.
 	\item \emph{Entradas y salidas digitales}: El MCU se configuró para incluir dos entradas y dos salidas digitales, aunque su implementación con dispositivos externos no fue desarrollada, se permite conectar entradas y salidas digitales externas que estén debidamente aisladas y que operen con niveles de voltaje TTL.
 \end{itemize}
 
@@ -104,7 +105,7 @@ Los requerimientos funcionales de la propuesta, para un mejor análisis, son clas
 Las fases de diseño e implementación de \emph{hardware} y \emph{software} del sistema SCADA se realizaron utilizando la metodología de desarrollo para Sistemas Empotrados (\emph{Embedded Systems}) \cite{Cap2Bib:TesisDavid, Cap2Bib:EmbeddedSystems}. En base a los requerimientos del sistema, la división de tareas \emph{hardware} y \emph{software} se listan en la tabla~\ref{tab:cap3:Thwsw}.
 
 \begin{table}[htp]
-	\caption{Etapas \emph{hardware} y \emph{software}.}%
+	\caption{Tareas \emph{hardware} y \emph{software}.}%
 	\centering
 	\footnotesize
 	\begin{tabular}{ll}
@@ -125,13 +126,13 @@ Los elementos \emph{hardware} seleccionados para satisfacer los requerimientos f
 
 \begin{itemize} \itemsep=-0.5em
 
-	\item\emph{CA3140}: Es un \emph{op-amp} (\emph{Amplificador operacional}) con tecnología MOSFET que cuenta con una alta impedancia de entrada ${Z}_{in}=1.5\tera\ohm$, opera con corrientes de entrada muy bajas ${I}_{min}=10\pico\ampere$ a un voltaje de alimentación ${V}_{s}=\pm15\volt$. Su campo de aplicación abarca las áreas de instrumentación, filtros activos, generadores de funciones, instrumentos portátiles, etc \cite{Cap2Bib:CA3140}.
+	\item\emph{CA3140}: Es un \emph{op-amp} (\emph{Amplificador Operacional}) con tecnología MOSFET que cuenta con una alta impedancia de entrada ${Z}_{in}=1.5\tera\ohm$, opera con corrientes de entrada muy bajas ${I}_{min}=10\pico\ampere$ a un voltaje de alimentación ${V}_{s}=\pm15\volt$. Su campo de aplicación abarca las áreas de instrumentación, filtros activos, generadores de funciones, instrumentos portátiles, etc \cite{Cap2Bib:CA3140}.
 
 	El op-amp CA3140 se utiliza para implementar todas las etapas del CAS (aislamiento, conversión corriente-voltaje, filtrado y amplificación) de cada sensor.
 
-	\item\emph{TL081}: Es un op-amp de bajo costo, de alta velocidad, con entrada JFET (\emph{Junction Field-Effect Transistor}) y con un voltaje offset de entrada internamente reducido. Este dispositivo requiere una baja corriente de alimentación, sin embargo, ofrece un amplio ancho de banda de ganancia y rápida velocidad de respuesta \cite{Cap2Bib:TL081}.
+	\item\emph{TL081}: Es un op-amp de bajo costo, de alta velocidad, con entrada JFET y con un voltaje offset de entrada internamente reducido. Este dispositivo requiere una baja corriente de alimentación, sin embargo, ofrece un amplio ancho de banda de ganancia y rápida velocidad de respuesta \cite{Cap2Bib:TL081}.
 	
-	EL CI TL081 puede ser usado en aplicaciones como integradores de alta velocidad, convertidores D-A (Digital Análogo), circuitos de muestreo y retención y otras.
+	EL circuito integrado (CI) TL081 puede ser usado en aplicaciones como integradores de alta velocidad, convertidores D-A (Digital Análogo), circuitos de muestreo y retención y otras.
 		
 	\item\emph{Capacitor de poliéster}: Sus principales aplicaciones son en sistemas de audio, equipos de instrumentación y filtros. Por lo tanto, estos capacitores se utilizan en el diseño de la etapa de filtrado del CAS de cada sensor.
 
@@ -139,7 +140,7 @@ Los elementos \emph{hardware} seleccionados para satisfacer los requerimientos f
 
 	El ATmega8 se utiliza para implementar la RTU, lo cual se logra codificando en la memoria de código el protocolo Modbus y el \emph{software} de control, los canales ADC se utilizan para obtener las mediciones de los sensores, se asigna un puerto de salida de 8 bits que indica al DAC el nivel de voltaje para alimentar el sensor de OD y el dispositivo USART se utiliza para la comunicación serie con la MTU.
 
-	\item\emph{MAX489}: Es un circuito integrado (CI) de la marca MAXIM que tiene la función de transceptor para comunicaciones RS-485, el cual permite una transmisión de datos libre de errores a una velocidad de $250\kilo$bps y se puede configurar para operar en modo\emph{full-duplex} y \emph{half-duplex} \cite{Cap2Bib:MAX489}.
+	\item\emph{MAX489}: Es un CI de la marca MAXIM que tiene la función de transceptor para comunicaciones RS-485, el cual permite una transmisión de datos libre de errores a una velocidad de $250\kilo$bps y se puede configurar para operar en modo\emph{full-duplex} y \emph{half-duplex} \cite{Cap2Bib:MAX489}.
 
 	El CI MAX489 se utiliza para implementar la interfaz RS-485, lo cual se logra al conectarse con el dispositivo USART del ATmega8.
 
@@ -179,7 +180,7 @@ Las herramientas de diseño de \emph{hardware} y \emph{software} seleccionados pa
 
 \item\emph{AVR Studio}: Herramienta \emph{software} de la compañía ATMEL versión 4.16 proporcionada de forma gratuita. Es un entorno de desarrollo de aplicaciones para MCUs del mismo fabricante, el cual permite escribir, compilar y depurar códigos en lenguaje C/C++ y lenguaje ensamblador.
 
-\item\emph{Proteus	Design Suite}: Herramienta \emph{software} en la versión 7.6, la cual es desarrollada y comercializada por \emph{Labcenter Electronics Ltd}. Permite el diseño de diagramas esquemáticos, simulación de circuitos mediante un sistema basado en SPICE e incluye una suite de herramientas de diseño de PCB.
+\item\emph{Proteus	Design Suite}: Herramienta \emph{software} en la versión 7.6, la cual es desarrollada y comercializada por \emph{Labcenter Electronics Ltd}. Permite el diseño de diagramas esquemáticos, simulación de circuitos mediante un sistema basado en SPICE e incluye una suite de herramientas de diseño de tarjetas de circuito impreso (PCB, \emph{Printed Circuit Board}).
 
 \item\emph{Cadence OrCAD}: Es una herramienta \emph{software} comercial de \emph{Cadence Design Systems, Inc}. en su versión 10.3 permite diseñar y editar diagramas esquemáticos para el desarrollo de PCB o simulación analógica utilizando modelado SPICE.
 
@@ -189,13 +190,11 @@ Las herramientas de diseño de \emph{hardware} y \emph{software} seleccionados pa
 
 \item\emph{Eclipse}: Herramienta de \emph{software} libre desarrollada y soportada por la comunidad \emph{Eclipse}, en la que personas y organizaciones colaboran para desarrollar y mejorar dicha herramienta. Se utilizó la versión 3.7, el cual es un IDE para el desarrollo de aplicaciones escritas en lenguaje C/C++, Python, Java, JavaScript, PHP y otros. Eclipse proporciona herramientas para el desarrollo de GUIs.
 
-\item\emph{PHPEdit}: Herramienta \emph{software} propiedad de \emph{WaterProof SARL}. Se utilizó la versión 4.2, esta herramienta es un IDE para desarrollo PHP que permite crear sitios web dinámicos, codificar y depurar PHP, y realizar pruebas de proyecto.
-
 \item \emph{Enterprise Architect}: Es un producto propiedad de \emph{SPARX SYSTEMS}. En la versión 9 de evaluación, es un conjunto de herramientas para modelado y diseño de \emph{software}, por lo que sirve de asistente en la gestión de proyectos \emph{software}, proporcionando múltiples herramientas de modelado y herramientas de creación de diagramas que facilitan el desarrollo.
 
 \item\emph{XAMPP}: Las herramientas necesarias para el desarrollo de la aplicación Web, están contenidas en la suite XAMPP en la versión 1.8.1. Esta suite contiene las siguientes herramientas: PHP 5.4.7 (requerido para desarrollar la aplicación Yii), gestor de base de datos MySQL 5.5.27, servidor Apache 2.4.3 y otros.
 
-\item\emph{Framework Yii}: Para desarrollar la aplicación Web se utilizó el \emph{Framework Yii versión 1.1.13}. Yii, por ser un Framework de \emph{software} libre, está en constante evolución, por lo que actualmente hay nuevas versiones que incluyen algunas mejoras.
+\item\emph{Framework Yii}: Para desarrollar la aplicación Web se utilizó el \emph{framework Yii} versión 1.1.13. Yii, por ser un \emph{framework} de \emph{software} libre, está en constante evolución, por lo que actualmente hay nuevas versiones que incluyen algunas mejoras.
 
 \end{itemize}
 
@@ -581,14 +580,14 @@ Para la comunicación de la RTU con la MTU se emplea una interfaz RS-485 como med
 %\newpage
 La configuración empleada para el diseño de la interfaz RS-485 se muestra en la figura~\ref{fig:cap3:MAX489Conf} \cite{Cap2Bib:MAX489}, en donde se utilizan los puertos RXD/TXD del ATmega8 para la recepción/transmisión de datos series mediante el dispositivo USART y el dispositivo MAX489 se configura para la operación en modo \emph{full-duplex}.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.9]{Imagenes/Desarrollo/DiseñoHardware/MAX489Conf.pdf}
 	\end{center}
 	\caption{Configuración del dispositivo MAX489.} \label{fig:cap3:MAX489Conf}
 \end{figure}
 
-
+\newpage
 \subsubsection{Transceptor RS-232/RS-485}
 \label{cap3:DHW:RS232RS485}
 
@@ -719,7 +718,7 @@ El diagrama de actividades de la figura~\ref{fig:cap3:RTUInicializacion} describ
 				\includegraphics[scale=0.85]{Imagenes/Desarrollo/DiseñoSW/RTUProcesamiento.pdf}} \\
 		\end{tabular}
 	\end{center}
-	\caption{Diagramas de actividades del \emph{software} de la RTU} \label{fig:cap3:SWRTUDA}
+	\caption{Diagramas de actividades del \emph{software} de la RTU.} \label{fig:cap3:SWRTUDA}
 \end{figure}
 
 La configuración de los dispositivos del MCU ATmega8 se describe en la tabla~\ref{tab:cap3:RTUDConf} \footnote{El Oscilador interno RC es una fuente de reloj que provee las siguientes frecuencias calibradas de operación: $1.0$, $2.0$, $4.0$, y $8.0\mega\hertz$. La configuración del dispositivo USART aplica en general para la comunicación serie, es decir, para la interfaz RS-232 y RS-485.} \cite{Cap2Bib:ATmega8}. 
@@ -1146,7 +1145,7 @@ En las figuras~\ref{fig:cap3:WebCUUsuarios} y~\ref{fig:cap3:WebCUFuncionalidades
 
 A partir de los casos de uso descritos anteriormente, las actividades que la aplicación Web debe realizar básicamente se dividen en dos grupos: presentar información dinámica de los registros de mediciones y estados digitales y gestionar las salidas digitales.
 
-La presentación de las mediciones se efectúa empleando gráficas dinámicas y tablas. Los estados digitales se muestran de manera tabular. Las gráficas dinámicas se implementan usando las librerías \emph{Highcharts} y \emph{JQuery} de \emph{JavaScript}. Se requiere el uso de solicitudes AJAX para actualizar las gráficas de manera transparente al usuario. Las actividades para ingresar a los módulos de visualización de entradas analógicas\footnote{Mediciones de pH, OD y temperatura.} y la actualización dinámica de gráficas se describen en el diagrama de actividades de la figura~\ref{fig:cap3:WebDAEA}.
+La presentación de las mediciones se efectúa empleando gráficas dinámicas y tablas. Los estados digitales se muestran de manera tabular. Las gráficas dinámicas se implementan usando las extensiones de Yii: \emph{Highcharts}, \emph{YiiBooster} y \emph{JQuery} (\emph{JavaScript}). Se requiere el uso de solicitudes AJAX para actualizar las gráficas de manera transparente al usuario. Las actividades para ingresar a los módulos de visualización de entradas analógicas\footnote{Mediciones de pH, OD y temperatura.} y la actualización dinámica de gráficas se describen en el diagrama de actividades de la figura~\ref{fig:cap3:WebDAEA}.
 
 \begin{figure}[htb]
 \begin{center}

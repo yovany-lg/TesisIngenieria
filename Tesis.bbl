@@ -33,8 +33,8 @@ C.~Alexander and M.~Sadiku, \emph{Fundamentals of Electric Circuits},
   5th~ed.\hskip 1em plus 0.5em minus 0.4em\relax McGraw-Hill Education, 2012.
 
 \bibitem{Cap2Bib:ATmega8}
-{Atmel Corporation}, ``\BIBforeignlanguage{english}{8-bit atmel with 8kbytes
-  insystem programmable flash},'' Datasheet ATmega8, ATmega8L, 2013.
+{Atmel Corporation}, ``\BIBforeignlanguage{english}{{8-bit Atmel with 8KBytes
+  InSystem Programmable Flash}},'' Datasheet ATmega8, ATmega8L, 2013.
 
 \bibitem{Cap2Bib:PracticalScada}
 D.~Bailey and E.~Wright, \emph{\BIBforeignlanguage{spanish}{Practical SCADA for
@@ -94,8 +94,8 @@ W.~Hayt, W.~Hayt, J.~Kemmerly, and S.~Durbin, \emph{Engineering Circuit
   Education, 2012.
 
 \bibitem{Cap2Bib:CA3140}
-{Intersil}, ``\BIBforeignlanguage{english}{Ca3140, ca3140a: 4.5mhz, bimos
-  operational amplifier with mosfet input/bipolar output},'' Datasheet
+{Intersil}, ``\BIBforeignlanguage{english}{{CA3140, CA3140A: 4.5MHz, BiMOS
+  Operational Amplifier with MOSFET Input/Bipolar Output}},'' Datasheet
   FN957.10, 2005.
 
 \bibitem{Cap2Bib:NetworkProtocols}
@@ -108,16 +108,13 @@ M.~Lapeña, \emph{Tratamiento de aguas industriales: aguas de proceso y
   residuales}, 1st~ed.\hskip 1em plus 0.5em minus 0.4em\relax Marcombo, 1989.
 
 \bibitem{Cap2Bib:SWTesting}
-\BIBentryALTinterwordspacing
 T.~Majchrzak, \emph{Improving Software Testing: Technical and Organizational
   Developments}, ser. SpringerBriefs in Information Systems.\hskip 1em plus
-  0.5em minus 0.4em\relax Springer, 2012. [Online]. Available:
-  \url{http://books.google.com.mx/books?id=elYTKcDjgdIC}
-\BIBentrySTDinterwordspacing
+  0.5em minus 0.4em\relax Springer, 2012.
 
 \bibitem{Cap2Bib:MAX489}
-{MAXIM}, ``\BIBforeignlanguage{english}{Low-power, slew-rate-limited
-  rs-485/rs-422 transceivers},'' Datasheet 19-0122, 2003.
+{MAXIM}, ``\BIBforeignlanguage{english}{{Low-Power, Slew-Rate-Limited
+  RS-485/RS-422 Transceivers}},'' Datasheet 19-0122, 2003.
 
 \bibitem{Cap2Bib:Javascript}
 M.~{\'A}.~S. Maza, \emph{Javascript}, 1st~ed., ser. Certificado de
@@ -150,8 +147,8 @@ D.~Méndez~Bautista, ``\BIBforeignlanguage{spanish}{Sistema de comunicaciones
   licenciatura, 2009.
 
 \bibitem{Cap2Bib:LM35}
-{National Semiconductor Corporation}, ``\BIBforeignlanguage{english}{Lm35,
-  precision centigrade temperature sensors},'' Datasheet TL/H/5516, December
+{National Semiconductor Corporation}, ``\BIBforeignlanguage{english}{{LM35,
+  Precision Centigrade Temperature Sensors}},'' Datasheet TL/H/5516, December
   1994.
 
 \bibitem{Cap2Bib:CMMI}
@@ -217,16 +214,16 @@ G.~Tchobanoglous, F.~Burton, M.~. Eddy, and H.~Stensel, \emph{Wastewater
 \BIBentrySTDinterwordspacing
 
 \bibitem{Cap2Bib:DAC0808}
-{Texas Instruments}, ``\BIBforeignlanguage{english}{Dac0808 8-bit d/a
-  converter},'' Datasheet SNAS539A, 2001.
+{Texas Instruments}, ``\BIBforeignlanguage{english}{{DAC0808 8-Bit D/A
+  Converter}},'' Datasheet SNAS539A, 2001.
 
 \bibitem{Cap2Bib:MAX232}
-------, ``\BIBforeignlanguage{english}{Max232, max232i: Dual eia-232
-  drivers/receivers},'' Datasheet SLLS047I, 2004.
+------, ``\BIBforeignlanguage{english}{{MAX232, MAX232I: DUAL EIA-232
+  DRIVERS/RECEIVERS}},'' Datasheet SLLS047I, 2004.
 
 \bibitem{Cap2Bib:TL081}
-------, ``\BIBforeignlanguage{english}{Tl081, jfet-input operational
-  amplifier},'' Datasheet SLOS081G, 2004.
+------, ``\BIBforeignlanguage{english}{{TL081, JFET-input operational
+  amplifier}},'' Datasheet SLOS081G, 2004.
 
 \bibitem{Cap2Bib:ProtocolEngineering}
 P.~Venkataram and S.~{S. Manvi},

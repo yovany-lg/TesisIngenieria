@@ -1,10 +1,11 @@
 \select@language {spanish}
-\contentsline {chapter}{Dedicatoria}{\es@scroman {iii}}{chapter*.1}
-\contentsline {chapter}{Agradecimientos}{\es@scroman {v}}{chapter*.2}
-\contentsline {chapter}{Resumen}{\es@scroman {ix}}{chapter*.4}
-\contentsline {chapter}{\'Indice general}{\es@scroman {xiv}}{chapter*.5}
-\contentsline {chapter}{\'{I}ndice de tablas}{\es@scroman {xv}}{chapter*.6}
-\contentsline {chapter}{\'{I}ndice de figuras}{\es@scroman {xvii}}{chapter*.7}
+\contentsline {chapter}{Dedicatoria}{\es@scroman {v}}{chapter*.1}
+\contentsline {chapter}{Agradecimientos}{\es@scroman {vii}}{chapter*.2}
+\contentsline {chapter}{Resumen}{\es@scroman {ix}}{chapter*.3}
+\contentsline {chapter}{Acr\'onimos}{\es@scroman {xi}}{section*.4}
+\contentsline {chapter}{\'Indice general}{\es@scroman {xviii}}{chapter*.6}
+\contentsline {chapter}{\'{I}ndice de tablas}{\es@scroman {xix}}{chapter*.7}
+\contentsline {chapter}{\'{I}ndice de figuras}{\es@scroman {xxi}}{chapter*.8}
 \contentsline {chapter}{\numberline {1}Introducci\'on}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Planteamiento del Problema}{3}{section.1.1}
 \contentsline {section}{\numberline {1.2}Justificaci\'on}{4}{section.1.2}
@@ -12,8 +13,8 @@
 \contentsline {section}{\numberline {1.4}Objetivos}{4}{section.1.4}
 \contentsline {subsection}{\numberline {1.4.1}Objetivo general}{4}{subsection.1.4.1}
 \contentsline {subsection}{\numberline {1.4.2}Objetivos espec\IeC {\'\i }ficos}{5}{subsection.1.4.2}
-\contentsline {section}{\numberline {1.5}Contenido del documento de tesis}{5}{section.1.5}
-\contentsline {chapter}{\numberline {2}Marco te\'orico}{7}{chapter.2}
+\contentsline {section}{\numberline {1.5}Contenido del Documento de Tesis}{5}{section.1.5}
+\contentsline {chapter}{\numberline {2}Marco Te\'orico}{7}{chapter.2}
 \contentsline {section}{\numberline {2.1}Sistemas SCADA}{7}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}Componentes \emph {hardware} de un sistema SCADA distribuido}{9}{subsection.2.1.1}
 \contentsline {subsubsection}{\numberline {2.1.1.1}Instrumentaci\'on}{10}{subsubsection.2.1.1.1}
@@ -67,13 +68,13 @@
 \contentsline {subsubsection}{\numberline {2.4.4.2}Capa de internet}{37}{subsubsection.2.4.4.2}
 \contentsline {subsubsection}{\numberline {2.4.4.3}Capa de transporte}{37}{subsubsection.2.4.4.3}
 \contentsline {subsubsection}{\numberline {2.4.4.4}Capa de aplicaci\'on}{37}{subsubsection.2.4.4.4}
-\contentsline {section}{\numberline {2.5}Herramientas de desarrollo de aplicaciones Web y de escritorio}{37}{section.2.5}
+\contentsline {section}{\numberline {2.5}Herramientas de Desarrollo de Aplicaciones Web y de Escritorio}{37}{section.2.5}
 \contentsline {subsection}{\numberline {2.5.1}Java}{38}{subsection.2.5.1}
 \contentsline {subsection}{\numberline {2.5.2}PHP}{38}{subsection.2.5.2}
 \contentsline {subsection}{\numberline {2.5.3}MySQL}{39}{subsection.2.5.3}
 \contentsline {subsection}{\numberline {2.5.4}Framework Yii}{39}{subsection.2.5.4}
 \contentsline {subsection}{\numberline {2.5.5}JavaScript}{41}{subsection.2.5.5}
-\contentsline {chapter}{\numberline {3}Desarrollo del sistema}{43}{chapter.3}
+\contentsline {chapter}{\numberline {3}Desarrollo del Sistema}{43}{chapter.3}
 \contentsline {section}{\numberline {3.1}Iniciativa}{44}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Estado actual de la PTAR}{44}{subsection.3.1.1}
 \contentsline {subsection}{\numberline {3.1.2}Propuesta}{44}{subsection.3.1.2}
@@ -91,12 +92,12 @@
 \contentsline {paragraph}{\numberline {3.3.1.1.3}CAS del sensor de temperatura}{57}{paragraph.3.3.1.1.3}
 \contentsline {subsubsection}{\numberline {3.3.1.2}Entradas y salidas de la RTU}{59}{subsubsection.3.3.1.2}
 \contentsline {subsubsection}{\numberline {3.3.1.3}Interfaz RS-485}{59}{subsubsection.3.3.1.3}
-\contentsline {subsubsection}{\numberline {3.3.1.4}Transceptor RS-232/RS-485}{60}{subsubsection.3.3.1.4}
-\contentsline {subsection}{\numberline {3.3.2}Dise\~no \emph {software}}{61}{subsection.3.3.2}
-\contentsline {subsubsection}{\numberline {3.3.2.1}\emph {software} de la RTU}{61}{subsubsection.3.3.2.1}
-\contentsline {paragraph}{\numberline {3.3.2.1.1}Requerimientos formales}{61}{paragraph.3.3.2.1.1}
+\contentsline {subsubsection}{\numberline {3.3.1.4}Transceptor RS-232/RS-485}{61}{subsubsection.3.3.1.4}
+\contentsline {subsection}{\numberline {3.3.2}Dise\~no \emph {software}}{62}{subsection.3.3.2}
+\contentsline {subsubsection}{\numberline {3.3.2.1}\emph {software} de la RTU}{62}{subsubsection.3.3.2.1}
+\contentsline {paragraph}{\numberline {3.3.2.1.1}Requerimientos formales}{62}{paragraph.3.3.2.1.1}
 \contentsline {paragraph}{\numberline {3.3.2.1.2}Clases}{62}{paragraph.3.3.2.1.2}
-\contentsline {paragraph}{\numberline {3.3.2.1.3}Diagramas de actividades}{62}{paragraph.3.3.2.1.3}
+\contentsline {paragraph}{\numberline {3.3.2.1.3}Diagramas de actividades}{63}{paragraph.3.3.2.1.3}
 \contentsline {subsubsection}{\numberline {3.3.2.2}\emph {software} de la MTU}{66}{subsubsection.3.3.2.2}
 \contentsline {paragraph}{\numberline {3.3.2.2.1}Requerimientos formales}{66}{paragraph.3.3.2.2.1}
 \contentsline {paragraph}{\numberline {3.3.2.2.2}Clases}{67}{paragraph.3.3.2.2.2}
@@ -115,24 +116,24 @@
 \contentsline {paragraph}{\numberline {3.3.3.1.3}Dise\~no del PCB para el m\'odulo del MCU}{84}{paragraph.3.3.3.1.3}
 \contentsline {paragraph}{\numberline {3.3.3.1.4}Dise\~no del PCB para el transceptor RS-232/RS-485}{86}{paragraph.3.3.3.1.4}
 \contentsline {subsubsection}{\numberline {3.3.3.2}Dise\~no de interfaces gr\'aficas}{87}{subsubsection.3.3.3.2}
-\contentsline {chapter}{\numberline {4}Verificaci\'on y validaci\'on del producto final: pruebas y resultados}{89}{chapter.4}
-\contentsline {section}{\numberline {4.1}Pruebas de caja blanca}{90}{section.4.1}
+\contentsline {chapter}{\numberline {4}Verificaci\'on y Validaci\'on del Producto Final: Pruebas y Resultados}{89}{chapter.4}
+\contentsline {section}{\numberline {4.1}Pruebas de Caja Blanca}{90}{section.4.1}
 \contentsline {subsection}{\numberline {4.1.1}Prueba de configuraci\'on inicial del sistema}{90}{subsection.4.1.1}
 \contentsline {subsection}{\numberline {4.1.2}Prueba de generaci\'on de $\pmb {{V}_{offset}}$ y $\pmb {{V}_{POD}}$}{92}{subsection.4.1.2}
 \contentsline {subsection}{\numberline {4.1.3}Prueba de variaciones de voltaje en las entradas}{93}{subsection.4.1.3}
-\contentsline {section}{\numberline {4.2}Pruebas de caja gris}{96}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Prueba de comunicaci\'on serie entre la MTU y la RTU}{96}{subsection.4.2.1}
+\contentsline {section}{\numberline {4.2}Pruebas de Caja Gris}{96}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Prueba de comunicaci\'on serie entre la MTU y la RTU}{97}{subsection.4.2.1}
 \contentsline {subsection}{\numberline {4.2.2}Prueba de comunicaci\'on entre la MTU y la base de datos}{102}{subsection.4.2.2}
 \contentsline {subsection}{\numberline {4.2.3}Prueba de conexi\'on de sensores a la RTU}{102}{subsection.4.2.3}
 \contentsline {subsection}{\numberline {4.2.4}Prueba del \emph {software} de la MTU}{104}{subsection.4.2.4}
 \contentsline {subsection}{\numberline {4.2.5}Prueba de la aplicaci\'on Web}{110}{subsection.4.2.5}
-\contentsline {section}{\numberline {4.3}Pruebas de caja negra}{114}{section.4.3}
+\contentsline {section}{\numberline {4.3}Pruebas de Caja Negra}{114}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Prueba de gesti\'on de sesi\'on de usuario}{114}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}Prueba de gesti\'on de estados digitales}{116}{subsection.4.3.2}
 \contentsline {chapter}{\numberline {5}Conclusiones}{119}{chapter.5}
-\contentsline {section}{\numberline {5.1}L\IeC {\'\i }neas futuras de investigaci\'on}{121}{section.5.1}
-\contentsline {chapter}{Bibliograf\'{\i }a}{123}{chapter*.156}
-\contentsline {chapter}{\numberline {A}Diagramas esquem\'aticos}{127}{appendix.Alph1}
+\contentsline {section}{\numberline {5.1}L\IeC {\'\i }neas Futuras de Investigaci\'on}{121}{section.5.1}
+\contentsline {chapter}{Bibliograf\'{\i }a}{123}{chapter*.157}
+\contentsline {chapter}{\numberline {A}Diagramas Esquem\'aticos}{127}{appendix.Alph1}
 \contentsline {chapter}{\numberline {B}PCB}{129}{appendix.Alph2}
 \contentsline {chapter}{\numberline {C}Dise\~no Software}{133}{appendix.Alph3}
 \contentsline {section}{\numberline {C.1}Clases}{133}{section.Alph3.1}

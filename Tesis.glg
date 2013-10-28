@@ -1,8 +1,4 @@
-This is makeindex, version 2.14 [02-Oct-2002] (kpathsea + Thai support).
-Scanning style file Tesis.ist.............
-** Input style error (file = Tesis.ist, line = 16):
-   -- Unknown specifier item_02.
-..............done (27 attributes redefined, 1 ignored).
-Scanning input file Tesis.glo...done (0 entries accepted, 0 rejected).
-Nothing written in Tesis.gls.
-Transcript written in Tesis.glg.
+Warning: File 'Tesis.glo' is empty.
+Have you used any entries defined in glossary 'main'?
+Remember to use package option 'nomain' if you
+don't want to use the main glossary.

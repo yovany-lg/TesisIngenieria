@@ -4,7 +4,7 @@
 %
 %---------------------------------------------------------------------
 
-\chapter{Marco teórico}
+\chapter{Marco Teórico}
 \label{cap2}
 
 \section{Sistemas SCADA}
@@ -369,19 +369,22 @@ La impedancia de salida en este electrodo de pH es muy alta, esto se debe a que 
 
 Las funciones de transferencia mostradas en la figura~\ref{fig:cap2:sec:Sensores:pH3} y~\ref{fig:cap2:sec:Sensores:pH4} indican que cuando el pH de la solución incrementa, el voltaje producido por el electrodo de pH decrementa. Como se observa en la figura~\ref{fig:cap2:sec:Sensores:pH3}, la sensibilidad del electrodo de pH varía con respecto a la temperatura.
 
-\begin{center}
-	\input{Imagenes/MarcoTeorico/ElectrodopHFT.tex}
-	\captionof{figure}{Función de transferencia del electrodo de pH.} \label{fig:cap2:sec:Sensores:pH3}
-\end{center}
-
 El electrodo ideal a una temperatura de $25\degreecelsius$ tiene una sensibilidad de $59.16\milli\volt \per pH$, lo que significa que la señal de salida del electrodo oscila de $+414.12\milli\volt$ a $-414.12\milli\volt$ para el rango de pH entre $0$ y $14$ respectivamente.
 
 \begin{figure}[htb]
 	\begin{center}
-		\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/pHTF.pdf}
+		\begin{tabular}{c}
+			\subfloat[Función de transferencia del electrodo de pH.]{%
+				\label{fig:cap2:sec:Sensores:pH3}%
+				\input{Imagenes/MarcoTeorico/ElectrodopHFT.tex}}\\
+			\subfloat[Voltaje de salida del sensor en función del nivel de pH a $25\degreecelsius$.]{%
+				\label{fig:cap2:sec:Sensores:pH4}%
+				\includegraphics[scale=0.9]{Imagenes/MarcoTeorico/pHTF.pdf}}
+		\end{tabular}	
 	\end{center}
-	\caption{Voltaje de salida del sensor en función del nivel de pH.} \label{fig:cap2:sec:Sensores:pH4}
+	\caption{Funciones de transferencia de entrada y salida del sensor de pH.} \label{fig:cap2:pHTFs}
 \end{figure}
+
 
 \subsection{Electrodo de OD}
 \label{cap2:sec:Sensores:OD}
@@ -946,17 +949,19 @@ Los usuarios finales, de un sistema de monitoreo y control, requieren de GUIs pa
 Las aplicaciones Web son aplicaciones distribuidas que emplean la arquitectura Cliente/Servidor. Dicha arquitectura se caracteriza por tener los siguientes elementos \cite{Cap2Bib:PAInternet}: 
 
 \begin{itemize}\itemsep=-0.5em
-	\item Cliente: Es el que hace peticiones de servicio y normalmente son los que inician la comunicación. 
+	\item Cliente: Realiza peticiones de servicio y normalmente es el que inician la comunicación. 
 	\item Servidores: Estos proveen servicios y esperan a recibir peticiones. Una vez que han recibido una petición, la resuelven y retornan una respuesta. 
 \end{itemize}
 
-Las aplicaciones Web se basan en el hecho de contar con toda la capacidad de procesamiento en un servidor Web que se accede desde un navegador Web. Las aplicaciones Web se desarrollan empleando numerosos lenguajes de programación, entre ellos destacan: PHP, JavaScript y SQL.
+Las aplicaciones Web se basan en el hecho de contar con toda la capacidad de procesamiento en un servidor Web que se accede desde un navegador. Las aplicaciones Web se desarrollan empleando varios lenguajes de programación, entre ellos destacan: PHP, Ruby, Python, JavaScript, SQL y HTML.
 
-Actualmente para el desarrollo de aplicaciones Web existen herramientas que facilitan su desarrollo y mantenimiento. Para PHP predominan los \emph{frameworks} con arquitectura Modelo Vista Controlador (MVC, \emph{Model View Controller}), éstos facilitan la creación de aplicaciones Web gracias a que dividen el desarrollo en tareas sencillas e intuitivas para el desarrollador \cite{Cap2Bib:Yii2, Cap2Bib:Yii1}. Entre los frameworks más destacados se encuentran: Yii, Symfony, CodeIgniter, CakePHP y Zend.
+Actualmente para las aplicaciones Web existen herramientas que facilitan su desarrollo y mantenimiento. Para PHP predominan los \emph{frameworks} con arquitectura Modelo Vista Controlador (MVC, \emph{Model View Controller}), éstos facilitan la creación de aplicaciones Web gracias a que dividen el desarrollo en tareas sencillas e intuitivas para el desarrollador \cite{Cap2Bib:Yii2, Cap2Bib:Yii1}. Entre los frameworks más destacados se encuentran: Yii, Symfony, CodeIgniter, CakePHP y Zend.
 
 Las interfaces de comunicación entre dispositivos (RTU) y computadoras de un sistema SCADA, usualmente requieren de aplicaciones de escritorio, las cuales se desarrollan empleando lenguajes de programación como: Java, C/C++ y Visual Basic.
 
-En un sistema SCADA las aplicaciones Web y de escritorio requieren de bases de datos para almacenar información útil para el usuario. Existen programas denominados Sistemas Gestores de Bases de Datos (SGBD), que permiten almacenar y posteriormente acceder a los datos de forma rápida y estructurada, los SGBDs más usados hoy en día son: MySQL, PostgreSQL, Oracle, Microsoft SQL Server, entre otros.
+En un sistema SCADA las aplicaciones Web y de escritorio requieren de bases de datos para almacenar información útil para el usuario, por lo que se hace uso de bases de datos relacionales, los DBMS más usados hoy en día son: MySQL, PostgreSQL, Oracle, Microsoft SQL Server, entre otros.
+
+%Existen programas denominados Sistemas Gestores de Bases de Datos (SGBD), que permiten almacenar y posteriormente acceder a los datos de forma rápida y estructurada, los SGBDs más usados hoy en día son: MySQL, PostgreSQL, Oracle, Microsoft SQL Server, entre otros.
 
 \subsection{Java}
 Java es un lenguaje de programación de propósito general, concurrente, basado en clases, orientado a objetos e independiente de la plataforma (Windows o Unix). Java fue desarrollado por Sun Microsystems en la década de los 90s, gran parte de su sintaxis está basada en los lenguajes de programación C y C++, aunque su modelo de objetos es más simple y elimina las herramientas de bajo nivel \cite{Cap2Bib:Java}.
@@ -966,29 +971,29 @@ El concepto orientado a objetos se refiere a un método de programación y al dise
 \subsection{PHP}
 PHP es un lenguaje interpretado por parte del servidor, diseñado originalmente para la creación de páginas Web dinámicas, el cual se caracteriza por su potencia, versatilidad, robustez y modularidad \cite{Cap2Bib:Yii2, Cap2Bib:Yii1}.
  
-Los programas escritos en PHP son embebidos directamente en el código HTML y ejecutados por el servidor Web a través de un intérprete antes de transferir al cliente, que lo ha solicitado, un resultado en forma de código HTML puro. 
+Los programas escritos en PHP son embebidos directamente en el código HTML y ejecutados por el servidor Web a través de un intérprete antes de transferir al cliente un resultado en forma de código HTML puro. 
 
-PHP es un lenguaje multiplataforma (Windows y Unix). En la actualidad PHP permite realizar una multitud de tareas en el entorno Web, por ejemplo: sistemas de correo electrónico vía Web, funciones de gestión y administración de bases de datos, funciones de gestión de directorios y ficheros, funciones de tratamiento de imágenes y librerías de funciones gráficas y funciones para la generación de documentos en formato pdf.
+PHP es un lenguaje multiplataforma (Windows y Unix). En la actualidad PHP permite realizar una gran variedad de tareas en el entorno Web, por ejemplo: sistemas de correo electrónico vía Web, funciones de gestión y administración de bases de datos, funciones de gestión de directorios y ficheros, funciones de tratamiento de imágenes y librerías de funciones gráficas y funciones para la generación de documentos en formato pdf.
 
 \subsection{MySQL}
 
-MySQL es un sistema gestor de bases de datos (SGBD o DBMS, \emph{Data Base Managment System}) rápido, robusto y fácil de usar. Permite la administración de datos en un entorno de red, especialmente en las arquitecturas Cliente/Servidor. Cuenta con muchas herramientas y es compatible con varios lenguajes de programación (por ejemplo PHP y Java), también es compatible con el servidor de páginas Web Apache \cite{Cap2Bib:MySQL}.
+MySQL es un DBMS rápido, robusto y fácil de usar. Permite la administración de datos en un entorno de red, especialmente en las arquitecturas Cliente/Servidor. Cuenta con muchas herramientas y es compatible con varios lenguajes de programación (por ejemplo PHP y Java), también es compatible con el servidor de páginas Web Apache \cite{Cap2Bib:MySQL}.
 
 Las principales características de MySQL son las siguientes: 
 \begin{itemize}\itemsep=-0.5em
 \item Está escrito en C/C++ y probado en numerosos compiladores. 
 \item Funciona en sistemas operativos Windows y Unix. 
-\item Dispone de un driver ODBC (\emph{Open DataBase Conectivity}) para Windows, aportando compatibilidad con la mayoría de lenguajes de programación de este sistema operativo. 
+\item Dispone de un driver ODBC para Windows, aportando compatibilidad con la mayoría de lenguajes de programación de este sistema operativo. 
 \item Se puede comunicar haciendo uso del lenguaje SQL, lo cual permite que sea compatible con otros sistemas de administración de bases de datos.
 \end{itemize}
 
 \subsection{Framework Yii}
 
-Yii es un \emph{framework} de aplicaciones Web escrito en PHP5, de alto rendimiento y basado en componentes. El nombre Yii es un acrónimo de \emph{Yes, it is}. Yii abarca la filosofía de convención sobre configuración, es decir, que tiene parámetros por defecto para casi todos los aspectos usados en la configuración de una aplicación. Gracias a esto, se requiere escribir menos código y toma menos tiempo para desarrollar una aplicación. Sin embargo, permite personalizar todos los parámetros por defecto para un uso en particular \cite{Cap2Bib:Yii2, Cap2Bib:Yii1}.
+Yii es un \emph{framework} de aplicaciones Web escrito en PHP5, de alto rendimiento y basado en componentes. El nombre Yii es un acrónimo de \emph{Yes, it is}. Yii abarca la filosofía de convención sobre configuración, es decir, que tiene parámetros por defecto para casi todos los aspectos usados en la configuración de una aplicación. Gracias a esto, se requiere escribir menos código y toma menos tiempo el desarrollo de una aplicación. Sin embargo, permite personalizar todos los parámetros por defecto para un uso en particular \cite{Cap2Bib:Yii2, Cap2Bib:Yii1}.
 
 Yii puede ser usado en aplicaciones a cualquier escala, lo que significa que se puede desarrollar una aplicación sencilla (relativamente) como un sitio Web informativo, como una aplicación de uso empresarial o industrial. Yii fomenta la reusabilidad de código en la mayor medida posible en la programación Web, lo que acelera significativamente el proceso de desarrollo.
 
-El \emph{framework} Yii está diseñado para ayudar a desarrollar con la filosofía DRY (\emph{Don't Repeat Yourself}), el cual es un concepto clave en el desarrollo de aplicaciones ágiles. Todas las aplicaciones Yii son construidas usando la arquitectura MVC, por ello, este patrón de desarrollo se fomenta con la asignación de directorios (Rutas) específicos en donde se almacena cada fragmento de código MVC. Esto minimiza la duplicación de código, promueve la reusabilidad de código y facilita el mantenimiento. En la figura~\ref{fig:cap2:YiiMVC} se ilustra el diagrama de la estructura estática de una aplicación Yii.
+El \emph{framework} Yii está diseñado para ayudar a desarrollar con la filosofía DRY (\emph{Don't Repeat Yourself}), el cual es un concepto clave en el desarrollo de aplicaciones ágiles. Todas las aplicaciones Yii son construidas usando la arquitectura MVC, por ello, este patrón de desarrollo se fomenta con la asignación de directorios (Rutas) específicos en donde se almacena cada fragmento de código MVC. Esto minimiza la duplicación de código, promueve la reusabilidad y facilita el mantenimiento. En la figura~\ref{fig:cap2:YiiMVC} se ilustra el diagrama de la estructura estática de una aplicación Yii.
 
 \begin{figure}[htb]
 	\begin{center}
@@ -1027,20 +1032,20 @@ Los diagramas de flujo de trabajo de la figura~\ref{fig:cap2:YiiApp} se describe
 
 \item El usuario realiza una solicitud a través de una URL y el servidor Web la procesa ejecutando el \emph{script} (archivo de código) principal index.php. El cual crea una instancia de la Aplicación y la ejecuta.
 \item La aplicación obtiene información detallada de la solicitud del usuario.
-\item La aplicación determina el controlador y acción con la ayuda del componente de la aplicación llamado urlManager y crea una instancia de dicho controlador para procesar la solicitud del usuario.
+\item La aplicación determina el Controlador y Acción a ejecutar con la ayuda del componente de la aplicación llamado \emph{urlManager} y crea una instancia de dicho controlador para procesar la solicitud del usuario.
 \item Al realizar una Acción principalmente se tienen dos casos: que el usuario desee guardar o modificar información de un Modelo o simplemente pedir información del mismo.
-\item La Acción despliega una vista con la información del Modelo. Generalmente las vistas están asociadas a las Acciones de un Controlador.
-\item La vista puede ejecutar widgets y el resultado de la presentación es empotrada (Integrada) en el diseño principal (\emph{Layout}).
-\item Por último, la acción completa la presentación de la vista desplegando el resultado al usuario.
+\item La Acción despliega una Vista con la información del Modelo. Generalmente las Vistas están asociadas a las Acciones de un Controlador.
+\item La Vista puede ejecutar widgets y el resultado de la presentación es empotrada (Integrada) en el diseño principal (\emph{Layout}).
+\item Por último, la Acción completa la presentación de la Vista desplegando el resultado al usuario.
 \end{itemize}
 
 \subsection{JavaScript}
 
-JavaScript es un lenguaje de programación para el desarrollo de aplicaciones con arquitectura Cliente/Servidor a través de Internet. Una aplicación en JavaScript tiene la particularidad de que está insertado dentro del mismo documento HTML, el cual presenta dicha aplicación al usuario \cite{Cap2Bib:Javascript}. 
+JavaScript es un lenguaje de programación para el desarrollo de aplicaciones con arquitectura Cliente/Servidor a través de Internet. Una aplicación en JavaScript tiene la particularidad de que está embebido en el mismo documento HTML, el cual presenta dicha aplicación al usuario \cite{Cap2Bib:Javascript}.
 
 Una aplicación en JavaScript, es un sistema interactivo que tiene la capacidad de detectar eventos o acciones realizadas por los usuarios. JavaScript fue diseñado para ser un lenguaje de elaboración de \emph{scripts} que pudieran incrustarse en archivos HTML. No es compilado, sino que, en vez de ello, es interpretado por el navegador como código fuente.
 
-En la actualidad existen muchas herramientas que aceleran el desarrollo de aplicaciones usando JavaScript, estas herramientas se denominan frameworks. Los framework de JavaScript más populares son: JQuery, Ext JS, Prototype, entre otros.
+En la actualidad existen muchas herramientas (\emph{frameworks})que aceleran el desarrollo de aplicaciones usando JavaScript. Los \emph{frameworks} de JavaScript más populares son: JQuery, Ext JS, Prototype, entre otros.
 
 
 

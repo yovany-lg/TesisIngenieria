@@ -2,10 +2,15 @@ This is BibTeX, Version 0.99d (Web2C 2011)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Tesis.aux
 A level-1 auxiliary file: Presentacion/Portada/Portada.aux
+A level-1 auxiliary file: Presentacion/Presentada/Presentada.aux
 A level-1 auxiliary file: Presentacion/DedicAgradec/DedicatoriaAgradecimientos.aux
 A level-1 auxiliary file: Presentacion/DedicAgradec/FrasesCelebres.aux
 A level-1 auxiliary file: Presentacion/Resumen/Resumen.aux
+A level-1 auxiliary file: Contenido/1-Introduccion.aux
+A level-1 auxiliary file: Contenido/2-MarcoTeorico.aux
+A level-1 auxiliary file: Contenido/3-Desarrollo.aux
 A level-1 auxiliary file: Contenido/4-Verificacion.aux
+A level-1 auxiliary file: Contenido/5-Conclusiones.aux
 The style file: IEEEtranS.bst
 A level-1 auxiliary file: Apendices/Apendices.aux
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -33,15 +38,15 @@ Warning--missing institution in Cap2Bib:TL081
 Done.
 You've used 48 entries,
             4498 wiz_defined-function locations,
-            1193 strings with 15326 characters,
-and the built_in function-call counts, 25045 in all, are:
-= -- 2090
+            1197 strings with 15440 characters,
+and the built_in function-call counts, 25006 in all, are:
+= -- 2084
 > -- 575
 < -- 71
 + -- 233
 - -- 152
-* -- 1314
-:= -- 4242
+* -- 1309
+:= -- 4228
 add.period$ -- 96
 call.type$ -- 48
 change.case$ -- 217
@@ -50,20 +55,20 @@ cite$ -- 59
 duplicate$ -- 1873
 empty$ -- 2273
 format.name$ -- 169
-if$ -- 5380
+if$ -- 5374
 int.to.chr$ -- 0
 int.to.str$ -- 48
 missing$ -- 344
-newline$ -- 173
+newline$ -- 171
 num.names$ -- 96
-pop$ -- 968
+pop$ -- 969
 preamble$ -- 1
 purify$ -- 172
 quote$ -- 2
-skip$ -- 1796
+skip$ -- 1793
 stack$ -- 0
 substring$ -- 441
-swap$ -- 1077
+swap$ -- 1076
 text.length$ -- 17
 text.prefix$ -- 0
 top$ -- 6
@@ -71,5 +76,5 @@ type$ -- 358
 warning$ -- 11
 while$ -- 124
 width$ -- 50
-write$ -- 407
+write$ -- 404
 (There were 11 warnings)

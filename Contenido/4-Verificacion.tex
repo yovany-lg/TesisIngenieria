@@ -2,7 +2,7 @@
 %Capítulo 4: Verificación y validación
 %------------------------
 
-\chapter{Verificación y validación del producto final: pruebas y resultados}
+\chapter{Verificación y Validación del Producto Final: Pruebas y Resultados}
 \label{cap4}
 
 En este apartado se presenta la verificación o comprobación de la hipótesis inicialmente planteada y la validación de que el sistema cumple con los requerimientos funcionales de la propuesta.
@@ -17,7 +17,7 @@ La técnica de pruebas de caja negra (\emph{Black Box Testing}) se emplea (de man
 
 Dicho lo anterior, las pruebas de caja blanca se enfocan específicamente en el funcionamiento de los elementos o módulos \emph{hardware}, mientras que las pruebas de caja gris toman un enfoque general, es decir, el funcionamiento del sistema es sometido a pruebas en su totalidad. Las pruebas de caja negra están orientadas para realizar pruebas de funcionamiento en algunos casos de uso de la aplicación Web. El plan de pruebas destinado a las tres etapas descritas anteriormente se detallan en las siguientes secciones. 
 
-\section{Pruebas de caja blanca}
+\section{Pruebas de Caja Blanca}
 
 Las pruebas de caja blanca consisten en verificar que las conexiones entre módulos \emph{hardware} sean realizadas satisfactoriamente, es decir, que no se presenten problemas de cortocircuito, que no existan problemas de compatibilidad de impedancias de entrada y salida\footnote{Estos problemas se presentan frecuentemente en las entradas y salidas de los dispositivos op-amp y en las salidas de los sensores.} y que las salidas de los módulos \emph{hardware} sean consistentes con el diseño (Apartado~\ref{cap3:Definicion:DHW}).
 
@@ -133,7 +133,10 @@ El método empleado para simular la entrada del sensor de pH consiste en conectar
 	\caption{Configuración para pruebas de variaciones de voltaje.} \label{fig:cap4:TestCAS}
 \end{figure}
 
-En la tabla~\ref{tab:cap4:TestCASpH1} se muestran las mediciones tomadas del dispositivo CAS del sensor de pH. Para esta prueba se hizo un barrido de voltaje en la entrada respetando el dominio definido en la sección~\ref{Cap3:DHWCASpH}. Con la finalidad de hacer una comparación de resultados, en la tabla~\ref{tab:cap4:TestCASpH1} se incluyen los resultados de la simulación y los valores teóricos, los cuales se calculan empleando la ecuación~\ref{cap3:eq:VCASpH}. Se realiza una comparación gráfica como se ilustra en la figura~\ref{fig:cap4:TestCASpH2}, en donde se observa que el dispositivo CAS para el sensor de pH presenta un mínimo error en comparación con la gráfica teórica, lo cual valida el funcionamiento de dicho dispositivo.
+\newpage
+En la tabla~\ref{tab:cap4:TestCASpH1} se muestran las mediciones tomadas del dispositivo CAS del sensor de pH. Para esta prueba se hizo un barrido de voltaje en la entrada respetando el dominio definido en la sección~\ref{Cap3:DHWCASpH}. 
+
+Con la finalidad de hacer una comparación de resultados, en la tabla~\ref{tab:cap4:TestCASpH1} se incluyen los resultados de la simulación y los valores teóricos, los cuales se calculan empleando la ecuación~\ref{cap3:eq:VCASpH}. Se realiza una comparación gráfica como se ilustra en la figura~\ref{fig:cap4:TestCASpH2}, en donde se observa que el dispositivo CAS para el sensor de pH presenta un mínimo error en comparación con la gráfica teórica, lo cual valida el funcionamiento de dicho dispositivo.
 
 \begin{table}[htp]
 	\caption{Mediciones ${V}_{CASpH}$ con variaciones en el voltaje de entrada del sensor de pH.}%
@@ -162,7 +165,9 @@ En la tabla~\ref{tab:cap4:TestCASpH1} se muestran las mediciones tomadas del dis
 	\captionof{figure}{Gráfica de resultados arrojados en las pruebas, la simulación y de manera teórica para el CAS del sensor de pH.} \label{fig:cap4:TestCASpH2}
 \end{center}
 
-En la prueba del dispositivo CAS para el sensor de OD se toma una resistencia ${R}_{P}= 10\mega\ohm$ y se hace un barrido en la fuente ${V}_{P}$ de $300\milli\volt$ a $1.2\milli\volt$, con lo cual se obtiene una corriente ${I}_{OD}$ de $50\nano\ampere$ a $110\nano\ampere$ (Figura~\ref{fig:cap4:TestSimOD}), que es el dominio de salida del sensor de OD. Las mediciones tomadas del CAS para el sensor de OD se muestran en la tabla~\ref{tab:cap4:TestCASOD1}, en donde se incluyen las mediciones de la simulación y los valores teóricos en base a la ecuación~\ref{cap3:eq:VCASOD}. En la figura~\ref{fig:cap4:GraficaTestCASOD} se muestra de manera gráfica dichos resultados\footnote{Tomando como referencia a los valores teóricos, existe un error en ${V}_{CASOD}$, lo cual se debe a que los elementos \emph{hardware} presentan un margen de error según cada fabricante}, en donde las gráfica de las pruebas valida el funcionamiento del dispositivo CAS para el sensor de OD.
+En la prueba del dispositivo CAS para el sensor de OD se toma una resistencia ${R}_{P}= 10\mega\ohm$ y se hace un barrido en la fuente ${V}_{P}$ de $300\milli\volt$ a $1.2\milli\volt$, con lo cual se obtiene una corriente ${I}_{OD}$ de $50\nano\ampere$ a $110\nano\ampere$ (Figura~\ref{fig:cap4:TestSimOD}), que es el dominio de salida del sensor de OD. 
+
+Las mediciones tomadas del CAS para el sensor de OD se muestran en la tabla~\ref{tab:cap4:TestCASOD1}, en donde se incluyen las mediciones de la simulación y los valores teóricos en base a la ecuación~\ref{cap3:eq:VCASOD}. En la figura~\ref{fig:cap4:GraficaTestCASOD} se muestra de manera gráfica dichos resultados\footnote{Tomando como referencia a los valores teóricos, existe un error en ${V}_{CASOD}$, lo cual se debe a que los elementos \emph{hardware} presentan un margen de error según cada fabricante}, en donde las gráfica de las pruebas valida el funcionamiento del dispositivo CAS para el sensor de OD.
 
 \begin{table}[htp]
 	\caption{Mediciones ${V}_{CASOD}$ con variaciones en la corriente de entrada del sensor de OD.}%
@@ -190,7 +195,9 @@ En la prueba del dispositivo CAS para el sensor de OD se toma una resistencia ${
 \end{center}
 
 
-Para el dispositivo CAS del sensor de temperatura, en la tabla~\ref{tab:cap4:TestCASTemp1} se muestran las mediciones tomadas del CAS, de la simulación y los valores teóricos en base a la ecuación~\ref{cap3:eq:VCASTemp}. Para esta prueba se consideró un dominio de entrada de $280\milli\volt$ a $320\milli\volt$, que equivalentemente son valores de temperatura de $28$ a $32\degreecelsius$. En la figura~\ref{fig:cap4:GraficaTestCAStemp} se ilustra de manera gráfica los resultados obtenidos\footnote{Se observa que en base a los valores teóricos el dispositivo CAS presenta un error, nuevamente debido a los márgenes de error en los elementos \emph{hardware}}, en donde el comportamiento de la gráfica de pruebas valida el funcionamiento del CAS para el sensor de temperatura.
+Para el dispositivo CAS del sensor de temperatura, en la tabla~\ref{tab:cap4:TestCASTemp1} se muestran las mediciones tomadas del CAS, de la simulación y los valores teóricos en base a la ecuación~\ref{cap3:eq:VCASTemp}. Para esta prueba se consideró un dominio de entrada de $280\milli\volt$ a $320\milli\volt$, que equivalentemente son valores de temperatura de $28$ a $32\degreecelsius$. 
+
+En la figura~\ref{fig:cap4:GraficaTestCAStemp} se ilustra de manera gráfica los resultados obtenidos\footnote{Se observa que en base a los valores teóricos el dispositivo CAS presenta un error, nuevamente debido a los márgenes de error en los elementos \emph{hardware}}, en donde el comportamiento de la gráfica de pruebas valida el funcionamiento del CAS para el sensor de temperatura.
 
 \begin{table}[htp]
 	\caption{Mediciones ${V}_{CASTemp}$ con variaciones en el voltaje de entrada del sensor de temperatura.}%
@@ -215,26 +222,29 @@ Para el dispositivo CAS del sensor de temperatura, en la tabla~\ref{tab:cap4:Tes
 	\captionof{figure}{Gráfica de resultados arrojados en las pruebas, la simulación y de manera teórica para el CAS del sensor de temperatura.} \label{fig:cap4:GraficaTestCAStemp}
 \end{center}
 
-\section{Pruebas de caja gris}
+\section{Pruebas de Caja Gris}
 
 Las pruebas de caja gris se dividen en dos grupos con diferentes objetivos: realizar pruebas de comunicación entre subsistemas y pruebas de funcionalidad del sistema en general.
 
-Las pruebas de comunicación consisten básicamente en verificar que la comunicación entre la RTU y la MTU se realice de manera satisfactoria, y que se lleve a cabo la comunicación entre el \emph{software} de la MTU y la base de datos. Este grupo de pruebas se ilustra en el diagrama de flujo de la figura~\ref{fig:cap4:GrayBoxTestComm}. Para verificar que de manera general el sistema funciona adecuadamente, se realizan pruebas con los sensores reales, con ello, se verifica que el \emph{software} de la MTU y la aplicación Web muestren las mediciones de manera correcta. En la figura~\ref{fig:cap4:GrayBoxTestMonitor} se ilustra el diagrama de flujo para este grupo de pruebas.
+Las pruebas de comunicación consisten básicamente en verificar que la comunicación entre la RTU y la MTU se realice de manera satisfactoria, y que se lleve a cabo la comunicación entre el \emph{software} de la MTU y la base de datos. Este grupo de pruebas se ilustra en el diagrama de flujo de la figura~\ref{fig:cap4:GrayBoxTestComm}. 
+
+Para verificar que de manera general el sistema funciona adecuadamente, se realizan pruebas con los sensores reales, con ello, se verifica que el \emph{software} de la MTU y la aplicación Web muestren las mediciones de manera correcta. En la figura~\ref{fig:cap4:GrayBoxTestMonitor} se ilustra el diagrama de flujo para este grupo de pruebas.
 
 \begin{figure}[htb]
 	\begin{center}
 		\begin{tabular}{c@{\hskip 0.5in}c}
 			\subfloat[Pruebas de comunicación.]{%
 				\label{fig:cap4:GrayBoxTestComm}%
-				\includegraphics[scale=0.9]{Imagenes/Verificacion/GrayBoxTestComm.pdf}} &
+				\includegraphics[scale=0.8]{Imagenes/Verificacion/GrayBoxTestComm.pdf}} &
 			\subfloat[Pruebas de funcionalidad.]{%
 				\label{fig:cap4:GrayBoxTestMonitor}%
-				\includegraphics[scale=0.9]{Imagenes/Verificacion/GrayBoxTestMonitor.pdf}} \\
+				\includegraphics[scale=0.8]{Imagenes/Verificacion/GrayBoxTestMonitor.pdf}} \\
 		\end{tabular}
 	\end{center}
 	\caption{Diagramas de actividades para las pruebas de caja gris.} \label{fig:cap4:GrayBoxTest}
 \end{figure}
 
+\newpage
 \subsection{Prueba de comunicación serie entre la MTU y la RTU}
 
 La prueba de comunicación serie entre la MTU y la RTU consiste en verificar que la comunicación entre la RTU y el \emph{software} de la MTU se lleve a cabo bajo el estándar definido por el protocolo Modbus y la configuración de la interfaz serie definida en el apartado~\ref{cap3:DSW:RTUDA}. Dicha comunicación serie se realiza a través del transceptor RS-232/RS-485, cuya presentación final se muestra en la figura~\ref{fig:cap4:Pasarela232485}.
@@ -244,10 +254,10 @@ La prueba de comunicación serie entre la MTU y la RTU consiste en verificar que 
 		\begin{tabular}{c@{\hskip 0.5in}c}
 			\subfloat[Vista frontal del transceptor RS-232/RS-485.]{%
 				\label{fig:cap4:Pasarela232485_1}%
-				\includegraphics[scale=0.15]{Imagenes/Verificacion/Pasarela232-485.png}} &
+				\includegraphics[scale=0.12]{Imagenes/Verificacion/Pasarela232-485.png}} &
 			\subfloat[Vista trasera del transceptor RS-232/RS-485.]{%
 				\label{fig:cap4:Pasarela232485_2}%
-				\includegraphics[scale=0.15]{Imagenes/Verificacion/Pasarela232-485_2.png}} \\
+				\includegraphics[scale=0.12]{Imagenes/Verificacion/Pasarela232-485_2.png}} \\
 		\end{tabular}
 	\end{center}
 	\caption{Presentación final del transceptor RS-232/RS-485.} \label{fig:cap4:Pasarela232485}
@@ -292,9 +302,9 @@ La configuración de conexiones para la comunicación entre la RTU y la MTU se mue
 	\caption{Configuración de conexiones para la comunicación entre la RTU y la MTU.} \label{fig:cap4:TestComm}
 \end{figure}
 
+\newpage
 Para verificar que la comunicación se lleve a cabo satisfactoriamente, las pruebas de comunicación se realizan empleando dos cables UTP de diferentes longitudes: uno de aproximadamente $1\meter$ y otro de $3\meter$, con esto se valida que la comunicación se mantiene conforme la distancia aumenta.
 
-\newpage
 Se utiliza el \emph{software} \emph{Docklight}, con el que se envía a la RTU una ADU válida de manera constante simulando el monitoreo del \emph{software} de la RTU (Figura~\ref{fig:cap4:TestCommDock1}). Docklight se configura en base a los parámetros del diseño de la interfaz serie, según se muestra en la figura~\ref{fig:cap4:TestCommDock2}. 
 
 \begin{figure}[htb]
@@ -314,7 +324,7 @@ Se utiliza el \emph{software} \emph{Docklight}, con el que se envía a la RTU una
 
 En la figura~\ref{fig:cap4:TestCommDockserie} se muestran los resultados de las pruebas de comunicación serie para los cables UTP de $1\meter$ y $3\meter$ respectivamente. En estas pruebas se consideraron tiempos de muestreo de $1\second$ y $3\second$, sin embargo, solo se muestra la prueba de $1\second$ debido a que es la prueba con mayor demanda en la comunicación serie. Con estos resultados se valida que la comunicación serie entre la RTU y la MTU se realiza satisfactoriamente.
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\begin{center}
 		\begin{tabular}{c}
 			\subfloat[Prueba de comunicación serie con el cable UTP de $1\meter$ de longitud.]{
@@ -579,7 +589,7 @@ En la figura~\ref{fig:cap4:TestYiiSensorpH} se muestra la gráfica de las medicio
 \end{figure}
 
 \clearpage
-\section{Pruebas de caja negra}
+\section{Pruebas de Caja Negra}
 
 Las pruebas de caja negra consisten en verificar el funcionamiento de los módulos de sesión de usuario y la gestión de entradas y salidas digitales. Con estas pruebas se verifica que la aplicación Web gestiona de manera adecuada la seguridad de la misma y se verifica que la presentación y gestión de estados digitales se realice de manera exitosa. Las pruebas de caja negra se ilustran en el diagrama de actividades de la figura~\ref{fig:cap4:BlackBoxTest}.
 
